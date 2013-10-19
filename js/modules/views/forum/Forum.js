@@ -63,9 +63,11 @@ define(function (require, exports, module) {
     render: function () {
       this.$el.html(this.tpl());
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
-      this.scroll = new IScroll('.iscroll', {
-        scrollbars: true,
-        interactiveScrollbars: true
+      // this.scroll = new iScroll('.iscroll', {
+      //   scrollbars: true,
+      //   interactiveScrollbars: true
+      // });
+      this.scroll = new iScroll('forum-article', {
       });
       this.$ul = this.$el.find('ul');
       return this;
@@ -78,6 +80,7 @@ define(function (require, exports, module) {
     _addOne: function (topic) {
       var view = new RowForumView({model: topic});
       this.$ul.append(view.el);
+      $(view.el).removeClass('hide').addClass('show');
     },
     /**
      * 添加全部帖子
@@ -89,12 +92,11 @@ define(function (require, exports, module) {
       this.model.get('topics').each(this._addOne, this);
       _.delay(function () {
         ui.Loading.close();
-        self.$el.find('img').removeClass('hide');
         self.$ul.find('li').removeClass('hide');
-      }, 1000);
+      }, 600);
       _.delay(function () {
         self.scroll.refresh();
-      }, 1200);
+      }, 1000);
     },
     fetch: function (options) {
       this.model.fetchXml(options);

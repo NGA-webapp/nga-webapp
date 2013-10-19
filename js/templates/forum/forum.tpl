@@ -5,7 +5,7 @@
     <a class="glyphicon glyphicon-pencil"></a>
   </div>
 </header>
-<article class="iscroll">
+<article id="forum-article" class="iscroll">
   <div class="scroller">
     <ul>
     </ul>
