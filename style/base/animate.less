@@ -1,0 +1,148 @@
+.animated(@time: 1s, @mode: both){
+  .animation-duration(@time);
+  .animation-fill-mode(@mode);
+}
+.animation-duration(@time: 1s){
+  -webkit-animation-duration: @time;
+     -moz-animation-duration: @time;
+       -o-animation-duration: @time;
+          animation-duration: @time;
+}
+.animation-fill-mode(@mode: both){
+  -webkit-animation-fill-mode: @mode;
+       -moz-animation-fill-mode: @mode;
+         -o-animation-fill-mode: @mode;
+            animation-fill-mode: @mode;
+}
+@-webkit-keyframes shake {
+  0%, 100% {
+    -webkit-transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+      -webkit-transform: translateX(10px);
+  }
+}
+
+@-moz-keyframes shake {
+  0%, 100% {
+    -moz-transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+      -moz-transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+      -moz-transform: translateX(10px);
+  }
+}
+
+@-o-keyframes shake {
+  0%, 100% {
+    -o-transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+        -o-transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+        -o-transform: translateX(10px);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+  }
+}
+
+.shake {
+  -webkit-animation-name: shake;
+    -moz-animation-name: shake;
+      -o-animation-name: shake;
+          animation-name: shake;
+}
+@-webkit-keyframes tada {
+  0% {
+    -webkit-transform: scale(1);
+  } 
+  10%, 20% {
+    -webkit-transform: scale(0.9) rotate(-3deg);
+  }
+  30%, 50%, 70%, 90% {
+    -webkit-transform: scale(1.1) rotate(3deg);
+  }
+  40%, 60%, 80% {
+    -webkit-transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotate(0);
+  }
+}
+
+@-moz-keyframes tada {
+  0% {
+    -moz-transform: scale(1);
+  } 
+  10%, 20% {
+    -moz-transform: scale(0.9) rotate(-3deg);
+  }
+  30%, 50%, 70%, 90% {
+    -moz-transform: scale(1.1) rotate(3deg);
+  }
+  40%, 60%, 80% {
+    -moz-transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    -moz-transform: scale(1) rotate(0);
+  }
+}
+
+@-o-keyframes tada {
+  0% {
+    -o-transform: scale(1);
+  } 
+  10%, 20% {
+    -o-transform: scale(0.9) rotate(-3deg);
+  }
+  30%, 50%, 70%, 90% {
+    -o-transform: scale(1.1) rotate(3deg);
+  }
+  40%, 60%, 80% {
+    -o-transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    -o-transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes tada {
+  0% {
+    transform: scale(1);
+  } 
+  10%, 20% {
+    transform: scale(0.9) rotate(-3deg);
+  }
+  30%, 50%, 70%, 90% {
+    transform: scale(1.1) rotate(3deg);
+  }
+  40%, 60%, 80% {
+    transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+.tada {
+  -webkit-animation-name: tada;
+    -moz-animation-name: tada;
+      -o-animation-name: tada;
+          animation-name: tada;
+}

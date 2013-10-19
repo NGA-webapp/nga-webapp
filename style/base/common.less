@@ -1,0 +1,40 @@
+ul, ol {
+    padding: 0;
+    margin: 0 0 10px 0px;
+    display: block;
+}
+
+ul:nth-child(1) {
+    margin-left: 25px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+    margin-bottom: 0 !important;
+}
+
+ul {
+    list-style-position: inside;
+    list-style-type: square;
+
+    ul {
+        list-style-type: circle;
+    }
+}
+
+ul, ol {
+    list-style-position: inside;
+    li {
+        display: list-item;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+ul.unstyled, ol.unstyled, .unstyled {
+    margin-left: 0;
+    list-style: none;
+}

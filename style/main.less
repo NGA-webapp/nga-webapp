@@ -1,0 +1,218 @@
+@import "base/reset";
+@import "base/common";
+@import "base/css3";
+@import "base/animate";
+@import "base/icon";
+@import "base/ui";
+@import "base/bootstrap";
+@import "base/font";
+
+.clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+      display: table;
+      content: "";
+  }
+  &:after {
+      clear: both;
+  }
+}
+
+.hide {
+  opacity: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  font-family: ~'OpenSansRegular, Verdana, Arial, Helvetica, sans-serif, "Microsoft YaHei", \5FAE\8F6F\96C5\9ED1, \5b8b\4f53';
+  letter-spacing: 1px;
+  -webkit-user-select: none;
+}
+
+.abc {
+  position: fixed;
+  left: -100%;
+}
+
+.animated {
+  .animated();
+}
+
+.current.out {
+    -webkit-transition: -webkit-transform 400ms;
+    -webkit-transform: translate3d(-100%,0,0);
+}
+.next {
+    display: block;
+    -webkit-transform: translate3d(100%,0,0);
+}
+.next.in{
+    -webkit-transition: -webkit-transform 400ms;
+    -webkit-transform: translate3d(0,0,0);
+}
+.sidebar {
+    z-index: 50;
+    display: block;
+    width: 80%;
+}
+.sidebar.show + .current {
+    -webkit-transition: -webkit-transform 400ms;
+    -webkit-transform: translate3d(80%,0,0);
+}
+.sidebar.hide + .current {
+    -webkit-transition: -webkit-transform 400ms;
+    -webkit-transform: translate3d(0,0,0);
+}
+// section, header, article {
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   width: 100%;
+//   -webkit-transform: translateZ(0);
+// }
+// @nga-orange3: #fed555;
+// @nga-orange4: #fec102;
+// @nga-orange2: ##fef7df;
+// @nga-orange3: #feb855; // 254,184,85
+// @nga-orange4: #feaa34;
+// @nga-orange3: #f3a000;
+// @nga-orange3: #8f2d13;
+// @nga-red: #551200;
+// @nga-gray: #645441;
+// @nga-green: #96deed;
+// @nga-yellow: #ddaf28;
+// @nga-shit: #3b3113;
+
+@nga-red: #8F2D13;
+@nga-red-light: #DB5633;
+@nga-red-dark: #421104;
+@nga-green: #138F69;
+@nga-green-dark: #00422E;
+
+.sider-mask {
+  &.on {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 50;  
+  }
+}
+.section-sider-left {
+  .translate3d(80%, 0, 0);
+}
+.section-sider-right {
+  .translate3d(-80%, 0, 0);
+}
+
+body {
+  background-color: @nga-red;
+}
+
+#forum {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 30px 1px #000;
+  .transition(all 0.3s ease-in-out);
+  header {
+    position: absolute;
+    z-index: 3000;
+    float: left;
+    display: block;
+    background-color: @nga-red;
+    height: 50px;
+    width: 100%;
+    color: #fff;
+    .box-sizing(border-box);
+    .box-shadow(0 5px 0 @nga-red-dark);
+    a {
+      &:active {
+        color: @nga-red-light;
+      }
+    }
+    & > h1 {
+      float: left;
+      margin: 0 14px;
+      line-height: 50px;
+      font-size: 18px;
+      font-weight: normal;
+      .text-shadow(0 1px 1px @nga-red-dark);
+      .glyphicon {
+        font-size: 0.8em;
+        .text-shadow(0 0 0 @nga-red-dark);
+      }
+    }
+    & > div {
+      float: right;
+      margin: 0 14px;
+      line-height: 50px;
+      font-size: 18px;
+      font-weight: normal;
+      letter-spacing: 18px;
+    }
+  }
+  article {
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 50px;
+    overflow: scroll;
+    background-color: #efefef;
+    & .scroller {
+      .box-shadow(0, -5px, 5px, #000);
+      & > ul {
+        margin: 0;
+        & > li {
+          .transition();
+          -webkit-backface-visibility: hidden;
+          display: block;
+          min-height: 56px;
+          width: 100%;
+          .box-sizing(border-box);
+          &:active {
+            background-color: #ddd;
+          }
+          & > span {
+            .box-sizing(border-box);
+            padding: 30px 0;
+            float: left;
+            display: inline-block;
+            text-align: center;
+            height: 56px - 22px * 2;
+            width: 17%;
+            color: #666;
+            font-size: 14px;
+          }
+          & > .details {
+            .box-sizing(border-box);
+            width: 83%;
+            border-left: 2px solid @nga-red;
+            float: left;
+            display: inline-block;
+            padding: 18px 10px;
+            font-size: 10px;
+            color: #a3a3a3;
+            & > h4 {
+              margin: 0;
+              padding: 0;
+              font-size: 14px;
+              font-weight: normal;
+              color: #666;
+            }
+            & > time {
+              font-size: 10px;
+              float: right;
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}
