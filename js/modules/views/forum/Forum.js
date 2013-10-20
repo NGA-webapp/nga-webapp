@@ -2,7 +2,7 @@ define(function (require, exports, module) {
   var art = require('utils/artTemplate/index');
   var ui = require('utils/ui/index');
   var BasicView = require('modules/views/abstracts/Basic');
-  var ThreadModel = require('modules/models/integrations/Thread');
+  var TopicInForumCollection = require('modules/daos/forum/TopicInForumCollection');
   var tpl = require('templates/forum/forum.tpl');
   var RowForumView = require('modules/views/forum/Row');
 
@@ -89,23 +89,23 @@ define(function (require, exports, module) {
       var self = this;
       ui.Loading.open();
       this.$ul.html('');
-      this.model.get('topics').each(this._addOne, this);
+      console.log(this.collection);
+      this.collection.each(this._addOne, this);
       _.delay(function () {
         ui.Loading.close();
-        self.$ul.find('li').removeClass('hide');
       }, 600);
       _.delay(function () {
         self.scroll.refresh();
       }, 1000);
     },
-    fetch: function (options) {
-      this.model.fetchXml(options);
+    fetch: function (data, options) {
+      this.collection.fetchXml(data, options);
     },
     initialize: function () {
       ui.Loading.open();
-      this.model = new ThreadModel();
+      this.collection = new TopicInForumCollection();
       this.$ul = this.$el.find('ul');
-      this.listenTo(this.model, 'change', this._addAll);
+      this.listenTo(this.collection, 'sync', this._addAll);
       ui.Loading.close();
       return this.render();
     }

@@ -17,3 +17,12 @@ dev version
       - article: 主要内容区域 200
       - .overlay: 内容背景布 100
 
+- aside
+  - #menu
+  - #user
+- section
+  - #forum
+  - #topic
+  - #login
+  - #letter
+
