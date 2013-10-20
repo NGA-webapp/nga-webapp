@@ -122,12 +122,38 @@ body {
   background-color: @nga-red;
 }
 
+header {
+  position: absolute;
+  z-index: 400;
+  left: 0;
+  top: 0;
+  display: block;
+  height: 50px;
+  width: 100%;
+  // .box-sizing(border-box);
+  & > h1 {
+    float: left;
+    margin: 0 14px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: normal;
+  }
+  & > div {
+    float: right;
+    margin: 0 14px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 18px;
+  }
+}
+
 #masker {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 30;
-  background-color: @nga-red;
+  background-color: #efefef;
 }
 
 #forum {
@@ -138,15 +164,8 @@ body {
   z-index: 40;
   .transition(-webkit-transform 0.8s ease-in-out);
   header {
-    position: absolute;
-    z-index: 3000;
-    float: left;
-    display: block;
-    background-color: @nga-red;
-    height: 50px;
-    width: 100%;
     color: #fff;
-    .box-sizing(border-box);
+    background-color: @nga-red;
     .box-shadow(0 5px 0 @nga-red-dark);
     a {
       &:active {
@@ -154,24 +173,11 @@ body {
       }
     }
     & > h1 {
-      float: left;
-      margin: 0 14px;
-      line-height: 50px;
-      font-size: 18px;
-      font-weight: normal;
       .text-shadow(0 1px 1px @nga-red-dark);
       .glyphicon {
         font-size: 0.8em;
         .text-shadow(0 0 0 @nga-red-dark);
       }
-    }
-    & > div {
-      float: right;
-      margin: 0 14px;
-      line-height: 50px;
-      font-size: 18px;
-      font-weight: normal;
-      letter-spacing: 18px;
     }
   }
   article {
@@ -184,11 +190,22 @@ body {
     & .scroller {
       .box-shadow(0, -5px, 5px, #000);
       & > ul {
+        // 时间线
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 2px;
+          background: @nga-red;
+          left: 17%;
+          // margin-left: 2px;
+        }
         margin: 0;
         & > li {
           // .transition();
           &.show {
-            -webkit-animation: bounceInRight 1s ease-in-out
+            -webkit-animation: bounceInDown 1s ease-in-out
           }
           -webkit-backface-visibility: hidden;
           display: block;
@@ -212,7 +229,7 @@ body {
           & > .details {
             .box-sizing(border-box);
             width: 83%;
-            border-left: 2px solid @nga-red;
+            // border-left: 2px solid @nga-red;
             float: left;
             display: inline-block;
             padding: 18px 10px;
@@ -230,6 +247,92 @@ body {
               float: right;
               text-align: right;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+#topic {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 30px 1px #000;
+  z-index: 40;
+  header {
+    color: #fff;
+    background-color: @nga-red;
+    .box-shadow(0 5px 0 @nga-red-dark);
+    a {
+      &:active {
+        color: @nga-red-light;
+      }
+    }
+    & > h1 {
+      .text-shadow(0 1px 1px @nga-red-dark);
+      .glyphicon {
+        font-size: 0.8em;
+        .text-shadow(0 0 0 @nga-red-dark);
+      }
+    }
+  }
+  article {
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 50px;
+    overflow: scroll;
+    background-color: #efefef;
+    & .scroller {
+      .box-shadow(0, -5px, 5px, #000);
+      & > ul {
+        margin: 0;
+        & > li {
+          &.show {
+            -webkit-animation: bounceInDown 1s ease-in-out
+          }
+          .box-sizing(border-box);
+          -webkit-backface-visibility: hidden;
+          display: block;
+          min-height: 56px;
+          width: 100%;
+          border-bottom: 1px solid #ccc;
+          color: #666;
+          .box-sizing(border-box);
+          & > h2 {
+            margin: 0;
+            padding: 20px 10px;
+            font-size: 18px;
+            font-weight: 600;
+          }
+          & > .info {
+            background-color: #ddd;
+            min-height: 30px;
+            padding: 10px 10px;
+            line-height: 30px;
+            font-size: 12px;
+            & > .avatar {
+              float: left;
+              width: 30px;
+              height: 30px;
+              .border-radius(50%);
+              .box-shadow(0 0 0px 2px #fff);
+            }
+            span {
+              padding-left: 10px;
+            }
+            time {
+              float: right;
+            }
+          }
+          & > .content {
+            h3 {
+              padding: 0 0 10px 0;
+              margin: 0;
+              font-size: 14px;
+            }
+            padding: 20px 20px 30px 20px;
           }
         }
       }

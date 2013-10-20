@@ -7,3 +7,4 @@
           <time><%= $format_date(lastPost) %></time>
         </div>
         <div class="clearfix"></div>
+        

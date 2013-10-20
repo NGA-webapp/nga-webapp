@@ -1,4 +1,18 @@
 define(function (require, exports, module) {
+  var checkError = function (xhr, status) {
+    var msg;
+    if (status === 'error') {
+      if (xhr.responseText) {
+        // 错误时返回的xml还带js蛋疼
+        msg = xhr.responseText.match(/<__MESSAGE><item>\d+<\/item><item>(.*?)<\/item>/);
+        if (msg.length === 2) {
+          return alert(msg[1]);
+        }
+      }
+      alert('网络错误');
+    }
+  };
+
   var BasicCollection = Backbone.Collection.extend({
     fetchXml: function (data, options) {
       _.defaults(data || (data = {}), {
@@ -8,9 +22,9 @@ define(function (require, exports, module) {
       _.defaults(options || (options = {}), {
         'url': this.url,
         'dataType': 'xml',
-        'data': data
+        'data': data,
+        'complete': checkError
       });
-      console.log(options);
       return this.fetch(options);
     },
     // parse: function (nodes) {
