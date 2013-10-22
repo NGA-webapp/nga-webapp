@@ -1,7 +1,8 @@
 define(function (require, exports, module) {
+  var browser = require('utils/browser');
   var checkError = function (xhr, status) {
     var msg;
-    if (status === 'error') {
+    if (status === 'error' || browser.isIPhone) {
       if (xhr.responseText) {
         // 错误时返回的xml还带js蛋疼
         msg = xhr.responseText.match(/<__MESSAGE><item>\d+<\/item><item>(.*?)<\/item>/);
@@ -9,6 +10,8 @@ define(function (require, exports, module) {
           return alert(msg[1]);
         }
       }
+    }
+    if (status === 'error') {
       alert('网络错误');
     }
   };

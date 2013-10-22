@@ -64,6 +64,7 @@ define(function (require, exports, module) {
         lastPost: topic.lastPost,
         lastPoster: topic.lastPoster,
         replies: topic.replies,
+        titleFont: topic.titleFont,
         recommend: topic.recommend,
         admin: topic.admin,
         quoteFrom: topic.quoteFrom

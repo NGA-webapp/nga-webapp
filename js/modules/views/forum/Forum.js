@@ -11,17 +11,17 @@ define(function (require, exports, module) {
     tpl: art.compile(tpl),
     events: {
       // 抖动动画测试
-      'singleTap .glyphicon-search': function () {
+      'singleTap .action-search': function () {
         $self = this.$el.find('.glyphicon-search');
         $self.addClass('animated shake');
         _.delay(function () {$self.removeClass('animated');}, 1000);
       },
       // 登录调试测试
-      'doubleTap .glyphicon-pencil': function () {
+      'doubleTap .action-letter': function () {
         $.get('/api/login', function () {
           alert('connected!');
           window.location = function () {
-            return window.location;
+            return '/client/';
           }();
         });
       },
@@ -37,7 +37,7 @@ define(function (require, exports, module) {
       // 'touchstart .sider-mask': 'closeSider',
       'swipe .sider-mask': 'closeSider',
       'tap .sider-mask': 'closeSider',
-      'tap header>h1>a': 'openLeftSider',
+      'tap .action-aside': 'openLeftSider',
     },
     openLeftSider: function () {
       this.$el.addClass('section-sider-left');
@@ -87,9 +87,7 @@ define(function (require, exports, module) {
      */
     _addAll: function () {
       var self = this;
-      ui.Loading.open();
       this.$ul.html('');
-      console.log(this.collection);
       this.collection.each(this._addOne, this);
       _.delay(function () {
         ui.Loading.close();
@@ -99,14 +97,12 @@ define(function (require, exports, module) {
       }, 1000);
     },
     fetch: function (data, options) {
+      ui.Loading.open();
       this.collection.fetchXml(data, options);
     },
     initialize: function () {
-      ui.Loading.open();
       this.collection = new TopicInForumCollection();
-      this.$ul = this.$el.find('ul');
       this.listenTo(this.collection, 'sync', this._addAll);
-      ui.Loading.close();
       return this.render();
     }
   });

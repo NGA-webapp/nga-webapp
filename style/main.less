@@ -114,10 +114,6 @@ body {
   -webkit-transform: translate3d(0, 0, 0);
 }
 
-.slideInRight {
-  -webkit-animation: bounceInRight 1s ease-in-out;
-}
-
 body {
   background-color: @nga-red;
 }
@@ -131,29 +127,53 @@ header {
   height: 50px;
   width: 100%;
   // .box-sizing(border-box);
-  & > h1 {
-    float: left;
-    margin: 0 14px;
+  a {
+    .border-radius(10px);
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    padding: 5px;
+    &.icon {
+      width: 30px;
+      text-align: center;
+    }
+  }
+  & > h1, & > div {
+    margin: 0;
     line-height: 50px;
     font-size: 18px;
-    font-weight: normal;
+    font-weight: normal;    
+  }
+  & > h1 {
+    float: left;
+    margin-left: 10px;
+    a {
+      margin: 10px 0;
+    }
   }
   & > div {
     float: right;
-    margin: 0 14px;
-    line-height: 50px;
-    font-size: 18px;
-    font-weight: normal;
-    letter-spacing: 18px;
+    margin-right: 10px;
+    a {
+      margin: 10px 0;
+    }
   }
 }
 
-#masker {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 30;
-  background-color: #efefef;
+main {
+  & > section {
+    z-index: 300;
+    &.behind {
+      z-index: 50;
+    }
+  }
+  & > .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: #efefef;
+  }
 }
 
 #forum {
@@ -161,15 +181,14 @@ header {
   width: 100%;
   height: 100%;
   box-shadow: 0 0 30px 1px #000;
-  z-index: 40;
-  .transition(-webkit-transform 0.8s ease-in-out);
+  .transition(-webkit-transform 0.6s ease-in-out);
   header {
     color: #fff;
     background-color: @nga-red;
-    .box-shadow(0 5px 0 @nga-red-dark);
+    // .box-shadow(0 5px 0 @nga-red-dark);
     a {
       &:active {
-        color: @nga-red-light;
+        background-color: @nga-red-dark;
       }
     }
     & > h1 {
@@ -177,6 +196,11 @@ header {
       .glyphicon {
         font-size: 0.8em;
         .text-shadow(0 0 0 @nga-red-dark);
+      }
+    }
+    & > div {
+      & > a {
+        float: right;
       }
     }
   }
@@ -241,6 +265,9 @@ header {
               font-size: 14px;
               font-weight: normal;
               color: #666;
+              & > span.tag {
+                color: #888;
+              }
             }
             & > time {
               font-size: 10px;
@@ -259,14 +286,13 @@ header {
   width: 100%;
   height: 100%;
   box-shadow: 0 0 30px 1px #000;
-  z-index: 40;
   header {
     color: #fff;
     background-color: @nga-red;
-    .box-shadow(0 5px 0 @nga-red-dark);
+    // .box-shadow(0 5px 0 @nga-red-dark);
     a {
       &:active {
-        color: @nga-red-light;
+        background-color: @nga-red-dark;
       }
     }
     & > h1 {
@@ -274,6 +300,11 @@ header {
       .glyphicon {
         font-size: 0.8em;
         .text-shadow(0 0 0 @nga-red-dark);
+      }
+    }
+    & > div {
+      & > a {
+        float: right;
       }
     }
   }
@@ -305,6 +336,10 @@ header {
             padding: 20px 10px;
             font-size: 18px;
             font-weight: 600;
+            color: #555;
+            & > span.tag {
+              color: #666;
+            }
           }
           & > .info {
             background-color: #ddd;
@@ -319,11 +354,19 @@ header {
               .border-radius(50%);
               .box-shadow(0 0 0px 2px #fff);
             }
-            span {
+            span.author {
               padding-left: 10px;
             }
             time {
               float: right;
+              font-size: 10px;
+              line-height: 15px;
+              clear: right;
+            }
+            span.floor {
+              float: right;
+              font-size: 10px;
+              line-height: 15px;
             }
           }
           & > .content {
@@ -332,6 +375,8 @@ header {
               margin: 0;
               font-size: 14px;
             }
+            word-wrap:break-word;
+            overflow:hidden;
             padding: 20px 20px 30px 20px;
           }
         }

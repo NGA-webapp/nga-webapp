@@ -3,9 +3,10 @@ define(function (require, exports, module) {
   var TopicInForumModel = require('modules/daos/forum/TopicInForumModel');
   var browser = require('utils/browser');
   var parser = require('modules/daos/forum/parser');
+  var config = require('config');
 
   var TopicInForumCollection = BasicCollection.extend({
-    url: browser.isIPhone ? '/api/forum' : 'http://bbs.ngacn.cc/thread.php',
+    url: browser.isIPhone || config.nakeServer ? '/api/forum' : 'http://bbs.ngacn.cc/thread.php',
     model: TopicInForumModel,
     // cache中存放如服务器上数据总行数等信息
     cache: {},
