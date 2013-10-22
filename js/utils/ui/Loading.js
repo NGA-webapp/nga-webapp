@@ -11,7 +11,7 @@ define(function (require, exports, module) {
       show: 'showLoadingUI'
     },
     afterInit: function (id) {
-      fullScreen(this.el().get(0));
+      // fullScreen(this.el().get(0));
     },
     events: {
       'afterInit': 'afterInit'

@@ -33,7 +33,7 @@ define(function (require, exports, module) {
         this.currentSection = this.cached.forumView;
       },
       getTopic: function (tid, page) {
-        tid = 6582574;
+        tid = tid === 1 ? 6582574 : tid;
         console.log('topic: ' + tid + ', page: ' + (page || 1));
         this.cacheInitialize();
         transition.switchTo(this.cached.topicView);

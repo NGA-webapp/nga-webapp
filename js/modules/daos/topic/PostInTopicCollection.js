@@ -14,6 +14,7 @@ define(function (require, exports, module) {
       var data = parser(resp);
       window.parserDate = data;
       this.cache.rows = data.rows;
+      this.cache.subject = data.topic.subject;
       console.log('account status: ', data.account);
       return data.posts;
     }

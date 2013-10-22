@@ -96,6 +96,16 @@
   background-image: linear-gradient(top, @from, @to);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@from,endColors=@to);
 }
+.linear-gradient(@from: #ffffff, @to: #000000, @rest...) {
+  background-image: -moz-linear-gradient(top, @from, @to, @rest);  /* FF3.6+ */
+  background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, @from, @to, @rest); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image: -ms-linear-gradient(top, @from, @to, @rest); /* IE10 */
+  background-image: -o-linear-gradient(top, @from, @to, @rest); /* Opera 11.10+ */
+  background-image: linear-gradient(top, @from, @to, @rest);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@from,endColors=@to);
+}
+
 
 //**
 // * box-sizing 盒模型计算方式

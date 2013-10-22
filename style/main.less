@@ -70,7 +70,8 @@ body {
 // @nga-yellow: #ddaf28;
 // @nga-shit: #3b3113;
 
-@nga-red: #8F2D13;
+// @nga-red: #8F2D13;
+@nga-red: #DB5633;
 @nga-red-light: #DB5633;
 @nga-red-dark: #421104;
 @nga-green: #138F69;
@@ -120,7 +121,6 @@ body {
 
 header {
   position: absolute;
-  z-index: 400;
   left: 0;
   top: 0;
   display: block;
@@ -160,11 +160,63 @@ header {
   }
 }
 
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  height: 50px;
+  width: 100%;
+  a {
+    .border-radius(10px);
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    padding: 5px;
+    &.icon {
+      width: 30px;
+      text-align: center;
+    }
+  }
+  & > div {
+    margin: 0;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: normal;    
+  }
+  & > .left {
+    float: left;
+    margin-left: 10px;
+    a {
+      margin: 5px 0;
+    }
+  }
+  & > .right {
+    float: right;
+    margin-right: 10px;
+    a {
+      margin: 5px 0;
+    }
+  }
+}
+
 main {
   & > section {
     z-index: 300;
     &.behind {
       z-index: 50;
+    }
+    & > header {
+      z-index: 400;
+      &.behind {
+        z-index: 50;
+      }
+    }
+    & > footer {
+      z-index: 400;
+      &.behind {
+        z-index: 50;
+      }
     }
   }
   & > .overlay {
@@ -194,8 +246,7 @@ main {
     & > h1 {
       .text-shadow(0 1px 1px @nga-red-dark);
       .glyphicon {
-        font-size: 0.8em;
-        .text-shadow(0 0 0 @nga-red-dark);
+        // .text-shadow(0 0 0 @nga-red-dark);
       }
     }
     & > div {
@@ -278,6 +329,10 @@ main {
         }
       }
     }
+  }
+  footer {
+    color: @nga-red;
+    .linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%); 
   }
 }
 
@@ -382,5 +437,16 @@ main {
         }
       }
     }
+  }
+  footer {
+    a {
+      &:active {
+        color: #fff;
+        background-color: @nga-red;
+      }
+    }
+    color: @nga-red;
+    .linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 20%, rgba(255, 255, 255, 1) 100%); 
+    .transition(all 0.4s ease);
   }
 }
