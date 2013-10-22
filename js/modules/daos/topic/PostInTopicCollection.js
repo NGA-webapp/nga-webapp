@@ -13,10 +13,17 @@ define(function (require, exports, module) {
     parse: function (resp) {
       var data = parser(resp);
       window.parserDate = data;
-      this.cache.rows = data.rows;
+      this.cache.rowCount = data.rowCount;
+      this.cache.pageCount = data.pageCount;
       this.cache.subject = data.topic.subject;
       console.log('account status: ', data.account);
       return data.posts;
+    },
+    initialize: function () {
+      this.on('request', function (model, xhr, options) {
+        this.cache.tid = options.data.tid;
+        this.cache.page = options.data.page;
+      });
     }
   });
 

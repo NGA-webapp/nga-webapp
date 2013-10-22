@@ -1,4 +1,5 @@
 define(function (require, exports, module) {
+  var MenuView = require('modules/views/menu/Menu');
   var ForumView = require('modules/views/forum/Forum');
   var TopicView = require('modules/views/topic/Topic');
   var transition = require('utils/StageTransition');
@@ -17,6 +18,7 @@ define(function (require, exports, module) {
       routes: routesTable,
       // 初始化单例的视图，存入cache
       cacheInitialize: function () {
+        this.cached.menuView = this.cached.menuView || new MenuView();
         this.cached.forumView = this.cached.forumView || new ForumView();
         this.cached.topicView = this.cached.topicView || new TopicView();
       },
@@ -46,7 +48,7 @@ define(function (require, exports, module) {
       },
       initialize: function () {
         // http://stackoverflow.com/questions/11364837/using-backbone-history-to-go-back-without-triggering-route-function
-        this.on('all', Navigate.storeRoute);
+        this.on('route', Navigate.storeRoute);
         this.cached = {
           forumView: void 0,
           topicView: void 0

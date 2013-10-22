@@ -114,10 +114,11 @@ define(function (require, exports, module) {
     };
     obj = {
       posts: _.map(posts, customPost),
-      rows: rows,
+      rowCount: rows,
       account: account,
       users: usersCache,
-      topic: topic
+      topic: topic,
+      pageCount: Math.ceil(rows / 20)
     };
     return obj;
   };

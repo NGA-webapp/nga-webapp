@@ -1,4 +1,5 @@
 define(function (require, exports, module) {
+  var ui = require('utils/ui/index');
   var browser = require('utils/browser');
   var checkError = function (xhr, status) {
     var msg;

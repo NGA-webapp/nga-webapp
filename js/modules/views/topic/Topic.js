@@ -23,14 +23,42 @@ define(function (require, exports, module) {
       'tap .action-back': function () {
         Navigate.back();
       },
+      'singleTap .action-previous': function () {
+        var tid, page;
+        if (this.collection.cache.page <= 1) {
+          alert('已经是第一页');
+          return false;
+        }
+        tid = this.collection.cache.tid;
+        page = this.collection.cache.page - 1;
+        Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
+        this.fetch({tid: tid, page: page});
+      },
+      'singleTap .action-next': function () {
+        var tid, page;
+        if (this.collection.cache.pageCount <= this.collection.cache.page) {
+          alert('已经到了最后一页');
+          return false;
+        }
+        tid = this.collection.cache.tid;
+        page = this.collection.cache.page + 1;
+        Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
+        this.fetch({tid: tid, page: page});
+      },
       'swipeUp': function () {
-        this.$el.find('footer').addClass('hide').addClass('behind');
+        var $footer = this.$footer;
+        $footer.addClass('hide');
+        _.delay(function () {
+          $footer.addClass('behind');
+        }, 400);
       },
       'swipeDown': function () {
-        this.$el.find('footer').removeClass('hide').removeClass('behind');
+        var $footer = this.$footer;
+        $footer.removeClass('behind').removeClass('hide');
       },
       'singleTap': function () {
-        this.$el.find('footer').removeClass('hide').removeClass('behind');
+        var $footer = this.$footer;
+        $footer.removeClass('behind').removeClass('hide');
       }
     },
     render: function () {
@@ -40,6 +68,7 @@ define(function (require, exports, module) {
       });
       this.$ul = this.$el.find('ul');
       this.$subject = this.$el.find('header span.subject');
+      this.$footer = this.$el.find('footer');
       return this;
     },
     /**
@@ -58,6 +87,7 @@ define(function (require, exports, module) {
     _addAll: function () {
       var self = this;
       this.$ul.html('');
+      this.scroll.scrollTo(0, 0, 0);
       console.log(this.collection);
       this.collection.each(this._addOne, this);
       this.$subject.text(sliceSubject(this.collection.cache.subject));
@@ -76,6 +106,7 @@ define(function (require, exports, module) {
       this.collection = new PostInTopicCollection();
       this.$ul = this.$el.find('ul');
       this.$subject = this.$el.find('header span.subject');
+      this.$footer = this.$el.find('footer');
       this.listenTo(this.collection, 'sync', this._addAll);
       return this.render();
     }

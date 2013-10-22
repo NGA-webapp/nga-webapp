@@ -68,6 +68,7 @@ define(function (require, exports, module) {
    * @return {StageTransition}          this
    */
   StageTransition.prototype._switch = function (fromView, toView) {
+    var self = this;
     var fromSelector, toSelector;
     var set, before, animate, duration;
     var isFirstTime;
@@ -75,7 +76,7 @@ define(function (require, exports, module) {
     isFirstTime = typeof fromView === 'undefined';
     fromSelector = isFirstTime ? 'firstTime' : fromView.$el.selector;
     toSelector = toView.$el.selector;
-    set = _.chain(this.map)
+    set = _.chain(self.map)
       .findWhere({from: fromSelector, to: toSelector})
       .pick('before', 'animate', 'duration')
       .value();
@@ -86,18 +87,21 @@ define(function (require, exports, module) {
       // 当前section添加动画前的预设样式
       fromView.$el.addClass(before.from);
       // 当前section执行动画
-      this._transition(fromView.$el, animate.from, duration, function () {
+      self._transition(fromView.$el, animate.from, duration, function () {
         // 当前section动画执行结束后移除动画前预设样式，并推至幕后
         fromView.$el.removeClass(before.from).addClass('behind');
       });
     }
-    // 目标section添加动画前的预设样式，并推至幕前
-    toView.$el.addClass(before.to).removeClass('behind');
-    // 目标section执行动画
-    this._transition(toView.$el, animate.to, duration, function () {
-      // 目标section动画执行结束后移除动画前预设样式
-      toView.$el.removeClass(before.to);
-    });
+    _.delay(function () {
+      // 目标section添加动画前的预设样式，并推至幕前
+      toView.$el.addClass(before.to).removeClass('behind');
+      // 目标section执行动画
+      self._transition(toView.$el, animate.to, duration, function () {
+        // 目标section动画执行结束后移除动画前预设样式
+        toView.$el.removeClass(before.to);
+      });
+    }, 0);
+
     return this;
   };
   /**

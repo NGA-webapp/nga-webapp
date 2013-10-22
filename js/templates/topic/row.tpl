@@ -13,7 +13,7 @@
         // 这里需要ubb一次content，同时借由ubb防止xss攻击
         %>
         <div class="content">
-          <% if (subject && lou === 0) { %>
+          <% if (subject && lou !== 0) { %>
           <h3><%= subject %></h3>
           <% } %>
           <%= content %>
