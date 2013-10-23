@@ -5,6 +5,7 @@ define(function (require, exports, module) {
   var tpl = require('templates/menu/menu.tpl');
   var Navigate = require('utils/Navigate');
   var appCache = require('modules/AppCache').appCache;
+  var sliceSubject = require('utils/common').sliceSubject;
 
   var MenuView = BasicView.extend({
     el: '#menu',
@@ -14,7 +15,7 @@ define(function (require, exports, module) {
         var $nav = $(events.target);
         if (typeof $nav.data('fid') !== 'undefined') {
           Navigate.redirect('#!/forum/' + $nav.data('fid'));
-          appCache.get('forumView').$el.find('header .subject').text($nav.text());
+          appCache.get('forumView').$el.find('header .subject').text(sliceSubject($nav.text()));
         }
       }
     },

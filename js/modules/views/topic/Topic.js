@@ -8,7 +8,6 @@ define(function (require, exports, module) {
   var Navigate = require('utils/Navigate');
   var sliceSubject = require('utils/common').sliceSubject;
 
-
   var TopicView = BasicView.extend({
     el: '#topic',
     tpl: art.compile(tpl),

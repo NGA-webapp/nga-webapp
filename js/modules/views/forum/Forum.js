@@ -6,7 +6,6 @@ define(function (require, exports, module) {
   var tpl = require('templates/forum/forum.tpl');
   var RowForumView = require('modules/views/forum/Row');
   var Navigate = require('utils/Navigate');
-  var sliceSubject = require('utils/common').sliceSubject;
   
   var ForumView = BasicView.extend({
     el: '#forum',

@@ -19,6 +19,9 @@ define(function (require, exports, module) {
     }
   };
 
+  /**
+   * 使用该对象缓存app生命期里的数据，如单例的视图
+   */
   var appCache = new AppCache();
 
   exports.appCache = appCache;
