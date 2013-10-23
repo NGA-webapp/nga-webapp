@@ -9,8 +9,11 @@ define(function (require, exports, module) {
     el: '#menu',
     tpl: art.compile(tpl),
     events: {
-      'tap .action-back': function () {
-        Navigate.back();
+      'singleTap .quickNav': function (events) {
+        var $nav = $(events.target);
+        if (typeof $nav.data('fid') !== 'undefined') {
+          Navigate.redirect('#!/forum/' + $nav.data('fid'));
+        }
       }
     },
     render: function () {

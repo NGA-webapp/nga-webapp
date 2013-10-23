@@ -5,7 +5,9 @@ define(function (require, exports, module) {
   var TopicInForumCollection = require('modules/daos/forum/TopicInForumCollection');
   var tpl = require('templates/forum/forum.tpl');
   var RowForumView = require('modules/views/forum/Row');
-
+  var Navigate = require('utils/Navigate');
+  var sliceSubject = require('utils/common').sliceSubject;
+  
   var ForumView = BasicView.extend({
     el: '#forum',
     tpl: art.compile(tpl),
@@ -25,40 +27,21 @@ define(function (require, exports, module) {
           }();
         });
       },
-      // 侧边栏测试
-      'swipeLeft header+article': function () {
-        this.openRightSider();
-      },
-      'swipeRight header+article': function () {
-        this.openLeftSider();
-      },
-      // 'swipeLeft .asideMask': 'closeLeftSider',
-      // 'swipeRight .asideMask': 'closeRightSider',
-      // 'touchstart .asideMask': 'closeSider',
+      'swipeRight header+article': 'openLeftSider',
       'swipe .asideMask': 'closeSider',
       'tap .asideMask': 'closeSider',
       'tap .action-aside': 'openLeftSider',
     },
     openLeftSider: function () {
-      this.$el.addClass('section-sider-left');
-      this.$el.find('.asideMask').addClass('on');
-    },
-    closeLeftSider: function () {
-      this.$el.removeClass('section-sider-left');
-      this.$el.find('.asideMask').removeClass('on');
+      // this.$el.addClass('section-sider-left');
+      var self = this;
+      Navigate.aside('#!/menu', function () {
+        self.$el.find('.asideMask').removeClass('on');
+      });
+      self.$el.find('.asideMask').addClass('on');
     },
     closeSider: function () {
-      this.$el.removeClass('section-sider-left');
-      this.$el.removeClass('section-sider-right');
-      this.$el.find('.asideMask').removeClass('on');
-    },
-    openRightSider: function () {
-      this.$el.addClass('section-sider-right');
-      this.$el.find('.asideMask').addClass('on');
-    },
-    closeRightSider: function () {
-      this.$el.removeClass('section-sider-right');
-      this.$el.find('.asideMask').removeClass('on');
+      Navigate.back();
     },
     render: function () {
       this.$el.html(this.tpl());

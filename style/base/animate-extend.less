@@ -366,16 +366,61 @@
     transform: translate3d(0, -100%, 0);
   }
 }
-
-.notification {
-  -webkit-animation: notification 0.6s ease;
-}
-
 .slideOutDown {
   -webkit-animation: slideOutDown 0.8s ease;
     -moz-animation: slideOutDown 0.8s ease;
       -o-animation: slideOutDown 0.8s ease;
           animation: slideOutDown 0.8s ease;
+}
+
+@-webkit-keyframes section-closeLeftAsideIn {
+  0% {
+    -webkit-transform: translate3d(120%, 0, 0);
+  }
+
+  30% {
+    -webkit-transform: translate3d(120%, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes section-closeLeftAsideOut {
+  0% {
+    -webkit-transform: translate3d(80%, 0, 0);
+  }
+
+  5% {
+    -webkit-transform: translate3d(75%, 0, 0);
+  }
+
+  20% {
+    -webkit-transform: translate3d(120%, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(120%, 0, 0);
+  }
+}
+
+@-webkit-keyframes section-closeLeftAsideOutAndIn {
+  0% {
+    -webkit-transform: translate3d(80%, 0, 0);
+  }
+
+  40% {
+    -webkit-transform: translate3d(120%, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
+.notification {
+  -webkit-animation: notification 0.6s ease;
 }
 
 .section-bounceIn {
@@ -412,6 +457,38 @@
   -webkit-animation: bounceOutRight 0.6s ease;
   .translate3d(100%, 0, 0);
 }
-.section-flipInX {
-  -webkit-animation: flipInX 0.6s ease;
+
+
+
+.no-transform () {
+  -webkit-transition: -webkit-transform 0;
+}
+.section-openLeftAside {
+  .transition(-webkit-transform 0.6s ease);
+  .translate3d(80%, 0, 0);
+}
+.section-closeLeftAsideOutAndIn {
+    -webkit-animation: section-closeLeftAsideOutAndIn 0.6s ease;
+  // .transition(-webkit-transform 0.6s ease);
+  // .translate3d(0, 0, 0);
+}
+.section-closeLeftAsideIn {
+  // -webkit-animation: section-closeLeftAsideIn 0.6s ease;
+  .transition(-webkit-transform 0.4s ease);
+  .translate3d(0, 0, 0);
+  // .translate3d(0, 0, 0);
+}
+.section-closeLeftAsideOut {
+  // -webkit-animation: section-closeLeftAsideOut 0.6s ease;
+  .transition(-webkit-transform 0.2s ease);
+  .translate3d(120%, 0, 0);
+  // .translate3d(120%, 0, 0);
+}
+.leanLeft {
+  .no-transform();
+  .translate3d(-80%, 0, 0);
+}
+.leanRight {
+  .no-transform();
+  .translate3d(80%, 0, 0);
 }

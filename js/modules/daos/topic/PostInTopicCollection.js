@@ -3,7 +3,7 @@ define(function (require, exports, module) {
   var PostInTopicModel = require('modules/daos/topic/PostInTopicModel');
   var browser = require('utils/browser');
   var parser = require('modules/daos/topic/parser');
-  var config = require('config');
+  var config = require('config/index');
 
   var PostInTopicCollection = BasicCollection.extend({
     url: browser.isIPhone || config.nakeServer ? '/api/topic' : 'http://bbs.ngacn.cc/read.php',

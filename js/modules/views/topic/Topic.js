@@ -6,15 +6,8 @@ define(function (require, exports, module) {
   var tpl = require('templates/topic/topic.tpl');
   var RowTopicView = require('modules/views/topic/Row');
   var Navigate = require('utils/Navigate');
+  var sliceSubject = require('utils/common').sliceSubject;
 
-  var sliceSubject = function (subject) {
-    var limit = 14; // 标题最长长度
-    if (subject.length > limit ) {
-      return subject.slice(0, limit - 2) + '...';
-    } else {
-      return subject;
-    }
-  };
 
   var TopicView = BasicView.extend({
     el: '#topic',

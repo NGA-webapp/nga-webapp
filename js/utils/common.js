@@ -45,4 +45,19 @@ define(function (require, exports) {
     }
     return parseInt(str, 0) || 0;
   };
+
+  /**
+   * 限定标题长度，超过的显示...
+   * @param  {string} subject 标题
+   * @return {string}         过滤后的标题
+   */
+  var sliceSubject = exports.sliceSubject = function (subject) {
+    var limit = 13; // 标题最长长度
+    if (subject.length > limit ) {
+      return subject.slice(0, limit - 2) + '...';
+    } else {
+      return subject;
+    }
+  };
+
 });

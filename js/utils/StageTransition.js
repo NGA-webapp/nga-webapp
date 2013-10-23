@@ -1,73 +1,23 @@
 define(function (require, exports, module) {
-  /**
-   * 转场动画设置
-   * @type {Array}
-   * obj.from 源跳转视图的selector，为'firstTime'则表示是第一次跳转没有源视图
-   * obj.to 目标跳转视图的selector
-   * obj.before.from/obj.before.to 转场前预设样式，如将z-index提高或降低
-   * obj.animate.from/obj.animate.to 转场动画的样式
-   * obj.after.from/obj.after.to 转场后样式，如将z-index降低至幕后
-   *
-   * 此外，约定以下样式名
-   * noop: 不带任何样式
-   * pop: z-index略高于正常情况
-   * dive: z-index略低于正常情况
-   * 
-   * 另外，behind样式会在转场开始前移除，并建议设置时只用在after选项
-   * behide: z-index低于overlay，即代表不显示的视图；不带有该样式则说明正在台前。
-   */
-  var map = [
-    {
-      from: 'firstTime',
-      to: '#forum',
-      before: {to: 'noop'},
-      animate: {to: 'section-bounceInRight'},
-      after: {to: 'noop'},
-      duration: 600
-    },
-    {
-      from: 'firstTime',
-      to: '#topic',
-      before: {to: 'noop'},
-      animate: {to: 'section-bounceInRight'},
-      after: {to: 'noop'},
-      duration: 600
-    },
-    {
-      from: '#forum',
-      to: '#topic',
-      before: {from: 'noop', to: 'noop'},
-      animate: {from: 'section-bounceOutLeft', to: 'section-bounceInRight'},
-      after: {from: 'behind', to: 'noop'},
-      duration: 600
-    },
-    {
-      from: '#topic',
-      to: '#forum',
-      before: {from: 'noop', to: 'noop'},
-      animate: {from: 'section-bounceOutRight', to: 'section-bounceInLeft'},
-      after: {from: 'behind', to: 'noop'},
-      duration: 600
-    },
-    {
-      from: '#forum',
-      to: '#menu',
-      before: {from: 'noop', to: 'noop'},
-      animate: {from: 'section-sider-left', to: 'noop'},
-      after: {from: 'section-sider-left', to: 'noop'},
-      duration: 600
-    }
-  ];
+  var map = require('config/index').transition.map;
+
   // var zIndex = {
   //   overlay: 100,
   //   aside: 200,
   //   section: 300,
   // };
   /**
+   * 需要在动画开始前移除的样式
+   * @type {Array}
+   */
+  var clearBeforeAnimate = 'behind leanRight leanLeft';
+  /**
    * css动画整理
    */
   var StageTransition = function (map) {
     this.currentView = void 0;
+    this.currentAside = void 0;
+    this.cache = {};
     this.map = map;
     this.history = [];
     return this;
@@ -80,44 +30,48 @@ define(function (require, exports, module) {
    * @param  {View} toView   目标视图
    * @return {StageTransition}          this
    */
-  StageTransition.prototype._switchSection = function (fromView, toView) {
+  StageTransition.prototype._switchSectionToAnything = function (fromView, toView) {
     var self = this;
     var fromSelector, toSelector;
     var set, before, animate, duration;
     var isFirstTime;
-    // 如果fromView为undefined则是第一次执行跳转
-    isFirstTime = typeof fromView === 'undefined';
-    fromSelector = isFirstTime ? 'firstTime' : fromView.$el.selector;
-    toSelector = toView.$el.selector;
-    set = _.chain(self.map)
-      .findWhere({from: fromSelector, to: toSelector})
-      .pick('before', 'animate', 'after', 'duration')
-      .value();
-    before = set.before;
-    animate = set.animate;
-    after = set.after;
-    duration = set.duration;
-    if (!isFirstTime) {
-      // 当前section添加动画前的预设样式
-      fromView.$el.addClass(before.from);
-      // 当前section执行动画
-      self._transition(fromView.$el, animate.from, duration, function () {
-        // 当前section动画执行结束后移除动画前预设样式，并推至幕后
-        fromView.$el.removeClass(before.from).addClass(after.from);
-      });
+    try {
+      // 如果fromView为undefined则是第一次执行跳转
+      isFirstTime = typeof fromView === 'undefined';
+      fromSelector = isFirstTime ? 'firstTime' : fromView.$el.selector;
+      toSelector = toView.$el.selector;
+      set = _.chain(self.map)
+        .findWhere({from: fromSelector, to: toSelector, aside: ''})
+        .pick('before', 'animate', 'after', 'duration')
+        .value();
+      before = set.before;
+      animate = set.animate;
+      after = set.after;
+      duration = set.duration;
+      if (!isFirstTime) {
+        // 当前section添加动画前的预设样式，并移除上一个转场保留的样式
+        fromView.$el.removeClass(clearBeforeAnimate).addClass(before.from);
+        // 当前section执行动画
+        self._transition(fromView.$el, animate.from, duration, function () {
+          // 当前section动画执行结束后移除动画前预设样式，并推至幕后
+          fromView.$el.removeClass(before.from).addClass(after.from);
+        });
+      }
+      _.delay(function () {
+        // 目标section添加动画前的预设样式，并移除上一个转场保留的样式
+        toView.$el.removeClass(clearBeforeAnimate).addClass(before.to);
+        // 目标section执行动画
+        self._transition(toView.$el, animate.to, duration, function () {
+          // 目标section动画执行结束后移除动画前预设样式
+          toView.$el.removeClass(before.to).addClass(after.to);
+        });
+      }, 0);
+    } catch (e) {
+      console.error(arguments);
     }
-    _.delay(function () {
-      // 目标section添加动画前的预设样式，并推至幕前
-      toView.$el.addClass(before.to).removeClass('behind');
-      // 目标section执行动画
-      self._transition(toView.$el, animate.to, duration, function () {
-        // 目标section动画执行结束后移除动画前预设样式
-        toView.$el.removeClass(before.to).addClass(after.to);
-      });
-    }, 0);
-
     return this;
   };
+
   /**
    * 从记录中的当前场景，跳转至目标场景
    * @chainable
@@ -125,18 +79,97 @@ define(function (require, exports, module) {
    * @return {StageTransition}        this
    */
   StageTransition.prototype.toSection = function (toView) {
-    this._switchSection(this.currentView, toView);
+    if (this.currentAside) {
+      return this.closeAside(toView);
+    }
+    this._switchSectionToAnything(this.currentView, toView);
     this.currentView = toView;
     this.history.push(this.currentView);
     return this;
   };
+
+  /**
+   * 返回上一个场景
+   * @chainable
+   * @return {StageTransition} this
+   */
   StageTransition.prototype.switchBack = function() {
+    if (this.history.length > 0 && this.currentAside) {
+      return this.closeAside(this.history.slice(-1)[0]);
+    }
     if (this.history.length > 1) {
-      this._switchSection(this.history.pop(), this.history[this.history.length - 1]);
-      this.currentView = this.history[history.length - 1];
+      this._switchSectionToAnything(this.history.slice(-1)[0], this.history.slice(-2)[0]);
+      this.currentView = this.history.slice(-2)[0];
+      if (this.history.length > 2) {
+        this.previousView = this.history.slice(-3)[0];
+      }
+      this.history.pop();
     }
     return this;
   };
+
+  StageTransition.prototype._switchAsideToSection = function (fromView, toView, asideView, whenAsideClose) {
+    var self = this;
+    var fromSelector, toSelector, asideSelector;
+    var set, before, animate, duration;
+    var isFirstTime;
+    isFirstTime = typeof fromView === 'undefined';
+    fromSelector = isFirstTime ? 'firstTime' : fromView.$el.selector;
+    toSelector = toView.$el.selector;
+    asideSelector = asideView.$el.selector;
+    set = _.chain(self.map)
+      .findWhere({from: fromSelector, to: toSelector, aside: asideSelector})
+      .pick('before', 'animate', 'after', 'duration')
+      .value();
+    before = set.before;
+    animate = set.animate;
+    after = set.after;
+    duration = set.duration;
+    if (!isFirstTime) {
+      // 移除from的保留样式，并添加after样式，如behind
+      fromView.$el.removeClass(clearBeforeAnimate).addClass(after.from);
+    }
+    // 移除to的保留样式，并添加before样式
+    toView.$el.removeClass(clearBeforeAnimate).addClass(before.to);
+    // 对to执行动画
+    self._transition(toView.$el, animate.to, duration, function () {
+      // 动画结束后对to移除before并添加after样式
+      toView.$el.removeClass(before.to).addClass(after.to);
+    });
+    // 移除aside的保留样式
+    asideView.$el.removeClass(clearBeforeAnimate);
+    _.delay(function () {
+      // 动画结束后对aside添加after样式，如behind
+      asideView.$el.addClass(after.aside);
+      if (whenAsideClose) {
+        // 如果有设置关闭时的回调，则执行，然后移除该回调
+        whenAsideClose();
+        // self.cache.whenAsideClose = void 0;
+      }
+    }, duration);
+
+    return this;
+  };
+
+  StageTransition.prototype.setWhenAsideClose = function (whenAsideClose) {
+    this.cache.whenAsideClose = whenAsideClose;
+    return this;
+  };
+ 
+  StageTransition.prototype.openAside = function (toAside) {
+    this._switchSectionToAnything(this.currentView, toAside);
+    this.currentAside = toAside;
+    return this;
+  };
+  StageTransition.prototype.closeAside = function (toView) {
+    this._switchAsideToSection(this.currentView, toView, this.currentAside, this.cache.whenAsideClose);
+    this.currentAside = void 0;
+    // delete this.cache.whenAsideClose;
+    this.currentView = toView;
+    this.history.push(this.currentView);
+    return this;
+  };
+
   /**
    * 执行动画
    * @private

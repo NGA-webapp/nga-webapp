@@ -3,7 +3,7 @@ define(function (require, exports, module) {
   var TopicInForumModel = require('modules/daos/forum/TopicInForumModel');
   var browser = require('utils/browser');
   var parser = require('modules/daos/forum/parser');
-  var config = require('config');
+  var config = require('config/index');
 
   var TopicInForumCollection = BasicCollection.extend({
     url: browser.isIPhone || config.nakeServer ? '/api/forum' : 'http://bbs.ngacn.cc/thread.php',

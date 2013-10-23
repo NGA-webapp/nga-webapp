@@ -12,6 +12,7 @@ define(function (require, exports, module) {
       "!/forum/:fid/p:page": "getForum",
       "!/topic/:tid": "getTopic",
       "!/topic/:tid/p:page": "getTopic",
+      "!/menu": "getMenu",
       "*other": "defaultRoute"
     };
     var Router = Backbone.Router.extend({
@@ -46,6 +47,10 @@ define(function (require, exports, module) {
         transition.toSection(this.cached.topicView);
         this.cached.topicView.fetch({tid: tid, page: (page || 1)});
         this.currentSection = this.cached.topicView;
+      },
+      getMenu: function () {
+        this.cacheInitialize();
+        transition.openAside(this.cached.menuView);
       },
       defaultRoute: function () {
         alert('404');

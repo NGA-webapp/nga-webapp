@@ -5,6 +5,10 @@ define(function (require, exports, module) {
   var redirect = function (url) {
     Backbone.history.navigate(url, {trigger: true});
   };
+  var aside = function (url, whenAsideClose) {
+    transition.setWhenAsideClose(whenAsideClose);
+    Backbone.history.navigate(url, {trigger: true});
+  };
   var back = function () {
     // if (view) {
       if (history.length > 1) {
@@ -24,6 +28,7 @@ define(function (require, exports, module) {
 
 window.t = transition;
   exports.redirect = redirect;
+  exports.aside = aside;
   exports.back = back;
   exports.storeRoute = storeRoute;
 });
