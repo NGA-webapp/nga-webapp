@@ -381,8 +381,8 @@
 .section-bounceIn {
   -webkit-animation: bounceIn 0.6s ease;
 }
-.section-bounceInTop {
-  -webkit-animation: bounceInTop 0.6s ease;
+.section-bounceInUp {
+  -webkit-animation: bounceInUp 0.6s ease;
 }
 .section-bounceInDown {
   -webkit-animation: bounceInDown 0.6s ease;
@@ -396,17 +396,21 @@
 .section-bounceOut {
   -webkit-animation: bounceOut 0.6s ease;
 }
-.section-bounceOutTop {
-  -webkit-animation: bounceOutTop 0.6s ease;
+.section-bounceOutUp {
+  -webkit-animation: bounceOutUp 0.6s ease;
+  .translate3d(0, -100%, 0);
 }
 .section-bounceOutDown {
   -webkit-animation: bounceOutDown 0.6s ease;
+  .translate3d(0, 100%, 0);
 }
 .section-bounceOutLeft {
   -webkit-animation: bounceOutLeft 0.6s ease;
+  .translate3d(-100%, 0, 0);
 }
 .section-bounceOutRight {
   -webkit-animation: bounceOutRight 0.6s ease;
+  .translate3d(100%, 0, 0);
 }
 .section-flipInX {
   -webkit-animation: flipInX 0.6s ease;

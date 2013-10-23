@@ -11,4 +11,4 @@
     </ul>
   </div>
 </article>
-<div class="sider-mask"></div>
+<div class="asideMask"></div>

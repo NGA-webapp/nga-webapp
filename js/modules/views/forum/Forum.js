@@ -32,33 +32,33 @@ define(function (require, exports, module) {
       'swipeRight header+article': function () {
         this.openLeftSider();
       },
-      // 'swipeLeft .sider-mask': 'closeLeftSider',
-      // 'swipeRight .sider-mask': 'closeRightSider',
-      // 'touchstart .sider-mask': 'closeSider',
-      'swipe .sider-mask': 'closeSider',
-      'tap .sider-mask': 'closeSider',
+      // 'swipeLeft .asideMask': 'closeLeftSider',
+      // 'swipeRight .asideMask': 'closeRightSider',
+      // 'touchstart .asideMask': 'closeSider',
+      'swipe .asideMask': 'closeSider',
+      'tap .asideMask': 'closeSider',
       'tap .action-aside': 'openLeftSider',
     },
     openLeftSider: function () {
       this.$el.addClass('section-sider-left');
-      this.$el.find('.sider-mask').addClass('on');
+      this.$el.find('.asideMask').addClass('on');
     },
     closeLeftSider: function () {
       this.$el.removeClass('section-sider-left');
-      this.$el.find('.sider-mask').removeClass('on');
+      this.$el.find('.asideMask').removeClass('on');
     },
     closeSider: function () {
       this.$el.removeClass('section-sider-left');
       this.$el.removeClass('section-sider-right');
-      this.$el.find('.sider-mask').removeClass('on');
+      this.$el.find('.asideMask').removeClass('on');
     },
     openRightSider: function () {
       this.$el.addClass('section-sider-right');
-      this.$el.find('.sider-mask').addClass('on');
+      this.$el.find('.asideMask').addClass('on');
     },
     closeRightSider: function () {
       this.$el.removeClass('section-sider-right');
-      this.$el.find('.sider-mask').removeClass('on');
+      this.$el.find('.asideMask').removeClass('on');
     },
     render: function () {
       this.$el.html(this.tpl());

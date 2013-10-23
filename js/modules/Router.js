@@ -21,16 +21,21 @@ define(function (require, exports, module) {
         this.cached.menuView = this.cached.menuView || new MenuView();
         this.cached.forumView = this.cached.forumView || new ForumView();
         this.cached.topicView = this.cached.topicView || new TopicView();
+        window.view = {
+          menu: this.cached.menuView,
+          forum: this.cached.forumView,
+          topic: this.cached.topicView
+        };
       },
       index: function () {
         console.log('index');
         this.cacheInitialize();
-        Navigate.redirect('!/forum/335');
+        Navigate.redirect('!/forum/-7');
       },
       getForum: function (fid, page) {
         console.log('forum: ' + fid, this.cached.forumView);
         this.cacheInitialize();
-        transition.switchTo(this.cached.forumView);
+        transition.toSection(this.cached.forumView);
         this.cached.forumView.fetch({fid: fid, page: (page || 1)});
         this.currentSection = this.cached.forumView;
       },
@@ -38,7 +43,7 @@ define(function (require, exports, module) {
         tid = tid === 1 ? 6582574 : tid;
         console.log('topic: ' + tid + ', page: ' + (page || 1));
         this.cacheInitialize();
-        transition.switchTo(this.cached.topicView);
+        transition.toSection(this.cached.topicView);
         this.cached.topicView.fetch({tid: tid, page: (page || 1)});
         this.currentSection = this.cached.topicView;
       },

@@ -6,13 +6,14 @@ define(function (require, exports, module) {
    * obj.to 目标跳转视图的selector
    * obj.before.from/obj.before.to 转场前预设样式，如将z-index提高或降低
    * obj.animate.from/obj.animate.to 转场动画的样式
+   * obj.after.from/obj.after.to 转场后样式，如将z-index降低至幕后
    *
    * 此外，约定以下样式名
    * noop: 不带任何样式
    * pop: z-index略高于正常情况
    * dive: z-index略低于正常情况
    * 
-   * 另外说明，以下样式名在转场实现时会被使用，并建议不要用作设置任何选项
+   * 另外，behind样式会在转场开始前移除，并建议设置时只用在after选项
    * behide: z-index低于overlay，即代表不显示的视图；不带有该样式则说明正在台前。
    */
   var map = [
@@ -21,6 +22,7 @@ define(function (require, exports, module) {
       to: '#forum',
       before: {to: 'noop'},
       animate: {to: 'section-bounceInRight'},
+      after: {to: 'noop'},
       duration: 600
     },
     {
@@ -28,6 +30,7 @@ define(function (require, exports, module) {
       to: '#topic',
       before: {to: 'noop'},
       animate: {to: 'section-bounceInRight'},
+      after: {to: 'noop'},
       duration: 600
     },
     {
@@ -35,6 +38,7 @@ define(function (require, exports, module) {
       to: '#topic',
       before: {from: 'noop', to: 'noop'},
       animate: {from: 'section-bounceOutLeft', to: 'section-bounceInRight'},
+      after: {from: 'behind', to: 'noop'},
       duration: 600
     },
     {
@@ -42,6 +46,15 @@ define(function (require, exports, module) {
       to: '#forum',
       before: {from: 'noop', to: 'noop'},
       animate: {from: 'section-bounceOutRight', to: 'section-bounceInLeft'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600
+    },
+    {
+      from: '#forum',
+      to: '#menu',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-sider-left', to: 'noop'},
+      after: {from: 'section-sider-left', to: 'noop'},
       duration: 600
     }
   ];
@@ -67,7 +80,7 @@ define(function (require, exports, module) {
    * @param  {View} toView   目标视图
    * @return {StageTransition}          this
    */
-  StageTransition.prototype._switch = function (fromView, toView) {
+  StageTransition.prototype._switchSection = function (fromView, toView) {
     var self = this;
     var fromSelector, toSelector;
     var set, before, animate, duration;
@@ -78,10 +91,11 @@ define(function (require, exports, module) {
     toSelector = toView.$el.selector;
     set = _.chain(self.map)
       .findWhere({from: fromSelector, to: toSelector})
-      .pick('before', 'animate', 'duration')
+      .pick('before', 'animate', 'after', 'duration')
       .value();
     before = set.before;
     animate = set.animate;
+    after = set.after;
     duration = set.duration;
     if (!isFirstTime) {
       // 当前section添加动画前的预设样式
@@ -89,7 +103,7 @@ define(function (require, exports, module) {
       // 当前section执行动画
       self._transition(fromView.$el, animate.from, duration, function () {
         // 当前section动画执行结束后移除动画前预设样式，并推至幕后
-        fromView.$el.removeClass(before.from).addClass('behind');
+        fromView.$el.removeClass(before.from).addClass(after.from);
       });
     }
     _.delay(function () {
@@ -98,7 +112,7 @@ define(function (require, exports, module) {
       // 目标section执行动画
       self._transition(toView.$el, animate.to, duration, function () {
         // 目标section动画执行结束后移除动画前预设样式
-        toView.$el.removeClass(before.to);
+        toView.$el.removeClass(before.to).addClass(after.to);
       });
     }, 0);
 
@@ -110,15 +124,15 @@ define(function (require, exports, module) {
    * @param  {View} toView 目标视图
    * @return {StageTransition}        this
    */
-  StageTransition.prototype.switchTo = function (toView) {
-    this._switch(this.currentView, toView);
+  StageTransition.prototype.toSection = function (toView) {
+    this._switchSection(this.currentView, toView);
     this.currentView = toView;
     this.history.push(this.currentView);
     return this;
   };
   StageTransition.prototype.switchBack = function() {
     if (this.history.length > 1) {
-      this._switch(this.history.pop(), this.history[this.history.length - 1]);
+      this._switchSection(this.history.pop(), this.history[this.history.length - 1]);
       this.currentView = this.history[history.length - 1];
     }
     return this;
