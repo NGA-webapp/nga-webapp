@@ -2,6 +2,7 @@ define(function (require, exports, module) {
   var MenuView = require('modules/views/menu/Menu');
   var ForumView = require('modules/views/forum/Forum');
   var TopicView = require('modules/views/topic/Topic');
+  var appCache = require('modules/AppCache').appCache;
   var transition = require('utils/StageTransition');
   var Navigate = require('utils/Navigate');
 
@@ -19,14 +20,14 @@ define(function (require, exports, module) {
       routes: routesTable,
       // 初始化单例的视图，存入cache
       cacheInitialize: function () {
-        this.cached.menuView = this.cached.menuView || new MenuView();
-        this.cached.forumView = this.cached.forumView || new ForumView();
-        this.cached.topicView = this.cached.topicView || new TopicView();
-        window.view = {
-          menu: this.cached.menuView,
-          forum: this.cached.forumView,
-          topic: this.cached.topicView
-        };
+        appCache.initialize(function () {
+          this.data = {};
+          this.data.menuView = new MenuView();
+          this.data.forumView = new ForumView();
+          this.data.topicView = new TopicView();
+        });
+        this.cached = appCache.get();
+        // window.cached = this.cached;
       },
       index: function () {
         console.log('index');
