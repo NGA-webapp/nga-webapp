@@ -21,10 +21,11 @@ define(function (require, exports, module) {
       // 初始化单例的视图，存入cache
       cacheInitialize: function () {
         appCache.initialize(function () {
-          this.data = {};
-          this.data.menuView = new MenuView();
-          this.data.forumView = new ForumView();
-          this.data.topicView = new TopicView();
+          var data = {};
+          data.menuView = new MenuView();
+          data.forumView = new ForumView();
+          data.topicView = new TopicView();
+          return data;
         });
         this.cached = appCache.get();
         // window.cached = this.cached;

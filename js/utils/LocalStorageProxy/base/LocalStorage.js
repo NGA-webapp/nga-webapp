@@ -174,8 +174,5 @@ define(function (require, exports, module) {
    */
   LocalStorage.prototype.enable = !!window.localStorage;
 
-  var storage = new LocalStorage('nga');
-  window.storage = storage;
-
-  module.exports = storage;
+  module.exports = LocalStorage;
 });

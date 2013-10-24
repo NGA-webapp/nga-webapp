@@ -10,6 +10,4 @@ define(function (require, exports, module) {
       e.preventDefault();
   }, false);
   
-  require('utils/LocalStorage');
-
 });

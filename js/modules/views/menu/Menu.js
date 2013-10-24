@@ -5,6 +5,7 @@ define(function (require, exports, module) {
   var tpl = require('templates/menu/menu.tpl');
   var Navigate = require('utils/Navigate');
   var appCache = require('modules/AppCache').appCache;
+  var appStorage = require('modules/AppStorage').appStorage;
   var sliceSubject = require('utils/common').sliceSubject;
 
   var MenuView = BasicView.extend({
@@ -27,6 +28,9 @@ define(function (require, exports, module) {
       return this;
     },
     initialize: function () {
+      this.listenTo(appStorage, 'change:test', function () {
+        console.log(arguments);
+      });
       return this.render();
     }
   });

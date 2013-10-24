@@ -4,10 +4,10 @@ define(function (require, exports, module) {
     this.flag.init = false;
     return this;
   };
-  AppCache.prototype.initialize = function (initFunction) {
+  AppCache.prototype.initialize = function (initDate) {
     if (!this.flag.init) {
       this.flag.init = true;
-      initFunction.apply(this);
+      this.data = initDate();
     }
     return this;
   };
@@ -20,7 +20,7 @@ define(function (require, exports, module) {
   };
 
   /**
-   * 使用该对象缓存app生命期里的数据，如单例的视图
+   * 使用该对象缓存app运行生命期里的数据，如单例的视图
    */
   var appCache = new AppCache();
 
