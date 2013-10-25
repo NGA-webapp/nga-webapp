@@ -19,7 +19,7 @@ define(function (require, exports, module) {
       },
       // 登录调试测试
       'doubleTap .action-letter': function () {
-        $.get('/api/login', function () {
+        $.get('/api/autoLogin', function () {
           alert('connected!');
           window.location = function () {
             return '/client/';

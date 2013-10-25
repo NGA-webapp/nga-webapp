@@ -1,0 +1,110 @@
+#topic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 10px 1px #000;
+  header {
+    color: #fff;
+    background-color: @nga-red;
+    // .box-shadow(0 5px 0 @nga-red-dark);
+    a {
+      &:active {
+        background-color: @nga-red-dark;
+      }
+    }
+    & > h1 {
+      .text-shadow(0 1px 1px @nga-red-dark);
+      .glyphicon {
+        font-size: 0.8em;
+        .text-shadow(0 0 0 @nga-red-dark);
+      }
+    }
+  }
+  article {
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 50px;
+    overflow: scroll;
+    background-color: #efefef;
+    & .scroller {
+      .box-shadow(0, -5px, 5px, #000);
+      & > ul {
+        margin: 0;
+        & > li {
+          &.show {
+            -webkit-animation: bounceInDown 1s ease
+          }
+          .box-sizing(border-box);
+          -webkit-backface-visibility: hidden;
+          display: block;
+          min-height: 56px;
+          width: 100%;
+          border-bottom: 1px solid #ccc;
+          color: #666;
+          & > h2 {
+            margin: 0;
+            padding: 20px 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #555;
+            & > span.tag {
+              color: #666;
+            }
+          }
+          & > .info {
+            background-color: #ddd;
+            min-height: 30px;
+            padding: 10px 10px;
+            line-height: 30px;
+            font-size: 12px;
+            & > .avatar {
+              float: left;
+              width: 30px;
+              height: 30px;
+              .border-radius(50%);
+              .box-shadow(0 0 0px 2px #fff);
+            }
+            span.author {
+              padding-left: 10px;
+            }
+            time {
+              float: right;
+              font-size: 10px;
+              line-height: 15px;
+              clear: right;
+            }
+            span.floor {
+              float: right;
+              font-size: 10px;
+              line-height: 15px;
+            }
+          }
+          & > .content {
+            h3 {
+              padding: 0 0 10px 0;
+              margin: 0;
+              font-size: 14px;
+            }
+            word-wrap:break-word;
+            overflow:hidden;
+            padding: 20px 20px 30px 20px;
+          }
+        }
+      }
+    }
+  }
+  footer {
+    a {
+      &:active {
+        color: #fff;
+        background-color: @nga-red;
+      }
+    }
+    color: @nga-red;
+    .linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 20%, rgba(255, 255, 255, 1) 100%); 
+    .transition(all 0.4s ease);
+  }
+}

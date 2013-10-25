@@ -40,10 +40,19 @@ define(function (require, exports, module) {
       isFirstTime = typeof fromView === 'undefined';
       fromSelector = isFirstTime ? 'firstTime' : fromView.$el.selector;
       toSelector = toView.$el.selector;
-      set = _.chain(self.map)
-        .findWhere({from: fromSelector, to: toSelector, aside: ''})
-        .pick('before', 'animate', 'after', 'duration')
-        .value();
+      try {
+        set = _.chain(self.map)
+          .findWhere({from: fromSelector, to: toSelector, aside: ''})
+          .pick('before', 'animate', 'after', 'duration')
+          .value();
+      } catch (e) {
+        set = {
+          before: {from: 'noop', to: 'noop'},
+          animate: {from: 'noop', to: 'noop'},
+          after: {from:'behind', to: 'noop'},
+          duration: 0
+        };
+      }
       before = set.before;
       animate = set.animate;
       after = set.after;
@@ -117,10 +126,19 @@ define(function (require, exports, module) {
     fromSelector = isFirstTime ? 'firstTime' : fromView.$el.selector;
     toSelector = toView.$el.selector;
     asideSelector = asideView.$el.selector;
-    set = _.chain(self.map)
-      .findWhere({from: fromSelector, to: toSelector, aside: asideSelector})
-      .pick('before', 'animate', 'after', 'duration')
-      .value();
+    try {
+      set = _.chain(self.map)
+        .findWhere({from: fromSelector, to: toSelector, aside: asideSelector})
+        .pick('before', 'animate', 'after', 'duration')
+        .value();
+    } catch (e) {
+      set = {
+        before: {to: 'noop'},
+        animate: {to: 'noop'},
+        after: {from: 'behind', to: 'noop', aside: 'behind'},
+        duration: 0
+      };
+    }
     before = set.before;
     animate = set.animate;
     after = set.after;

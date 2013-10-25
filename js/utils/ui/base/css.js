@@ -68,4 +68,30 @@ define(function (require, exports, module) {
     };
   }();
 
+  /**
+   * 垂直和水平同时相对于父元素居中定位。
+   * 适用于父元素无滚动的情况。
+   * 在父元素会滚动的情况下，需要绑定事件，让父元素滚动时再执行该方法。
+   * @method  centerBox
+   * @param {dom} elem 需要居中定位的dom节点
+   * @param {dom} [parent] 若留空则自动寻找父元素，若赋值如document.body，则定位都将会相对于body进行
+   * @for  CSS
+   */
+  var centerBox = exports.centerBox = function (elem, parent) {
+    var container = {};
+    parent = parent || elem.parentElement || elem.parentNode;
+    container.top = parent.scrollTop;
+    container.left = parent.scrollLeft;
+    container.width = parent.offsetWidth;
+    container.height = parent.offsetHeight;
+    // container.top = document.documentElement.scrollTop || document.body.scrollTop;
+    // container.left = document.documentElement.scrollLeft || document.body.scrollLeft;
+    // container.width = document.documentElement.clientWidth || document.body.offsetWidth;
+    // container.height = document.documentElement.clientHeight || document.body.offsetHeight;
+    elem.style.position = 'absolute';
+    elem.style.top = (container.height - elem.offsetHeight) / 2 + container.top + 'px';
+    elem.style.left = (container.width - elem.offsetWidth) / 2 + container.left + 'px';
+  };
+  window.centerBox = centerBox;
+
 });

@@ -1,7 +1,10 @@
 define(function (require, exports, module) {
+  var SiteModel = require('modules/daos/site/SiteModel');
   var MenuView = require('modules/views/menu/Menu');
   var ForumView = require('modules/views/forum/Forum');
   var TopicView = require('modules/views/topic/Topic');
+  var UserView = require('modules/views/user/User');
+  var LoginView = require('modules/views/login/Login');
   var appCache = require('modules/AppCache').appCache;
   var transition = require('utils/StageTransition');
   var Navigate = require('utils/Navigate');
@@ -13,6 +16,8 @@ define(function (require, exports, module) {
       "!/forum/:fid/p:page": "getForum",
       "!/topic/:tid": "getTopic",
       "!/topic/:tid/p:page": "getTopic",
+      "!/user/:uid": "getUser",
+      "!/login": "getLogin",
       "!/menu": "getMenu",
       "*other": "defaultRoute"
     };
@@ -22,9 +27,12 @@ define(function (require, exports, module) {
       cacheInitialize: function () {
         appCache.initialize(function () {
           var data = {};
+          data.siteModel = new SiteModel();
           data.menuView = new MenuView();
           data.forumView = new ForumView();
           data.topicView = new TopicView();
+          data.userView = new UserView();
+          data.loginView = new LoginView();
           return data;
         });
         this.cached = appCache.get();
@@ -33,14 +41,14 @@ define(function (require, exports, module) {
       index: function () {
         console.log('index');
         this.cacheInitialize();
-        Navigate.redirect('!/forum/-7');
+        // Navigate.redirect('!/forum/-7');
+        Navigate.redirect('!/login');
       },
       getForum: function (fid, page) {
         console.log('forum: ' + fid, this.cached.forumView);
         this.cacheInitialize();
         transition.toSection(this.cached.forumView);
         this.cached.forumView.fetch({fid: fid, page: (page || 1)});
-        this.currentSection = this.cached.forumView;
       },
       getTopic: function (tid, page) {
         tid = tid === 1 ? 6582574 : tid;
@@ -48,7 +56,17 @@ define(function (require, exports, module) {
         this.cacheInitialize();
         transition.toSection(this.cached.topicView);
         this.cached.topicView.fetch({tid: tid, page: (page || 1)});
-        this.currentSection = this.cached.topicView;
+      },
+      getUser: function (uid) {
+        console.log('user: ' + uid);
+        this.cacheInitialize();
+        transition.toSection(this.cached.userView);
+        this.cached.userView.fetch({uid: uid});
+      },
+      getLogin: function () {
+        console.log('login: ');
+        this.cacheInitialize();
+        transition.toSection(this.cached.loginView);
       },
       getMenu: function () {
         this.cacheInitialize();

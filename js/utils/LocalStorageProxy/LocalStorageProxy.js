@@ -24,8 +24,8 @@ define(function (require, exports, module) {
       if (!options.silent) {
         previous = this._storage.get(key, {silent: true});
         if (!_.isEqual(previous, val)) {
-          this.trigger('change', key, val);
-          this.trigger('change:' + key, val);
+          this.trigger('change', key, val, previous);
+          this.trigger('change:' + key, val, previous);
         }
         this.trigger('set', key, val);
         this.trigger('set:' + key, val);

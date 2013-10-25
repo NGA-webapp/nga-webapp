@@ -55,6 +55,24 @@ define(function (require, exports, module) {
       duration: 600,
       aside: ''
     },
+    {
+      from: '#topic',
+      to: '#user',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-bounceOutUp', to: 'section-bounceInUp'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
+      from: '#user',
+      to: '#topic',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-bounceOutDown', to: 'section-bounceInDown'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
     // {
     //   from: 'firstTime',
     //   to: '#menu',

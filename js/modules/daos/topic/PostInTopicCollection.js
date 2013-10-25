@@ -20,6 +20,7 @@ define(function (require, exports, module) {
       return data.posts;
     },
     initialize: function () {
+      // 把将要加载的页面tid和page缓存
       this.on('request', function (model, xhr, options) {
         this.cache.tid = options.data.tid;
         this.cache.page = options.data.page;

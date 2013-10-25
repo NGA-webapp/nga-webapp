@@ -1,0 +1,102 @@
+#login {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 10px 1px #000;
+  header {
+    color: #fff;
+    background-color: @nga-red;
+    // .box-shadow(0 5px 0 @nga-red-dark);
+    a {
+      &:active {
+        background-color: @nga-red-dark;
+      }
+    }
+    & > h1 {
+      .text-shadow(0 1px 1px @nga-red-dark);
+      .glyphicon {
+        font-size: 0.8em;
+        .text-shadow(0 0 0 @nga-red-dark);
+      }
+    }
+  }
+  article {
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 50px;
+    overflow: scroll;
+    background-color: #efefef;
+    & .scroller {
+      & > .content {
+        margin: 0;
+        &.show {
+          -webkit-animation: fadeInUp 0.4s ease
+        }
+        .box-sizing(border-box);
+        -webkit-backface-visibility: hidden;
+        display: block;
+        min-height: 300px;
+        width: 100%;
+        color: #666;
+        padding: 30px 20px;
+        & > .avatar {
+          text-align: center;
+          & > img {
+            .border-radius(50%);
+            width: 150px;
+            height: 150px;
+            .box-shadow(0 0 0 3px #fff, 0 3px 3px 1px #ccc);
+          }
+        }
+        & > form {
+          & > input {
+            .box-sizing(border-box);
+            padding: 0 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 18px;
+            color: #555;
+            text-align: center;
+            width: 100%;
+            height: 50px;
+            margin: 10px 0;
+            padding: 10px;
+          }
+          & > button {
+            .box-sizing(border-box);
+            padding: 0 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 18px;
+            text-align: center;
+            width: 100%;
+            height: 50px;
+            margin: 10px 0;
+            padding: 10px;
+            background: @nga-red;
+            color: #fff;
+            &:active {
+              background: #efefef;
+              color: #555;
+              border: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  footer {
+    a {
+      &:active {
+        color: #fff;
+        background-color: @nga-red;
+      }
+    }
+    color: @nga-red;
+    .linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 20%, rgba(255, 255, 255, 1) 100%); 
+    .transition(all 0.4s ease);
+  }
+}

@@ -19,7 +19,7 @@ define(function (require, exports, module) {
 
   var BasicCollection = Backbone.Collection.extend({
     fetchXml: function (data, options) {
-      _.defaults(data || (data = {}), {
+      _.defaults(data || (data = {}), this.xmlOptions || (this.xmlOptions = {}), {
         'lite': 'xml',
         'v2': 1
       });

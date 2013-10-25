@@ -34,6 +34,14 @@ define(function (require, exports) {
     year = (thisYear === year) ? '' : (year + '-');
     return year + month + '-' + day + ' ' + hour + ':' + minute;
   };
+
+  var trim = exports.trim = function (str) {
+    if (typeof str !== 'string') {
+      return '';
+    }
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+  };
+
   /**
    * 将字符串转换为整数，并对异常进行处理
    * @param  {string} str 字符串形式的数字

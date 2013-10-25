@@ -12,7 +12,6 @@
     </ul>
   </div>
 </article>
-<div class="asideMask"></div>
 <footer>
   <div class="left">
     <a class="icon action-back"><span class="glyphicon glyphicon-chevron-left"></span></a>

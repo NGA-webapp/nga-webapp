@@ -13,6 +13,12 @@ define(function (require, exports, module) {
     return this;
   };
   /**
+   * 当前环境支持localStorage
+   * @property {boolean} enable 支持localStorage
+   * @for  LocalStorage
+   */
+  LocalStorage.prototype.enable = !!window.localStorage;
+  /**
    * 为键名加前缀
    * @method prefix
    * @for  LocalStorage
@@ -42,12 +48,15 @@ define(function (require, exports, module) {
    * @for  LocalStorage
    * @param {string} key 键
    * @param {object|string|number|array} val 值
+   * @param {object} [options] 可选项
+   *        {boolean} [options.prefix=true] 是否自动为key加命名空间的前缀
+   *        {string} [options.type] 设置类型，如果不进行设置则自动识别
    */
-  LocalStorage.prototype.set = function (key, val) {
+  LocalStorage.prototype.set = function (key, val, options) {
     var type;
     if (!this.enable) return null;
-    type = this.getType(val);
-    window.localStorage.setItem(this.prefix(key), JSON.stringify({data: val, type: type}));
+    _.defaults((options || (options = {})), {prefix: true, type: this.getType(val)});
+    window.localStorage.setItem(options.prefix ? this.prefix(key): key, JSON.stringify({data: val, type: options.type}));
     return val;
   };
   /**
@@ -167,12 +176,6 @@ define(function (require, exports, module) {
     }
     return obj;
   };
-  /**
-   * 当前环境支持localStorage
-   * @property {boolean} enable 支持localStorage
-   * @for  LocalStorage
-   */
-  LocalStorage.prototype.enable = !!window.localStorage;
 
   module.exports = LocalStorage;
 });

@@ -1,11 +1,20 @@
 define(function (require, exports, module) {
   var template = require('./source');
   var common = require('../common');
+  var decimal = require('../decimal');
   template.openTag = "<%";
   template.closeTag = "%>";
   template.helper('$format_date', function (content) {
     var timestamp = parseInt(content + '000', 0);
     return common.format_date(new Date(timestamp), true);
+  });
+  template.helper('$decimal', function (num, n) {
+    n = typeof n === 'undefined' ? 2 : n;
+    return {
+      round: decimal.round(num, n),
+      floor: decimal.floor(num, n),
+      ceil: decimal.ceil(num, n)
+    };
   });
   template.helper('$first', function (arr) {
     var res = arr.length ? arr[0] : {};
