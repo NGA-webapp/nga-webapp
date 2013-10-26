@@ -14,6 +14,11 @@ define(function (require, exports, module) {
       'singleTap .action-settingFavor': function () {
         Navigate.redirect('#!/setting/favor');
       },
+      'singleTap .select': function (e) {
+        $li = $(e.currentTarget);
+        $li.toggleClass('choose');
+        $li.find('.checkbox').toggleClass('checked');
+      },
       'swipeRight header+article': 'openLeftSider',
       'swipe .asideMask': 'closeSider',
       'tap .asideMask': 'closeSider',
