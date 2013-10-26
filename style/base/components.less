@@ -1,15 +1,15 @@
 // checkbox
 // 改自http://runjs.cn/detail/2ymlyqjm
 @-webkit-keyframes iosCBoxAfter {
-  0% {-webkit-transform: translate3d(15px, 0, 0);}
+  0% {-webkit-transform: translate3d(16px, 0, 0);}
   70% {-webkit-transform: translate3d(-3px, 0, 0);}
   100% {-webkit-transform: translate3d(0, 0, 0);}
 }
 
 @-webkit-keyframes iosCBoxAfterChecked {
   0% {-webkit-transform: translate3d(10px, 0, 0);}
-  70% {-webkit-transform: translate3d(25px, 0, 0);}
-  100% {-webkit-transform: translate3d(23px, 0, 0);}
+  70% {-webkit-transform: translate3d(27px, 0, 0);}
+  100% {-webkit-transform: translate3d(24px, 0, 0);}
 }
 .checkbox{
   margin:0;
@@ -64,7 +64,7 @@
 }
 .checkbox.checked:after{
   // ios safari使用animate失败，不知原因，所以用一个transform代替
-  -webkit-transform: translate3d(23px, 0, 0);
+  -webkit-transform: translate3d(24px, 0, 0);
   -webkit-animation: iosCBoxAfterChecked 0.4s ease;-webkit-animation-fill-mode:both;
 }
 .checkbox:active:after{

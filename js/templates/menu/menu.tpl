@@ -12,9 +12,9 @@
         <li class="quickNav" data-fid="-8725919"><span class="glyphicon glyphicon-bookmark"></span> 小窗视界</li>
         <li class="forums"><span class="glyphicon glyphicon-th-list"></span> 其他版面</li>
         <li class="title">工具</li>
-        <li><span class="glyphicon glyphicon-heart"></span> 收藏</li>
+        <li class="disabled"><span class="glyphicon glyphicon-heart"></span> 收藏</li>
         <li class="setting"><span class="glyphicon glyphicon-cog"></span> 设置</li>
-        <li><span class="glyphicon glyphicon-user"></span>登出账号</li>
+        <li class="disabled"><span class="glyphicon glyphicon-user"></span> 登出账号</li>
       </ul>
     </div>
   </div>

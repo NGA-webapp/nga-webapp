@@ -16,7 +16,6 @@ define(function (require, exports, module) {
       },
       'singleTap .select': function (e) {
         $li = $(e.currentTarget);
-        $li.toggleClass('choose');
         $li.find('.checkbox').toggleClass('checked');
       },
       'swipeRight header+article': 'openLeftSider',

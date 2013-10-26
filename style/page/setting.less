@@ -39,13 +39,6 @@
           width: 100%;
           .box-sizing(border-box);
           &.link, &.select {
-            &:active {
-              border-bottom: 1px solid #ddd;
-              background-color: #efefef;
-              & > h4 {
-                color: #666;
-              }
-            }
             &:nth-child(1) {
               border-top: 1px solid #ccc;
             }
@@ -65,14 +58,30 @@
               }
             }
           }
-          &.select {
-            &.choose {
-              & > h4{
-                color: @nga-red;
+          &.link {
+            &:active {
+              border-bottom: 1px solid #ddd;
+              background-color: #efefef;
+              & > h4 {
+                color: #666;
               }
             }
+          }
+          &.select {
             span.checkbox {
               float: right;
+            }
+          }
+          &.disabled {
+            h4 {
+              color: #aaa;
+            }
+            &:active {
+              border-bottom: 1px solid #ccc;
+              background-color: #ddd;
+              & > h4 {
+                color: #aaa;
+              }
             }
           }
         }
