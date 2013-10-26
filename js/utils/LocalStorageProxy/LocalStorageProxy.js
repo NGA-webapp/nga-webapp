@@ -73,7 +73,5 @@ define(function (require, exports, module) {
     }
   });
 
-  var storage = new LocalStorageProxy('nga');
-
   module.exports = LocalStorageProxy;
 });

@@ -40,6 +40,7 @@ define(function (require, exports, module) {
     if (_.isNumber(val)) return 'number';
     if (_.isObject(val)) return 'object';
     if (_.isUndefined(val)) return 'undefined';
+    if (_.isBoolean(val)) return 'boolean';
     return 'string';
   };
   /**

@@ -12,19 +12,22 @@ define(function (require, exports, module) {
     tpl: art.compile(tpl),
     events: {
       // 抖动动画测试
-      'singleTap .action-search': function () {
+      'singleTap .action-shake': function () {
         $self = this.$el.find('.glyphicon-search');
         $self.addClass('animated shake');
         _.delay(function () {$self.removeClass('animated');}, 1000);
       },
       // 登录调试测试
-      'doubleTap .action-letter': function () {
+      'doubleTap .action-autologin': function () {
         $.get('/api/autoLogin', function () {
           alert('connected!');
           window.location = function () {
             return '/client/';
           }();
         });
+      },
+      'singleTap .action-refresh': function () {
+        this.fetch({fid: this.collection.cache.fid, page: 1});
       },
       'swipeRight header+article': 'openLeftSider',
       'swipe .asideMask': 'closeSider',
@@ -70,6 +73,7 @@ define(function (require, exports, module) {
     _addAll: function () {
       var self = this;
       this.$ul.html('');
+      this.scroll.scrollTo(0, 0, 0);
       this.collection.each(this._addOne, this);
       _.delay(function () {
         ui.Loading.close();

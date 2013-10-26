@@ -12,8 +12,8 @@ define(function (require, exports, module) {
     cache: {},
     parse: function (resp) {
       var data = parser(resp);
-      window.parserDate = data;
       this.cache.rows = data.rows;
+      this.cache.fid = data.forum.fid;
       console.log('account status: ', data.account);
       return data.topics;
     }

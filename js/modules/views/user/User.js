@@ -33,7 +33,7 @@ define(function (require, exports, module) {
         ui.Loading.close();
       }, 200);
       _.delay(function () {
-        se1f.scroll.refresh();
+        self.scroll.refresh();
       }, 400);
 
     },

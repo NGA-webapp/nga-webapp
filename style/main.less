@@ -45,7 +45,9 @@ body {
 }
 
 .animated {
-  .animated();
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-duration: 400ms;
+  -webkit-animation-timing-function: ease;
 }
 
 .current.out {
@@ -226,8 +228,12 @@ main {
   }
 }
 
+@import "page/forums";
 @import "page/forum";
 @import "page/topic";
 @import "page/user";
 @import "page/login";
 @import "page/menu";
+@import "page/setting";
+@import "page/bootup";
+

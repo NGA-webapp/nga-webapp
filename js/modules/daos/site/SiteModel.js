@@ -14,7 +14,7 @@ define(function (require, exports, module) {
     },
     initialize: function () {
       return this;
-    }
+    },
   });
   module.exports = SiteModel;
 });

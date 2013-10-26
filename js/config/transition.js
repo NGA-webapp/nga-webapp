@@ -19,6 +19,35 @@ define(function (require, exports, module) {
    * leanRight: 倚在右侧边，用在aside打开后的section
    */
   var map = [
+    // bootup
+    {
+      from: 'firstTime',
+      to: '#bootup',
+      before: {to: 'noop'},
+      animate: {to: 'section-fadeIn'},
+      after: {to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
+      from: '#bootup',
+      to: '#forum',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-fadeOutLeft', to: 'section-bounceInRight'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
+      from: '#bootup',
+      to: '#login',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-fadeOutLeft', to: 'section-bounceInRight'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    // normal
     {
       from: 'firstTime',
       to: '#forum',
@@ -42,6 +71,15 @@ define(function (require, exports, module) {
       to: '#topic',
       before: {from: 'noop', to: 'noop'},
       animate: {from: 'section-bounceOutLeft', to: 'section-bounceInRight'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
+      from: '#forums',
+      to: '#forum',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-bounceOutDown', to: 'section-bounceInUp'},
       after: {from: 'behind', to: 'noop'},
       duration: 600,
       aside: ''
@@ -73,6 +111,24 @@ define(function (require, exports, module) {
       duration: 600,
       aside: ''
     },
+    {
+      from: '#setting',
+      to: '#forums',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-bounceOutLeft', to: 'section-bounceInRight'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
+      from: '#forums',
+      to: '#setting',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-bounceOutRight', to: 'section-bounceInLeft'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
     // {
     //   from: 'firstTime',
     //   to: '#menu',
@@ -92,6 +148,24 @@ define(function (require, exports, module) {
       aside: ''
     },
     {
+      from: '#forums',
+      to: '#menu',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-openLeftAside', to: 'noop'},
+      after: {from: 'leanRight', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
+      from: '#setting',
+      to: '#menu',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-openLeftAside', to: 'noop'},
+      after: {from: 'leanRight', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
       from: '#forum',
       to: '#forum',
       before: {to: 'noop'},
@@ -101,11 +175,74 @@ define(function (require, exports, module) {
       aside: '#menu'
     },
     {
+      from: '#forums',
+      to: '#forums',
+      before: {to: 'noop'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'noop', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#setting',
+      to: '#setting',
+      before: {to: 'noop'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'noop', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#forum',
+      to: '#forums',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
       from: '#forum',
       to: '#setting',
-      before: {from: 'noop', to: 'noop', menu: 'noop'},
-      animate: {from: 'section-closeLeftAside', to: 'section-bounceInRight', menu: 'noop'},
-      after: {from: 'behind', to: 'noop', menu: 'behind'},
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#forums',
+      to: '#forum',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#forums',
+      to: '#setting',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#setting',
+      to: '#forum',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#setting',
+      to: '#forums',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
       duration: 600,
       aside: '#menu'
     }

@@ -27,7 +27,8 @@ define(function (require, exports, module) {
     tpl: art.compile(tpl),
     tplContent: art.compile(tplContent),
     flag: {
-      logging: false,
+      logging: false, // 正在登录
+      logged: false // 已经登录
     },
     events: {
       'tap .action-back': function () {
@@ -78,6 +79,7 @@ define(function (require, exports, module) {
           if (resp.match(/登录成功/)) {
             success = true;
             msg = '登录成功';
+            self.flag.logged = true;
           } else {
             success = false;
             if (resp.match(/密码错误/)) {

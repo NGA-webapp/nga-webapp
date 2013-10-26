@@ -1,10 +1,13 @@
 define(function (require, exports, module) {
   var SiteModel = require('modules/daos/site/SiteModel');
   var MenuView = require('modules/views/menu/Menu');
+  var ForumsView = require('modules/views/forums/Forums');
   var ForumView = require('modules/views/forum/Forum');
   var TopicView = require('modules/views/topic/Topic');
   var UserView = require('modules/views/user/User');
   var LoginView = require('modules/views/login/Login');
+  var SettingView = require('modules/views/setting/Setting');
+  var BootupView = require('modules/views/bootup/Bootup');
   var appCache = require('modules/AppCache').appCache;
   var transition = require('utils/StageTransition');
   var Navigate = require('utils/Navigate');
@@ -12,6 +15,7 @@ define(function (require, exports, module) {
   module.exports = function () {
     var routesTable = {
       "": "index",
+      "!/forums": "getForums",
       "!/forum/:fid": "getForum",
       "!/forum/:fid/p:page": "getForum",
       "!/topic/:tid": "getTopic",
@@ -19,6 +23,8 @@ define(function (require, exports, module) {
       "!/user/:uid": "getUser",
       "!/login": "getLogin",
       "!/menu": "getMenu",
+      "!/setting": "getSetting",
+      "!/setting/favor": "getSettingFavor",
       "*other": "defaultRoute"
     };
     var Router = Backbone.Router.extend({
@@ -29,10 +35,13 @@ define(function (require, exports, module) {
           var data = {};
           data.siteModel = new SiteModel();
           data.menuView = new MenuView();
+          data.forumsView = new ForumsView();
           data.forumView = new ForumView();
           data.topicView = new TopicView();
           data.userView = new UserView();
           data.loginView = new LoginView();
+          data.settingView = new SettingView();
+          data.bootupView = new BootupView();
           return data;
         });
         this.cached = appCache.get();
@@ -41,8 +50,16 @@ define(function (require, exports, module) {
       index: function () {
         console.log('index');
         this.cacheInitialize();
+        this.cached.bootupView.bootup();
+        transition.toSection(this.cached.bootupView);
         // Navigate.redirect('!/forum/-7');
-        Navigate.redirect('!/login');
+        // Navigate.redirect('!/login');
+      },
+      getForums: function () {
+        console.log('forums: ');
+        this.cacheInitialize();
+        transition.toSection(this.cached.forumsView);
+        this.cached.forumsView.open();
       },
       getForum: function (fid, page) {
         console.log('forum: ' + fid, this.cached.forumView);
@@ -72,13 +89,41 @@ define(function (require, exports, module) {
         this.cacheInitialize();
         transition.openAside(this.cached.menuView);
       },
+      getSetting: function () {
+        console.log('setting: ');
+        this.cacheInitialize();
+        transition.toSection(this.cached.settingView);
+      },
+      getSettingFavor: function () {
+        console.log('setting favor: ');
+        this.cacheInitialize();
+        transition.toSection(this.cached.forumsView);
+        this.cached.forumsView.open(true);
+      },
       defaultRoute: function () {
         alert('404');
         console.log('404');
       },
       initialize: function () {
         // http://stackoverflow.com/questions/11364837/using-backbone-history-to-go-back-without-triggering-route-function
+        var self = this;
         this.on('route', Navigate.storeRoute);
+        this.on('route', function (route, param) {
+          // todo 暂时没有考虑后退的情况，可能需要为Navigate重新封装出一系列事件
+          // 延迟处理input，是为了防止在切换页面时手误选中下一个页面的input
+          _.delay(function () {
+            if (route === 'getMenu') {
+              self.cached.menuView.$el.find('.search-box input').attr('disabled', null);
+            } else {
+              self.cached.menuView.$el.find('input').attr('disabled', 'disabled');
+            }
+            if (route === 'getLogin') {
+              self.cached.loginView.$el.find('input').attr('disabled', null);
+            } else {
+              self.cached.loginView.$el.find('input').attr('disabled', 'disabled');
+            }
+          }, 800);
+        });
         this.cached = {
           forumView: void 0,
           topicView: void 0
