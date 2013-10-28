@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
   module.exports = {
-    nakeServer: true,
+    nakeServer: false,
     transition: {
       map: require('./transition')
     }
