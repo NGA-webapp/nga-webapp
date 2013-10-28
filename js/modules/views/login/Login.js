@@ -84,7 +84,7 @@ define(function (require, exports, module) {
             success = false;
             if (resp.match(/密码错误/)) {
               msg = '密码错误';
-            } else if (/错误尝试过多/) {
+            } else if (resp.match(/错误尝试过多/)) {
               msg = '错误尝试过多，请等待1~30分钟后登录';
             } else {
               msg = '登录失败';
