@@ -2,6 +2,7 @@ define(function (require, exports, module) {
   var template = require('./source');
   var common = require('../common');
   var decimal = require('../decimal');
+  var ubb = require('utils/ubb/index');
   template.openTag = "<%";
   template.closeTag = "%>";
   template.helper('$format_date', function (content) {
@@ -15,6 +16,9 @@ define(function (require, exports, module) {
       floor: decimal.floor(num, n),
       ceil: decimal.ceil(num, n)
     };
+  });
+  template.helper('$ubb', function (content) {
+    return ubb.toHtml(content);
   });
   template.helper('$first', function (arr) {
     var res = arr.length ? arr[0] : {};

@@ -16,6 +16,6 @@
           <% if (subject && lou !== 0) { %>
           <h3><%= subject %></h3>
           <% } %>
-          <%== content %>
+          <%== $ubb(content) %>
         </div>
         <div class="clearfix"></div>
