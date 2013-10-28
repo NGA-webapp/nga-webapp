@@ -5,11 +5,11 @@ define(function (require, exports, module) {
   var AccountModel = require('modules/models/data/Account');
   var ForumModel = require('modules/models/data/Forum');
   var TopicCollection = require('modules/collections/data/Topics');
-  var browser = require('utils/browser');
+  var config = require('config/index');
 
   var ThreadModel = BasicModel.extend({
     // url: 'http://bbs.ngacn.cc/thread.php',
-    url: browser.isIPhone ? '/api/forum' : 'http://bbs.ngacn.cc/thread.php',
+    url: config.nakeServer ? '/api/forum' : 'http://bbs.ngacn.cc/thread.php',
     defaults: {
       "account": {},
       "forum": {},

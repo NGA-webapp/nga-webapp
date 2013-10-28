@@ -1,9 +1,9 @@
 define(function (require, exports, module) {
   var ui = require('utils/ui/index');
-  var browser = require('utils/browser');
+  var config = require('config/index');
   var checkError = function (xhr, status) {
     var msg;
-    if (status === 'error' || browser.isIPhone) {
+    if (status === 'error' || config.nakeServer) {
       if (xhr.responseText) {
         // 错误时返回的xml还带js蛋疼
         msg = xhr.responseText.match(/<__MESSAGE><item>\d+<\/item><item>(.*?)<\/item>/);

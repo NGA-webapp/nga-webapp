@@ -6,7 +6,7 @@ define(function (require, exports, module) {
   var config = require('config/index');
 
   var TopicInForumCollection = BasicCollection.extend({
-    url: browser.isIPhone || config.nakeServer ? '/api/forum' : 'http://bbs.ngacn.cc/thread.php',
+    url: config.nakeServer ? '/api/forum' : 'http://bbs.ngacn.cc/thread.php',
     model: TopicInForumModel,
     // cache中存放如服务器上数据总行数等信息
     cache: {},

@@ -6,11 +6,11 @@ define(function (require, exports, module) {
   var UserCollection = require('modules/collections/data/Users');
   var PostCollection = require('modules/collections/data/Posts');
   var TopicModel = require('modules/models/data/Topic');
-  var browser = require('utils/browser');
+  var config = require('config/index');
 
   var ReadModel = BasicModel.extend({
     // url: 'http://bbs.ngacn.cc/read.php',
-    url: browser.isIPhone ? '/api/topic' : 'http://bbs.ngacn.cc/read.php',
+    url: config.nakeServer ? '/api/topic' : 'http://bbs.ngacn.cc/read.php',
     defaults: {
       "account": {},
       "users": {},

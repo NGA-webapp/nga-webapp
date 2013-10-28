@@ -1,5 +1,4 @@
 define(function (require, exports, module) {
-  var browser = require('utils/browser');
   var config = require('config/index');
   var parser = require('modules/daos/forums/parser');
   var siteStorage = require('modules/storage/site');
@@ -9,7 +8,7 @@ define(function (require, exports, module) {
    * 数据需要两种结构，这里不考虑用collection实现
    */
   var ForumsModel = Backbone.Model.extend({
-    url: browser.isIPhone || config.nakeServer ? '/api/group' : '/template/js/nga_index_forums.xml',
+    url: config.nakeServer ? '/api/group' : '/template/js/nga_index_forums.xml',
     flag: {
       flattenCache: false,
     },
