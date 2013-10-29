@@ -129,6 +129,15 @@ define(function (require, exports, module) {
       duration: 600,
       aside: ''
     },
+    {
+      from: '#login',
+      to: '#forum',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-bounceOutDown', to: 'section-bounceInUp'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
     // {
     //   from: 'firstTime',
     //   to: '#menu',
