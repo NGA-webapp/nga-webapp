@@ -7,5 +7,3 @@
     </div>
   </div>
 </article>
-<footer>
-</footer>

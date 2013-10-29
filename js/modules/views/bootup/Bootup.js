@@ -49,9 +49,7 @@ define(function (require, exports, module) {
         self.log('检查登录状态...');
         siteStorage.checkLogged(function (isLogged) {
           var quickForum;
-          if (isLogged) {
-            self.log('检查登录状态...已登录.');
-            self.log('检查快速导航...');
+          var introFunc = function () {
             quickForum = siteStorage.getQuickForum();
             if (quickForum.length > 0) {
               self.log('检查快速导航...已设置.');
@@ -61,8 +59,14 @@ define(function (require, exports, module) {
               self.redirect('#!/forum/-7');
               // self.redirect('#!/forums');
             }
+          };
+          if (isLogged) {
+            self.log('检查登录状态...已登录.');
+            self.log('检查快速导航...');
+            introFunc();
           } else {
             self.log('检查登录状态...未登录.');
+            appCache.get('loginView').nextAction.success = function () {introFunc();};
             self.redirect('#!/login');
           }
         });

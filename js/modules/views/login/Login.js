@@ -29,6 +29,9 @@ define(function (require, exports, module) {
       logging: false, // 正在登录
       logged: false // 已经登录
     },
+    nextAction: {
+      success: function () {}
+    },
     events: {
       'tap .action-back': function () {
         Navigate.back();
@@ -79,6 +82,7 @@ define(function (require, exports, module) {
             success = true;
             msg = '登录成功';
             self.flag.logged = true;
+            self.nextAction.success();
           } else {
             success = false;
             if (resp.match(/密码错误/)) {
