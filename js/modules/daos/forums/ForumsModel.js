@@ -8,7 +8,7 @@ define(function (require, exports, module) {
    * 数据需要两种结构，这里不考虑用collection实现
    */
   var ForumsModel = Backbone.Model.extend({
-    url: config.nakeServer ? '/api/group' : '/template/js/nga_index_forums.xml',
+    url: config.nakeServer ? '/api/group' : 'http://bbs.ngacn.cc/template/js/nga_index_forums.xml',
     flag: {
       flattenCache: false,
     },
