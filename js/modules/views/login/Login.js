@@ -46,10 +46,6 @@ define(function (require, exports, module) {
       'blur input': function () {
         this.$content.animate({'translate3d': '0, 0, 0'}, 0, 'ease');
       },
-      'tap .action-login button': function () {
-        this.$el.find('input').blur();
-        this.doLogin();
-      },
       'submit .action-login': 'doLogin'
     },
     doLogin: function () {
