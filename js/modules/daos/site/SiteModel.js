@@ -4,7 +4,7 @@ define(function (require, exports, module) {
   var config = require('config/index');
 
   var SiteModel = BasicModel.extend({
-    url: config.nakeServer ? 'http://192.168.1.102:8001/api/site' : 'http://bbs.ngacn.cc/index.php',
+    url: config.nakeServer ? '/api/site' : 'http://bbs.ngacn.cc/index.php',
     cache: {},
     parse: function (resp) {
       var data = parser(resp);
