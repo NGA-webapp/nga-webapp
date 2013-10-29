@@ -119,8 +119,10 @@ define(function (require, exports, module) {
             }
             if (route === 'getLogin') {
               self.cached.loginView.$el.find('input').attr('disabled', null);
+              self.cached.loginView.$el.find('button').attr('disabled', null);
             } else {
               self.cached.loginView.$el.find('input').attr('disabled', 'disabled');
+              self.cached.loginView.$el.find('button').attr('disabled', 'disabled');
             }
           }, 800);
         });
