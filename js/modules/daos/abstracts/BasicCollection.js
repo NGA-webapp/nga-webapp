@@ -7,7 +7,7 @@ define(function (require, exports, module) {
       if (xhr.responseText) {
         // 错误时返回的xml还带js蛋疼
         msg = xhr.responseText.match(/<__MESSAGE><item>\d+<\/item><item>(.*?)<\/item>/);
-        if (msg.length === 2) {
+        if (msg && msg.length === 2) {
           return alert(msg[1]);
         }
       }
