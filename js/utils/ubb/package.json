@@ -1,0 +1,18 @@
+{
+  "name": "nga-ubb",
+  "version": "0.1.0",
+  "author": "yelo",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-mocha": "~0.4.1",
+    "grunt-jscoverage": "0.0.3"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "coveralls": "jscoverage lib && YOURPACKAGE_COVERAGE=1 nodeunit --reporter=lcov test | coveralls"
+  },
+  "dependencies": {
+    "coveralls": "~2.3.0",
+    "mocha-lcov-reporter": "0.0.1"
+  }
+}
