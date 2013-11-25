@@ -30,14 +30,20 @@ module.exports = function (grunt) {
           "style/main.css": "style/main.less"
         }
       }
+    },
+    open: {
+      dev: {
+        path: 'http://localhost:8002'
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-open');
 
   grunt.registerTask('_css', ['less']);
-  grunt.registerTask('dev', ['connect', 'watch']);
+  grunt.registerTask('dev', ['connect', 'open:dev', 'watch']);
   grunt.registerTask('default', ['dev']);
 };
