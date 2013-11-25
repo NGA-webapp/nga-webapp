@@ -14,10 +14,10 @@ module.exports = function (grunt) {
         livereload: true
       },
       js: {
-        files: 'js/**'
+        files: 'js/**/**'
       },
       less: {
-        files: 'style/**.less',
+        files: 'style/**/**.less',
         tasks: ['_css']
       },
       libs: {
@@ -25,8 +25,10 @@ module.exports = function (grunt) {
       }
     },
     less: {
-      files: {
-        "style/main.css": "style/main.less"
+      defaults: {
+        files: {
+          "style/main.css": "style/main.less"
+        }
       }
     }
   });
