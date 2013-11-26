@@ -65,8 +65,16 @@ define(function (require, exports) {
     tagName: 'size',
     isPair: true,
     parser: function (content, attrs) {
+      var val;
       if (!attrs.nop && typeof attrs.value === 'string') {
-        return '<span style="font-size: ' + attrs.value + ';">' + content + '</span>';
+        // 百分比字体限制最大300%
+        if (attrs.value.slice(-1) === '%') {
+          val = parseInt(attrs.value.slice(0, -1), 0);
+          val = (val > 300 ? 300 : val) + '%';
+        } else {
+          val = attrs.value;
+        }
+        return '<span style="font-size: ' + val + ';">' + content + '</span>';
       }
       return content;
     }

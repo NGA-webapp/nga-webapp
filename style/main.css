@@ -3709,6 +3709,12 @@ main > .overlay {
   margin: 0;
   font-size: 14px;
 }
+#topic article .scroller > ul > li > .content blockquote {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
 #topic footer {
   color: #db5633;
   background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 20%, #ffffff 100%);
