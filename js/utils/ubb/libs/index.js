@@ -22,6 +22,8 @@ define(function (require, exports) {
   ubb.add(layout.r);
   ubb.add(layout.quote);
   ubb.add(layout.code);
+  ubb.add(layout.tid);
+  ubb.add(layout.pid);
   ubb.add(list.list);
   ubb.add(img.img);
   ubb.add(img.relativeImg);
