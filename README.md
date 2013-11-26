@@ -1,6 +1,10 @@
 # nga-webapp
 dev version  
 
+## 开发环境
+使用``--disable-web-security``运行Chrome，后执行``grunt dev``。
+
+
 ## todo
 - todo list
   - 设置喜爱版面时，将显示当前选中的版面集中显示在顶部，或在header显示数量
