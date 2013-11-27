@@ -12,9 +12,9 @@ define(function (require, exports, module) {
         Navigate.redirect('#!/user/' + this.model.get('authorId'));
       },
       'singleTap a.url': function (events) {
-        var $a = $(events.currentTarget);
-        window.open(a.attr('href'));
-        return false;
+        var $a = $(events.currentTarget, '_blank');
+        window.open($a.attr('href'));
+        return event.preventDefault();
       }
     },
     tpl: art.compile(tpl),
