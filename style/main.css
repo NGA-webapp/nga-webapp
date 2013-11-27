@@ -3715,6 +3715,10 @@ main > .overlay {
   border: 1px solid #ccc;
   background-color: #fff;
 }
+#topic article .scroller > ul > li > .content img {
+  max-width: 100%;
+  max-height: 100%;
+}
 #topic footer {
   color: #db5633;
   background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 20%, #ffffff 100%);
