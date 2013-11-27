@@ -12,10 +12,10 @@ define(function (require, exports, module) {
         Navigate.redirect('#!/user/' + this.model.get('authorId'));
       },
       'singleTap a.url': function (events) {
-        var $a = $(events.currentTarget, '_blank');
-        alert(window.device.cordova);
-        window.open($a.attr('data-url'));
-        return event.preventDefault();
+        var url = $(events.currentTarget, '_blank').attr('data-url');
+        $(document).on('deviceready', function () {
+          window.open(url);
+        }, false);
       }
     },
     tpl: art.compile(tpl),
