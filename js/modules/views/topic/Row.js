@@ -10,12 +10,6 @@ define(function (require, exports, module) {
     events: {
       'singleTap .avatar': function () {
         Navigate.redirect('#!/user/' + this.model.get('authorId'));
-      },
-      'singleTap a.url': function (events) {
-        var url = $(events.currentTarget, '_blank').attr('data-url');
-        $(document).on('deviceready', function () {
-          window.open(url, '_system', 'location=yes');
-        }, false);
       }
     },
     tpl: art.compile(tpl),
