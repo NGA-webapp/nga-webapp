@@ -7,6 +7,7 @@ define(function (require, exports, module) {
   var RowTopicView = require('modules/views/topic/Row');
   var Navigate = require('utils/Navigate');
   var sliceSubject = require('utils/common').sliceSubject;
+  var iScrollPull = require('utils/iScrollPull');
 
   var TopicView = BasicView.extend({
     el: '#topic',
@@ -15,28 +16,8 @@ define(function (require, exports, module) {
       'tap .action-back': function () {
         Navigate.back();
       },
-      'singleTap .action-previous': function () {
-        var tid, page;
-        if (this.collection.cache.page <= 1) {
-          alert('已经是第一页');
-          return false;
-        }
-        tid = this.collection.cache.tid;
-        page = this.collection.cache.page - 1;
-        Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
-        this.fetch({tid: tid, page: page});
-      },
-      'singleTap .action-next': function () {
-        var tid, page;
-        if (this.collection.cache.pageCount <= this.collection.cache.page) {
-          alert('已经到了最后一页');
-          return false;
-        }
-        tid = this.collection.cache.tid;
-        page = this.collection.cache.page + 1;
-        Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
-        this.fetch({tid: tid, page: page});
-      },
+      'singleTap .action-previous': 'prevPage',
+      'singleTap .action-next': 'nextPage',
       'swipeUp': function () {
         var $footer = this.$footer;
         $footer.addClass('hide');
@@ -53,11 +34,46 @@ define(function (require, exports, module) {
         $footer.removeClass('behind').removeClass('hide');
       }
     },
+    _refreshScroll: function () {
+      this.$el.find('.action-pulldown, .action-pullup').removeClass('loading');
+      this.scroll.refresh();
+    },
+    prevPage: function () {
+      var tid, page;
+      if (this.collection.cache.page <= 1) {
+        this._refreshScroll();
+        alert('已经是第一页');
+        return false;
+      }
+      tid = this.collection.cache.tid;
+      page = this.collection.cache.page - 1;
+      Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
+      this.fetch({tid: tid, page: page});
+    },
+    nextPage: function () {
+      var tid, page;
+      if (this.collection.cache.pageCount <= this.collection.cache.page) {
+        this._refreshScroll();
+        alert('已经到了最后一页');
+        return false;
+      }
+      tid = this.collection.cache.tid;
+      page = this.collection.cache.page + 1;
+      Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
+      this.fetch({tid: tid, page: page});
+    },
     render: function () {
+      var self = this;
+      var pullDownAction, pullUpAction;
       this.$el.html(this.tpl());
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
-      this.scroll = new iScroll('topic-article', {
-      });
+      pullDownAction = function () {
+        self.prevPage();
+      };
+      pullUpAction = function () {
+        self.nextPage();
+      };
+      iScrollPull.call(this, 'topic-article', pullDownAction, pullUpAction);
       this.$ul = this.$el.find('ul');
       this.$subject = this.$el.find('header span.subject');
       this.$footer = this.$el.find('footer');
@@ -78,6 +94,7 @@ define(function (require, exports, module) {
      */
     _addAll: function () {
       var self = this;
+      this._refreshScroll();
       this.$ul.html('');
       this.scroll.scrollTo(0, 0, 0);
       console.log(this.collection);

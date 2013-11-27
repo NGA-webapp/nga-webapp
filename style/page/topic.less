@@ -104,6 +104,22 @@
           }
         }
       }
+      & > .action-pulldown, & > .action-pullup {
+        .transition();
+        text-align: center;
+        min-height: 2em;
+        line-height: 2em;
+        color: #999;
+        &.flip {
+          color: @nga-red;
+        }
+        &.loading {
+          color: @nga-red;
+          & > span {
+            .rotation;
+          }
+        }
+      }
     }
   }
   footer {

@@ -2269,6 +2269,20 @@ ol.unstyled,
   -o-transform: translate3d(80%, 0, 0);
   transform: translate3d(80%, 0, 0);
 }
+@-webkit-keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+.rotation {
+  -webkit-animation: rotation 2s infinite linear;
+}
 i {
   width: 76px;
   height: 76px;
@@ -3575,6 +3589,29 @@ main > .overlay {
   float: right;
   text-align: right;
 }
+#forum article .scroller > .action-pulldown,
+#forum article .scroller > .action-pullup {
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  text-align: center;
+  min-height: 2em;
+  line-height: 2em;
+  color: #999;
+}
+#forum article .scroller > .action-pulldown.flip,
+#forum article .scroller > .action-pullup.flip {
+  color: #db5633;
+}
+#forum article .scroller > .action-pulldown.loading,
+#forum article .scroller > .action-pullup.loading {
+  color: #db5633;
+}
+#forum article .scroller > .action-pulldown.loading > span,
+#forum article .scroller > .action-pullup.loading > span {
+  -webkit-animation: rotation 2s infinite linear;
+}
 #forum footer {
   color: #db5633;
   background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
@@ -3718,6 +3755,29 @@ main > .overlay {
 #topic article .scroller > ul > li > .content img {
   max-width: 100%;
   max-height: 100%;
+}
+#topic article .scroller > .action-pulldown,
+#topic article .scroller > .action-pullup {
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  text-align: center;
+  min-height: 2em;
+  line-height: 2em;
+  color: #999;
+}
+#topic article .scroller > .action-pulldown.flip,
+#topic article .scroller > .action-pullup.flip {
+  color: #db5633;
+}
+#topic article .scroller > .action-pulldown.loading,
+#topic article .scroller > .action-pullup.loading {
+  color: #db5633;
+}
+#topic article .scroller > .action-pulldown.loading > span,
+#topic article .scroller > .action-pullup.loading > span {
+  -webkit-animation: rotation 2s infinite linear;
 }
 #topic footer {
   color: #db5633;

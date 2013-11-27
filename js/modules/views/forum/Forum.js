@@ -6,10 +6,12 @@ define(function (require, exports, module) {
   var tpl = require('templates/forum/forum.tpl');
   var RowForumView = require('modules/views/forum/Row');
   var Navigate = require('utils/Navigate');
+  var iScrollPull = require('utils/iScrollPull');
   
   var ForumView = BasicView.extend({
     el: '#forum',
     tpl: art.compile(tpl),
+    _currentPage: 0,
     events: {
       // 抖动动画测试
       'singleTap .action-shake': function () {
@@ -46,14 +48,17 @@ define(function (require, exports, module) {
       Navigate.back();
     },
     render: function () {
+      var self = this;
+      var pullDownAction, pullUpAction;
       this.$el.html(this.tpl());
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
-      // this.scroll = new iScroll('.iscroll', {
-      //   scrollbars: true,
-      //   interactiveScrollbars: true
-      // });
-      this.scroll = new iScroll('forum-article', {
-      });
+      pullDownAction = function () {
+        self.fetch({fid: self.collection.cache.fid, page: 1});
+      };
+      pullUpAction = function () {
+        self.fetch({fid: self.collection.cache.fid, page: self._currentPage + 1});
+      };
+      iScrollPull.call(this, 'forum-article', pullDownAction, pullUpAction);
       this.$ul = this.$el.find('ul');
       return this;
     },
@@ -72,6 +77,7 @@ define(function (require, exports, module) {
      */
     _addAll: function () {
       var self = this;
+      this.$el.find('.action-pulldown, .action-pullup').removeClass('loading');
       this.$ul.html('');
       this.scroll.scrollTo(0, 0, 0);
       this.collection.each(this._addOne, this);
@@ -82,6 +88,9 @@ define(function (require, exports, module) {
         self.scroll.refresh();
       }, 1000);
     },
+    _setCurrentPage: function (model, resp, options) {
+      this._currentPage = options.data.page;
+    },
     fetch: function (data, options) {
       ui.Loading.open();
       this.collection.fetchXml(data, options);
@@ -89,6 +98,7 @@ define(function (require, exports, module) {
     initialize: function () {
       this.collection = new TopicInForumCollection();
       this.listenTo(this.collection, 'sync', this._addAll);
+      this.listenTo(this.collection, 'sync', this._setCurrentPage);
       return this.render();
     }
   });
