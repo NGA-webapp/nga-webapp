@@ -14,7 +14,7 @@ define(function (require, exports, module) {
       'singleTap a.url': function (events) {
         var url = $(events.currentTarget, '_blank').attr('data-url');
         $(document).on('deviceready', function () {
-          window.open(url);
+          window.open(url, '_blank', 'location=yes');
         }, false);
       }
     },
