@@ -39,4 +39,7 @@
     <access origin="*.jpeg" />
     <access origin="*.gif" />
     <access origin="*.png" />
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
 </widget>
