@@ -10,18 +10,27 @@ module.exports = function (grunt) {
       }
     },
     watch: {
-      options: {
-        livereload: true
-      },
       js: {
-        files: 'js/**/**'
+        files: 'js/**/**',
+        options: {
+          livereload: true
+        }
       },
       less: {
         files: 'style/**/**.less',
         tasks: ['_css']
       },
+      css: {
+        files: 'style/**/**.css',
+        options: {
+          livereload: true
+        }
+      },
       libs: {
-        files: 'libs/**'
+        files: 'libs/**',
+        options: {
+          livereload: true
+        }
       }
     },
     less: {
