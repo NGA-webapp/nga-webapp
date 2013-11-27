@@ -13,7 +13,8 @@ define(function (require, exports, module) {
       },
       'singleTap a.url': function (events) {
         var $a = $(events.currentTarget, '_blank');
-        window.open($a.attr('href'));
+        alert(window.device.cordova);
+        window.open($a.attr('data-url'));
         return event.preventDefault();
       }
     },
