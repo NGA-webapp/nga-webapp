@@ -4213,7 +4213,7 @@ main > .overlay {
   overflow: scroll;
   background-color: #efefef;
 }
-#bootup article .scroller > .content {
+#bootup article > .content {
   margin: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -4224,14 +4224,15 @@ main > .overlay {
   width: 100%;
   color: #666;
   padding: 30px 20px;
+  font-size: 0.8em;
 }
-#bootup article .scroller > .content.show {
+#bootup article > .content.show {
   -webkit-animation: fadeInUp 0.4s ease;
 }
-#bootup article .scroller > .content > .avatar {
+#bootup article > .content > .avatar {
   text-align: center;
 }
-#bootup article .scroller > .content > .avatar > img {
+#bootup article > .content > .avatar > img {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -4240,42 +4241,6 @@ main > .overlay {
   -webkit-box-shadow: 0 0 0 3px #ffffff, 0 3px 3px 1px #cccccc;
   -moz-box-shadow: 0 0 0 3px #ffffff, 0 3px 3px 1px #cccccc;
   box-shadow: 0 0 0 3px #ffffff, 0 3px 3px 1px #cccccc;
-}
-#bootup article .scroller > .content > form > input {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 18px;
-  color: #555;
-  text-align: center;
-  width: 100%;
-  height: 50px;
-  margin: 10px 0;
-  padding: 10px;
-}
-#bootup article .scroller > .content > form > button {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 18px;
-  text-align: center;
-  width: 100%;
-  height: 50px;
-  margin: 10px 0;
-  padding: 10px;
-  background: #db5633;
-  color: #fff;
-}
-#bootup article .scroller > .content > form > button:active {
-  background: #efefef;
-  color: #555;
-  border: none;
 }
 #bootup footer {
   color: #db5633;
