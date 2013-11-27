@@ -4,9 +4,9 @@ define(function (require, exports) {
     isPair: true,
     parser: function (content, attrs) {
       if (attrs.nop) {
-        return '<a class="url" href="' + content + '" target="_blank">' + content + '</a>';
+        return '<a class="url" data-url="' + content + '" href="javascript:void(0);" target="_blank">' + content + '</a>';
       }
-      return '<a class="url" href="' + attrs.value + '" target="_blank">' + content + '</a>';
+      return '<a class="url" data-url="' + attrs.value + '" href="javascript:void(0);" target="_blank">' + content + '</a>';
     },
     priority: 1,
   };
