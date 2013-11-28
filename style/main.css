@@ -4088,6 +4088,11 @@ main > .overlay {
   border-left: none;
   border-right: none;
 }
+#logout article .scroller > .content > button:active {
+  background: #db5633;
+  color: #fff;
+  border: none;
+}
 #logout footer {
   color: #db5633;
   background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 20%, #ffffff 100%);
