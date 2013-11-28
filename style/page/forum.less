@@ -21,6 +21,13 @@
         // .text-shadow(0 0 0 @nga-red-dark);
       }
     }
+    .action-refresh {
+      &.loading { 
+        .glyphicon {
+          .rotation;
+        }
+      }
+    }
   }
   article {
     width: 100%;
@@ -106,7 +113,7 @@
         }
         &.loading {
           color: @nga-red;
-          & > span {
+          & > span.glyphicon {
             .rotation;
           }
         }

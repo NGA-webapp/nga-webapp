@@ -3510,6 +3510,9 @@ main > .overlay {
   text-shadow: 0 1px 1px #421104;
   text-shadow: 0 1px 1px #421104, ;
 }
+#forum header .action-refresh.loading .glyphicon {
+  -webkit-animation: rotation 2s infinite linear;
+}
 #forum article {
   width: 100%;
   display: block;
@@ -3608,8 +3611,8 @@ main > .overlay {
 #forum article .scroller > .action-pullup.loading {
   color: #db5633;
 }
-#forum article .scroller > .action-pulldown.loading > span,
-#forum article .scroller > .action-pullup.loading > span {
+#forum article .scroller > .action-pulldown.loading > span.glyphicon,
+#forum article .scroller > .action-pullup.loading > span.glyphicon {
   -webkit-animation: rotation 2s infinite linear;
 }
 #forum footer {
@@ -3775,8 +3778,8 @@ main > .overlay {
 #topic article .scroller > .action-pullup.loading {
   color: #db5633;
 }
-#topic article .scroller > .action-pulldown.loading > span,
-#topic article .scroller > .action-pullup.loading > span {
+#topic article .scroller > .action-pulldown.loading > span.glyphicon,
+#topic article .scroller > .action-pullup.loading > span.glyphicon {
   -webkit-animation: rotation 2s infinite linear;
 }
 #topic footer {

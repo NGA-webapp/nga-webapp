@@ -25,8 +25,6 @@
   <div class="right">
     <a class="icon action-letter"><span class="glyphicon glyphicon-comment"></span></a>
     <a class="icon action-search"><span class="glyphicon glyphicon-share-alt"></span></a>
-    <a class="icon action-previous"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
-    <a class="icon action-next"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
     <!-- <a>1/1231244</a> -->
   </div>
 </footer>

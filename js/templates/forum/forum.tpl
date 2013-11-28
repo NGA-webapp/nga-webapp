@@ -8,12 +8,12 @@
 <article id="forum-article" class="iscroll">
   <div class="scroller">
     <div class="action-pulldown">
-      <span class="glyphicon glyphicon-refresh"></span> 刷新
+      <span class="glyphicon glyphicon-refresh"></span> <span class="text">上一页</span>
     </div>
     <ul>
     </ul>
     <div class="action-pullup">
-      <span class="glyphicon glyphicon-refresh"></span> 下一页
+      <span class="glyphicon glyphicon-refresh"></span> <span class="text">下一页</span>
     </div>
   </div>
 </article>

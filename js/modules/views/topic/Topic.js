@@ -16,8 +16,8 @@ define(function (require, exports, module) {
       'tap .action-back': function () {
         Navigate.back();
       },
-      'singleTap .action-previous': 'prevPage',
-      'singleTap .action-next': 'nextPage',
+      'swipeLeft': 'prevPage',
+      'swipeRight': 'nextPage',
       'swipeUp': function () {
         var $footer = this.$footer;
         $footer.addClass('hide');

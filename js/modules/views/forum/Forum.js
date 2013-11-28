@@ -28,7 +28,9 @@ define(function (require, exports, module) {
           }();
         });
       },
-      'singleTap .action-refresh': function () {
+      'singleTap .action-refresh': function (e) {
+        var $btn = $(e.currentTarget);
+        $btn.addClass('loading');
         this.fetch({fid: this.collection.cache.fid, page: 1});
       },
       'swipeRight header+article': 'openLeftSider',
@@ -53,7 +55,7 @@ define(function (require, exports, module) {
       this.$el.html(this.tpl());
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
       pullDownAction = function () {
-        self.fetch({fid: self.collection.cache.fid, page: 1});
+        self.fetch({fid: self.collection.cache.fid, page: (self._currentPage > 1 ? self._currentPage - 1 : 1)});
       };
       pullUpAction = function () {
         self.fetch({fid: self.collection.cache.fid, page: self._currentPage + 1});
@@ -75,10 +77,16 @@ define(function (require, exports, module) {
     /**
      * 添加全部帖子
      */
-    _addAll: function () {
+    _addAll: function (model, resp, options) {
       var self = this;
-      this.$el.find('.action-pulldown, .action-pullup').removeClass('loading');
+      this.$el.find('.action-pulldown, .action-pullup, .action-refresh').removeClass('loading');
       this.$ul.html('');
+      this._currentPage = options.data.page;
+      if (this._currentPage > 1) {
+        this.$el.find('.action-pulldown .text').text('上一页');
+      } else {
+        this.$el.find('.action-pulldown .text').text('刷新');
+      }
       this.scroll.scrollTo(0, 0, 0);
       this.collection.each(this._addOne, this);
       _.delay(function () {
@@ -88,9 +96,6 @@ define(function (require, exports, module) {
         self.scroll.refresh();
       }, 1000);
     },
-    _setCurrentPage: function (model, resp, options) {
-      this._currentPage = options.data.page;
-    },
     fetch: function (data, options) {
       ui.Loading.open();
       this.collection.fetchXml(data, options);
@@ -98,7 +103,6 @@ define(function (require, exports, module) {
     initialize: function () {
       this.collection = new TopicInForumCollection();
       this.listenTo(this.collection, 'sync', this._addAll);
-      this.listenTo(this.collection, 'sync', this._setCurrentPage);
       return this.render();
     }
   });
