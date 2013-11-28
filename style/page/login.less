@@ -41,46 +41,34 @@
         min-height: 300px;
         width: 100%;
         color: #666;
-        padding: 30px 20px;
-        & > .avatar {
-          text-align: center;
-          & > img {
-            .border-radius(50%);
-            width: 150px;
-            height: 150px;
-            .box-shadow(0 0 0 3px #fff, 0 3px 3px 1px #ccc);
-          }
-        }
+        padding: 60px 0;
         & > form {
           & > input {
             .box-sizing(border-box);
             padding: 0 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 18px;
-            color: #555;
+            border: none;
+            border-bottom: 1px solid #db5633;
+            background: none;
+            font-size: 1em;
+            color: #666;
             text-align: center;
             width: 100%;
             height: 50px;
-            margin: 10px 0;
-            padding: 10px;
           }
           & > button {
             .box-sizing(border-box);
-            padding: 0 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 18px;
+            .border-radius(50%);
+            border: 1px solid @nga-red;
+            font-size: 2em;
             text-align: center;
-            width: 100%;
-            height: 50px;
-            margin: 10px 0;
-            padding: 10px;
-            background: @nga-red;
-            color: #fff;
+            width: 4em;
+            height: 4em;
+            margin: 2em auto;
+            color: @nga-red;
+            display: block;
             &:active {
-              background: #efefef;
-              color: #555;
+              background: @nga-red;
+              color: #fff;
               border: none;
             }
           }

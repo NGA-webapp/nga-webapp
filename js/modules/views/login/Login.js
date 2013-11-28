@@ -33,19 +33,6 @@ define(function (require, exports, module) {
       success: function () {}
     },
     events: {
-      'tap .action-back': function () {
-        Navigate.back();
-      },
-      'focus input': function (e) {
-        // 调整input的位置，在ios虚拟键盘弹出的时候不至于把header顶上去
-        var $input = $(e.target);
-        var offset = $input.offset();
-        var y = offset.top - offset.height - 30 - this.$content.offset().top + 50;
-        this.$content.animate({'translate3d': '0, -' + y + 'px, 0'}, 0, 'ease');
-      },
-      'blur input': function () {
-        this.$content.animate({'translate3d': '0, 0, 0'}, 0, 'ease');
-      },
       'submit .action-login': 'doLogin'
     },
     doLogin: function () {
