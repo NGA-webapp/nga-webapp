@@ -184,6 +184,15 @@ define(function (require, exports, module) {
       aside: ''
     },
     {
+      from: '#logout',
+      to: '#menu',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-openLeftAside', to: 'noop'},
+      after: {from: 'leanRight', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
       from: '#forum',
       to: '#forum',
       before: {to: 'noop'},
@@ -204,6 +213,15 @@ define(function (require, exports, module) {
     {
       from: '#setting',
       to: '#setting',
+      before: {to: 'noop'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'noop', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#logout',
+      to: '#logout',
       before: {to: 'noop'},
       animate: {to: 'section-closeLeftAsideOutAndIn'},
       after: {from: 'noop', to: 'noop', aside: 'behind'},
@@ -285,6 +303,33 @@ define(function (require, exports, module) {
     {
       from: '#setting',
       to: '#logout',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#logout',
+      to: '#forum',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#logout',
+      to: '#forums',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#logout',
+      to: '#setting',
       before: {to: 'leanRight'},
       animate: {to: 'section-closeLeftAsideOutAndIn'},
       after: {from: 'behind', to: 'noop', aside: 'behind'},

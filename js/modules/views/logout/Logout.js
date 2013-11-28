@@ -17,10 +17,11 @@ define(function (require, exports, module) {
       requesting: false, // 正在请求
     },
     events: {
-      'tap .action-back': function () {
-        Navigate.back();
-      },
-      'singleTap .action-logout': 'doLogout'
+      'singleTap .action-logout': 'doLogout',
+      'swipeRight header+article': 'openLeftSider',
+      'swipe .asideMask': 'closeSider',
+      'tap .asideMask': 'closeSider',
+      'tap .action-aside': 'openLeftSider',
     },
     doLogout: function () {
       var self, username ,password;
@@ -39,6 +40,17 @@ define(function (require, exports, module) {
         self.flag.requesting = false;
       });
       return false;
+    },
+    openLeftSider: function () {
+      // this.$el.addClass('section-sider-left');
+      var self = this;
+      Navigate.aside('#!/menu', function () {
+        self.$el.find('.asideMask').removeClass('on');
+      });
+      self.$el.find('.asideMask').addClass('on');
+    },
+    closeSider: function () {
+      Navigate.back();
     },
     render: function () {
       this.$el.html(this.tpl());
