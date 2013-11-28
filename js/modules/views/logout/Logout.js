@@ -17,6 +17,9 @@ define(function (require, exports, module) {
       requesting: false, // 正在请求
     },
     events: {
+      'tap .action-back': function () {
+        Navigate.back();
+      },
       'singleTap .action-logout': 'doLogout'
     },
     doLogout: function () {
