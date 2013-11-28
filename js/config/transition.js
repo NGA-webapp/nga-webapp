@@ -220,6 +220,15 @@ define(function (require, exports, module) {
       aside: '#menu'
     },
     {
+      from: '#forum',
+      to: '#logout',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
       from: '#forums',
       to: '#forum',
       before: {to: 'leanRight'},
@@ -231,6 +240,15 @@ define(function (require, exports, module) {
     {
       from: '#forums',
       to: '#setting',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
+    {
+      from: '#forums',
+      to: '#logout',
       before: {to: 'leanRight'},
       animate: {to: 'section-closeLeftAsideOutAndIn'},
       after: {from: 'behind', to: 'noop', aside: 'behind'},
@@ -254,7 +272,16 @@ define(function (require, exports, module) {
       after: {from: 'behind', to: 'noop', aside: 'behind'},
       duration: 600,
       aside: '#menu'
-    }
+    },
+    {
+      from: '#setting',
+      to: '#logout',
+      before: {to: 'leanRight'},
+      animate: {to: 'section-closeLeftAsideOutAndIn'},
+      after: {from: 'behind', to: 'noop', aside: 'behind'},
+      duration: 600,
+      aside: '#menu'
+    },
   ];
 
   module.exports = map;

@@ -6,6 +6,7 @@ define(function (require, exports, module) {
   var TopicView = require('modules/views/topic/Topic');
   var UserView = require('modules/views/user/User');
   var LoginView = require('modules/views/login/Login');
+  var LogoutView = require('modules/views/logout/Logout');
   var SettingView = require('modules/views/setting/Setting');
   var BootupView = require('modules/views/bootup/Bootup');
   var appCache = require('modules/AppCache').appCache;
@@ -22,6 +23,7 @@ define(function (require, exports, module) {
       "!/topic/:tid/p:page": "getTopic",
       "!/user/:uid": "getUser",
       "!/login": "getLogin",
+      "!/logout": "getLogout",
       "!/menu": "getMenu",
       "!/setting": "getSetting",
       "!/setting/favor": "getSettingFavor",
@@ -40,12 +42,13 @@ define(function (require, exports, module) {
           data.topicView = new TopicView();
           data.userView = new UserView();
           data.loginView = new LoginView();
+          data.logoutView = new LogoutView();
           data.settingView = new SettingView();
           data.bootupView = new BootupView();
           return data;
         });
         this.cached = appCache.get();
-        // window.cached = this.cached;
+        window.cached = this.cached;
       },
       index: function () {
         console.log('index');
@@ -84,6 +87,11 @@ define(function (require, exports, module) {
         console.log('login: ');
         this.cacheInitialize();
         transition.toSection(this.cached.loginView);
+      },
+      getLogout: function () {
+        console.log('logout: ');
+        this.cacheInitialize();
+        transition.toSection(this.cached.logoutView);
       },
       getMenu: function () {
         this.cacheInitialize();

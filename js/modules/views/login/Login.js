@@ -4,7 +4,6 @@ define(function (require, exports, module) {
   var BasicView = require('modules/views/abstracts/Basic');
   var tpl = require('templates/login/login.tpl');
   var tplContent = require('templates/login/content.tpl');
-  var Navigate = require('utils/Navigate');
   var trim = require('utils/common').trim;
   var config = require('config/index');
   var RSAKey = require('utils/rsa/rsa').RSAKey;
@@ -26,8 +25,7 @@ define(function (require, exports, module) {
     tpl: art.compile(tpl),
     tplContent: art.compile(tplContent),
     flag: {
-      logging: false, // 正在登录
-      logged: false // 已经登录
+      logging: false // 正在登录
     },
     nextAction: {
       success: function () {}
@@ -64,7 +62,6 @@ define(function (require, exports, module) {
           if (resp.match(/登录成功/)) {
             success = true;
             msg = '登录成功';
-            self.flag.logged = true;
             self.nextAction.success();
           } else {
             success = false;

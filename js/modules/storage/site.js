@@ -22,7 +22,7 @@ define(function (require, exports, module) {
      * @return {boolean} 
      */
     checkLogged: function (next) {
-      siteModel = appCache.get('siteModel');
+      var siteModel = appCache.get('siteModel');
       if (arguments.length === 0) {
         return siteModel.get('isLogged');
       }

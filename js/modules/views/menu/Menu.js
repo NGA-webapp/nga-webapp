@@ -24,6 +24,9 @@ define(function (require, exports, module) {
       },
       'singleTap .setting': function () {
         Navigate.redirect('#!/setting');
+      },
+      'singleTap .logout': function () {
+        Navigate.redirect('#!/logout');
       }
     },
     render: function () {

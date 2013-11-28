@@ -14,7 +14,7 @@
         <li class="title">工具</li>
         <li class="disabled"><span class="glyphicon glyphicon-heart"></span> 收藏</li>
         <li class="setting"><span class="glyphicon glyphicon-cog"></span> 设置</li>
-        <li class="disabled"><span class="glyphicon glyphicon-user"></span> 登出账号</li>
+        <li class="logout"><span class="glyphicon glyphicon-user"></span> 登出账号</li>
       </ul>
     </div>
   </div>
