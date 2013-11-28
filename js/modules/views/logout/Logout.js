@@ -7,7 +7,7 @@ define(function (require, exports, module) {
   var Navigate = require('utils/Navigate');
   var appCache = require('modules/AppCache').appCache;
 
-  var logoutUrl = 'http://account.178.com/q_account.php?_act=logout&to=http://bbs.ngacn.cc/';
+  var logoutUrl = 'http://account.178.com/q_account.php?_act=logout';
 
   var LogoutView = BasicView.extend({
     el: '#logout',
@@ -31,8 +31,9 @@ define(function (require, exports, module) {
       $.get(logoutUrl, function () {
         alert('登出成功');
         ui.Loading.close();
+        appCache.get('loginView').nextAction.success = function () {appCache.get('bootupView').introFunc();};
         Navigate.redirect('#!/login');
-        self.flag.logging = false;
+        self.flag.requesting = false;
       });
       return false;
     },

@@ -4079,40 +4079,14 @@ main > .overlay {
 #logout article .scroller > .content.show {
   -webkit-animation: fadeInUp 0.4s ease;
 }
-#logout article .scroller > .content > form > input {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0 10px;
-  border: none;
-  border-bottom: 1px solid #db5633;
-  background: none;
-  font-size: 1em;
-  color: #666;
-  text-align: center;
+#logout article .scroller > .content > button {
   width: 100%;
-  height: 50px;
-}
-#logout article .scroller > .content > form > button {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
+  background: none;
   border: 1px solid #db5633;
-  font-size: 2em;
-  text-align: center;
-  width: 4em;
-  height: 4em;
-  margin: 2em auto;
   color: #db5633;
-  display: block;
-}
-#logout article .scroller > .content > form > button:active {
-  background: #db5633;
-  color: #fff;
-  border: none;
+  height: 4em;
+  border-left: none;
+  border-right: none;
 }
 #logout footer {
   color: #db5633;

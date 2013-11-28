@@ -37,6 +37,20 @@ define(function (require, exports, module) {
         Navigate.redirect(url);
       }, 400);
     },
+    // 登入后的跳转
+    introFunc: function () {
+      var quickForum;
+      var self = this;
+      quickForum = siteStorage.getQuickForum();
+      if (quickForum.length > 0) {
+        self.log('检查快速导航...已设置.');
+        self.redirect('#!/forum/' + quickForum[0]);
+      } else {
+        self.log('检查快速导航...未设置.');
+        // self.redirect('#!/forums');
+        self.redirect('#!/forum/-7');
+      }
+    },
     // 启动
     bootup: function () {
       var self = this;
@@ -48,25 +62,13 @@ define(function (require, exports, module) {
       // } else {
         self.log('检查登录状态...');
         siteStorage.checkLogged(function (isLogged) {
-          var quickForum;
-          var introFunc = function () {
-            quickForum = siteStorage.getQuickForum();
-            if (quickForum.length > 0) {
-              self.log('检查快速导航...已设置.');
-              self.redirect('#!/forum/' + quickForum[0]);
-            } else {
-              self.log('检查快速导航...未设置.');
-              self.redirect('#!/forum/-7');
-              // self.redirect('#!/forums');
-            }
-          };
           if (isLogged) {
             self.log('检查登录状态...已登录.');
             self.log('检查快速导航...');
-            introFunc();
+            self.introFunc();
           } else {
             self.log('检查登录状态...未登录.');
-            appCache.get('loginView').nextAction.success = function () {introFunc();};
+            appCache.get('loginView').nextAction.success = function () {self.introFunc();};
             self.redirect('#!/login');
           }
         });

@@ -23,12 +23,15 @@ define(function (require, exports, module) {
      */
     checkLogged: function (next) {
       var siteModel = appCache.get('siteModel');
+      var doNext;
       if (arguments.length === 0) {
         return siteModel.get('isLogged');
       }
-      siteModel.once('change:isLogged', function (model, isLogged, options) {
+      doNext = function (model, isLogged, options) {
         next(!!isLogged);
-      });
+        siteModel.off('change:isLogged', doNext)
+      };
+      siteModel.on('change:isLogged', doNext);
       siteModel.fetchXml();
     },
     // 获取初始化标记

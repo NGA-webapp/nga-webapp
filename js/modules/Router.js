@@ -16,6 +16,7 @@ define(function (require, exports, module) {
   module.exports = function () {
     var routesTable = {
       "": "index",
+      "!/bootup": "index",
       "!/forums": "getForums",
       "!/forum/:fid": "getForum",
       "!/forum/:fid/p:page": "getForum",
