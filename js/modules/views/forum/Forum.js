@@ -31,7 +31,7 @@ define(function (require, exports, module) {
       'singleTap .action-refresh': function (e) {
         var $btn = $(e.currentTarget);
         $btn.addClass('loading');
-        this.fetch({fid: this.collection.cache.fid, page: 1});
+        this.refresh();
       },
       'swipeRight header+article': 'openLeftSider',
       'swipe .asideMask': 'closeSider',
@@ -49,16 +49,19 @@ define(function (require, exports, module) {
     closeSider: function () {
       Navigate.back();
     },
+    refresh: function () {
+      this.fetch({fid: this.collection.cache.fid, page: 1}, {remove: true});
+    },
     render: function () {
       var self = this;
       var pullDownAction, pullUpAction;
       this.$el.html(this.tpl());
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
       pullDownAction = function () {
-        self.fetch({fid: self.collection.cache.fid, page: (self._currentPage > 1 ? self._currentPage - 1 : 1)});
+        self.refresh();
       };
       pullUpAction = function () {
-        self.fetch({fid: self.collection.cache.fid, page: self._currentPage + 1});
+        self.fetch({fid: self.collection.cache.fid, page: self._currentPage + 1}, {remove: false});
       };
       iScrollPull.call(this, 'forum-article', pullDownAction, pullUpAction);
       this.$ul = this.$el.find('ul');
@@ -87,7 +90,10 @@ define(function (require, exports, module) {
       } else {
         this.$el.find('.action-pulldown .text').text('刷新');
       }
-      this.scroll.scrollTo(0, 0, 0);
+      // 刷新时重置滚动条位置
+      if (options.remove) {
+        this.scroll.scrollTo(0, 0, 0);
+      }
       this.collection.each(this._addOne, this);
       _.delay(function () {
         ui.Loading.close();
