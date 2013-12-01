@@ -9,14 +9,13 @@ define(function (require, exports, module) {
     this.scroll = new iScroll(id, {
       topOffset: pullDownOffset,
       onScrollMove: function () {
-        console.log(this.y);
         if (this.y > 50 && !$pullDownEl.hasClass('flip')) {
           $pullDownEl.addClass('flip');
           this.minScrollY = 0;
         } else if (this.y < 50 && $pullDownEl.hasClass('flip')) {
           $pullDownEl.removeClass('flip');
           this.minScrollY = -pullDownOffset;
-        } else if (this.y < (this.maxScrollY - 50) && this.y < -this.maxScrollY && !$pullUpEl.hasClass('flip')) {
+        } else if (this.y < (this.maxScrollY - 50) && !$pullUpEl.hasClass('flip')) {
           $pullUpEl.addClass('flip');
           this.maxScrollY = this.maxScrollY;
         } else if (this.y > (this.maxScrollY + 50) && $pullUpEl.hasClass('flip')) {
