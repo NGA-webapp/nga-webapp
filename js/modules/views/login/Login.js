@@ -9,6 +9,7 @@ define(function (require, exports, module) {
   var RSAKey = require('utils/rsa/rsa').RSAKey;
   var appCache = require('modules/AppCache').appCache;
 
+var inCharset = require('utils/inCharset');
   var loginUrl = config.nakeServer ? '/api/login' : 'http://bbs.ngacn.cc/nuke.php?func=login';
   var gsUrl = config.nakeServer ? '/api/gs' : 'http://bbs.ngacn.cc/nuke.php?func=login&normal_login&gs&raw=2';
 
@@ -48,33 +49,43 @@ define(function (require, exports, module) {
       self.flag.logging = true;
       console.log('connect start');
       ui.Loading.open();
-      $.get(gsUrl, function (gs) {
-        var data = {
-          'login_type': 'use_name',
-          'username': username,
-          'password': encryptPassword(password, gs),
-          'expires': 31536000
-        };
-        $.post(loginUrl, data, function (resp) {
-          var success, msg;
-          console.log('connect finished');
-          ui.Loading.close();
-          if (resp.match(/登录成功/)) {
-            success = true;
-            msg = '登录成功';
-            self.nextAction.success();
-          } else {
-            success = false;
-            if (resp.match(/密码错误/)) {
-              msg = '密码错误';
-            } else if (resp.match(/错误尝试过多/)) {
-              msg = '错误尝试过多，请等待1~30分钟后登录';
-            } else {
-              msg = '登录失败';
+      inCharset(username, 'gbk', function (username){
+        $.get(gsUrl, function (gs) {
+          // zepto会将object类型的param进行一次编码，所以这里直接使用字符串拼装，避免错误的编码
+          var data = 'login_type=use_name' + 
+            '&username=' + username + 
+            '&password=' + encryptPassword(password, gs) +
+            '&expires=' + 31536000;
+          $.ajax({
+            type: 'post',
+            url: loginUrl,
+            data: data,
+            beforeSend: function (req) {
+              req.overrideMimeType("text/html; charset=gbk"); 
+              req.setRequestHeader('accept', 'text/javascript; charset=gbk');
+            },
+            success: function (resp) {
+              var success, msg;
+              console.log('connect finished');
+              ui.Loading.close();
+              if (resp.match(/登录成功/)) {
+                success = true;
+                msg = '登录成功';
+                self.nextAction.success();
+              } else {
+                success = false;
+                if (resp.match(/密码错误/)) {
+                  msg = '密码错误';
+                } else if (resp.match(/错误尝试过多/)) {
+                  msg = '错误尝试过多，请等待1~30分钟后登录';
+                } else {
+                  msg = '登录失败';
+                }
+              }
+              alert(msg);
+              self.flag.logging = false;
             }
-          }
-          alert(msg);
-          self.flag.logging = false;
+          });
         });
       });
       return false;
