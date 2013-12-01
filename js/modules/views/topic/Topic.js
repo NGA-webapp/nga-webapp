@@ -107,6 +107,14 @@ define(function (require, exports, module) {
     },
     fetch: function (data, options) {
       ui.Loading.open();
+      _.defaults(options || (options = {}), {
+        error: function () {
+          ui.Loading.close();
+          _.delay(function (){
+            Navigate.back();
+          }, 400);
+        }
+      });
       this.collection.fetchXml(data, options);
     },
     initialize: function () {
