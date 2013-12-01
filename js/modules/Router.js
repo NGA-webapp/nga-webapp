@@ -69,7 +69,7 @@ define(function (require, exports, module) {
         console.log('forum: ' + fid, this.cached.forumView);
         this.cacheInitialize();
         transition.toSection(this.cached.forumView);
-        this.cached.forumView.fetch({fid: fid, page: (page || 1)});
+        this.cached.forumView.fetch({fid: fid, page: (page || 1)}, {remove: true});
       },
       getTopic: function (tid, page) {
         tid = tid === 1 ? 6582574 : tid;
