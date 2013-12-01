@@ -3531,7 +3531,7 @@ main > .overlay {
 }
 #forum article .scroller > ul {
   margin: 0;
-  min-height: 468px;
+  min-height: 368px;
 }
 #forum article .scroller > ul:after {
   content: '';
@@ -3683,6 +3683,7 @@ main > .overlay {
 }
 #topic article .scroller > ul {
   margin: 0;
+  min-height: 368px;
 }
 #topic article .scroller > ul > li {
   -webkit-box-sizing: border-box;
@@ -3770,7 +3771,7 @@ main > .overlay {
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
   text-align: center;
-  min-height: 2em;
+  min-height: 50px;
   line-height: 2em;
   color: #999;
 }
