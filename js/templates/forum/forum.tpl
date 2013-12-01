@@ -8,7 +8,7 @@
 <article id="forum-article" class="iscroll">
   <div class="scroller">
     <div class="action-pulldown">
-      <span class="glyphicon glyphicon-refresh"></span> <span class="text">上一页</span>
+      <span class="glyphicon glyphicon-refresh"></span> <span class="text">刷新</span>
     </div>
     <ul>
     </ul>

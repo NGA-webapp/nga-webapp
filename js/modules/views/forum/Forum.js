@@ -73,6 +73,9 @@ define(function (require, exports, module) {
      * @param {TopicModel} topic
      */
     _addOne: function (topic) {
+      if (this.$ul.find('[data-tid="' + topic.id + '"]').length > 0) {
+        return;
+      }
       var view = new RowForumView({model: topic});
       this.$ul.append(view.el);
       $(view.el).removeClass('hide').addClass('show');
@@ -83,15 +86,10 @@ define(function (require, exports, module) {
     _addAll: function (model, resp, options) {
       var self = this;
       this.$el.find('.action-pulldown, .action-pullup, .action-refresh').removeClass('loading');
-      this.$ul.html('');
       this._currentPage = options.data.page;
-      if (this._currentPage > 1) {
-        this.$el.find('.action-pulldown .text').text('上一页');
-      } else {
-        this.$el.find('.action-pulldown .text').text('刷新');
-      }
-      // 刷新时重置滚动条位置
+      // 刷新时清空列表，重置滚动条位置
       if (options.remove) {
+        this.$ul.html('');
         this.scroll.scrollTo(0, 0, 0);
       }
       this.collection.each(this._addOne, this);

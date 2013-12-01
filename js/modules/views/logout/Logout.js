@@ -7,7 +7,8 @@ define(function (require, exports, module) {
   var Navigate = require('utils/Navigate');
   var appCache = require('modules/AppCache').appCache;
 
-  var logoutUrl = 'http://account.178.com/q_account.php?_act=logout';
+  // var logoutUrl = 'http://account.178.com/q_account.php?_act=logout';
+  var logoutUrl = 'http://nga.178.com/nuke.php';
 
   var LogoutView = BasicView.extend({
     el: '#logout',
@@ -32,7 +33,7 @@ define(function (require, exports, module) {
       self.flag.requesting = true;
       console.log('connect start');
       ui.Loading.open();
-      $.get(logoutUrl, function () {
+      $.post(logoutUrl, {func: 'logout', do_not_multi_login: 1}, function () {
         alert('登出成功');
         ui.Loading.close();
         appCache.get('loginView').nextAction.success = function () {appCache.get('bootupView').introFunc();};
