@@ -3,7 +3,7 @@
     <span class="subject"></span>
   </h1>
   <div>
-    <a class="icon"><span class="glyphicon glyphicon-plane"></span></a>
+    <a class="icon action-skip"><span class="glyphicon glyphicon-plane"></span></a>
   </div>
 </header>
 <article id="topic-article" class="iscroll">

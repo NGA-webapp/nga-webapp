@@ -16,6 +16,16 @@ define(function (require, exports, module) {
       'tap .action-back': function () {
         Navigate.back();
       },
+      'tap .action-skip': function () {
+        var maxPage = this.collection.cache.pageCount;
+        var page = window.prompt('跳转到指定页', maxPage);
+        var tid = this.collection.cache.tid;
+        if (page) {
+          page = page > maxPage ? maxPage : page;
+          Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
+          this.fetch({tid: tid, page: page});
+        }
+      },
       'swipeUp': function () {
         var $footer = this.$footer;
         $footer.addClass('hide');
