@@ -48,6 +48,31 @@ define(function (require, exports, module) {
     };
   };
 
+  var getAttachs = function ($nodes) {
+    var result = [];
+    var $node;
+    var i, len;
+    if ($nodes.length === 0) {
+      return [];
+    }
+    for (i = 0, len = $nodes.length; i < len; i++) {
+      $node = $($nodes.get(i));
+      result.push({
+        attachurl: $node.find('attachurl').text(),
+        size: toInteger($node.find('size').text()),
+        type: $node.find('type').text(),
+        subid: toInteger($node.find('subid').text()),
+        url_utf8_org_name: $node.find('url_utf8_org_name').text(),
+        dscp: $node.find('dscp').text(),
+        path: $node.find('path').text(),
+        name: $node.find('name').text(),
+        ext: $node.find('ext').text(),
+        thumb: toInteger($node.find('thumb').text())
+      })
+    }
+    return result;
+  };
+
   var getPost = function (node) {
     var $node = $(node);
     return {
@@ -61,8 +86,7 @@ define(function (require, exports, module) {
       "fid": toInteger($node.find('fid').text()),
       "contentLength": toInteger($node.find('content_length').text()),
       "orgFid": toInteger($node.find('org_fid').text()),
-      // todo: load attachs
-      "attachs": {},
+      "attachs": getAttachs($node.find('attachs > item')),
       "lou": toInteger($node.find('lou').text()),
       "postDate": toInteger($node.find('postdatetimestamp').text())
     };
@@ -108,6 +132,7 @@ define(function (require, exports, module) {
         authorId: post.authorId,
         authorName: _.has(usersCache, post.authorId) ? usersCache[post.authorId].username : '',
         avatar: _.has(usersCache, post.authorId) ? usersCache[post.authorId].avatar : '',
+        attachs: post.attachs,
         lou: post.lou,
         postDate: post.postDate
       };

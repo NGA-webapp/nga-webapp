@@ -13,10 +13,10 @@ define(function (require, exports, module) {
     el: '#topic',
     tpl: art.compile(tpl),
     events: {
-      'tap .action-back': function () {
+      'singleTap .action-back': function () {
         Navigate.back();
       },
-      'tap .action-skip': function () {
+      'singleTap .action-skip': function () {
         var maxPage = this.collection.cache.pageCount;
         var page = window.prompt('跳转到指定页', maxPage);
         var tid = this.collection.cache.tid;
