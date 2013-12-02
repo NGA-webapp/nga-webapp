@@ -1,4 +1,4 @@
-var cordova = require('cordova');
+cordova.define("com.verso.cordova.clipboard.Clipboard", function(require, exports, module) {var cordova = require('cordova');
 
 /**
  * Clipboard plugin for Cordova
@@ -13,7 +13,7 @@ function Clipboard () {}
  * @param {String} text The content to copy to the clipboard
  */
 Clipboard.prototype.copy = function (text, onSuccess, onFail) {
-        cordova.exec(onSuccess, onFail, "Clipboard", "copy", [text]);
+	cordova.exec(onSuccess, onFail, "Clipboard", "copy", [text]);
 }
 
 /**
@@ -22,9 +22,9 @@ Clipboard.prototype.copy = function (text, onSuccess, onFail) {
  * @param {Function} callback The function to call with the result
  */
 Clipboard.prototype.paste = function (onSuccess, onFail) {
-        cordova.exec(onSuccess, onFail, "Clipboard", "paste", []);
+	cordova.exec(onSuccess, onFail, "Clipboard", "paste", []);
 }
 
 // Register the plugin
 var clipboard = new Clipboard();
-module.exports = clipboard;
+module.exports = clipboard;});
