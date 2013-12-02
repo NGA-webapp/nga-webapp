@@ -35,7 +35,7 @@ define(function (require, exports, module) {
             alert('分享失败');
           });
         }, false);
-      }
+      },
       'swipeUp': function () {
         var $footer = this.$footer;
         $footer.addClass('hide');
