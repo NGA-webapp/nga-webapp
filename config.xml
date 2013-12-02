@@ -40,8 +40,6 @@
     <access origin="*.jpeg" />
     <access origin="*.gif" />
     <access origin="*.png" />
-    <feature name="InAppBrowser">
-        <param name="ios-package" value="CDVInAppBrowser" />
-    </feature>
     <gap:plugin name="com.verso.cordova.clipboard" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
 </widget>
