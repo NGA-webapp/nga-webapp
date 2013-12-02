@@ -1,6 +1,9 @@
 define(function (require, exports, module) {
   var transition = require('utils/StageTransition');
 
+  var flag = {
+    backing: false
+  };
   var history = [];
   var redirect = function (url) {
     Backbone.history.navigate(url, {trigger: true});
@@ -11,13 +14,18 @@ define(function (require, exports, module) {
   };
   var back = function () {
     // if (view) {
-      if (history.length > 1) {
-        Backbone.history.navigate(history[history.length - 2]);
-        history.pop();
-      } else {
-        Backbone.history.navigate('', {trigger: true});
-      }
-      transition.switchBack();
+    if (flag.backing) {
+      return false;
+    }
+    flag.backing = true;
+    if (history.length > 1) {
+      Backbone.history.navigate(history[history.length - 2]);
+      history.pop();
+    } else {
+      Backbone.history.navigate('', {trigger: true});
+    }
+    transition.switchBack();
+    flag.backing = false;
     // } else {
     //   Backbone.history.history.back();
     // }
