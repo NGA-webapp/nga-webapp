@@ -26,6 +26,16 @@ define(function (require, exports, module) {
           this.fetch({tid: tid, page: page});
         }
       },
+      'singleTap .action-share': function () {
+        var url = 'http://bbs.ngacn.cc/read.php?tid=' + this.collection.cache.tid;
+        $(document).on('deviceready', function () {
+          cordova && cordova.require('com.verso.cordova.clipboard.Clipboard').copy(url, function () {
+            alert('帖子地址已复制到粘贴板');
+          }, function () {
+            alert('分享失败');
+          });
+        }, false);
+      }
       'swipeUp': function () {
         var $footer = this.$footer;
         $footer.addClass('hide');
