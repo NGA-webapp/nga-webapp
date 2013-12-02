@@ -30,7 +30,7 @@ define(function(require, exports, module) {
     //
     window._urlEncode_iframe_callback = callback;
     //设置回调编码页面的地址，这里需要用户修改
-    form.action = '/getEncodeStr.html';
+    form.action = './getEncodeStr.html';
     form.submit();
     setTimeout(function() {
       form.parentNode.removeChild(form);
