@@ -76,6 +76,15 @@ define(function (require, exports, module) {
       aside: ''
     },
     {
+      from: '#forum',
+      to: '#publish',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-bounceOutUp', to: 'section-bounceInDown'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
       from: '#forums',
       to: '#forum',
       before: {from: 'noop', to: 'noop'},
@@ -103,6 +112,15 @@ define(function (require, exports, module) {
       aside: ''
     },
     {
+      from: '#topic',
+      to: '#publish',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-bounceOutUp', to: 'section-bounceInDown'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
       from: '#user',
       to: '#topic',
       before: {from: 'noop', to: 'noop'},
@@ -116,6 +134,24 @@ define(function (require, exports, module) {
       to: '#forums',
       before: {from: 'noop', to: 'noop'},
       animate: {from: 'section-bounceOutLeft', to: 'section-bounceInRight'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
+      from: '#publish',
+      to: '#forum',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-bounceOutDown', to: 'section-bounceInUp'},
+      after: {from: 'behind', to: 'noop'},
+      duration: 600,
+      aside: ''
+    },
+    {
+      from: '#publish',
+      to: '#topic',
+      before: {from: 'noop', to: 'noop'},
+      animate: {from: 'section-bounceOutDown', to: 'section-bounceInUp'},
       after: {from: 'behind', to: 'noop'},
       duration: 600,
       aside: ''

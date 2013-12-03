@@ -28,6 +28,9 @@ define(function (require, exports, module) {
           }();
         });
       },
+      'singleTap .action-new': function () {
+        Navigate.redirect('#!/publish/' + this.collection.cache.fid);
+      },
       'singleTap .action-refresh': function (e) {
         var $btn = $(e.currentTarget);
         $btn.addClass('loading');

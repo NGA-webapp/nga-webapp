@@ -8,6 +8,7 @@ define(function (require, exports, module) {
   var LoginView = require('modules/views/login/Login');
   var LogoutView = require('modules/views/logout/Logout');
   var SettingView = require('modules/views/setting/Setting');
+  var PublishView = require('modules/views/publish/Publish');
   var BootupView = require('modules/views/bootup/Bootup');
   var appCache = require('modules/AppCache').appCache;
   var transition = require('utils/StageTransition');
@@ -28,6 +29,8 @@ define(function (require, exports, module) {
       "!/menu": "getMenu",
       "!/setting": "getSetting",
       "!/setting/favor": "getSettingFavor",
+      "!/publish/:fid": "getPublish",
+      "!/publish/:fid/:tid": "getPublish",
       "*other": "defaultRoute"
     };
     var Router = Backbone.Router.extend({
@@ -45,6 +48,7 @@ define(function (require, exports, module) {
           data.loginView = new LoginView();
           data.logoutView = new LogoutView();
           data.settingView = new SettingView();
+          data.publishView = new PublishView();
           data.bootupView = new BootupView();
           return data;
         });
@@ -108,6 +112,13 @@ define(function (require, exports, module) {
         this.cacheInitialize();
         transition.toSection(this.cached.forumsView);
         this.cached.forumsView.open(true);
+      },
+      getPublish: function (fid, tid) {
+        tid = typeof tid === 'undefined' ? 0 : tid;
+        console.log('publish: ' + fid + ',' + tid);
+        this.cacheInitialize();
+        transition.toSection(this.cached.publishView);
+        this.cached.publishView.open(fid, tid);
       },
       defaultRoute: function () {
         alert('404');

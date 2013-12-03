@@ -12,9 +12,15 @@ define(function (require, exports, module) {
   var TopicView = BasicView.extend({
     el: '#topic',
     tpl: art.compile(tpl),
+    flag: {
+      active: false
+    },
     events: {
       'singleTap .action-back': function () {
-        Navigate.back();
+        if (this.flag.active) {
+          this.flag.active === false;
+          Navigate.back();
+        }
       },
       'singleTap .action-skip': function () {
         var maxPage = this.collection.cache.pageCount;
@@ -25,6 +31,9 @@ define(function (require, exports, module) {
           Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
           this.fetch({tid: tid, page: page});
         }
+      },
+      'singleTap .action-reply': function () {
+        Navigate.redirect('#!/publish/' + this.collection.cache.fid + '/' + this.collection.cache.tid);
       },
       'singleTap .action-share': function () {
         var url = 'http://bbs.ngacn.cc/read.php?tid=' + this.collection.cache.tid;
@@ -127,6 +136,7 @@ define(function (require, exports, module) {
     },
     fetch: function (data, options) {
       ui.Loading.open();
+      this.flag.active = true;
       _.defaults(options || (options = {}), {
         error: function () {
           ui.Loading.close();

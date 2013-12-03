@@ -34,7 +34,9 @@ define(function(require, exports, module) {
     form.submit();
     setTimeout(function() {
       form.parentNode.removeChild(form);
-      iframe.parentNode.removeChild(iframe);
+      if (typeof iframe !== 'undefined') {
+        iframe.parentNode.removeChild(iframe);
+      }
     }, 500);
   };
 });

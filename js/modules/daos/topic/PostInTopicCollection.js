@@ -15,6 +15,7 @@ define(function (require, exports, module) {
       this.cache.rowCount = data.rowCount;
       this.cache.pageCount = data.pageCount;
       this.cache.subject = data.topic.subject;
+      this.cache.fid = data.topic.fid;
       console.log('account status: ', data.account);
       return data.posts;
     },
