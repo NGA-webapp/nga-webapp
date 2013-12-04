@@ -58,22 +58,24 @@ define(function (require, exports, module) {
     toogleFavor: function ($li) {
       var fid;
       if ($li.hasClass('choose')) {
-        fid = $li.data('fid');
+        fid = $li.attr('data-fid');
         siteStorage.removeFavorForum(fid);
         this.$el.find('li.forum[data-fid="' + fid + '"]').removeClass('choose');
       } else {
         if (siteStorage.getFavorForum().length >= 3) {
           alert('只能选3个最喜爱的版面');
         } else {
-          fid = $li.data('fid');
+          fid = $li.attr('data-fid');
           siteStorage.addFavorForum(fid);
           this.$el.find('li.forum[data-fid="' + fid + '"]').addClass('choose');
         }
       }
     },
     introForum: function ($li) {
-        Navigate.redirect('#!/forum/' + $li.data('fid'));
-        appCache.get('forumView').$el.find('header .subject').text(sliceSubject($li.find('h4').text()));
+      var fid = $li.attr('data-fid');
+      Navigate.redirect('#!/forum/' + fid);
+      appCache.get('forumView').$el.find('header .subject').text(sliceSubject($li.find('h4').text()));
+      appCache.get('menuView').uiCurrentForum(fid);
     },
     openLeftSider: function () {
       // this.$el.addClass('section-sider-left');

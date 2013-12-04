@@ -47,8 +47,12 @@ define(function (require, exports, module) {
       return this.get('favorForum') || [];
     },
     // 历史访问的版面列表
-    getLastForum: function () {
-      return this.get('lastForum') || [];
+    getLastForum: function (includeFavor) {
+      if (includeFavor) {
+        return this.get('lastForum') || [];
+      } else {
+        return _.difference(this.getLastForum(true), this.getFavorForum())
+      }
     },
     // 获取快速导航的版面列表
     getQuickForum: function () {
@@ -59,7 +63,7 @@ define(function (require, exports, module) {
     // 增加历史访问的版面
     addLastForum: function (fid) {
       var last = this.getLastForum();
-      set.this('lastForum', _.chain(last).union([fid]).first(4).value());
+      this.set('lastForum', _.chain([fid]).union(last).first(4).value());
     },
     // 增加最喜爱的版面
     addFavorForum: function (fid) {

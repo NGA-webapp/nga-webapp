@@ -9,6 +9,7 @@ define(function (require, exports, module) {
   var config = require('config/index');
   var appCache = require('modules/AppCache').appCache;
   var siteStorage = require('modules/storage/site');
+  var sliceSubject = require('utils/common').sliceSubject;
 
   var BootupView = BasicView.extend({
     el: '#bootup',
@@ -41,14 +42,22 @@ define(function (require, exports, module) {
     introFunc: function () {
       var quickForum;
       var self = this;
+      var fid, forum;
       quickForum = siteStorage.getQuickForum();
       if (quickForum.length > 0) {
         self.log('检查快速导航...已设置.');
-        self.redirect('#!/forum/' + quickForum[0]);
+        fid = quickForum[0];
+        self.redirect('#!/forum/' + fid);
+        appCache.get('menuView').uiCurrentForum(fid);
+        forum = _.find(siteStorage.getForumList(), function (forum) {
+          return forum.fid == fid;
+        });
+        if (forum) {
+          appCache.get('forumView').$el.find('header .subject').text(sliceSubject(forum.name));
+        }
       } else {
         self.log('检查快速导航...未设置.');
-        // self.redirect('#!/forums');
-        self.redirect('#!/forum/-7');
+        self.redirect('#!/forums');
       }
     },
     // 启动

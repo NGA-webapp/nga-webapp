@@ -13,6 +13,7 @@ define(function (require, exports, module) {
   var appCache = require('modules/AppCache').appCache;
   var transition = require('utils/StageTransition');
   var Navigate = require('utils/Navigate');
+  var siteStorage = require('modules/storage/site');
 
   module.exports = function () {
     var routesTable = {
@@ -74,6 +75,7 @@ define(function (require, exports, module) {
         this.cacheInitialize();
         transition.toSection(this.cached.forumView);
         this.cached.forumView.fetch({fid: fid, page: (page || 1)}, {remove: true});
+        siteStorage.addLastForum(fid);
       },
       getTopic: function (tid, page) {
         tid = tid === 1 ? 6582574 : tid;
