@@ -8,6 +8,7 @@ define(function (require, exports, module) {
   var Navigate = require('utils/Navigate');
   var sliceSubject = require('utils/common').sliceSubject;
   var iScrollPull = require('utils/iScrollPull');
+  var appCache = require('modules/AppCache').appCache;
 
   var TopicView = BasicView.extend({
     el: '#topic',
@@ -34,6 +35,7 @@ define(function (require, exports, module) {
       },
       'singleTap .action-reply': function () {
         Navigate.redirect('#!/publish/' + this.collection.cache.fid + '/' + this.collection.cache.tid);
+        appCache.get('publishView').$el.find('header .subject').text(sliceSubject('回复'));
       },
       'singleTap .action-share': function () {
         var url = 'http://bbs.ngacn.cc/read.php?tid=' + this.collection.cache.tid;

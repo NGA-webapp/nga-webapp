@@ -1,5 +1,5 @@
 <div class="search-box">
-  <input type="text" value="" placeholder="搜索" /> <span class="glyphicon glyphicon-search"></span>
+  <input class="param-key" type="text" value="" placeholder="搜索" /> <span class="action-search glyphicon glyphicon-search"></span>
 </div>
 <div class="menu-content">
   <div id="menu-list" class="iscroll">
@@ -15,7 +15,7 @@
         <% } %>
         <li class="forums"><span class="glyphicon glyphicon-th-list"></span> 其他版面</li>
         <li class="title">工具</li>
-        <li class="disabled"><span class="glyphicon glyphicon-heart"></span> 收藏</li>
+        <li class="favor"><span class="glyphicon glyphicon-heart"></span> 收藏</li>
         <li class="setting"><span class="glyphicon glyphicon-cog"></span> 设置</li>
         <li class="logout"><span class="glyphicon glyphicon-user"></span> 登出账号</li>
       </ul>

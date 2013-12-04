@@ -7,11 +7,21 @@ define(function (require, exports, module) {
   var RowForumView = require('modules/views/forum/Row');
   var Navigate = require('utils/Navigate');
   var iScrollPull = require('utils/iScrollPull');
+  var appCache = require('modules/AppCache').appCache;
+  var sliceSubject = require('utils/common').sliceSubject;
+  var inCharset = require('utils/inCharset');
   
   var ForumView = BasicView.extend({
     el: '#forum',
     tpl: art.compile(tpl),
     _currentPage: 0,
+    flag: {
+      favorList: false,
+      searchList: false
+    },
+    cache: {
+      keyword: ''
+    },
     events: {
       // 抖动动画测试
       'singleTap .action-shake': function () {
@@ -30,6 +40,7 @@ define(function (require, exports, module) {
       },
       'singleTap .action-new': function () {
         Navigate.redirect('#!/publish/' + this.collection.cache.fid);
+        appCache.get('publishView').$el.find('header .subject').text(sliceSubject('新帖'));
       },
       'singleTap .action-refresh': function (e) {
         var $btn = $(e.currentTarget);
@@ -53,7 +64,13 @@ define(function (require, exports, module) {
       Navigate.back();
     },
     refresh: function () {
-      this.fetch({fid: this.collection.cache.fid, page: 1}, {remove: true});
+      if (this.flag.favorList) {
+        this.fetch({favor: 1, page: 1}, {remove: true});
+      } else if (this.flag.searchList) {
+        this.fetch({key: this.cache.keyword, fidgroup: 'user', page: 1}, {remove: true});
+      } else {
+        this.fetch({fid: this.collection.cache.fid, page: 1}, {remove: true});
+      }
     },
     render: function () {
       var self = this;
@@ -64,7 +81,13 @@ define(function (require, exports, module) {
         self.refresh();
       };
       pullUpAction = function () {
-        self.fetch({fid: self.collection.cache.fid, page: self._currentPage + 1}, {remove: false});
+        if (self.flag.favorList) {
+          self.fetch({favor: 1, page: self._currentPage + 1}, {remove: false});
+        } else if (self.flag.searchList) {
+          self.fetch({key: self.cache.keyword, fidgroup: 'user', page: self._currentPage + 1}, {remove: false});
+        } else {
+          self.fetch({fid: self.collection.cache.fid, page: self._currentPage + 1}, {remove: false});
+        }
       };
       iScrollPull.call(this, 'forum-article', pullDownAction, pullUpAction);
       this.$ul = this.$el.find('ul');
@@ -88,8 +111,20 @@ define(function (require, exports, module) {
      */
     _addAll: function (model, resp, options) {
       var self = this;
+      var match;
       this.$el.find('.action-pulldown, .action-pullup, .action-refresh').removeClass('loading');
-      this._currentPage = options.data.page;
+      if (typeof options.data === 'object') {
+        this._currentPage = options.data.page;
+      } else if (typeof options.data === 'string') {
+        match = options.data.match(/&page=(\d*)/);
+        if (match && match.length > 1) {
+          this._currentPage = parseInt(match[1], 0);
+        } else {
+          this._currentPage = 1;
+        }
+      } else {
+        this._currentPage = 1;
+      }
       // 刷新时清空列表，重置滚动条位置
       if (options.remove) {
         this.$ul.html('');
@@ -104,8 +139,30 @@ define(function (require, exports, module) {
       }, 1000);
     },
     fetch: function (data, options) {
+      var self = this;
       ui.Loading.open();
-      this.collection.fetchXml(data, options);
+      this.flag.favorList = !!data.favor;
+      this.flag.searchList = !!data.key;
+      this.cache.keyword = (data.key || '');
+      if (this.flag.favorList || this.flag.searchList) {
+        this.$el.find('.action-new').hide();
+      } else {
+        this.$el.find('.action-new').show();
+      }
+      // 搜索列表需要对关键字转编码
+      if (data.key) {
+        inCharset(data.key, 'gbk', function (key) {
+          var k;
+          var obj = _.extend({}, data, {key: key});
+          var param = '';
+          for (k in obj) {
+            param += k + '=' + obj[k] + '&';
+          }
+          self.collection.fetchXml(param, options);
+        });
+      } else {
+        this.collection.fetchXml(data, options);
+      }
     },
     initialize: function () {
       this.collection = new TopicInForumCollection();

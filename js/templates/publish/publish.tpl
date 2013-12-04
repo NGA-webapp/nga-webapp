@@ -1,5 +1,5 @@
 <header>
-  <h1><a class="action-back"><span class="glyphicon glyphicon-chevron-down"></span> <span class="subject">回复</span></a></h1>
+  <h1><a class="action-back"><span class="glyphicon glyphicon-chevron-down"></span> <span class="subject">发帖</span></a></h1>
   <div>
     <a class="icon action-ok"><span class="glyphicon glyphicon-ok"></span></a>
   </div>

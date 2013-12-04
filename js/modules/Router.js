@@ -22,6 +22,10 @@ define(function (require, exports, module) {
       "!/forums": "getForums",
       "!/forum/:fid": "getForum",
       "!/forum/:fid/p:page": "getForum",
+      "!/favor": "getFavor",
+      "!/favor/p:page": "getFavor",
+      "!/search/:keyword": "getSearch",
+      "!/search/:keyword/p:page": "getSearch",
       "!/topic/:tid": "getTopic",
       "!/topic/:tid/p:page": "getTopic",
       "!/user/:uid": "getUser",
@@ -76,6 +80,18 @@ define(function (require, exports, module) {
         transition.toSection(this.cached.forumView);
         this.cached.forumView.fetch({fid: fid, page: (page || 1)}, {remove: true});
         siteStorage.addLastForum(fid);
+      },
+      getFavor: function (page) {
+        console.log('forum: favor', this.cached.forumView);
+        this.cacheInitialize();
+        transition.toSection(this.cached.forumView);
+        this.cached.forumView.fetch({favor: 1, page: (page || 1)}, {remove: true});
+      },
+      getSearch: function (keyword, page) {
+        console.log('forum: search', this.cached.forumView);
+        this.cacheInitialize();
+        transition.toSection(this.cached.forumView);
+        this.cached.forumView.fetch({key: keyword, fidgroup: 'user', page: (page || 1)}, {remove: true});
       },
       getTopic: function (tid, page) {
         tid = tid === 1 ? 6582574 : tid;

@@ -4373,8 +4373,8 @@ main > .overlay {
 #publish article .scroller > .content.show {
   -webkit-animation: fadeInUp 0.4s ease;
 }
-#publish article .scroller > .content > form > textarea,
-#publish article .scroller > .content > form > input {
+#publish article .scroller > .content > div.form > textarea,
+#publish article .scroller > .content > div.form > input {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

@@ -28,6 +28,14 @@ define(function (require, exports, module) {
         $nav.addClass('active');
         this.cache.activeNav = '.forums';
       },
+      'singleTap .favor': function (e) {
+        var $nav = $(e.currentTarget);
+        Navigate.redirect('#!/favor');
+        appCache.get('forumView').$el.find('header .subject').text(sliceSubject('收藏'));
+        this.uiClearNav();
+        $nav.addClass('active');
+        this.cache.activeNav = '.favor';
+      },
       'singleTap .setting': function (e) {
         var $nav = $(e.currentTarget);
         Navigate.redirect('#!/setting');
@@ -41,6 +49,13 @@ define(function (require, exports, module) {
         this.uiClearNav();
         $nav.addClass('active');
         this.cache.activeNav = '.logout';
+      },
+      'singleTap .action-search': function () {
+        var keyword = this.$el.find('.param-key').val();
+        Navigate.redirect('#!/search/' + keyword);
+        appCache.get('forumView').$el.find('header .subject').text(sliceSubject('搜索'));
+        this.uiClearNav();
+        this.cache.activeNav = '';
       }
     },
     cache: {
@@ -64,7 +79,9 @@ define(function (require, exports, module) {
       this.cache.activeNav = selector;
     },
     uiActiveNav: function () {
-      this.$el.find(this.cache.activeNav).addClass('active');
+      if (this.cache.activeNav !== '') {
+        this.$el.find(this.cache.activeNav).addClass('active');
+      }
     },
     render: function () {
       this.$el.html(this.tpl({favorForum: this.cache.favorForum, lastForum: this.cache.lastForum}));
