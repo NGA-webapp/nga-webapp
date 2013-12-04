@@ -32,7 +32,14 @@ var inCharset = require('utils/inCharset');
       success: function () {}
     },
     events: {
-      'submit .action-login': 'doLogin'
+      'submit .action-login': 'doLogin',
+      'singTap .action-register': 'doRegister'
+    },
+    doRegister: function () {
+      var url = $(events.currentTarget).attr('data-url');
+      $(document).on('deviceready', function () {
+        cordova && cordova.require('org.apache.cordova.inappbrowser.InAppBrowser')(url, '_blank', 'location=yes');
+      }, false);
     },
     doLogin: function () {
       var self, username ,password;

@@ -18,10 +18,7 @@
     </ul>
     <ul>
       <li class="link disabled">
-        <h4>查看当前登录账号<span class="glyphicon glyphicon-chevron-right"></span></h4>
-      </li>
-      <li class="link disabled">
-        <h4>登出当前账号<span class="glyphicon glyphicon-chevron-right"></span></h4>
+        <h4>更多设置<span class="glyphicon glyphicon-chevron-right"></span></h4>
       </li>
     </ul>
   </div>
