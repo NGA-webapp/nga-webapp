@@ -89,7 +89,7 @@ define(function (require, exports, module) {
     },
     log: function (text) {
       console.log('Bootup: ' + text);
-      this.$el.find('.content').append('<p>' + text + '</p>');
+      this.$el.find('.content').text(text);
     },
     initialize: function () {
       this.$content = this.$el.find('.content');
