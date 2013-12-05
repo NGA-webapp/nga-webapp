@@ -38,7 +38,7 @@ define(function (require, exports, module) {
     message = (message + '');
     callback = (callback || noop);
     title = (title || 'NGA');
-    buttonName = (buttomName || ['Cancel', 'OK']);
+    buttonName = (buttonName || ['Cancel', 'OK']);
     if (notif && notif.prompt) {
       notif.prompt(message, callback, title, buttonName, defaultText);
     } else {
