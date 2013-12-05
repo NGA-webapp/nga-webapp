@@ -32,13 +32,13 @@ define(function (require, exports, module) {
           var page;
           if (result) {
             page = result['input1'];
-            if (result['buttonIndex'] === 1 && page) {
+            if (result['buttonIndex'] === 2 && page) {
               page = page > maxPage ? maxPage : page;
               Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
               self.fetch({tid: tid, page: page});
             }
           }
-        }, '跳转到指定页', ['biu~', 'yamie'], maxPage + '');
+        }, '跳转', ['yamie', 'biu~'], maxPage + '');
 
       },
       'singleTap .action-reply': function () {

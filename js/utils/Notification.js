@@ -23,30 +23,31 @@ define(function (require, exports, module) {
   };
   var confirm = function (message, callback, title, buttonName) {
     var notif = getNotif();
-    var result;
     message = message + '';
     callback = callback || noop;
     title = title || 'NGA';
     if (notif && notif.confirm) {
       notif.confirm(message, callback, title, buttonName);
     } else {
-      result = window.confirm(message);
-      if (result === null) {
-        callback({buttonIndex: 2, input1: ''});
-      } else {
-        callback({buttonIndex: 1, input1: result});
-      }
+      callback(window.confirm(message));
     }
   };
   var prompt = function (message, callback, title, buttonName, defaultText) {
     var notif = getNotif();
-    message = message + '';
-    callback = callback || noop;
-    title = title || 'NGA';
+    var result;
+    message = (message + '');
+    callback = (callback || noop);
+    title = (title || 'NGA');
+    buttonName = (buttomName || ['Cancel', 'OK']);
     if (notif && notif.prompt) {
       notif.prompt(message, callback, title, buttonName, defaultText);
     } else {
-      callback(window.prompt(message, defaultText));
+      result = window.prompt(message, defaultText);
+      if (result === null) {
+        callback({buttonIndex: 1, input1: ''});
+      } else {
+        callback({buttonIndex: 2, input1: result});
+      }
     }
   };
 
