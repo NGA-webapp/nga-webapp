@@ -28,11 +28,15 @@ define(function (require, exports, module) {
         var self = this;
         var maxPage = this.collection.cache.pageCount;
         var tid = this.collection.cache.tid;
-        Notification.prompt('跳转到指定页', function (page) {
-          if (page) {
-            page = page > maxPage ? maxPage : page;
-            Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
-            self.fetch({tid: tid, page: page});
+        Notification.prompt('跳转到指定页', function (result) {
+          var page;
+          if (result) {
+            page = result['input1'];
+            if (result['buttonIndex'] === 1 && page) {
+              page = page > maxPage ? maxPage : page;
+              Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
+              self.fetch({tid: tid, page: page});
+            }
           }
         }, '跳转到指定页', 'biu~', maxPage);
 

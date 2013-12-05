@@ -23,13 +23,19 @@ define(function (require, exports, module) {
   };
   var confirm = function (message, callback, title, buttonName) {
     var notif = getNotif();
+    var result;
     message = message + '';
     callback = callback || noop;
     title = title || 'NGA';
     if (notif && notif.confirm) {
       notif.confirm(message, callback, title, buttonName);
     } else {
-      callback(window.confirm(message));
+      result = window.confirm(message);
+      if (result === null) {
+        callback({buttonIndex: 2, input1: ''});
+      } else {
+        callback({buttonIndex: 1, input1: result});
+      }
     }
   };
   var prompt = function (message, callback, title, buttonName, defaultText) {
