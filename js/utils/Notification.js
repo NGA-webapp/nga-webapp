@@ -3,8 +3,8 @@ define(function (require, exports, module) {
   // 在phonegap没有引入的情况下回滚到浏览器本身的方法运行
 
   var getNotif = function () {
-    if (typeof navigator !== 'undefined' && typeof navigator.notification !== 'undefined') {
-      return navigator.notification;
+    if (typeof cordova !== 'undefined') {
+      return cordova.require('org.apache.cordova.core.dialogs.notification');
     }
   };
 
@@ -12,6 +12,7 @@ define(function (require, exports, module) {
 
   var alert = function (message, callback, title, buttonName) {
     var notif = getNotif();
+    message = message + '';
     callback = callback || noop;
     title = title || 'NGA';
     if (notif && notif.alert) {
@@ -22,6 +23,7 @@ define(function (require, exports, module) {
   };
   var confirm = function (message, callback, title, buttonName) {
     var notif = getNotif();
+    message = message + '';
     callback = callback || noop;
     title = title || 'NGA';
     if (notif && notif.confirm) {
@@ -32,6 +34,7 @@ define(function (require, exports, module) {
   };
   var prompt = function (message, callback, title, buttonName, defaultText) {
     var notif = getNotif();
+    message = message + '';
     callback = callback || noop;
     title = title || 'NGA';
     if (notif && notif.prompt) {
