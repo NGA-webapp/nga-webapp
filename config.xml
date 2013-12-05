@@ -42,4 +42,5 @@
     <access origin="*.png" />
     <gap:plugin name="com.verso.cordova.clipboard" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <gap:plugin name="org.apache.cordova.dialogs" version="0.1.0" />
 </widget>

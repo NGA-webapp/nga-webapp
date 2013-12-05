@@ -8,6 +8,8 @@ define(function (require, exports, module) {
   var appCache = require('modules/AppCache').appCache;
   var siteStorage = require('modules/storage/site');
   var sliceSubject = require('utils/common').sliceSubject;
+  var Notification = require('utils/Notification');
+  
 
   var ForumsView = BasicView.extend({
     el: '#forums',
@@ -63,7 +65,7 @@ define(function (require, exports, module) {
         this.$el.find('li.forum[data-fid="' + fid + '"]').removeClass('choose');
       } else {
         if (siteStorage.getFavorForum().length >= 3) {
-          alert('只能选3个最喜爱的版面');
+          Notification.alert('只能选3个最喜爱的版面');
         } else {
           fid = $li.attr('data-fid');
           siteStorage.addFavorForum(fid);

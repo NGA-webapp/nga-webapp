@@ -7,6 +7,7 @@ define(function (require, exports, module) {
   var Navigate = require('utils/Navigate');
   var inCharset = require('utils/inCharset');
   var appCache = require('modules/AppCache').appCache;
+  var Notification = require('utils/Notification');
   
   var postUrl = 'http://bbs.ngacn.cc/post.php';
   // var postUrl = '';
@@ -65,7 +66,7 @@ define(function (require, exports, module) {
 
                 var msg = $(data).find('__MESSAGE > item').eq(1).text();
                 if (msg) {
-                  alert(msg);
+                  Notification.alert(msg);
                 }
                 if (jump) {
                   // /read.php?tid=6726209&_ff=335&page=e#a 
@@ -80,7 +81,7 @@ define(function (require, exports, module) {
               error: function (xml) {
                 var msg = xml.response.match(/<__MESSAGE><item>(.*?)<\/item>/);
                 if (msg && msg.length === 2) {
-                  alert(msg[1]);
+                  Notification.alert(msg[1]);
                 }
               },
               type: 'post',

@@ -9,6 +9,7 @@ define(function (require, exports, module) {
   var RSAKey = require('utils/rsa/rsa').RSAKey;
   var appCache = require('modules/AppCache').appCache;
   var siteStorage = require('modules/storage/site');
+  var Notification = require('utils/Notification');
 
   var inCharset = require('utils/inCharset');
   var loginUrl = config.nakeServer ? '/api/login' : 'http://bbs.ngacn.cc/nuke.php?func=login';
@@ -51,7 +52,7 @@ define(function (require, exports, module) {
       username = self.$el.find('.username').val();
       password = self.$el.find('.password').val();
       if (trim(username) === '' || trim(password) === '') {
-        alert('用户和密码不能为空');
+        Notification.alert('用户和密码不能为空');
         return false;
       }
       // 存入本地缓存的登录名记录
@@ -92,8 +93,9 @@ define(function (require, exports, module) {
                   msg = '登录失败';
                 }
               }
-              alert(msg);
-              self.flag.logging = false;
+              Notification.alert(msg, function () {
+                self.flag.logging = false;
+              });
             }
           });
         });

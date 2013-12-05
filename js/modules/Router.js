@@ -14,6 +14,7 @@ define(function (require, exports, module) {
   var transition = require('utils/StageTransition');
   var Navigate = require('utils/Navigate');
   var siteStorage = require('modules/storage/site');
+  var Notification = require('utils/Notification');
 
   module.exports = function () {
     var routesTable = {
@@ -139,7 +140,7 @@ define(function (require, exports, module) {
         this.cached.publishView.open(fid, tid);
       },
       defaultRoute: function () {
-        alert('404');
+        Notification.alert('穿越了哦亲');
         console.log('404');
       },
       initialize: function () {

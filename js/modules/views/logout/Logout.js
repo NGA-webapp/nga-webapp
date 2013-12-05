@@ -6,6 +6,7 @@ define(function (require, exports, module) {
   var tplContent = require('templates/logout/content.tpl');
   var Navigate = require('utils/Navigate');
   var appCache = require('modules/AppCache').appCache;
+  var Notification = require('utils/Notification'); 
 
   // var logoutUrl = 'http://account.178.com/q_account.php?_act=logout';
   var logoutUrl = 'http://nga.178.com/nuke.php';
@@ -34,11 +35,12 @@ define(function (require, exports, module) {
       console.log('connect start');
       ui.Loading.open();
       $.post(logoutUrl, {func: 'logout', do_not_multi_login: 1}, function () {
-        alert('登出成功');
-        ui.Loading.close();
-        appCache.get('loginView').nextAction.success = function () {appCache.get('bootupView').introFunc();};
-        Navigate.redirect('#!/login');
-        self.flag.requesting = false;
+        Notification.alert('登出成功', function () {
+          ui.Loading.close();
+          appCache.get('loginView').nextAction.success = function () {appCache.get('bootupView').introFunc();};
+          Navigate.redirect('#!/login');
+          self.flag.requesting = false;
+        });
       });
       return false;
     },

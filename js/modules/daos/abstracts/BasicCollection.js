@@ -1,5 +1,7 @@
 define(function (require, exports, module) {
   var ui = require('utils/ui/index');
+  var Notification = require('utils/Notification');
+
   var config = require('config/index');
   var checkError = function (xhr, status) {
     var msg;
@@ -8,14 +10,14 @@ define(function (require, exports, module) {
         // 错误时返回的xml还带js蛋疼
         msg = xhr.responseText.match(/<__MESSAGE><item>\d+<\/item><item>(.*?)<\/item>/);
         if (msg && msg.length === 2) {
-          alert(msg[1]);
+          Notification.alert(msg[1]);
           ui.Loading.close();
           return;
         }
       }
     }
     if (status === 'error') {
-      alert('网络错误');
+      Notification.alert('网络错误');
       ui.Loading.close();
     }
   };

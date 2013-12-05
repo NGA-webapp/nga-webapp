@@ -9,6 +9,7 @@ define(function (require, exports, module) {
   var sliceSubject = require('utils/common').sliceSubject;
   var iScrollPull = require('utils/iScrollPull');
   var appCache = require('modules/AppCache').appCache;
+  var Notification = require('utils/Notification');
 
   var TopicView = BasicView.extend({
     el: '#topic',
@@ -41,9 +42,9 @@ define(function (require, exports, module) {
         var url = 'http://bbs.ngacn.cc/read.php?tid=' + this.collection.cache.tid;
         $(document).on('deviceready', function () {
           cordova && cordova.require('com.verso.cordova.clipboard.Clipboard').copy(url, function () {
-            alert('帖子地址已复制到粘贴板');
+            Notification.alert('帖子地址已复制到粘贴板');
           }, function () {
-            alert('分享失败');
+            Notification.alert('分享失败');
           });
         }, false);
       },
@@ -71,7 +72,7 @@ define(function (require, exports, module) {
       var tid, page;
       if (this.collection.cache.page <= 1) {
         this._refreshScroll();
-        alert('已经是第一页');
+        Notification.alert('已经是第一页');
         return false;
       }
       tid = this.collection.cache.tid;
@@ -83,7 +84,7 @@ define(function (require, exports, module) {
       var tid, page;
       if (this.collection.cache.pageCount <= this.collection.cache.page) {
         this._refreshScroll();
-        alert('已经到了最后一页');
+        Notification.alert('已经到了最后一页');
         return false;
       }
       tid = this.collection.cache.tid;
