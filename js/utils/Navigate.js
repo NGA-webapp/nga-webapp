@@ -18,10 +18,15 @@ define(function (require, exports, module) {
       return false;
     }
     flag.backing = true;
-    if (history.length > 1) {
+    // 2013.12.05 app里第一条记录为''， 第二条记录才是bootup完成后的首页
+    // 所以为了防止回到bootup页，后退到第二条记录时就不应该再推出记录
+    if (history.length > 2) {
       Backbone.history.navigate(history[history.length - 2]);
       history.pop();
+    } else if (history.length === 2) {
+      Backbone.history.navigate(history[1], {trigger: true});
     } else {
+      // 防止异常情况，在没有第二条记录时重新进入bootup
       Backbone.history.navigate('', {trigger: true});
     }
     transition.switchBack();
@@ -34,7 +39,6 @@ define(function (require, exports, module) {
     history.push(Backbone.history.fragment);
   };
 
-window.t = transition;
   exports.redirect = redirect;
   exports.aside = aside;
   exports.back = back;
