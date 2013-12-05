@@ -34,7 +34,7 @@ define(function (require, exports, module) {
     },
     events: {
       'submit .action-login': 'doLogin',
-      'singTap .action-register': 'doRegister'
+      'singleTap .action-register': 'doRegister'
     },
     doRegister: function (events) {
       var url = $(events.currentTarget).attr('data-url');
