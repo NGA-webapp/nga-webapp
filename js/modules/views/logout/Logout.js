@@ -16,6 +16,7 @@ define(function (require, exports, module) {
     tpl: art.compile(tpl),
     tplContent: art.compile(tplContent),
     flag: {
+      init: true, // 初始化
       requesting: false, // 正在请求
     },
     events: {
@@ -63,13 +64,17 @@ define(function (require, exports, module) {
     },
     _refresh: function () {
       var self = this;
-      ui.Loading.open();
+      if (!self.flag.init) {
+        ui.Loading.open();
+      }
       this.$content.html(this.tplContent({}));
       this.$content.removeClass('hide').addClass('show');
-      _.delay(function () {
-        ui.Loading.close();
-      }, 200);
-
+      if (!self.flag.init) {
+        _.delay(function () {
+          ui.Loading.close();
+        }, 200);
+      }
+      self.flag.init = false;
     },
     initialize: function () {
       this.$content = this.$el.find('.content');

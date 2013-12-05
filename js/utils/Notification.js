@@ -24,8 +24,8 @@ define(function (require, exports, module) {
     var notif = getNotif();
     callback = callback || noop;
     title = title || 'NGA';
-    if (notif && notif.alert) {
-      notif.alert(message, callback, title, buttonName);
+    if (notif && notif.confirm) {
+      notif.confirm(message, callback, title, buttonName);
     } else {
       callback(window.confirm(message));
     }
@@ -34,8 +34,8 @@ define(function (require, exports, module) {
     var notif = getNotif();
     callback = callback || noop;
     title = title || 'NGA';
-    if (notif && notif.alert) {
-      notif.alert(message, callback, title, buttonName);
+    if (notif && notif.prompt) {
+      notif.prompt(message, callback, title, buttonName, defaultText);
     } else {
       callback(window.prompt(message, defaultText));
     }

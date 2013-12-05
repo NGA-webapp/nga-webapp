@@ -24,7 +24,7 @@ define(function (require, exports, module) {
       from: 'firstTime',
       to: '#bootup',
       before: {to: 'noop'},
-      animate: {to: 'section-fadeIn'},
+      animate: {to: 'noop'},
       after: {to: 'noop'},
       duration: 600,
       aside: ''

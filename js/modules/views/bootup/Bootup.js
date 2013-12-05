@@ -13,25 +13,10 @@ define(function (require, exports, module) {
 
   var BootupView = BasicView.extend({
     el: '#bootup',
-    tpl: art.compile(tpl),
-    tplContent: art.compile(tplContent),
     events: {
     },
     render: function () {
-      this.$el.html(this.tpl());
-      this.$content = this.$el.find('.content');
-      this._refresh();
       return this;
-    },
-    _refresh: function () {
-      var self = this;
-      ui.Loading.open();
-      this.$content.html(this.tplContent({}));
-      this.$content.removeClass('hide').addClass('show');
-      _.delay(function () {
-        ui.Loading.close();
-      }, 200);
-
     },
     redirect: function (url) {
       _.delay(function () {
