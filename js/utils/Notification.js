@@ -10,7 +10,7 @@ define(function (require, exports, module) {
 
   var noop = function () {};
 
-  exports.alert = function (message, callback, title, buttonName) {
+  var alert = function (message, callback, title, buttonName) {
     var notif = getNotif();
     callback = callback || noop;
     title = title || 'NGA';
@@ -20,7 +20,7 @@ define(function (require, exports, module) {
       callback(window.alert(message));
     }
   };
-  exports.confirm = function (message, callback, title, buttonName) {
+  var confirm = function (message, callback, title, buttonName) {
     var notif = getNotif();
     callback = callback || noop;
     title = title || 'NGA';
@@ -30,7 +30,7 @@ define(function (require, exports, module) {
       callback(window.confirm(message));
     }
   };
-  exports.prompt = function (message, callback, title, buttonName, defaultText) {
+  var prompt = function (message, callback, title, buttonName, defaultText) {
     var notif = getNotif();
     callback = callback || noop;
     title = title || 'NGA';
@@ -40,5 +40,11 @@ define(function (require, exports, module) {
       callback(window.prompt(message, defaultText));
     }
   };
+
+  window.a = alert;
+
+  exports.alert = alert;
+  exports.confirm = confirm;
+  exports.prompt = prompt;
 
 });
