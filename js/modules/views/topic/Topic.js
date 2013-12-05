@@ -38,8 +38,7 @@ define(function (require, exports, module) {
               self.fetch({tid: tid, page: page});
             }
           }
-        }, '跳转', ['yamie', 'biu~'], maxPage + '');
-
+        }, '跳转', ['yamie', 'biu~'], (maxPage + ''));
       },
       'singleTap .action-reply': function () {
         Navigate.redirect('#!/publish/' + this.collection.cache.fid + '/' + this.collection.cache.tid);
