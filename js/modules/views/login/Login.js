@@ -35,7 +35,7 @@ var inCharset = require('utils/inCharset');
       'submit .action-login': 'doLogin',
       'singTap .action-register': 'doRegister'
     },
-    doRegister: function () {
+    doRegister: function (events) {
       var url = $(events.currentTarget).attr('data-url');
       $(document).on('deviceready', function () {
         cordova && cordova.require('org.apache.cordova.inappbrowser.InAppBrowser')(url, '_blank', 'location=yes');

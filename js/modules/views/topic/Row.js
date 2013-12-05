@@ -3,6 +3,7 @@ define(function (require, exports, module) {
   var BasicView = require('modules/views/abstracts/Basic');
   var tpl = require('templates/topic/row.tpl');
   var Navigate = require('utils/Navigate');
+  var siteStorage = require('modules/storage/site');
 
   var RowTopicView = BasicView.extend({
     tagName: 'li',
@@ -20,7 +21,9 @@ define(function (require, exports, module) {
     },
     tpl: art.compile(tpl),
     render: function () {
-      this.$el.html(this.tpl(this.model.toJSON()));
+      var data = this.model.toJSON();
+      _.extend(data, {setting: siteStorage.getSetting()});
+      this.$el.html(this.tpl(data));
       return this;
     },
     initialize: function () {

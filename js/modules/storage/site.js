@@ -75,7 +75,25 @@ define(function (require, exports, module) {
       var favor = this.getFavorForum();
       this.set('favorForum', _.chain(favor).difference([fid]).first(4).value());
     },
+    // 更新设置
+    getSetting: function (key) {
+      var defaults = {
+        downloadAvatar: true,
+        downloadPic: true
+      };
+      var setting = _.extend(defaults, this.get('setting'));
+      return typeof key === 'undefined' ? setting : setting[key];
+    },
+    // 切换设置
+    toggleSetting: function (key) {
+      var setting = this.getSetting();
+      if (key && key in setting) {
+        setting[key] = !setting[key];
+        this.set('setting', setting);
+      }
+    },
   });
   var site = new SiteStorage('nga');
+  window.store = site;
   module.exports = site;
 });

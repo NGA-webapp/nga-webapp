@@ -17,8 +17,8 @@ define(function (require, exports, module) {
       ceil: decimal.ceil(num, n)
     };
   });
-  template.helper('$ubb', function (content) {
-    return ubb.toHtml(content);
+  template.helper('$ubb', function (content, setting) {
+    return ubb.toHtml(content, setting);
   });
   template.helper('$first', function (arr) {
     var res = arr.length ? arr[0] : {};

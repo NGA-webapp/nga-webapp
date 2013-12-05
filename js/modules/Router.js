@@ -162,6 +162,13 @@ define(function (require, exports, module) {
               self.cached.loginView.$el.find('input').attr('disabled', 'disabled');
               self.cached.loginView.$el.find('button').attr('disabled', 'disabled');
             }
+            if (route === 'getPublish') {
+              self.cached.publishView.$el.find('input').attr('disabled', null);
+              self.cached.publishView.$el.find('textarea').attr('disabled', null);
+            } else {
+              self.cached.publishView.$el.find('input').attr('disabled', 'disabled');
+              self.cached.publishView.$el.find('textarea').attr('disabled', 'disabled');
+            }
           }, 800);
         });
         this.cached = {

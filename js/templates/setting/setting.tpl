@@ -9,11 +9,25 @@
       </li>
     </ul>
     <ul>
-      <li class="select">
-        <h4>下载头像 <span class="checkbox checked"></span></h4>
+      <li class="select" data-key="downloadAvatar">
+        <h4>
+          下载头像
+          <% if (setting.downloadAvatar) { %>
+            <span class="checkbox checked"></span>
+          <% } else { %>
+            <span class="checkbox"></span>
+          <% } %>
+        </h4>
       </li>
-      <li class="select">
-        <h4>显示贴内图片 <span class="checkbox"></span></h4>
+      <li class="select" data-key="downloadPic">
+        <h4>
+          显示贴内图片
+          <% if (setting.downloadPic) { %>
+            <span class="checkbox checked"></span>
+          <% } else { %>
+            <span class="checkbox"></span>
+          <% } %>
+        </h4>
       </li>
     </ul>
     <ul>

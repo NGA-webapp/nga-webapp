@@ -83,6 +83,10 @@ define(function (require, exports, module) {
         });
       // }
     },
+    setting: function () {
+      var self = this;
+      
+    },
     log: function (text) {
       console.log('Bootup: ' + text);
       this.$el.find('.content').append('<p>' + text + '</p>');

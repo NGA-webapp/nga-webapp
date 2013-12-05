@@ -17,6 +17,7 @@ define(function (require, exports, module) {
       'singleTap .select': function (e) {
         $li = $(e.currentTarget);
         $li.find('.checkbox').toggleClass('checked');
+        siteStorage.toggleSetting($li.attr('data-key'));
       },
       'swipeRight header+article': 'openLeftSider',
       'swipe .asideMask': 'closeSider',
@@ -35,7 +36,8 @@ define(function (require, exports, module) {
       Navigate.back();
     },
     render: function () {
-      this.$el.html(this.tpl());
+      var setting = siteStorage.getSetting();
+      this.$el.html(this.tpl({setting: setting}));
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
       this.scroll = new iScroll('setting-article', {
       });
