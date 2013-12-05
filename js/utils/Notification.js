@@ -11,8 +11,9 @@ define(function (require, exports, module) {
   var noop = function () {};
 
   exports.alert = function (message, callback, title, buttonName) {
-    var notif = getNotif;
+    var notif = getNotif();
     callback = callback || noop;
+    title = title || 'NGA';
     if (notif && notif.alert) {
       notif.alert(message, callback, title, buttonName);
     } else {
@@ -20,8 +21,9 @@ define(function (require, exports, module) {
     }
   };
   exports.confirm = function (message, callback, title, buttonName) {
-    var notif = getNotif;
+    var notif = getNotif();
     callback = callback || noop;
+    title = title || 'NGA';
     if (notif && notif.alert) {
       notif.alert(message, callback, title, buttonName);
     } else {
@@ -29,8 +31,9 @@ define(function (require, exports, module) {
     }
   };
   exports.prompt = function (message, callback, title, buttonName, defaultText) {
-    var notif = getNotif;
+    var notif = getNotif();
     callback = callback || noop;
+    title = title || 'NGA';
     if (notif && notif.alert) {
       notif.alert(message, callback, title, buttonName);
     } else {
