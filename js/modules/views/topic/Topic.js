@@ -25,14 +25,17 @@ define(function (require, exports, module) {
         }
       },
       'singleTap .action-skip': function () {
+        var self = this;
         var maxPage = this.collection.cache.pageCount;
-        var page = window.prompt('跳转到指定页', maxPage);
         var tid = this.collection.cache.tid;
-        if (page) {
-          page = page > maxPage ? maxPage : page;
-          Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
-          this.fetch({tid: tid, page: page});
-        }
+        Notification.prompt('跳转到指定页', function (page) {
+          if (page) {
+            page = page > maxPage ? maxPage : page;
+            Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
+            self.fetch({tid: tid, page: page});
+          }
+        }, '跳转到指定页', 'biu~', maxPage);
+
       },
       'singleTap .action-reply': function () {
         Navigate.redirect('#!/publish/' + this.collection.cache.fid + '/' + this.collection.cache.tid);
