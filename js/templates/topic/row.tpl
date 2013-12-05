@@ -23,7 +23,7 @@
           <strong>附件: </strong>
           <%   for (i = 0, len = attachs.length; i < len; i++) { %>
           <%     if (attachs[i].type === 'img') { %>
-          <%== $ubb('[img]http://img6.ngacn.cc/' + attachs[i].attachurl + '[/img]', setting) %>
+          <%== $ubb('[img]http://img6.ngacn.cc/attachments/' + attachs[i].attachurl + '[/img]', setting) %>
           <%     } %>
           <%   } %>
           <% } %>
