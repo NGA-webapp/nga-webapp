@@ -8,8 +8,9 @@ define(function (require, exports, module) {
   var config = require('config/index');
   var RSAKey = require('utils/rsa/rsa').RSAKey;
   var appCache = require('modules/AppCache').appCache;
+  var siteStorage = require('modules/storage/site');
 
-var inCharset = require('utils/inCharset');
+  var inCharset = require('utils/inCharset');
   var loginUrl = config.nakeServer ? '/api/login' : 'http://bbs.ngacn.cc/nuke.php?func=login';
   var gsUrl = config.nakeServer ? '/api/gs' : 'http://bbs.ngacn.cc/nuke.php?func=login&normal_login&gs&raw=2';
 
@@ -53,6 +54,8 @@ var inCharset = require('utils/inCharset');
         alert('用户和密码不能为空');
         return false;
       }
+      // 存入本地缓存的登录名记录
+      siteStorage.addUser(username);
       self.flag.logging = true;
       console.log('connect start');
       ui.Loading.open();
@@ -105,13 +108,13 @@ var inCharset = require('utils/inCharset');
     },
     _refresh: function () {
       var self = this;
+      var lastUser = siteStorage.getLastUser();
       ui.Loading.open();
-      this.$content.html(this.tplContent({}));
+      this.$content.html(this.tplContent({lastUser: lastUser}));
       this.$content.removeClass('hide').addClass('show');
       _.delay(function () {
         ui.Loading.close();
       }, 200);
-
     },
     initialize: function () {
       this.$content = this.$el.find('.content');

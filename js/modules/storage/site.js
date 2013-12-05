@@ -79,7 +79,7 @@ define(function (require, exports, module) {
     getSetting: function (key) {
       var defaults = {
         downloadAvatar: true,
-        downloadPic: true
+        downloadImage: true
       };
       var setting = _.extend(defaults, this.get('setting'));
       return typeof key === 'undefined' ? setting : setting[key];
@@ -92,8 +92,25 @@ define(function (require, exports, module) {
         this.set('setting', setting);
       }
     },
+    // 获取所有登录过的用户名
+    getUsers: function () {
+      var users = this.get('users');
+      if (users && users.length) {
+        return users;
+      } else {
+        return [];
+      }
+    },
+    // 增加登录的用户名
+    addUser: function (username) {
+      var users = this.getUsers();
+      this.set('users', _.chain([username]).union(users).first(10).value())
+    },
+    // 获取最近一个登录的用户名
+    getLastUser: function () {
+      return this.getUsers()[0];
+    },
   });
   var site = new SiteStorage('nga');
-  window.store = site;
   module.exports = site;
 });

@@ -4156,11 +4156,14 @@ main > .overlay {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 60%;
-  margin: 0 10px 0 0;
+  margin: 0;
   padding: 0 10px;
   height: 30px;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+#menu > .search-box > .action-search {
+  padding: 5px 10px;
 }
 #menu > .menu-content {
   position: absolute;

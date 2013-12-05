@@ -19,10 +19,10 @@
           <% } %>
         </h4>
       </li>
-      <li class="select" data-key="downloadPic">
+      <li class="select" data-key="downloadImage">
         <h4>
           显示贴内图片
-          <% if (setting.downloadPic) { %>
+          <% if (setting.downloadImage) { %>
             <span class="checkbox checked"></span>
           <% } else { %>
             <span class="checkbox"></span>

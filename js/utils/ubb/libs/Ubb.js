@@ -118,7 +118,7 @@ define(function (require, exports, module) {
    * @param {boolean} isPair 该标记是否成对出现
    * @return {function}     对某段文本进行递归解析单类**普通**标记的方法
    */
-  Ubb.prototype._buildExec = function (tagName, parser, isPair) {
+  Ubb.prototype._buildExec = function (tagName, parser, isPair, settings) {
     var reg;
     // 根据标签的设置（是否成对出现）选择不同的匹配方法
     reg = isPair ? pairReg(tagName) : singleReg(tagName);
@@ -148,9 +148,9 @@ define(function (require, exports, module) {
       // 根据标签的设置（是否成对出现）选择进行不同的字符串替换方法
       if (isPair) {
         content = result[2];
-        str = str.slice(0, startAt) + (typeof parser === 'string' ? parser : parser(content, attrs)) + str.slice(endAt);
+        str = str.slice(0, startAt) + (typeof parser === 'string' ? parser : parser(content, attrs, settings)) + str.slice(endAt);
       } else {
-        str = str.slice(0, startAt) + (typeof parser === 'string' ? parser : parser(attrs)) + str.slice(endAt);
+        str = str.slice(0, startAt) + (typeof parser === 'string' ? parser : parser(attrs, settings)) + str.slice(endAt);
       }
       // 如果此次解析已经超过设置的最大次数限制则结束解析
       if (++nest >= MAXNESTING) {
@@ -218,9 +218,10 @@ define(function (require, exports, module) {
    * @for  Ubb
    * @param  {string} content 需要转换的内容
    * @param  {string} tag 设置的标记规则
+   * @param  {object} settings 自定义设置项，如图片默认地址等
    * @return {string}         转换后的内容
    */
-  Ubb.prototype._toHtml = function (content, tag) {
+  Ubb.prototype._toHtml = function (content, tag, settings) {
     var isExtra, regExp, replacement, tagName, parser, isPair;
     isExtra = tag.isExtra;
     if (isExtra) {
@@ -231,7 +232,7 @@ define(function (require, exports, module) {
       tagName = tag.tagName;
       parser = tag.parser;
       isPair = tag.isPair;
-      return this._buildExec(tagName, parser, isPair)(content, 0);
+      return this._buildExec(tagName, parser, isPair, settings)(content, 0);
     }
   };
 
@@ -240,9 +241,10 @@ define(function (require, exports, module) {
    * @method  toHtml
    * @for  Ubb
    * @param  {string} content 需要转换的内容
+   * @param  {object} settings 自定义设置项，如图片默认地址等
    * @return {string}         转换后的内容
    */
-  Ubb.prototype.toHtml = function (content) {
+  Ubb.prototype.toHtml = function (content, settings) {
     var tags, i, len;
     content = this._escape(content);
     // 缓存排序结果
@@ -255,7 +257,7 @@ define(function (require, exports, module) {
     }
     // 依次进行转换
     for (i = 0, len = tags.length; i < len; i++) {
-      content = this._toHtml(content, tags[i]);
+      content = this._toHtml(content, tags[i], settings);
     }
     return content;
   };

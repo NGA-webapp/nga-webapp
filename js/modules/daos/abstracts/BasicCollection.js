@@ -8,12 +8,15 @@ define(function (require, exports, module) {
         // 错误时返回的xml还带js蛋疼
         msg = xhr.responseText.match(/<__MESSAGE><item>\d+<\/item><item>(.*?)<\/item>/);
         if (msg && msg.length === 2) {
-          return alert(msg[1]);
+          alert(msg[1]);
+          ui.Loading.close();
+          return;
         }
       }
     }
     if (status === 'error') {
       alert('网络错误');
+      ui.Loading.close();
     }
   };
 

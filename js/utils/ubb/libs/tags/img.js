@@ -2,9 +2,14 @@ define(function (require, exports) {
   var img = {
     tagName: 'img',
     isPair: true,
-    parser: function (content) {
+    parser: function (content, attrs, settings) {
       // todo: ajsize
-      var image = '<img src="' + content + '" onerror="" />';
+      var image;
+      if (typeof settings === 'object' && settings.downloadImage === false) {
+        image = '<img/>';
+      } else {
+        image = '<img src="' + content + '" onerror="" />';
+      }
       return image;
     },
     priority: 1,
