@@ -38,7 +38,7 @@ define(function (require, exports, module) {
               self.fetch({tid: tid, page: page});
             }
           }
-        }, '跳转到指定页', ['biu~', 'yamie'], maxPage);
+        }, '跳转到指定页', ['biu~', 'yamie'], maxPage + '');
 
       },
       'singleTap .action-reply': function () {
