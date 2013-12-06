@@ -4168,6 +4168,9 @@ main > .overlay {
 #menu > .search-box > .action-search {
   padding: 5px 10px;
 }
+#menu > .search-box > .action-search:active {
+  color: #db5633;
+}
 #menu > .menu-content {
   position: absolute;
   top: 50px;

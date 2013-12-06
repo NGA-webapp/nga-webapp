@@ -154,21 +154,21 @@ define(function (require, exports, module) {
             if (route === 'getMenu') {
               self.cached.menuView.$el.find('.search-box input').attr('disabled', null);
             } else {
-              self.cached.menuView.$el.find('input').attr('disabled', 'disabled');
+              self.cached.menuView.$el.find('input').attr('disabled', 'disabled').blur();
             }
             if (route === 'getLogin') {
               self.cached.loginView.$el.find('input').attr('disabled', null);
               self.cached.loginView.$el.find('button').attr('disabled', null);
             } else {
-              self.cached.loginView.$el.find('input').attr('disabled', 'disabled');
-              self.cached.loginView.$el.find('button').attr('disabled', 'disabled');
+              self.cached.loginView.$el.find('input').attr('disabled', 'disabled').blur();
+              self.cached.loginView.$el.find('button').attr('disabled', 'disabled').blur();
             }
             if (route === 'getPublish') {
               self.cached.publishView.$el.find('input').attr('disabled', null);
               self.cached.publishView.$el.find('textarea').attr('disabled', null);
             } else {
-              self.cached.publishView.$el.find('input').attr('disabled', 'disabled');
-              self.cached.publishView.$el.find('textarea').attr('disabled', 'disabled');
+              self.cached.publishView.$el.find('input').attr('disabled', 'disabled').blur();
+              self.cached.publishView.$el.find('textarea').attr('disabled', 'disabled').blur();
             }
           }, 800);
         });
