@@ -143,6 +143,22 @@ define(function (require, exports, module) {
         self.scroll.refresh();
       }, 1000);
     },
+    /**
+     * 清空列表
+     */
+    _clearAll: function (model, resp, options) {
+      var self = this;
+      this._refreshScroll();
+      this.$ul.html('');
+      this.scroll.scrollTo(0, 0, 0);
+      this.$subject.text('');
+      _.delay(function () {
+        ui.Loading.close();
+      }, 600);
+      _.delay(function () {
+        self.scroll.refresh();
+      }, 1000);
+    },
     fetch: function (data, options) {
       ui.Loading.open();
       this.flag.active = true;
@@ -162,6 +178,7 @@ define(function (require, exports, module) {
       this.$subject = this.$el.find('header span.subject');
       this.$footer = this.$el.find('footer');
       this.listenTo(this.collection, 'sync', this._addAll);
+      this.listenTo(this.collection, 'error', this._clearAll);
       return this.render();
     }
   });

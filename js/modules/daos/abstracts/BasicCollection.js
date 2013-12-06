@@ -1,5 +1,4 @@
 define(function (require, exports, module) {
-  var ui = require('utils/ui/index');
   var Notification = require('utils/Notification');
 
   var config = require('config/index');
@@ -13,14 +12,12 @@ define(function (require, exports, module) {
           msg = xhr.responseText.match(/<__MESSAGE><item>(.*?)<\/item><item>\d+<\/item>/);
         }
         if (msg && msg.length === 2) {
-          ui.Loading.close();
           Notification.alert(msg[1].slice(0, 50));
           return;
         }
       }
     }
     if (status === 'error') {
-      ui.Loading.close();
       Notification.alert('网络错误');
     }
   };
