@@ -15,6 +15,12 @@ define(function (require, exports, module) {
       'singleTap a.url': function (events) {
         var url = $(events.currentTarget).attr('data-url');
         $(document).on('deviceready', function () {
+          cordova && cordova.require('org.apache.cordova.inappbrowser.InAppBrowser')(url, '_system', 'location=yes');
+        }, false);
+      },
+      'singleTap .content img': function (events) {
+        var url = $(events.currentTarget).attr('src');
+        $(document).on('deviceready', function () {
           cordova && cordova.require('org.apache.cordova.inappbrowser.InAppBrowser')(url, '_blank', 'location=yes');
         }, false);
       }

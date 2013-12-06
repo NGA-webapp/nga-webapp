@@ -3768,6 +3768,9 @@ main > .overlay {
   box-shadow: 0px 1px 1px 0 #eee;
   border-bottom: 1px solid #ccc;
 }
+#topic article .scroller > ul > li > .content del {
+  color: #999;
+}
 #topic article .scroller > .action-pulldown,
 #topic article .scroller > .action-pullup {
   -webkit-transition: all 0.3s ease-in;
