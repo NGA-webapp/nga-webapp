@@ -42,7 +42,7 @@ module.exports = function (grunt) {
     },
     open: {
       dev: {
-        path: 'http://localhost:8002'
+        path: 'http://localhost:8002/debug_browser.html'
       }
     }
   });
