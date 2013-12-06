@@ -21,7 +21,7 @@ define(function (require, exports) {
     parser: function (content) {
       var match = content.match(/^\.?\/([\s\S]*)/);
       if (match && match.length > 1) {
-        return '[img]http://bbs.ngacn.cc/' + match[1] + '[/img]';
+        return '[img]http://img6.ngacn.cc/attachments/' + match[1] + '[/img]';
       }
       return '[img]' + content + '[/img]';
     },
