@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NGA</title>
+  <meta name="description" content="">
+  <meta name="author" content="yelo">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="height=300, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="cleartype" content="on">
+  <link rel='stylesheet' href='./style/main.css' />
+  <script src="http://localhost:35729/livereload.js"></script>
+  <script src="./libs/phonegap/clipboard.js"></script>
+  <script src="./libs/phonegap/inAppBrowser.js"></script>
+  <script src="./libs/phonegap/notification.js"></script>
+</head>
+<body>
+  <main id="main">
+    <section id="bootup" class="noop">
+      <article id="bootup-article">
+        <div class="content">
+        </div>
+      </article>
+    </section>
+    <section id="forums" class="behind"></section>
+    <section id="forum" class="behind"></section>
+    <section id="topic" class="behind"></section>
+    <section id="user" class="behind"></section>
+    <section id="login" class="behind"></section>
+    <section id="logout" class="behind"></section>
+    <section id="setting" class="behind"></section>
+    <section id="publish" class="behind"></section>
+    <aside id="menu" class="behind"></aside>
+    <div class="overlay"></div>
+  </main>
+  <!-- Libraries -->
+  <script src="./libs/underscore/underscore.js"></script>
+  <script src="./libs/backbone/backbone.js"></script>
+  <script src="./libs/quojs/quo.js"></script>
+  <script src="./libs/zeptojs/zepto.js"></script>
+  <script src="./libs/iscroll/iscroll.4.2.5.js"></script>
+  <!-- Seajs -->
+  <script src="./libs/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
+  <script src="./libs/sea-modules/seajs/seajs-text/1.0.2/seajs-text.js"></script>
+  <script src="./js/sea.config.js"></script>
+  <script type="text/javascript">
+    seajs.use('main');
+  </script>
+</body>
+</html>
