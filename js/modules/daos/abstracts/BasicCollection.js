@@ -9,16 +9,19 @@ define(function (require, exports, module) {
       if (xhr.responseText) {
         // 错误时返回的xml还带js蛋疼
         msg = xhr.responseText.match(/<__MESSAGE><item>\d+<\/item><item>(.*?)<\/item>/);
+        if (!(msg && msg.length === 2)) {
+          msg = xhr.responseText.match(/<__MESSAGE><item>(.*?)<\/item><item>\d+<\/item>/);
+        }
         if (msg && msg.length === 2) {
-          Notification.alert(msg[1]);
           ui.Loading.close();
+          Notification.alert(msg[1].slice(0, 50));
           return;
         }
       }
     }
     if (status === 'error') {
-      Notification.alert('网络错误');
       ui.Loading.close();
+      Notification.alert('网络错误');
     }
   };
 
