@@ -1,11 +1,35 @@
-# nga-webapp
-dev version  
+# NGA / webapp
 
-## 开发环境
-使用``--disable-web-security``运行Chrome，后执行``grunt dev``。
+![](https://github.com/imyelo/nga-webapp/blob/master/phonegap/asset/logo-120.png?raw=true)
+
+**NGA-webapp**是一款[艾泽拉斯国家地理论坛](http://bbs.ngacn.cc/)的非官方H5客户端，目前经Phonegap打包已可在iOS上使用。
+
+## 依赖
+- 主要依赖
+  - Phonegap 3.0.0
+  - Backbone 1.1.0
+  - underscore 1.5.2
+  - seajs 2.1.1
+  - zeptojs 1.0.1
+  - iscroll 4.2.5
+  - less 1.4.2
+  - artTemplate 2.0.1
+  - [nga-ubb](https://github.com/imyelo/nga-ubb)
+
+## 如何贡献
+### 提交建议
+你可以直接在Github上提交[issues](https://github.com/imyelo/nga-webapp/issues)，也可以在NGA中给我回复。
+
+### 贡献代码
+由于跨域的问题，在浏览器上进行测试时，请关闭对跨域或安全的限制。
+例如Chrome，可使用``--disable-web-security``关闭安全限制。
+
+如果你已经部署好NPM和Grunt，可以在项目根目录执行``grunt dev``，便可在浏览器上进行调试。
+
+目前Phonegap的打包编译是使用[Phonegap Build](https://build.phonegap.com/)进行。
 
 
-## todo
+## Todo
 - todo list
   - 后退功能加flag，避免重复触发
   - 设置喜爱版面时，将显示当前选中的版面集中显示在顶部，或在header显示数量
@@ -13,29 +37,6 @@ dev version
     - 黑枪链接``[@zhihuzeye]``
     - tid和pid链接、站内链接，在app内跳转
   - 开发letter模块的表情键入
+  - 重构路由和转场
 
-## dev logs
-### 视图结构
-- body
-  - .splash: 启动画面 1500
-  - .notification: 通知组件区域 1000
-  - main: 主画布 0
-    - .overlay: 场景(/侧边栏)背景布 100
-    - aside(*): 侧边栏 200
-    - section(*): 主要场景 300
-      - .asideMask: 开启Aside时在Section接受触摸事件的覆盖物 500 
-      - header: 顶部菜单栏 400
-      - footer: 底部菜单栏 400
-      - .loading: 加载状态组件区域 300
-      - article: 主要内容区域 200
-      - .overlay: 内容背景布 100
-
-- aside
-  - #menu
-  - #user
-- section
-  - #forum
-  - #topic
-  - #login
-  - #letter
 
