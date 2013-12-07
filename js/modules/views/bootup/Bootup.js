@@ -74,7 +74,7 @@ define(function (require, exports, module) {
     },
     log: function (text) {
       console.log('Bootup: ' + text);
-      this.$el.find('.content').text(text);
+      this.$el.find('.content .info').text(text);
     },
     initialize: function () {
       this.$content = this.$el.find('.content');
