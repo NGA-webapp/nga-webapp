@@ -28,8 +28,11 @@
 
 目前Phonegap的打包编译是使用[Phonegap Build](https://build.phonegap.com/)进行。
 
+## 目标里程碑
+- [1.1.0](https://github.com/imyelo/nga-webapp/issues?milestone=1&state=open)
+- 1.0.0
 
-## Todo
+## 备忘
 - todo list
   - 后退功能加flag，避免重复触发
   - 设置喜爱版面时，将显示当前选中的版面集中显示在顶部，或在header显示数量
