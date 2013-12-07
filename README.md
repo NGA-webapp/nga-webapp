@@ -35,7 +35,7 @@
   - artTemplate 2.0.1
   - [nga-ubb](https://github.com/imyelo/nga-ubb)
   - normalize.css
-  - bootstrap(css) 3.0.0
+  - bootstrap(css, components) 3.0.0
   - veryless
 
 
