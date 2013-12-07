@@ -26,7 +26,7 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-    <icon src="phonegap/asset/logo.png" />
+    <icon src="phonegap/asset/logo-152.png" />
     <icon gap:platform="ios" height="57" src="phonegap/asset/logo-57.png" width="57" />
     <icon gap:platform="ios" height="72" src="phonegap/asset/logo-72.png" width="72" />
     <icon gap:platform="ios" height="76" src="phonegap/asset/logo-76.png" width="76" />
