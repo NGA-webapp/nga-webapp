@@ -4,17 +4,11 @@
 
 **NGA-webapp**是一款[艾泽拉斯国家地理论坛](http://bbs.ngacn.cc/)的非官方H5客户端，目前经Phonegap打包已可在iOS上使用。
 
-## 依赖
-- 主要依赖
-  - Phonegap 3.0.0
-  - Backbone 1.1.0
-  - underscore 1.5.2
-  - seajs 2.1.1
-  - zeptojs 1.0.1
-  - iscroll 4.2.5
-  - less 1.4.2
-  - artTemplate 2.0.1
-  - [nga-ubb](https://github.com/imyelo/nga-ubb)
+
+## 目标里程碑
+- [1.1.0](https://github.com/imyelo/nga-webapp/issues?milestone=1&state=open)
+- 1.0.0
+
 
 ## 如何贡献
 ### 提交建议
@@ -28,9 +22,22 @@
 
 目前Phonegap的打包编译是使用[Phonegap Build](https://build.phonegap.com/)进行。
 
-## 目标里程碑
-- [1.1.0](https://github.com/imyelo/nga-webapp/issues?milestone=1&state=open)
-- 1.0.0
+
+## 依赖
+- 主要依赖
+  - Phonegap 3.0.0
+  - Backbone 1.1.0
+  - underscore 1.5.2
+  - seajs 2.1.1
+  - zeptojs 1.0.1
+  - iscroll 4.2.5
+  - less 1.4.2
+  - artTemplate 2.0.1
+  - [nga-ubb](https://github.com/imyelo/nga-ubb)
+  - normalize.css
+  - bootstrap(css) 3.0.0
+  - veryless
+
 
 ## 备忘
 - todo list
@@ -43,3 +50,5 @@
   - 重构路由和转场
 
 
+## License
+The MIT License
