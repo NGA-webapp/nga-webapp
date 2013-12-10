@@ -7,6 +7,8 @@ define(function (require, exports, module) {
   var appCache = require('modules/AppCache').appCache;
   var siteStorage = require('modules/storage/site');
   var sliceSubject = require('utils/common').sliceSubject;
+  var trim = require('utils/common').trim;
+  var Notification = require('utils/Notification');
 
   var MenuView = BasicView.extend({
     el: '#menu',
@@ -52,10 +54,14 @@ define(function (require, exports, module) {
       },
       'singleTap .action-search': function () {
         var keyword = this.$el.find('.param-key').val();
-        Navigate.redirect('#!/search/' + keyword);
-        appCache.get('forumView').$el.find('header .subject').text(sliceSubject('搜索'));
-        this.uiClearNav();
-        this.cache.activeNav = '';
+        if (!trim(keyword)) {
+          Notification.alert('搜索词不能为空哟');
+        } else {
+          Navigate.redirect('#!/search/' + keyword);
+          appCache.get('forumView').$el.find('header .subject').text(sliceSubject('搜索'));
+          this.uiClearNav();
+          this.cache.activeNav = '';
+        }
       }
     },
     cache: {
