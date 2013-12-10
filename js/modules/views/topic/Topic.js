@@ -45,6 +45,7 @@ define(function (require, exports, module) {
         appCache.get('publishView').$el.find('header .subject').text(sliceSubject('回复'));
       },
       'singleTap .action-share': function () {
+        window.plugins.socialsharing.share(null, null, 'nga://topic/' + this.collection.cache.tid, null);
         var url = 'http://bbs.ngacn.cc/read.php?tid=' + this.collection.cache.tid;
         $(document).on('deviceready', function () {
           cordova && cordova.require('com.verso.cordova.clipboard.Clipboard').copy(url, function () {
