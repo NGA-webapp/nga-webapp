@@ -9,5 +9,11 @@ define(function (require, exports, module) {
   document.addEventListener('touchmove', function (e) {
       e.preventDefault();
   }, false);
+
+  window.handleOpenURL(url) {
+    setTimeout(function() {
+      alert("received url: " + url);
+    }, 0);
+  }
   
 });
