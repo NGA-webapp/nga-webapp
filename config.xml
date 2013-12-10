@@ -49,7 +49,7 @@
     <gap:plugin name="com.verso.cordova.clipboard" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
     <gap:plugin name="org.apache.cordova.dialogs" version="0.1.0" />
-    <gap:plugin name="nl.x-services.plugins.socialsharing" version="3.1" />
+    <gap:plugin name="nl.x-services.plugins.socialsharing" />
     <gap:plugin name="nl.x-services.plugins.launchmyapp">
       <param name="URL_SCHEME" value="nga" />
     </gap:plugin>
