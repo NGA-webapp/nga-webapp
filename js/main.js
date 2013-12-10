@@ -10,10 +10,4 @@ define(function (require, exports, module) {
       e.preventDefault();
   }, false);
 
-  window.handleOpenURL(url) {
-    setTimeout(function() {
-      alert("received url: " + url);
-    }, 0);
-  }
-  
 });
