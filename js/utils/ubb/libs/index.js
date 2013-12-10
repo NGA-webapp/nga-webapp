@@ -1,4 +1,18 @@
-define(function (require, exports) {
+;(function (definition) {
+  // this is considered "safe":
+  var hasDefine = typeof define === 'function',
+    // hasDefine = typeof define === 'function',
+    hasExports = typeof module !== 'undefined' && module.exports;
+  if (hasDefine) {
+    // AMD Module or CMD Module
+    define(definition);
+  } else if (hasExports) {
+    // Node.js Module
+    definition(require, exports, module);
+  } else {
+    throw new Error('module required');
+  }
+})(function (require, exports, module) {
   var Ubb = require('./Ubb').Ubb;
   var font = require('./tags/font');
   var layout = require('./tags/layout');
@@ -10,28 +24,14 @@ define(function (require, exports) {
   var smileExtra = require('./tags/extras/smile');
   var encodeExtra = require('./tags/extras/encode');
   var ubb = new Ubb();
-  ubb.add(font.b);
-  ubb.add(font.u);
-  ubb.add(font.i);
-  ubb.add(font.del);
-  ubb.add(font.h);
-  ubb.add(font.font);
-  ubb.add(font.color);
-  ubb.add(font.size);
-  ubb.add(font.align);
-  ubb.add(layout.l);
-  ubb.add(layout.r);
-  ubb.add(layout.quote);
-  ubb.add(layout.code);
-  ubb.add(layout.tid);
-  ubb.add(layout.pid);
+  ubb.add([font.b, font.u, font.i, font.del, font.h, font.font, font.color, font.size, font.align]);
+  ubb.add([layout.l, layout.r, layout.quote, layout.code, layout.tid, layout.pid]);
+  ubb.add([img.img, img.relativeImg]);
   ubb.add(list.list);
-  ubb.add(img.img);
-  ubb.add(img.relativeImg);
   ubb.add(url.url);
   ubb.addExtra(fontExtra.h);
   ubb.addExtra(brExtra.br);
   ubb.addExtra(smileExtra.smile);
   ubb.addExtra(encodeExtra.amp);
-  return ubb;
+  module.exports = ubb;
 });

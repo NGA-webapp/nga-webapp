@@ -1,4 +1,19 @@
-define(function (require, exports, module) {
+;(function (definition) {
+  // this is considered "safe":
+  var hasDefine = typeof define === 'function',
+    // hasDefine = typeof define === 'function',
+    hasExports = typeof module !== 'undefined' && module.exports;
+
+  if (hasDefine) {
+    // AMD Module or CMD Module
+    define(definition);
+  } else if (hasExports) {
+    // Node.js Module
+    definition(require, exports, module);
+  } else {
+    throw new Error('module required');
+  }
+})(function (require, exports, module) {
   var utils = require('./utils');
   var MAXNESTING = 100; // 单类标记最多解析数
 
@@ -264,7 +279,9 @@ define(function (require, exports, module) {
 
   /**
    * 添加标签
-   * @method add
+   * @method _add
+   * @private
+   * @for  Ubb
    * @param {object} tag 标签的设置
    *                     {
    *                       tagName: '', // 标签名
@@ -275,7 +292,7 @@ define(function (require, exports, module) {
    * @return {Ubb} this
    * @chainable
    */
-  Ubb.prototype.add = function (tag) {
+  Ubb.prototype._add = function (tag) {
     var self = this;
     var defaults = {
       tagName: '',
@@ -302,8 +319,36 @@ define(function (require, exports, module) {
   };
 
   /**
+   * 添加一个或多个标签
+   * @method add
+   * @for  Ubb
+   * @param {object|array} tags 一个(object)或一组(array)标签的设置
+   *                     {
+   *                       tagName: '', // 标签名
+   *                       parser: function (content, attr) {}, // 解析器，也可以直接为一个字符串
+   *                       isPair: true, // 是否成对出现
+   *                       priority: 1, // 优先处理级别
+   *                     }
+   * @return {Ubb} this
+   * @chainable
+   */
+  Ubb.prototype.add = function (tags) {
+    var i, len;
+    if (tags instanceof Array) {
+      for (i = 0, len = tags.length; i < len; i++) {
+        this._add(tags[i]);
+      }
+    } else {
+      this._add(tags);
+    }
+    return this;
+  };
+
+  /**
    * 添加**特殊**标签
-   * @method addExtra
+   * @method _addExtra
+   * @private
+   * @for  Ubb
    * @param {object} tag 标签的设置
    *                     {
    *                       regExp: new RegExp(/===(.*?)===/gi), // 匹配解析的正则表达式
@@ -312,7 +357,7 @@ define(function (require, exports, module) {
    * @return {Ubb} this
    * @chainable
    */
-  Ubb.prototype.addExtra = function (tag) {
+  Ubb.prototype._addExtra = function (tag) {
     var self = this;
     var defaults = {
       regExp: emptyReg(),
@@ -331,6 +376,30 @@ define(function (require, exports, module) {
     // 添加新标签时将缓存标记设为false
     self._flag.cached = false;
     return self;
+  };
+
+  /**
+   * 添加一个或多个**特殊**标签
+   * @method addExtra
+   * @for  Ubb
+   * @param {object|array} tags 一个(object)或一组(array)标签的设置
+   *                     {
+   *                       regExp: new RegExp(/===(.*?)===/gi), // 匹配解析的正则表达式
+   *                       replacement: '<h4>$1</h4>', // 替换内容
+   *                     }
+   * @return {Ubb} this
+   * @chainable
+   */
+  Ubb.prototype.addExtra = function (tags) {
+    var i, len;
+    if (tags instanceof Array) {
+      for (i = 0, len = tags.length; i < len; i++) {
+        this._addExtra(tags[i]);
+      }
+    } else {
+      this._addExtra(tags);
+    }
+    return this;
   };
 
   exports.Ubb = Ubb;
