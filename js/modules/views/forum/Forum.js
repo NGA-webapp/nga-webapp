@@ -165,6 +165,12 @@ define(function (require, exports, module) {
       } else {
         this.$el.find('.action-new').show();
       }
+      _.defaults(options || (options = {}), {
+        error: function () {
+          Notification.alert('呜~怎么会一个帖都没有~');
+          ui.Loading.close();
+        }
+      });
       // 搜索列表需要对关键字转编码
       if (data.key) {
         inCharset(data.key, 'gbk', function (key) {

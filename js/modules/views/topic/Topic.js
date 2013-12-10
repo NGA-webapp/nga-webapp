@@ -165,6 +165,7 @@ define(function (require, exports, module) {
       this.flag.active = true;
       _.defaults(options || (options = {}), {
         error: function () {
+          Notification.alert('呜~进入帖子失败~');
           ui.Loading.close();
           _.delay(function (){
             Navigate.back();
