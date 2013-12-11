@@ -10,6 +10,7 @@ define(function (require, exports, module) {
   var appCache = require('modules/AppCache').appCache;
   var sliceSubject = require('utils/common').sliceSubject;
   var inCharset = require('utils/inCharset');
+  var Notification = require('utils/Notification');
   
   var ForumView = BasicView.extend({
     el: '#forum',
