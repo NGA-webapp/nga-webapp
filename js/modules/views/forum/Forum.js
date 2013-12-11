@@ -10,7 +10,6 @@ define(function (require, exports, module) {
   var appCache = require('modules/AppCache').appCache;
   var sliceSubject = require('utils/common').sliceSubject;
   var inCharset = require('utils/inCharset');
-  var Notification = require('utils/Notification');
   
   var ForumView = BasicView.extend({
     el: '#forum',
@@ -168,7 +167,6 @@ define(function (require, exports, module) {
       }
       _.defaults(options || (options = {}), {
         error: function () {
-          Notification.alert('呜~怎么会一个帖都没有~');
           ui.Loading.close();
         }
       });

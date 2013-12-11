@@ -66,8 +66,6 @@ define(function (require, exports, module) {
         this.cacheInitialize();
         this.cached.bootupView.bootup();
         transition.toSection(this.cached.bootupView);
-        // Navigate.redirect('!/forum/-7');
-        // Navigate.redirect('!/login');
       },
       getForums: function () {
         console.log('forums: ');
@@ -150,27 +148,28 @@ define(function (require, exports, module) {
         this.on('route', function (route, param) {
           // todo 暂时没有考虑后退的情况，可能需要为Navigate重新封装出一系列事件
           // 延迟处理input，是为了防止在切换页面时手误选中下一个页面的input
-          _.delay(function () {
+          var enableInput = function () {
             if (route === 'getMenu') {
               self.cached.menuView.$el.find('.search-box input').attr('disabled', null);
-            } else {
-              self.cached.menuView.$el.find('input').attr('disabled', 'disabled').blur();
             }
             if (route === 'getLogin') {
               self.cached.loginView.$el.find('input').attr('disabled', null);
               self.cached.loginView.$el.find('button').attr('disabled', null);
-            } else {
-              self.cached.loginView.$el.find('input').attr('disabled', 'disabled').blur();
-              self.cached.loginView.$el.find('button').attr('disabled', 'disabled').blur();
             }
             if (route === 'getPublish') {
               self.cached.publishView.$el.find('input').attr('disabled', null);
               self.cached.publishView.$el.find('textarea').attr('disabled', null);
-            } else {
-              self.cached.publishView.$el.find('input').attr('disabled', 'disabled').blur();
-              self.cached.publishView.$el.find('textarea').attr('disabled', 'disabled').blur();
             }
-          }, 800);
+          };
+          var disableInput = function () {
+            self.cached.menuView.$el.find('input').attr('disabled', 'disabled').blur();
+            self.cached.loginView.$el.find('input').attr('disabled', 'disabled').blur();
+            self.cached.loginView.$el.find('button').attr('disabled', 'disabled').blur();
+            self.cached.publishView.$el.find('input').attr('disabled', 'disabled').blur();
+            self.cached.publishView.$el.find('textarea').attr('disabled', 'disabled').blur();
+          };
+          disableInput();
+          _.delay(enableInput, 800);
         });
         this.cached = {
           forumView: void 0,
