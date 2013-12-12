@@ -173,13 +173,9 @@ define(function (require, exports, module) {
       // 搜索列表需要对关键字转编码
       if (data.key) {
         inCharset(data.key, 'gbk', function (key) {
-          var k;
           var obj = _.extend({}, data, {key: key});
-          var param = '';
-          for (k in obj) {
-            param += k + '=' + obj[k] + '&';
-          }
-          self.collection.fetchXml(param, options);
+          options = _.extend({}, options, {urlEncoded: true});
+          self.collection.fetchXml(obj, options);
         });
       } else {
         this.collection.fetchXml(data, options);

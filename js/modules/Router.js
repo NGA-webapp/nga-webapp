@@ -29,7 +29,8 @@ define(function (require, exports, module) {
       "!/search/:keyword/p:page": "getSearch",
       "!/topic/:tid": "getTopic",
       "!/topic/:tid/p:page": "getTopic",
-      "!/user/:uid": "getUser",
+      "!/user/uid/:uid": "getUserByUid",
+      "!/user/username/:username": "getUserByUsername",
       "!/login": "getLogin",
       "!/logout": "getLogout",
       "!/menu": "getMenu",
@@ -99,11 +100,17 @@ define(function (require, exports, module) {
         transition.toSection(this.cached.topicView);
         this.cached.topicView.fetch({tid: tid, page: (page || 1)});
       },
-      getUser: function (uid) {
+      getUserByUid: function (uid) {
         console.log('user: ' + uid);
         this.cacheInitialize();
         transition.toSection(this.cached.userView);
         this.cached.userView.fetch({uid: uid});
+      },
+      getUserByUsername: function (username) {
+        console.log('user: ' + username);
+        this.cacheInitialize();
+        transition.toSection(this.cached.userView);
+        this.cached.userView.fetch({username: username});
       },
       getLogin: function () {
         console.log('login: ');

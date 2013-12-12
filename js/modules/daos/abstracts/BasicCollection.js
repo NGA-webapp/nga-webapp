@@ -24,18 +24,22 @@ define(function (require, exports, module) {
 
   var BasicCollection = Backbone.Collection.extend({
     fetchXml: function (data, options) {
-      if (typeof data === 'string') {
-        data += '&lite=xml&v2=1';
-      } else {
-        _.defaults(data || (data = {}), this.xmlOptions || (this.xmlOptions = {}), {
-          'lite': 'xml',
-          'v2': 1
-        });
-      }
+      var getPrarmStringWithoutUrlEncode = function (obj) {
+        var key, paramString;
+        paramString = '';
+        for (k in obj) {
+          paramString += k + '=' + obj[k] + '&';
+        }
+        return paramString;
+      };
+      _.defaults(data || (data = {}), this.xmlOptions || (this.xmlOptions = {}), {
+        'lite': 'xml',
+        'v2': 1
+      });
       _.defaults(options || (options = {}), {
         'url': this.url,
         'dataType': 'xml',
-        'data': data,
+        'data': options.urlEncoded ? getPrarmStringWithoutUrlEncode(data) : data,
         'complete': checkError
       });
       return this.fetch(options);

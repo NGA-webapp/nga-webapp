@@ -10,7 +10,7 @@ define(function (require, exports, module) {
     className: 'hide',
     events: {
       'singleTap .avatar': function () {
-        Navigate.redirect('#!/user/' + this.model.get('authorId'));
+        Navigate.redirect('#!/user/uid/' + this.model.get('authorId'));
       },
       'singleTap a.url': function (events) {
         var url = $(events.currentTarget).attr('data-url');

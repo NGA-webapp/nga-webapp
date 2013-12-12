@@ -6,6 +6,7 @@ define(function (require, exports, module) {
   var Navigate = require('utils/Navigate');
   var UserModel = require('modules/daos/user/UserModel');
   var ContentUserView = require('modules/views/user/Content');
+  var inCharset = require('utils/inCharset');
 
   var UserView = BasicView.extend({
     el: '#user',
@@ -38,8 +39,17 @@ define(function (require, exports, module) {
 
     },
     fetch: function (data, options) {
+      var self = this;
       ui.Loading.open();
-      this.model.fetchXml(data, options);
+      if (data.username) {
+        inCharset(data.username, 'gbk', function (username) {
+          var obj = _.extend({}, data, {username: username});
+          options = _.extend({}, options, {urlEncoded: true});
+          self.model.fetchXml(obj, options);
+        });
+      } else {
+        self.model.fetchXml(data, options);
+      }
     },
     initialize: function () {
       this.model = new UserModel();
