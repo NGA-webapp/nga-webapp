@@ -2,6 +2,7 @@ define(function (require, exports, module) {
   var BasicModel = require('modules/daos/abstracts/BasicModel');
   var parser = require('modules/daos/user/parser');
   var config = require('config/index');
+  var Notification = require('utils/Notification');
 
   var SiteModel = BasicModel.extend({
     url: config.nakeServer ? '/api/user' : 'http://bbs.ngacn.cc/nuke.php',
@@ -10,10 +11,14 @@ define(function (require, exports, module) {
       '__act': 'get'
     },
     parse: function (resp) {
-      console.log(resp);
-      var data = parser(resp);
-      console.log(data);
-      return data;
+      var data, err;
+      if ((err = resp.querySelectorAll('root>error')).length > 0) {
+        Notification.alert(err[0].textContent);
+        return {error: err[0].textContent};
+      } else {
+        data = parser(resp);
+        return data;
+      }
     },
     initialize: function () {
       return this;

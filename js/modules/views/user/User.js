@@ -21,22 +21,27 @@ define(function (require, exports, module) {
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
       this.scroll = new iScroll('user-article', {
       });
-      this.$content = this.$el.find('.content');
+      this.$content = this.$el.find('.content'); 
       return this;
     },
     _refresh: function () {
       var self = this;
-      var view = new ContentUserView({model: this.model});
-      this.scroll.scrollTo(0, 0, 0);
-      this.$content.html(view.el);
-      $(view.el).removeClass('hide').addClass('show');
-      _.delay(function () {
+      var view;
+      if (this.model.toJSON()['error']) {
         ui.Loading.close();
-      }, 200);
-      _.delay(function () {
-        self.scroll.refresh();
-      }, 400);
-
+        Navigate.back();
+      } else {
+        view = new ContentUserView({model: this.model});
+        this.scroll.scrollTo(0, 0, 0);
+        this.$content.html(view.el);
+        $(view.el).removeClass('hide').addClass('show');
+        _.delay(function () {
+          ui.Loading.close();
+        }, 200);
+        _.delay(function () {
+          self.scroll.refresh();
+        }, 400);
+      }
     },
     fetch: function (data, options) {
       var self = this;
