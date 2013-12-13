@@ -17,6 +17,7 @@ define(function (require, exports, module) {
         return {error: err[0].textContent};
       } else {
         data = parser(resp);
+        _.extend(data, {error: false});
         return data;
       }
     },
