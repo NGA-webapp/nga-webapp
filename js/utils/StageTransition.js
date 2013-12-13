@@ -63,7 +63,7 @@ define(function (require, exports, module) {
         // 当前section执行动画
         self._transition(fromView.$el, animate.from, duration, function () {
           // 当前section动画执行结束后移除动画前预设样式，并推至幕后
-          fromView.$el.removeClass(before.from).addClass(after.from);
+          fromView.$el.removeClass(clearBeforeAnimate).removeClass(before.from).addClass(after.from);
         });
       }
       _.delay(function () {
@@ -72,7 +72,7 @@ define(function (require, exports, module) {
         // 目标section执行动画
         self._transition(toView.$el, animate.to, duration, function () {
           // 目标section动画执行结束后移除动画前预设样式
-          toView.$el.removeClass(before.to).addClass(after.to);
+          toView.$el.removeClass(clearBeforeAnimate).removeClass(before.to).addClass(after.to);
         });
       }, 0);
     } catch (e) {
