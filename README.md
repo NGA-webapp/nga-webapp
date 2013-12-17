@@ -1,9 +1,10 @@
 # NGA / webapp
 
-![](https://github.com/imyelo/nga-webapp/blob/master/phonegap/asset/logo-120.png?raw=true)
+> ![](https://github.com/imyelo/nga-webapp/blob/master/phonegap/asset/logo-120.png?raw=true)
 
-**NGA-webapp**是一款[艾泽拉斯国家地理论坛](http://bbs.ngacn.cc/)的非官方H5客户端，目前经Phonegap打包已可在iOS上使用。
+> **NGA-webapp**是一款[艾泽拉斯国家地理论坛](http://bbs.ngacn.cc/)的非官方H5客户端，目前经Phonegap打包已可在iOS上使用。
 
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ## 目标里程碑
 - [1.1.0](https://github.com/imyelo/nga-webapp/issues?milestone=1&state=open)
