@@ -64,83 +64,69 @@ define(function (require, exports, module) {
       },
       index: function () {
         console.log('index');
-        this.cacheInitialize();
         this.cached.bootupView.bootup();
         transition.toSection(this.cached.bootupView);
       },
       getForums: function () {
         console.log('forums: ');
-        this.cacheInitialize();
         transition.toSection(this.cached.forumsView);
         this.cached.forumsView.open();
       },
       getForum: function (fid, page) {
         console.log('forum: ' + fid, this.cached.forumView);
-        this.cacheInitialize();
         transition.toSection(this.cached.forumView);
         this.cached.forumView.fetch({fid: fid, page: (page || 1)}, {remove: true});
         siteStorage.addLastForum(fid);
       },
       getFavor: function (page) {
         console.log('forum: favor', this.cached.forumView);
-        this.cacheInitialize();
         transition.toSection(this.cached.forumView);
         this.cached.forumView.fetch({favor: 1, page: (page || 1)}, {remove: true});
       },
       getSearch: function (keyword, page) {
         console.log('forum: search', this.cached.forumView);
-        this.cacheInitialize();
         transition.toSection(this.cached.forumView);
         this.cached.forumView.fetch({key: keyword, fidgroup: 'user', page: (page || 1)}, {remove: true});
       },
       getTopic: function (tid, page) {
         tid = tid === 1 ? 6582574 : tid;
         console.log('topic: ' + tid + ', page: ' + (page || 1));
-        this.cacheInitialize();
         transition.toSection(this.cached.topicView);
         this.cached.topicView.fetch({tid: tid, page: (page || 1)});
       },
       getUserByUid: function (uid) {
         console.log('user: ' + uid);
-        this.cacheInitialize();
         transition.toSection(this.cached.userView);
         this.cached.userView.fetch({uid: uid});
       },
       getUserByUsername: function (username) {
         console.log('user: ' + username);
-        this.cacheInitialize();
         transition.toSection(this.cached.userView);
         this.cached.userView.fetch({username: username});
       },
       getLogin: function () {
         console.log('login: ');
-        this.cacheInitialize();
         transition.toSection(this.cached.loginView);
       },
       getLogout: function () {
         console.log('logout: ');
-        this.cacheInitialize();
         transition.toSection(this.cached.logoutView);
       },
       getMenu: function () {
-        this.cacheInitialize();
         transition.openAside(this.cached.menuView);
       },
       getSetting: function () {
         console.log('setting: ');
-        this.cacheInitialize();
         transition.toSection(this.cached.settingView);
       },
       getSettingFavor: function () {
         console.log('setting favor: ');
-        this.cacheInitialize();
         transition.toSection(this.cached.forumsView);
         this.cached.forumsView.open(true);
       },
       getPublish: function (fid, tid) {
         tid = typeof tid === 'undefined' ? 0 : tid;
         console.log('publish: ' + fid + ',' + tid);
-        this.cacheInitialize();
         transition.toSection(this.cached.publishView);
         this.cached.publishView.open(fid, tid);
       },
@@ -178,10 +164,7 @@ define(function (require, exports, module) {
           disableInput();
           _.delay(enableInput, 800);
         });
-        this.cached = {
-          forumView: void 0,
-          topicView: void 0
-        };
+        this.cacheInitialize();
         return this;
       }
     });
