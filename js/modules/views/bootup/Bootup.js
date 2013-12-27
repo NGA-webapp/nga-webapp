@@ -20,7 +20,7 @@ define(function (require, exports, module) {
     },
     redirect: function (url) {
       _.delay(function () {
-        Navigate.redirect(url);
+        Backbone.stage.change(url);
       }, 400);
     },
     // 登入后的跳转

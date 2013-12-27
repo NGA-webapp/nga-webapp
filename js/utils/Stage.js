@@ -6,11 +6,15 @@ define(function (require, exports, module) {
    * 模拟一个历史记录栈，从而实现历史后退的接口。
    */
   var History = Backbone.History;
+  var pathStripper = /[?#].*$/;
   _.extend(History.prototype, {
     // reject history stack
-    _historyStacks: [],
+    _historyStack: [],
+    initHistoryStack: function (fragment) {
+      this._historyStack = [fragment];
+    },
     getLastFragment: function () {
-      return this._historyStacks[this._historyStacks.length - 1] || '';
+      return this._historyStack[this._historyStack.length - 1] || '';
     },
     checkUrl: function(e) {
       var current = this.getFragment();
@@ -20,7 +24,7 @@ define(function (require, exports, module) {
       if (current === this.fragment) return false;
       if (this.iframe) this.navigate(current);
       // --- reject stack 
-      this._historyStacks.push(this.fragment);
+      this._historyStack.push(this.fragment);
       // --- reject end
       this.loadUrl();
     },
@@ -34,9 +38,9 @@ define(function (require, exports, module) {
       if (fragment === '' && url !== '/') url = url.slice(0, -1);
       // --- reject stack 
       if (options.replace) {
-        this._historyStacks.pop();
+        this._historyStack.pop();
       }
-      this._historyStacks.push(this.fragment);
+      this._historyStack.push(this.fragment);
       // --- reject end
       if (this._hasPushState) {
         this.history[options.replace ? 'replaceState' : 'pushState']({}, document.title, url);
@@ -57,20 +61,13 @@ define(function (require, exports, module) {
       var fragment = this.getLastFragment();
       this.fragment = fragment;
       // --- reject stack 
-      this._historyStacks.pop();
+      this._historyStack.pop();
       // --- reject end
       this.history.back();
       if (options.trigger) return this.loadUrl(fragment);
     }
   });
-
-  var Animate = function () {
-
-  };
-
-  Animate.prototype.hide = function (name) {
-    var className = 'stage-animate-' + 'hide-' + name;
-  };
+  _.bindAll(Backbone.history, 'checkUrl');
 
   /**
    * Stage 
@@ -83,7 +80,7 @@ define(function (require, exports, module) {
       return new Stage(router, speed);
     }
     // 设置转场速度
-    this._speed = speed || 400;
+    this._speed = speed || 600;
     // 取Backbone.history的单例
     this._history = Backbone.history;
     // 初始化标记
@@ -94,7 +91,6 @@ define(function (require, exports, module) {
     this._animates = [
       'slide-top', 'slide-right', 'slide-bottom', 'slide-left',
       'bounce-top', 'bounce-right', 'bounce-bottom', 'bounce-left',
-      'opacity',
     ];
     // 转场动画样式的字符串集合，用于removeClass
     this._in = this._out = '';
@@ -114,13 +110,12 @@ define(function (require, exports, module) {
    */
   Stage.prototype._initializeAnimateKeys = function () {
     var inAnimate, outAnimate;
-    var i, len;
-    inAnimate = 'stage-animate-in';
-    outAnimate = 'stage-animate-out';
-    for (i = 0, len = _animates.length) {
-      inAnimate.push('stage-animate-in-' + _animates[i]);
-      outAnimate.push('stage-animate-out-' + _animates[i]);
-    }
+    inAnimate = ['stage-animate-in'];
+    outAnimate = ['stage-animate-out'];
+    _.each(this._animates, function (animate) {
+      inAnimate.push('stage-animate-in-' + animate);
+      outAnimate.push('stage-animate-out-' + animate);
+    });
     this._in = inAnimate.join(' ');
     this._out = outAnimate.join(' ');
     return this;
@@ -143,8 +138,9 @@ define(function (require, exports, module) {
    */
   Stage.prototype.getView = function (fragment) {
     var view;
+    var frag = Backbone.History.prototype.getFragment(fragment || '').replace(pathStripper, '');
     _.any(this._map, function (rule) {
-      if (rule.route.test(fragment)) {
+      if (rule.route.test(frag)) {
         view = rule.view;
         return true;
       }
@@ -177,15 +173,18 @@ define(function (require, exports, module) {
   /**
    * 取动画样式
    * @param  {string} type 类型，入场或出场，对应in和out
-   * @param  {string} key  动画名，如果留空或者找不到该动画则会返回默认的转场样式
+   * @param  {string} name  动画名，如果留空或者找不到该动画则会返回默认的转场样式
    * @return {string}      动画样式
    */
-  Stage.prototype.getAnimateClass = function (type, key) {
+  Stage.prototype.getAnimateClass = function (type, name) {
     if (typeof type !== 'string' || (type !== 'in' && type !== 'out')) {
       throw new Error('the type have to be "in" or "out"');
     }
-    if (typeof key === 'string' && key in this._animates) {
-      return 'stage-animate-' + type + '-' + this._animates['key'];
+    var anyAnimate = _.any(this._animates, function (animate) {
+      return animate === name;
+    });
+    if (typeof name === 'string' && anyAnimate) {
+      return 'stage-animate-' + type + '-' + name;
     } else {
       return 'stage-animate-' + type;
     }
@@ -226,10 +225,18 @@ define(function (require, exports, module) {
       transition = transition.split(' ');
       inCls = self.getAnimateClass('in', transition[0]);
       outCls = self.getAnimateClass('out', transition[1]);
+    } else {
+      // 当tansition为空
+      inCls = self.getAnimateClass('in');
+      outCls = self.getAnimateClass('out');
     }
     // 更新转场样式
-    inView.$el.removeClass(self._out).addClass(inCls);
-    outView.$el.removeClass(self._in).addClass(outCls);
+    if (typeof outView !== 'undefined') {
+      outView.$el.removeClass(self._in).addClass(outCls);
+    }
+    if (typeof inView !== 'undefined') {
+      inView.$el.removeClass(self._out).addClass(inCls);
+    }
     // 动画结束后即完成入场和出场的任务
     setTimeout(function () {
       self.mission.trigger('in');
