@@ -248,6 +248,8 @@ define(function (require, exports, module) {
     }
     // 动画结束后即完成入场和出场的任务
     setTimeout(function () {
+      asideView.$el.removeClass(self._getRemoveClass('aside'));
+      sectionView.$el.removeClass(self._getRemoveClass('section'));
       self.mission.trigger('transition');
     }, self._speed);
     return self;

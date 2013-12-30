@@ -3083,6 +3083,9 @@ hr {
 .stage-animate-show {
   z-index: 300;
 }
+.stage-animate-show-out {
+  z-index: 280;
+}
 .stage-animate-hide {
   z-index: 50;
 }
@@ -3261,161 +3264,161 @@ hr {
 @-webkit-keyframes animate-out-slide-top {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -webkit-transform: translate3d(0, 100%, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-moz-keyframes animate-out-slide-top {
   0% {
     -moz-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -moz-transform: translate3d(0, 100%, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-o-keyframes animate-out-slide-top {
   0% {
     -o-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -o-transform: translate3d(0, 100%, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @keyframes animate-out-slide-top {
   0% {
     transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     transform: translate3d(0, 100%, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-webkit-keyframes animate-out-slide-right {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -webkit-transform: translate3d(100%, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-moz-keyframes animate-out-slide-right {
   0% {
     -moz-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -moz-transform: translate3d(100%, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-o-keyframes animate-out-slide-right {
   0% {
     -o-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -o-transform: translate3d(100%, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @keyframes animate-out-slide-right {
   0% {
     transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     transform: translate3d(100%, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-webkit-keyframes animate-out-slide-bottom {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -webkit-transform: translate3d(0, -100%, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-moz-keyframes animate-out-slide-bottom {
   0% {
     -moz-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -moz-transform: translate3d(0, -100%, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-o-keyframes animate-out-slide-bottom {
   0% {
     -o-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -o-transform: translate3d(0, -100%, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @keyframes animate-out-slide-bottom {
   0% {
     transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     transform: translate3d(0, -100%, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-webkit-keyframes animate-out-slide-left {
   0% {
     -webkit-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -webkit-transform: translate3d(-100%, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-moz-keyframes animate-out-slide-left {
   0% {
     -moz-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -moz-transform: translate3d(-100%, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-o-keyframes animate-out-slide-left {
   0% {
     -o-transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     -o-transform: translate3d(-100%, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @keyframes animate-out-slide-left {
   0% {
     transform: translate3d(0, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     transform: translate3d(-100%, 0, 0);
-    z-index: 300;
+    z-index: 280;
   }
 }
 /**
@@ -3747,257 +3750,257 @@ hr {
 @-webkit-keyframes animate-out-bounce-top {
   0% {
     -webkit-transform: translateY(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -webkit-transform: translateY(20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -webkit-transform: translateY(-2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-moz-keyframes animate-out-bounce-top {
   0% {
     -moz-transform: translateY(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -moz-transform: translateY(20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -moz-transform: translateY(-2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-o-keyframes animate-out-bounce-top {
   0% {
     -o-transform: translateY(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -o-transform: translateY(20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -o-transform: translateY(-2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @keyframes animate-out-bounce-top {
   0% {
     transform: translateY(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     transform: translateY(20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     transform: translateY(-2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-webkit-keyframes animate-out-bounce-right {
   0% {
     -webkit-transform: translateX(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -webkit-transform: translateX(-20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -webkit-transform: translateX(2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-moz-keyframes animate-out-bounce-right {
   0% {
     -moz-transform: translateX(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -moz-transform: translateX(-20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -moz-transform: translateX(2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-o-keyframes animate-out-bounce-right {
   0% {
     -o-transform: translateX(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -o-transform: translateX(-20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -o-transform: translateX(2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @keyframes animate-out-bounce-right {
   0% {
     transform: translateX(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     transform: translateX(-20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     transform: translateX(2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-webkit-keyframes animate-out-bounce-bottom {
   0% {
     -webkit-transform: translateY(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -webkit-transform: translateY(-20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -webkit-transform: translateY(2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-moz-keyframes animate-out-bounce-bottom {
   0% {
     -moz-transform: translateY(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -moz-transform: translateY(-20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -moz-transform: translateY(2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-o-keyframes animate-out-bounce-bottom {
   0% {
     -o-transform: translateY(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -o-transform: translateY(-20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -o-transform: translateY(2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @keyframes animate-out-bounce-bottom {
   0% {
     transform: translateY(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     transform: translateY(-20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     transform: translateY(2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-webkit-keyframes animate-out-bounce-left {
   0% {
     -webkit-transform: translateX(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -webkit-transform: translateX(20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -webkit-transform: translateX(-2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-moz-keyframes animate-out-bounce-left {
   0% {
     -moz-transform: translateX(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -moz-transform: translateX(20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -moz-transform: translateX(-2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @-o-keyframes animate-out-bounce-left {
   0% {
     -o-transform: translateX(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     -o-transform: translateX(20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     -o-transform: translateX(-2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 @keyframes animate-out-bounce-left {
   0% {
     transform: translateX(0);
-    z-index: 300;
+    z-index: 280;
   }
   20% {
     opacity: 1;
     transform: translateX(20px);
-    z-index: 300;
+    z-index: 280;
   }
   100% {
     opacity: 0;
     transform: translateX(-2000px);
-    z-index: 300;
+    z-index: 280;
   }
 }
 .stage-animate-in-slide-top {
@@ -4151,6 +4154,9 @@ hr {
 }
 .aside-animate-show {
   z-index: 200;
+}
+.aside-animate-show-out {
+  z-index: 180;
 }
 .aside-animate-hide {
   z-index: 50;
@@ -4326,6 +4332,7 @@ section.aside-animate-section-out-slide-right {
   -moz-animation-name: as-animate-section-out-slide-right;
   -o-animation-name: as-animate-section-out-slide-right;
   animation-name: as-animate-section-out-slide-right;
+  z-index: 180;
   -webkit-animation-fill-mode: both;
   -webkit-animation-duration: 400ms;
   -webkit-animation-timing-function: ease;
@@ -4339,6 +4346,7 @@ section.aside-animate-section-out-slide-left {
   -moz-animation-name: as-animate-section-out-slide-left;
   -o-animation-name: as-animate-section-out-slide-left;
   animation-name: as-animate-section-out-slide-left;
+  z-index: 180;
   -webkit-animation-fill-mode: both;
   -webkit-animation-duration: 400ms;
   -webkit-animation-timing-function: ease;

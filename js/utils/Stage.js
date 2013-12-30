@@ -253,8 +253,8 @@ define(function (require, exports, module) {
     }
     // 动画结束后即完成入场和出场的任务
     setTimeout(function () {
-      // inView.$el.removeClass(self._getRemoveClass('in')).addClass('stage-animate-in');
-      // outView.$el.removeClass(self._getRemoveClass('out')).addClass('stage-animate-out');
+      inView.$el.removeClass(self._getRemoveClass('in')).addClass('stage-animate-in');
+      outView.$el.removeClass(self._getRemoveClass('out')).addClass('stage-animate-out');
       self.mission.trigger('in');
       self.mission.trigger('out');
     }, self._speed);
@@ -295,8 +295,14 @@ define(function (require, exports, module) {
     self._history.navigate(fragment, options);
     // 跳转任务完成
     self.mission.trigger('navigate');
-    // 进行转场任务
-    self._playAnimate(inView, outView, transitions);
+    if (inView === outView) {
+      // 如果是同一个视图，则不进行转场动画
+      self.mission.trigger('in');
+      self.mission.trigger('out');
+    } else {
+      // 进行转场任务
+      self._playAnimate(inView, outView, transitions);
+    }
     return this;
   };
 
@@ -336,7 +342,14 @@ define(function (require, exports, module) {
     // 跳转任务完成
     self.mission.trigger('navigate');
     // 进行转场任务
-    self._playAnimate(inView, outView, transitions);
+    if (inView === outView) {
+      // 如果是同一个视图，则不进行转场动画
+      self.mission.trigger('in');
+      self.mission.trigger('out');
+    } else {
+      // 进行转场任务
+      self._playAnimate(inView, outView, transitions);
+    }
     return this;
   };
 
