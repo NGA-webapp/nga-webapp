@@ -42,8 +42,8 @@ define(function (require, exports, module) {
    */
   Aside.prototype._initializeAnimateKeys = function () {
     var self = this;
-    var asides = ['aside-animate-aside'];
-    var sections = ['aside-animate-section'];
+    var asides = [];
+    var sections = [];
     _.each(['in', 'out'], function (direction) {
       asides.push('aside-animate-aside-' + direction);
       sections.push('aside-animate-section-' + direction);
@@ -248,7 +248,7 @@ define(function (require, exports, module) {
     }
     // 动画结束后即完成入场和出场的任务
     setTimeout(function () {
-      asideView.$el.removeClass(self._getRemoveClass('aside'));
+      asideView.$el.removeClass(self._getRemoveClass('aside')).addClass('aside-animate-aside-out');
       sectionView.$el.removeClass(self._getRemoveClass('section'));
       self.mission.trigger('transition');
     }, self._speed);
