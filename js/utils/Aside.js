@@ -6,7 +6,7 @@ define(function (require, exports, module) {
       return new Aside(speed);
     }
     // 设置转场速度
-    this._speed = speed || 600;
+    this._speed = speed || 400;
     // 初始化标记
     this._flag = {
       locked: false
@@ -52,9 +52,22 @@ define(function (require, exports, module) {
         sections.push('aside-animate-section-' + direction + '-' + animate);
       });
     });
-    this._asideAnimates = asides.join(' ');
-    this._sectionAnimates = sections.join(' ');
+    this._asideAnimates = asides;
+    this._sectionAnimates = sections;
     return this;
+  };
+
+  Aside.prototype._getRemoveClass = function (type, without) {
+    var cls;
+    if (type === 'aside') {
+      cls = this._asideAnimates;
+    } else if (type === 'section') {
+      cls = this._sectionAnimates;
+    } else {
+      return [];
+    }
+    without = without || '';
+    return _.without(cls, without).join(' ');
   };
 
   /**
@@ -178,10 +191,10 @@ define(function (require, exports, module) {
     transitions = self.getTransitions('in', transitions);
     // 进行动画任务
     if (typeof asideView !== 'undefined') {
-      asideView.$el.removeClass(self._asideAnimates).addClass(transitions[0]);
+      asideView.$el.removeClass(self._getRemoveClass('aside')).addClass(transitions[0]);
     }
     if (typeof sectionView !== 'undefined') {
-      sectionView.$el.removeClass(self._sectionAnimates).addClass(transitions[1]);
+      sectionView.$el.removeClass(self._getRemoveClass('section')).addClass(transitions[1]);
     }
     self.setCurrentAside(asideView);
     self.setCurrentSection(sectionView);
@@ -228,10 +241,10 @@ define(function (require, exports, module) {
     transitions = self.getTransitions('out', transitions);
     // 进行动画任务
     if (typeof asideView !== 'undefined') {
-      asideView.$el.removeClass(self._asideAnimates).addClass(transitions[0]);
+      asideView.$el.removeClass(self._getRemoveClass('aside')).addClass(transitions[0]);
     }
     if (typeof sectionView !== 'undefined') {
-      sectionView.$el.removeClass(self._sectionAnimates).addClass(transitions[1]);
+      sectionView.$el.removeClass(self._getRemoveClass('section')).addClass(transitions[1]);
     }
     // 动画结束后即完成入场和出场的任务
     setTimeout(function () {

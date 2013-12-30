@@ -168,7 +168,7 @@ define(function (require, exports, module) {
         Backbone.history.on('route', function () {
           if (Backbone.history._historyStack.length === 0) {
             Backbone.history._historyStack = ['#' + Backbone.history.getFragment()];
-            Backbone.stage.change('#' + Backbone.history.getFragment(), ['bounce-top', 'bounce-left']);
+            Backbone.stage.change('#' + Backbone.history.getFragment());
           } else {
             if (this.getFragment(Backbone.stage.getLastFragment()) === this.getFragment()) {
               return true;
@@ -184,8 +184,8 @@ define(function (require, exports, module) {
           "!/forums": appCache.get('forumsView'),
           "!/forum/:fid": appCache.get('forumView'),
           "!/forum/:fid/p:page": appCache.get('forumView'),
-          "!/favor": appCache.get('forumsView'),
-          "!/favor/p:page": appCache.get('forumsView'),
+          "!/favor": appCache.get('forumView'),
+          "!/favor/p:page": appCache.get('forumView'),
           "!/search/:keyword": appCache.get('forumView'),
           "!/search/:keyword/p:page": appCache.get('forumView'),
           "!/topic/:tid": appCache.get('topicView'),

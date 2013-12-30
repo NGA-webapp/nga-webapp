@@ -92,8 +92,8 @@ define(function (require, exports, module) {
       'slide-top', 'slide-right', 'slide-bottom', 'slide-left',
       'bounce-top', 'bounce-right', 'bounce-bottom', 'bounce-left',
     ];
-    // 转场动画样式的字符串集合，用于removeClass
-    this._in = this._out = '';
+    // 转场动画样式的集合，用于removeClass
+    this._in = this._out = [];
     // 缓存转场任务，主要用于异步执行完成后的去锁
     this.mission = void 0;
     // 缓存当前视图
@@ -116,9 +116,22 @@ define(function (require, exports, module) {
       inAnimate.push('stage-animate-in-' + animate);
       outAnimate.push('stage-animate-out-' + animate);
     });
-    this._in = inAnimate.join(' ');
-    this._out = outAnimate.join(' ');
+    this._in = inAnimate;
+    this._out = outAnimate;
     return this;
+  };
+
+  Stage.prototype._getRemoveClass = function (type, without) {
+    var cls;
+    if (type === 'in') {
+      cls = this._in;
+    } else if (type === 'out') {
+      cls = this._out;
+    } else {
+      return [];
+    }
+    without = without || '';
+    return _.without(cls, without).join(' ');
   };
 
   /**
@@ -233,14 +246,15 @@ define(function (require, exports, module) {
     }
     // 更新转场样式
     if (typeof outView !== 'undefined') {
-      outView.$el.removeClass(self._in).addClass(outCls);
+      outView.$el.removeClass(self._getRemoveClass('in')).addClass(outCls);
     }
     if (typeof inView !== 'undefined') {
-      inView.$el.removeClass(self._out).addClass(inCls);
+      inView.$el.removeClass(self._getRemoveClass('out')).addClass(inCls);
     }
     // 动画结束后即完成入场和出场的任务
     setTimeout(function () {
-      // inView.$el.removeClass(self._in).addClass('stage-animate-in');
+      // inView.$el.removeClass(self._getRemoveClass('in')).addClass('stage-animate-in');
+      // outView.$el.removeClass(self._getRemoveClass('out')).addClass('stage-animate-out');
       self.mission.trigger('in');
       self.mission.trigger('out');
     }, self._speed);
