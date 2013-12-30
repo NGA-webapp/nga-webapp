@@ -3,7 +3,6 @@ define(function (require, exports, module) {
   var ui = require('utils/ui/index');
   var BasicView = require('modules/views/abstracts/Basic');
   var tpl = require('templates/menu/menu.tpl');
-  var Navigate = require('utils/Navigate');
   var appCache = require('modules/AppCache').appCache;
   var siteStorage = require('modules/storage/site');
   var sliceSubject = require('utils/common').sliceSubject;
@@ -18,21 +17,24 @@ define(function (require, exports, module) {
         var $nav = $(events.currentTarget);
         var fid = $nav.attr('data-fid');
         if (fid !== null) {
-          Navigate.redirect('#!/forum/' + fid);
+          Backbone.aside.hide(['', 'slide-left']);
+          Backbone.stage.change('#!/forum/' + fid, ['slide-right', 'slide-left']);
           appCache.get('forumView').$el.find('header .subject').text(sliceSubject($nav.text()));
           this.uiCurrentForum(fid);
         }
       },
       'singleTap .forums': function (e) {
         var $nav = $(e.currentTarget);
-        Navigate.redirect('#!/forums');
+        Backbone.aside.hide(['', 'slide-left']);
+        Backbone.stage.change('#!/forums', ['slide-right', 'slide-left']);
         this.uiClearNav();
         $nav.addClass('active');
         this.cache.activeNav = '.forums';
       },
       'singleTap .favor': function (e) {
         var $nav = $(e.currentTarget);
-        Navigate.redirect('#!/favor');
+        Backbone.aside.hide(['', 'slide-left']);
+        Backbone.stage.change('#!/favor', ['slide-right', 'slide-left']);
         appCache.get('forumView').$el.find('header .subject').text(sliceSubject('收藏'));
         this.uiClearNav();
         $nav.addClass('active');
@@ -40,14 +42,16 @@ define(function (require, exports, module) {
       },
       'singleTap .setting': function (e) {
         var $nav = $(e.currentTarget);
-        Navigate.redirect('#!/setting');
+        Backbone.aside.hide(['', 'slide-left']);
+        Backbone.stage.change('#!/setting', ['slide-right', 'slide-left']);
         this.uiClearNav();
         $nav.addClass('active');
         this.cache.activeNav = '.setting';
       },
       'singleTap .logout': function (e) {
         var $nav = $(e.currentTarget);
-        Navigate.redirect('#!/logout');
+        Backbone.aside.hide(['', 'slide-left']);
+        Backbone.stage.change('#!/logout', ['slide-right', 'slide-left']);
         this.uiClearNav();
         $nav.addClass('active');
         this.cache.activeNav = '.logout';
@@ -57,7 +61,8 @@ define(function (require, exports, module) {
         if (!trim(keyword)) {
           Notification.alert('搜索词不能为空哟');
         } else {
-          Navigate.redirect('#!/search/' + keyword);
+          Backbone.aside.hide(['', 'slide-left']);
+          Backbone.stage.change('#!/search/' + keyword, ['slide-right', 'slide-left']);
           appCache.get('forumView').$el.find('header .subject').text(sliceSubject('搜索'));
           this.uiClearNav();
           this.cache.activeNav = '';

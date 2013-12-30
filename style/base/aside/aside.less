@@ -1,0 +1,70 @@
+.aside-animate {
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-duration: 600ms;
+  -webkit-animation-timing-function: ease;
+}
+.aside-animate-show {
+  z-index: 200;
+}
+.aside-animate-hide {
+  z-index: 50;
+}
+.aside-animate-aside-in {
+  .aside-animate-show;
+}
+.aside-animate-aside-out {
+  .aside-animate-hide;
+}
+@import './animate';
+aside {
+  // .aside-animate-aside-slide-right {
+  //   -webkit-animation-name: animate-in-slide-right;
+  //      -moz-animation-name: animate-in-slide-right;
+  //        -o-animation-name: animate-in-slide-right;
+  //           animation-name: animate-in-slide-right;
+  //   .aside-animate-show;
+  //   .aside-animate;
+  // }
+  // .aside-animate-aside-slide-left {
+  //   -webkit-animation-name: animate-in-slide-left;
+  //      -moz-animation-name: animate-in-slide-left;
+  //        -o-animation-name: animate-in-slide-left;
+  //           animation-name: animate-in-slide-left;
+  //   .aside-animate-show;
+  //   .aside-animate;
+  // }
+}
+section {
+  &.aside-animate-section-in-slide-right {
+    -webkit-animation-name: as-animate-section-in-slide-right;
+       -moz-animation-name: as-animate-section-in-slide-right;
+         -o-animation-name: as-animate-section-in-slide-right;
+            animation-name: as-animate-section-in-slide-right;
+    .aside-animate;
+    .translate3d(-80%, 0, 0);
+  }
+  &.aside-animate-section-in-slide-left {
+    -webkit-animation-name: as-animate-section-in-slide-left;
+       -moz-animation-name: as-animate-section-in-slide-left;
+         -o-animation-name: as-animate-section-in-slide-left;
+            animation-name: as-animate-section-in-slide-left;
+    .aside-animate;
+    .translate3d(80%, 0, 0);
+  }
+  &.aside-animate-section-out-slide-right {
+    -webkit-animation-name: as-animate-section-out-slide-right;
+       -moz-animation-name: as-animate-section-out-slide-right;
+         -o-animation-name: as-animate-section-out-slide-right;
+            animation-name: as-animate-section-out-slide-right;
+    .aside-animate;
+    .translate3d(-80%, 0, 0);
+  }
+  &.aside-animate-section-out-slide-left {
+    -webkit-animation-name: as-animate-section-out-slide-left;
+       -moz-animation-name: as-animate-section-out-slide-left;
+         -o-animation-name: as-animate-section-out-slide-left;
+            animation-name: as-animate-section-out-slide-left;
+    .aside-animate;
+    .translate3d(80%, 0, 0);
+  }
+}

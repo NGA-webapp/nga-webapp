@@ -194,12 +194,14 @@ define(function (require, exports, module) {
           "!/user/username/:username": appCache.get('userView'),
           "!/login": appCache.get('loginView'),
           "!/logout": appCache.get('logoutView'),
-          "!/menu": appCache.get('menuView'),
           "!/setting": appCache.get('settingView'),
-          "!/setting/favor": appCache.get('settingView'),
+          "!/setting/favor": appCache.get('forumsView'),
           "!/publish/:fid": appCache.get('publishView'),
           "!/publish/:fid/:tid": appCache.get('publishView'),
           "*other": appCache.get('bootupView')
+        });
+        Backbone.aside.setMap({
+          'menu': appCache.get('menuView')
         });
         Backbone.stage.setCurrentView(appCache.get('bootupView'));
         return this;

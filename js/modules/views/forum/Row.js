@@ -2,7 +2,6 @@ define(function (require, exports, module) {
   var art = require('utils/artTemplate/index');
   var BasicView = require('modules/views/abstracts/Basic');
   var tpl = require('templates/forum/row.tpl');
-  var Navigate = require('utils/Navigate');
   var appCache = require('modules/AppCache').appCache;
   var sliceSubject = require('utils/common').sliceSubject;
 

@@ -4,7 +4,6 @@ define(function (require, exports, module) {
   var BasicView = require('modules/views/abstracts/Basic');
   var tpl = require('templates/publish/publish.tpl');
   var tplContent = require('templates/publish/content.tpl');
-  var Navigate = require('utils/Navigate');
   var inCharset = require('utils/inCharset');
   var appCache = require('modules/AppCache').appCache;
   var Notification = require('utils/Notification');

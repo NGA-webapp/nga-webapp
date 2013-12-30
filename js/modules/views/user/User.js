@@ -3,7 +3,6 @@ define(function (require, exports, module) {
   var ui = require('utils/ui/index');
   var BasicView = require('modules/views/abstracts/Basic');
   var tpl = require('templates/user/user.tpl');
-  var Navigate = require('utils/Navigate');
   var UserModel = require('modules/daos/user/UserModel');
   var ContentUserView = require('modules/views/user/Content');
   var inCharset = require('utils/inCharset');

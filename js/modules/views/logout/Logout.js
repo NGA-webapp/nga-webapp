@@ -4,7 +4,6 @@ define(function (require, exports, module) {
   var BasicView = require('modules/views/abstracts/Basic');
   var tpl = require('templates/logout/logout.tpl');
   var tplContent = require('templates/logout/content.tpl');
-  var Navigate = require('utils/Navigate');
   var appCache = require('modules/AppCache').appCache;
   var Notification = require('utils/Notification'); 
 
@@ -46,15 +45,15 @@ define(function (require, exports, module) {
       return false;
     },
     openLeftSider: function () {
-      // this.$el.addClass('section-sider-left');
       var self = this;
-      Navigate.aside('#!/menu', function () {
+      self.$el.find('.asideMask').addClass('on');
+      Backbone.aside.onceAfterHide(function () {
         self.$el.find('.asideMask').removeClass('on');
       });
-      self.$el.find('.asideMask').addClass('on');
+      Backbone.aside.show('menu', ['', 'slide-left']);
     },
     closeSider: function () {
-      Navigate.back();
+      Backbone.aside.hide(['', 'slide-left']);
     },
     render: function () {
       this.$el.html(this.tpl());

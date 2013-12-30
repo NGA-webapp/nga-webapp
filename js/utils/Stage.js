@@ -206,26 +206,26 @@ define(function (require, exports, module) {
    * 播放转场动画
    * @param  {Backbone.View} inView     入场视图
    * @param  {Backbone.View} outView    出场视图
-   * @param  {array|object|string} transition 转场动画
+   * @param  {array|object|string} transitions 转场动画
    * @return {Stage}            this
    */
-  Stage.prototype._playAnimate = function (inView, outView, transition) {
+  Stage.prototype._playAnimate = function (inView, outView, transitions) {
     var self = this;
     var inCls, outCls;
     // 取转场动画
-    if (transition instanceof Array) {
-      // 当transition形式为[in, out] || [in] || []
-      inCls = self.getAnimateClass('in', transition[0]);
-      outCls = self.getAnimateClass('out', transition[1]);
-    } else if (typeof transition === 'object') {
-      // 当transition形式为{in: in, out: out} || {in: in} || {out: out} || {}
-      inCls = self.getAnimateClass('in', transition['in']);
-      outCls = self.getAnimateClass('out', transition['out']);
-    } else if (typeof transition === 'string') {
-      // 当transition形式为"IN OUT" || "IN" || ""
-      transition = transition.split(' ');
-      inCls = self.getAnimateClass('in', transition[0]);
-      outCls = self.getAnimateClass('out', transition[1]);
+    if (transitions instanceof Array) {
+      // 当transitions形式为[in, out] || [in] || []
+      inCls = self.getAnimateClass('in', transitions[0]);
+      outCls = self.getAnimateClass('out', transitions[1]);
+    } else if (typeof transitions === 'object') {
+      // 当transitions形式为{in: in, out: out} || {in: in} || {out: out} || {}
+      inCls = self.getAnimateClass('in', transitions['in']);
+      outCls = self.getAnimateClass('out', transitions['out']);
+    } else if (typeof transitions === 'string') {
+      // 当transitions形式为"IN OUT" || "IN" || ""
+      transitions = transitions.split(' ');
+      inCls = self.getAnimateClass('in', transitions[0]);
+      outCls = self.getAnimateClass('out', transitions[1]);
     } else {
       // 当tansition为空
       inCls = self.getAnimateClass('in');
@@ -240,6 +240,7 @@ define(function (require, exports, module) {
     }
     // 动画结束后即完成入场和出场的任务
     setTimeout(function () {
+      // inView.$el.removeClass(self._in).addClass('stage-animate-in');
       self.mission.trigger('in');
       self.mission.trigger('out');
     }, self._speed);
@@ -251,12 +252,12 @@ define(function (require, exports, module) {
    * @method  change
    * @for Stage 
    * @param  {string} fragment   路由地址
-   * @param  {array} transition 转场动画，长度为二的数组，对应入场和出场
+   * @param  {array} transitions 转场动画，长度为二的数组，对应入场和出场
    * @param  {object} options    可选项，将传递到Backbone.history.navigate
    * @return {Stage}            this
    * @chainable
    */
-  Stage.prototype.change = function (fragment, transition, options) {
+  Stage.prototype.change = function (fragment, transitions, options) {
     var self = this;
     var outView, inView;
     // 判断是否被锁定
@@ -281,7 +282,7 @@ define(function (require, exports, module) {
     // 跳转任务完成
     self.mission.trigger('navigate');
     // 进行转场任务
-    self._playAnimate(inView, outView, transition);
+    self._playAnimate(inView, outView, transitions);
     return this;
   };
 
@@ -289,11 +290,11 @@ define(function (require, exports, module) {
    * 后退
    * @method  back
    * @for Stage 
-   * @param  {array} transition 转场动画，长度为二的数组，对应入场和出场
+   * @param  {array} transitions 转场动画，长度为二的数组，对应入场和出场
    * @return {Stage}            this
    * @chainable
    */
-  Stage.prototype.back = function (transition, options) {
+  Stage.prototype.back = function (transitions, options) {
     var self = this;
     var outView, inView;
     var fragment;
@@ -321,7 +322,7 @@ define(function (require, exports, module) {
     // 跳转任务完成
     self.mission.trigger('navigate');
     // 进行转场任务
-    self._playAnimate(inView, outView, transition);
+    self._playAnimate(inView, outView, transitions);
     return this;
   };
 

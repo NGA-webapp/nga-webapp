@@ -4,7 +4,6 @@ define(function (require, exports, module) {
   var BasicView = require('modules/views/abstracts/Basic');
   var tpl = require('templates/forums/forums.tpl');
   var tplContent = require('templates/forums/content.tpl');
-  var Navigate = require('utils/Navigate');
   var appCache = require('modules/AppCache').appCache;
   var siteStorage = require('modules/storage/site');
   var sliceSubject = require('utils/common').sliceSubject;
@@ -37,9 +36,7 @@ define(function (require, exports, module) {
         Backbone.stage.back(['bounce-right', 'bounce-right']);
       },
       'swipeRight header+article': function () {
-        if (this.flag.chooseFavor) {
-          Navigate.back();
-        } else {
+        if (!this.flag.chooseFavor) {
           this.openLeftSider();
         }
       },
@@ -82,13 +79,14 @@ define(function (require, exports, module) {
     openLeftSider: function () {
       // this.$el.addClass('section-sider-left');
       var self = this;
-      Navigate.aside('#!/menu', function () {
+      self.$el.find('.asideMask').addClass('on');
+      Backbone.aside.onceAfterHide(function () {
         self.$el.find('.asideMask').removeClass('on');
       });
-      self.$el.find('.asideMask').addClass('on');
+      Backbone.aside.show('menu', ['', 'slide-left']);
     },
     closeSider: function () {
-      Navigate.back();
+      Backbone.aside.hide(['', 'slide-left']);
     },
     render: function () {
       this.$el.html(this.tpl());

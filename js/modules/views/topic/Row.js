@@ -2,7 +2,6 @@ define(function (require, exports, module) {
   var art = require('utils/artTemplate/index');
   var BasicView = require('modules/views/abstracts/Basic');
   var tpl = require('templates/topic/row.tpl');
-  var Navigate = require('utils/Navigate');
   var siteStorage = require('modules/storage/site');
 
   var RowTopicView = BasicView.extend({

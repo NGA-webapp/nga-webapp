@@ -5,7 +5,6 @@ define(function (require, exports, module) {
   var TopicInForumCollection = require('modules/daos/forum/TopicInForumCollection');
   var tpl = require('templates/forum/forum.tpl');
   var RowForumView = require('modules/views/forum/Row');
-  var Navigate = require('utils/Navigate');
   var iScrollPull = require('utils/iScrollPull');
   var appCache = require('modules/AppCache').appCache;
   var sliceSubject = require('utils/common').sliceSubject;
@@ -53,15 +52,15 @@ define(function (require, exports, module) {
       'tap .action-aside': 'openLeftSider',
     },
     openLeftSider: function () {
-      // this.$el.addClass('section-sider-left');
       var self = this;
-      Navigate.aside('#!/menu', function () {
+      self.$el.find('.asideMask').addClass('on');
+      Backbone.aside.onceAfterHide(function () {
         self.$el.find('.asideMask').removeClass('on');
       });
-      self.$el.find('.asideMask').addClass('on');
+      Backbone.aside.show('menu', ['', 'slide-left']);
     },
     closeSider: function () {
-      Navigate.back();
+      Backbone.aside.hide(['', 'slide-left']);
     },
     refresh: function () {
       if (this.flag.favorList) {

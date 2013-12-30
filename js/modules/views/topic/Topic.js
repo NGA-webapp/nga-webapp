@@ -5,7 +5,6 @@ define(function (require, exports, module) {
   var PostInTopicCollection = require('modules/daos/topic/PostInTopicCollection');
   var tpl = require('templates/topic/topic.tpl');
   var RowTopicView = require('modules/views/topic/Row');
-  var Navigate = require('utils/Navigate');
   var sliceSubject = require('utils/common').sliceSubject;
   var iScrollPull = require('utils/iScrollPull');
   var appCache = require('modules/AppCache').appCache;
@@ -21,7 +20,7 @@ define(function (require, exports, module) {
       'singleTap .action-back': function () {
         if (this.flag.active) {
           this.flag.active === false;
-          Backbone.stage.back(['bounce-right', 'bounce-right']);
+          Backbone.stage.back(['bounce-left', 'bounce-left']);
         }
       },
       'singleTap .action-skip': function () {
@@ -168,8 +167,8 @@ define(function (require, exports, module) {
           Notification.alert('呜~进入帖子失败~');
           ui.Loading.close();
           _.delay(function (){
-            Navigate.back();
-          }, 400);
+            Backbone.stage.back(['bounce-right', 'bounce-right']);
+          }, 600);
         }
       });
       this.collection.fetchXml(data, options);
