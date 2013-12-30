@@ -21,7 +21,7 @@ define(function (require, exports, module) {
       'singleTap .action-back': function () {
         if (this.flag.active) {
           this.flag.active === false;
-          Navigate.back();
+          Backbone.stage.back(['bounce-right', 'bounce-right']);
         }
       },
       'singleTap .action-skip': function () {
@@ -41,7 +41,7 @@ define(function (require, exports, module) {
         }, '跳转', ['yamie', 'biu~'], (maxPage + ''));
       },
       'singleTap .action-reply': function () {
-        Navigate.redirect('#!/publish/' + this.collection.cache.fid + '/' + this.collection.cache.tid);
+        Backbone.stage.change('#!/publish/' + this.collection.cache.fid + '/' + this.collection.cache.tid, ['bounce-top', 'bounce-top']);
         appCache.get('publishView').$el.find('header .subject').text(sliceSubject('回复'));
       },
       'singleTap .action-share': function () {
@@ -84,7 +84,7 @@ define(function (require, exports, module) {
       }
       tid = this.collection.cache.tid;
       page = this.collection.cache.page - 1;
-      Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
+      Backbone.stage.change('#!/topic/' + tid + '/p' + page, [], {replace: true});
       this.fetch({tid: tid, page: page});
     },
     nextPage: function () {
@@ -96,7 +96,7 @@ define(function (require, exports, module) {
       }
       tid = this.collection.cache.tid;
       page = this.collection.cache.page + 1;
-      Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
+      Backbone.stage.change('#!/topic/' + tid + '/p' + page, [], {replace: true});
       this.fetch({tid: tid, page: page});
     },
     render: function () {

@@ -12,7 +12,7 @@ define(function (require, exports, module) {
     tpl: art.compile(tpl),
     events: {
       'singleTap .action-settingFavor': function () {
-        Navigate.redirect('#!/setting/favor');
+        Backbone.stage.change('#!/setting/favor', ['bounce-left', 'bounce-left']);
       },
       'singleTap .select': function (e) {
         $li = $(e.currentTarget);

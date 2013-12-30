@@ -10,7 +10,7 @@ define(function (require, exports, module) {
     className: 'hide',
     events: {
       'singleTap .avatar': function () {
-        Navigate.redirect('#!/user/uid/' + this.model.get('authorId'));
+        Backbone.stage.change('#!/user/uid/' + this.model.get('authorId'), ['bounce-top', 'bounce-top']);
       },
       'singleTap a.url': function (events) {
         var url = $(events.currentTarget).attr('data-url');

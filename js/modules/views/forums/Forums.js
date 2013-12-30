@@ -34,7 +34,7 @@ define(function (require, exports, module) {
         }
       },
       'singleTap .action-back': function () {
-        Navigate.back();
+        Backbone.stage.back(['bounce-right', 'bounce-right']);
       },
       'swipeRight header+article': function () {
         if (this.flag.chooseFavor) {
@@ -75,7 +75,7 @@ define(function (require, exports, module) {
     },
     introForum: function ($li) {
       var fid = $li.attr('data-fid');
-      Navigate.redirect('#!/forum/' + fid);
+      Backbone.stage.change('#!/forum/' + fid, ['bounce-left', 'bounce-left']);
       appCache.get('forumView').$el.find('header .subject').text(sliceSubject($li.find('h4').text()));
       appCache.get('menuView').uiCurrentForum(fid);
     },

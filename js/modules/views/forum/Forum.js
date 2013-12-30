@@ -39,7 +39,7 @@ define(function (require, exports, module) {
         });
       },
       'singleTap .action-new': function () {
-        Navigate.redirect('#!/publish/' + this.collection.cache.fid);
+        Backbone.stage.change('#!/publish/' + this.collection.cache.fid, ['bounce-top', 'bounce-top']);
         appCache.get('publishView').$el.find('header .subject').text(sliceSubject('新帖'));
       },
       'singleTap .action-refresh': function (e) {

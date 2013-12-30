@@ -13,7 +13,7 @@ define(function (require, exports, module) {
     tpl: art.compile(tpl),
     events: {
       'tap .action-back': function () {
-        Navigate.back();
+        Backbone.stage.back(['bounce-bottom', 'bounce-bottom']);
       }
     },
     render: function () {
@@ -29,7 +29,7 @@ define(function (require, exports, module) {
       var view;
       if (this.model.toJSON()['error']) {
         ui.Loading.close();
-        Navigate.back();
+        Backbone.stage.back(['bounce-bottom', 'bounce-bottom']);
       } else {
         view = new ContentUserView({model: this.model});
         this.scroll.scrollTo(0, 0, 0);

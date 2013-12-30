@@ -33,7 +33,7 @@ define(function (require, exports, module) {
       'singleTap .action-back': function () {
         if (this.flag.active) {
           this.flag.active === false;
-          Navigate.back();
+          Backbone.stage.back(['bounce-bottom', 'bounce-bottom']);
         }
       },
       'singleTap .action-ok': function (e) {
@@ -75,7 +75,7 @@ define(function (require, exports, module) {
                   console.log(target);
                   if (target && target.length === 3) {
                     appCache.get('topicView').fetch({tid: target[1]});
-                    Navigate.back();
+                    Backbone.stage.back(['bounce-bottom', 'bounce-bottom']);
                   }
                 }
               },

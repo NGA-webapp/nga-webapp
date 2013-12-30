@@ -39,7 +39,7 @@ define(function (require, exports, module) {
         Notification.alert('登出成功', function () {
           ui.Loading.close();
           appCache.get('loginView').nextAction.success = function () {appCache.get('bootupView').introFunc();};
-          Navigate.redirect('#!/login');
+          Backbone.stage.change('#!/login', ['bounce-top', 'bounce-bottom']);
           self.flag.requesting = false;
         });
       });

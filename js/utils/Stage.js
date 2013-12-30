@@ -14,7 +14,7 @@ define(function (require, exports, module) {
       this._historyStack = [fragment];
     },
     getLastFragment: function () {
-      return this._historyStack[this._historyStack.length - 1] || '';
+      return this._historyStack[this._historyStack.length - 2] || '';
     },
     checkUrl: function(e) {
       var current = this.getFragment();

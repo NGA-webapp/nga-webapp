@@ -11,7 +11,7 @@ define(function (require, exports, module) {
     className: 'hide',
     events: {
       'singleTap': function (e) {
-        Navigate.redirect('#!/topic/' + this.model.get('id'));
+        Backbone.stage.change('#!/topic/' + this.model.get('id'), ['bounce-left', 'bounce-left']);
         appCache.get('topicView').$el.find('header .subject').text(sliceSubject(this.$el.find('h4').text()));
       }
     },
