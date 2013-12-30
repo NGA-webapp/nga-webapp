@@ -34,8 +34,8 @@ define(function (require, exports, module) {
             page = result['input1'];
             if (result['buttonIndex'] === 2 && page) {
               page = page > maxPage ? maxPage : page;
-              Backbone.history.navigate('#!/topic/' + tid + '/p' + page);
-              self.fetch({tid: tid, page: page});
+              Backbone.stage.change('#!/topic/' + tid + '/p' + page, [], {replace: true});
+              // self.fetch({tid: tid, page: page});
             }
           }
         }, '跳转', ['yamie', 'biu~'], (maxPage + ''));
@@ -83,9 +83,9 @@ define(function (require, exports, module) {
         return false;
       }
       tid = this.collection.cache.tid;
-      page = this.collection.cache.page - 1;
+      page = parseInt(this.collection.cache.page, 0) - 1;
       Backbone.stage.change('#!/topic/' + tid + '/p' + page, [], {replace: true});
-      this.fetch({tid: tid, page: page});
+      // this.fetch({tid: tid, page: page});
     },
     nextPage: function () {
       var tid, page;
@@ -95,9 +95,9 @@ define(function (require, exports, module) {
         return false;
       }
       tid = this.collection.cache.tid;
-      page = this.collection.cache.page + 1;
+      page = parseInt(this.collection.cache.page, 0) + 1;
       Backbone.stage.change('#!/topic/' + tid + '/p' + page, [], {replace: true});
-      this.fetch({tid: tid, page: page});
+      // this.fetch({tid: tid, page: page});
     },
     render: function () {
       var self = this;

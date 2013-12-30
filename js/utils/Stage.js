@@ -77,7 +77,7 @@ define(function (require, exports, module) {
    */
   var Stage = function (speed) {
     if (!(this instanceof Stage)) {
-      return new Stage(router, speed);
+      return new Stage(speed);
     }
     // 设置转场速度
     this._speed = speed || 600;
@@ -122,7 +122,8 @@ define(function (require, exports, module) {
   };
 
   /**
-   * 设置路径->视图(fragment->view)的映射关系
+   * 设置路径->视图(fragment->view)的映射关系，
+   * 以便于在Backbone.Router中使用
    */
   Stage.prototype.setMap = function (map) {
     var collection = [];
