@@ -1,8 +1,10 @@
 define(function (require, exports, module) {
   var Router = require('modules/Router')();
   var Stage = require('utils/Stage');
+  var Aside = require('utils/Aside');
   var router;
   Backbone.stage = new Stage();
+  Backbone.aside = new Aside();
   Backbone.$ = $;
   router = new Router();
   Backbone.history.start();
