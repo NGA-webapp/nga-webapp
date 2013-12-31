@@ -10,7 +10,7 @@ define(function (require, exports, module) {
     return '';
   };
 
-  var youku = function (elem) {
+  var youku = function (elem, callback) {
     window.elem = elem;
     var url = elem.getAttribute('data-url');
     var id = getYoukuId(url);
@@ -41,7 +41,9 @@ define(function (require, exports, module) {
       if (url) {
         video = document.createElement('video');
         video.setAttribute('src', url);
+        video.setAttribute('controls', 'controls');
         elem.appendChild(video);
+        callback.call(elem);
       }
     };
     request(success);
@@ -49,10 +51,10 @@ define(function (require, exports, module) {
 
   var jQueryFactory = (function ($) {
     $.extend($.fn, {
-      youku: function () {
+      youku: function (callback) {
         var i, len;
         for (i = 0, len = this.length; i < len; i++) {
-          youku(this[i]);
+          youku(this[i], callback);
         }
       }
     });
