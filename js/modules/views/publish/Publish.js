@@ -32,6 +32,7 @@ define(function (require, exports, module) {
       'singleTap .action-back': function () {
         if (this.flag.active) {
           this.flag.active === false;
+          this.$el.find('input').blur();
           Backbone.stage.back(['bounce-bottom', 'bounce-bottom']);
         }
       },
@@ -44,6 +45,7 @@ define(function (require, exports, module) {
           return;
         }
         this.flag.request = true;
+        this.$el.find('input').blur();
         $btn.addClass('loading').find('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-refresh');
         ui.Loading.open();
         inCharset(content, 'gbk', function (content) {

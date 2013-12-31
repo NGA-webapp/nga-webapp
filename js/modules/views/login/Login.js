@@ -84,6 +84,7 @@ define(function (require, exports, module) {
               if (resp.match(/登录成功/)) {
                 success = true;
                 msg = '登录成功';
+                self.$el.find('.password').val('');
                 self.nextAction.success();
               } else {
                 success = false;
