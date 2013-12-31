@@ -167,7 +167,7 @@ define(function (require, exports, module) {
         });
         Backbone.history.on('route', function () {
           if (Backbone.history._historyStack.length === 0) {
-            Backbone.history._historyStack = ['#' + Backbone.history.getFragment()];
+            Backbone.history._historyStack = [Backbone.history.getFragment()];
             Backbone.stage.change('#' + Backbone.history.getFragment());
           } else {
             if (this.getFragment(Backbone.stage.getLastFragment()) === this.getFragment()) {

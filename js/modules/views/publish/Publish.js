@@ -54,6 +54,7 @@ define(function (require, exports, module) {
             $.ajax({
               url: postUrl,
               data: data,
+              timeout: 20000,
               complete: function () {
                 self.flag.request = false;
                 $btn.removeClass('loading').find('.glyphicon').addClass('glyphicon-ok').removeClass('glyphicon-refresh');

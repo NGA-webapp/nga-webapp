@@ -283,13 +283,21 @@ define(function (require, exports, module) {
     // 初始化任务(可异步)，只有当所有任务结束才可以去锁
     self.mission = new EventProxy();
     self.mission.all('in', 'out', 'navigate', function () {
+      // 触发视图上的转场结束事件
+      inView.trigger('stage-in-end');
+      outView.trigger('stage-out-end');
+      // 解锁
       self._flag.locked = false;
     });
     // 初始化选项值
     _.defaults((options = options || {}), {trigger: true});
-    // 取出要进行转场的两个视图，并更新保存当前视图的缓存
+    // 取出要进行转场的两个视图
     inView = self.getView(fragment);
     outView = self.getCurrentView();
+    // 触发视图上的转场开始事件
+    inView.trigger('stage-in-start');
+    outView.trigger('stage-out-start');
+    // 更新保存当前视图的缓存
     self.setCurrentView(inView);
     // 调用路由方法，进行跳转
     self._history.navigate(fragment, options);
@@ -327,15 +335,23 @@ define(function (require, exports, module) {
     // 初始化任务(可异步)，只有当所有任务结束才可以去锁
     self.mission = new EventProxy();
     self.mission.all('in', 'out', 'navigate', function () {
+      // 触发视图上的转场结束事件
+      inView.trigger('stage-in-end');
+      outView.trigger('stage-out-end');
+      // 解锁
       self._flag.locked = false;
     });
     // 初始化选项值。与navigate不同，back默认时trigger应为false
     _.defaults((options = options || {}), {trigger: false});
     // 取上一个历史记录的地址作为目标地址
     fragment = this.getLastFragment();
-    // 取出要进行转场的两个视图，并更新保存当前视图的缓存
+    // 取出要进行转场的两个视图
     inView = self.getView(fragment);
     outView = self.getCurrentView();
+    // 触发视图上的转场开始事件
+    inView.trigger('stage-in-start');
+    outView.trigger('stage-out-start');
+    // 更新保存当前视图的缓存
     self.setCurrentView(inView);
     // 调用路由方法，进行跳转
     self._history.back(options);

@@ -72,6 +72,7 @@ define(function (require, exports, module) {
             type: 'post',
             url: loginUrl,
             data: data,
+            timeout: 20000,
             beforeSend: function (req) {
               req.overrideMimeType("text/html; charset=gbk"); 
               req.setRequestHeader('accept', 'text/javascript; charset=gbk');

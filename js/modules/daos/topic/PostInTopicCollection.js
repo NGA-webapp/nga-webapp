@@ -11,11 +11,12 @@ define(function (require, exports, module) {
     cache: {},
     parse: function (resp) {
       var data = parser(resp);
-      window.parserDate = data;
-      this.cache.rowCount = data.rowCount;
-      this.cache.pageCount = data.pageCount;
-      this.cache.subject = data.topic.subject;
-      this.cache.fid = data.topic.fid;
+      if (data) {
+        this.cache.rowCount = data.rowCount;
+        this.cache.pageCount = data.pageCount;
+        this.cache.subject = data.topic.subject;
+        this.cache.fid = data.topic.fid;
+      }
       console.log('account status: ', data.account);
       return data.posts;
     },

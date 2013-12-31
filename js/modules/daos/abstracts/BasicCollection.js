@@ -40,7 +40,8 @@ define(function (require, exports, module) {
         'url': this.url,
         'dataType': 'xml',
         'data': options.urlEncoded ? getPrarmStringWithoutUrlEncode(data) : data,
-        'complete': checkError
+        'complete': checkError,
+        'timeout': 20000
       });
       return this.fetch(options);
     },

@@ -181,12 +181,19 @@ define(function (require, exports, module) {
     // 初始化任务(可异步)，只有当所有任务结束才可以去锁
     self.mission = new EventProxy();
     self.mission.all('transition', function () {
+      // 触发视图上的转场结束事件
+      asideView.trigger('aside-aside-in-end');
+      sectionView.trigger('aside-section-in-end');
+      // 解锁
       self._flag.locked = false;
       typeof callback === 'function' && callback();
     });
     // 取出要进行动画的当前视图
     asideView = self._map[asideName];
     sectionView = Backbone.stage.getCurrentView();
+    // 触发视图上的转场开始事件
+    asideView.trigger('aside-aside-in-start');
+    sectionView.trigger('aside-section-in-start');
     // 获取动画设置
     transitions = self.getTransitions('in', transitions);
     // 进行动画任务
@@ -230,6 +237,10 @@ define(function (require, exports, module) {
     // 初始化任务(可异步)，只有当所有任务结束才可以去锁
     self.mission = new EventProxy();
     self.mission.all('transition', function () {
+      // 触发视图上的转场结束事件
+      asideView.trigger('aside-aside-out-end');
+      sectionView.trigger('aside-section-out-end');
+      // 解锁
       self._flag.locked = false;
       self._onceAfterHide();
       typeof callback === 'function' && callback();
@@ -237,6 +248,9 @@ define(function (require, exports, module) {
     // 取出要进行动画的当前视图
     sectionView = self.getCurrentSection();
     asideView = self.getCurrentAside();
+    // 触发视图上的转场开始事件
+    asideView.trigger('aside-aside-out-start');
+    sectionView.trigger('aside-section-out-start');
     // 获取动画设置
     transitions = self.getTransitions('out', transitions);
     // 进行动画任务

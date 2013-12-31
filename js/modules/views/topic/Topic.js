@@ -18,6 +18,7 @@ define(function (require, exports, module) {
     },
     events: {
       'singleTap .action-back': function () {
+        console.log(1);
         if (this.flag.active) {
           this.flag.active === false;
           Backbone.stage.back(['bounce-left', 'bounce-left']);

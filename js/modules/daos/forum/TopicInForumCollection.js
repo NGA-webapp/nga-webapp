@@ -12,10 +12,20 @@ define(function (require, exports, module) {
     cache: {},
     parse: function (resp) {
       var data = parser(resp);
-      this.cache.rows = data.rows;
-      this.cache.fid = data.forum.fid;
+      if (data) {
+        this.cache.rows = data.rows;
+        this.cache.fid = data.forum.fid;
+      }
       console.log('account status: ', data.account);
       return data.topics;
+    },
+    initialize: function () {
+      // 把将要加载的页面fid缓存
+      this.on('request', function (model, xhr, options) {
+        if (options.data.fid) {
+          this.cache.fid = options.data.fid;
+        }
+      });
     }
   });
 
