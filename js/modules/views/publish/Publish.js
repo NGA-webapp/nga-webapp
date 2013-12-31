@@ -64,20 +64,20 @@ define(function (require, exports, module) {
               },
               success: function (data) {
                 var target;
-                console.log(data);
                 var jump = $(data).find('__JUMP').text();
-
                 var msg = $(data).find('__MESSAGE > item').eq(1).text();
+                var readUrl = $(data).find('item > item').eq(0).text();
                 if (msg) {
                   Notification.alert(msg);
                 }
+                jump = jump || readUrl;
                 if (jump) {
                   // /read.php?tid=6726209&_ff=335&page=e#a 
                   target = jump.match(/tid=(\d+)&_ff=(\d+)/);
                   console.log(target);
                   if (target && target.length === 3) {
-                    appCache.get('topicView').fetch({tid: target[1]});
-                    Backbone.stage.back(['bounce-bottom', 'bounce-bottom']);
+                    // appCache.get('topicView').fetch({tid: target[1]});
+                    Backbone.stage.back(['bounce-bottom', 'bounce-bottom'], {trigger: true});
                   }
                 }
               },

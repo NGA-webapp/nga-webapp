@@ -1,6 +1,6 @@
 {
   "name": "nga-webapp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "yelo",
   "devDependencies": {
     "grunt": "~0.4.1",
