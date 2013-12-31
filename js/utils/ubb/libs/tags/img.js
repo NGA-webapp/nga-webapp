@@ -23,7 +23,7 @@
       if (typeof settings === 'object' && settings.downloadImage === false) {
         image = '<img/>';
       } else {
-        image = '<img src="' + content + '" onerror="" />';
+        image = '<img data-preload="' + content + '" onerror="" />';
       }
       return image;
     },

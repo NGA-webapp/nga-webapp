@@ -137,6 +137,10 @@ define(function (require, exports, module) {
       console.log(this.collection);
       this.collection.each(this._addOne, this);
       this.$subject.text(sliceSubject(this.collection.cache.subject));
+      // 图片加载后修正滚动条高度
+      this.$ul.find('img').preloadSrc(function () {
+        self.scroll.refresh();
+      });
       _.delay(function () {
         ui.Loading.close();
       }, 600);
