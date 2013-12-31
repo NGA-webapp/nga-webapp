@@ -142,7 +142,9 @@ define(function (require, exports, module) {
         self.scroll.refresh();
       });
       // 加载视频
-      this.$ul.find('.ubb-flash').youku();
+      this.$ul.find('.ubb-flash').youku(function () {
+        self.scroll.refresh();
+      });
       _.delay(function () {
         ui.Loading.close();
       }, 600);

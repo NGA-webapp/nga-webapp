@@ -41,6 +41,7 @@
     <gap:splash gap:platform="ios" height="1004" src="phonegap/asset/splash-portrait.png" width="768" />
     <access origin="http://ngacn.cc" subdomains="true" />
     <access origin="http://178.com" subdomains="true" />
+    <access origin="http://youku.com" subdomains="true" />
     <access origin="http://127.0.0.1*" />
     <access origin="*.jpg" />
     <access origin="*.jpeg" />
