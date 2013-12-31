@@ -141,6 +141,8 @@ define(function (require, exports, module) {
       this.$ul.find('img').preloadSrc(function () {
         self.scroll.refresh();
       });
+      // 加载视频
+      this.$ul.find('.ubb-flash').youku();
       _.delay(function () {
         ui.Loading.close();
       }, 600);

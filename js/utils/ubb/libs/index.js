@@ -19,6 +19,7 @@
   var list = require('./tags/list');
   var img = require('./tags/img');
   var url = require('./tags/url');
+  var flash = require('./tags/flash');
   var fontExtra = require('./tags/extras/font');
   var brExtra = require('./tags/extras/br');
   var smileExtra = require('./tags/extras/smile');
@@ -29,6 +30,7 @@
   ubb.add([img.img, img.relativeImg]);
   ubb.add(list.list);
   ubb.add(url.url);
+  ubb.add(flash.flash);
   ubb.addExtra(fontExtra.h);
   ubb.addExtra(brExtra.br);
   ubb.addExtra(smileExtra.smile);

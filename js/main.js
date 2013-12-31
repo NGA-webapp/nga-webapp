@@ -2,8 +2,9 @@ define(function (require, exports, module) {
   var Router = require('modules/Router')();
   var Stage = require('utils/Stage');
   var Aside = require('utils/Aside');
-  // add preload plugin
+  // add custom plugin
   var preload = require('utils/preload');
+  var flash = require('utils/flash');
   var router;
   Backbone.stage = new Stage();
   Backbone.aside = new Aside();
