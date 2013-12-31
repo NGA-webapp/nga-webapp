@@ -24,6 +24,7 @@
   var brExtra = require('./tags/extras/br');
   var smileExtra = require('./tags/extras/smile');
   var encodeExtra = require('./tags/extras/encode');
+  var atExtra = require('./tags/extras/at');
   var ubb = new Ubb();
   ubb.add([font.b, font.u, font.i, font.del, font.h, font.font, font.color, font.size, font.align]);
   ubb.add([layout.l, layout.r, layout.quote, layout.code, layout.tid, layout.pid]);
@@ -35,5 +36,6 @@
   ubb.addExtra(brExtra.br);
   ubb.addExtra(smileExtra.smile);
   ubb.addExtra(encodeExtra.amp);
+  ubb.addExtra(atExtra.at);
   module.exports = ubb;
 });

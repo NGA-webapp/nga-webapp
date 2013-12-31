@@ -22,7 +22,11 @@ define(function (require, exports, module) {
         $(document).on('deviceready', function () {
           cordova && cordova.require('org.apache.cordova.inappbrowser.InAppBrowser')(url, '_blank', 'location=yes');
         }, false);
-      }
+      },
+      'singleTap .ubb-at': function (events) {
+        var username = $(events.currentTarget).attr('data-username');
+        Backbone.stage.change('#!/user/username/' + username, ['bounce-top', 'bounce-top']);
+      },
     },
     tpl: art.compile(tpl),
     render: function () {

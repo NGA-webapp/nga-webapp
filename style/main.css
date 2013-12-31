@@ -5054,6 +5054,10 @@ main > .overlay {
 #topic article .scroller > ul > li > .content video {
   max-width: 100%;
 }
+#topic article .scroller > ul > li > .content .ubb-at {
+  text-decoration: underline;
+  color: #db5633;
+}
 #topic article .scroller > .action-pulldown,
 #topic article .scroller > .action-pullup {
   -webkit-transition: all 0.3s ease-in;
