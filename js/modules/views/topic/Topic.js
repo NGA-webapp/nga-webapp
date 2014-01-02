@@ -144,6 +144,8 @@ define(function (require, exports, module) {
       // 加载视频
       this.$ul.find('.ubb-flash').youku(function () {
         self.scroll.refresh();
+      }).tudou(function () {
+        self.scroll.refresh();
       });
       _.delay(function () {
         ui.Loading.close();
