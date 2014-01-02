@@ -5650,8 +5650,6 @@ main > .overlay {
 }
 #publish header > h1 .glyphicon {
   font-size: 0.8em;
-  text-shadow: 0 0 0 #421104;
-  text-shadow: 0 0 0 #421104, ;
 }
 #publish header .action-ok.loading .glyphicon {
   -webkit-animation: rotation 2s infinite linear;

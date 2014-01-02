@@ -12,6 +12,7 @@
           <span class="author"><%= authorName %></span>
           <span class="floor"><%= lou %>楼</span>
           <time><%= $format_date(postDate) %></time>
+          <div class="clearfix"></div>
         </div>
         <div class="content">
           <% if (subject && lou !== 0) { %>
