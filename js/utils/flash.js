@@ -1,11 +1,16 @@
 define(function (require, exports, module) {
   var getYoukuId = function (url) {
-    var rule = new RegExp(/^http:\/\/v\.youku\.com\/v_show\/id_([a-z0-9A-Z]*)/);
+    var rule = {
+      // http://v.youku.com/v_show/id_XNjU1NDU5NTQw_ev_1.html
+      html: new RegExp(/^http:\/\/v\.youku\.com\/v_show\/id_([a-z0-9A-Z]*)/),
+      // http://player.youku.com/player.php/sid/XNjU1NDU5NTQw/v.swf
+      swf: new RegExp(/^http:\/\/player\.youku\.com\/player\.php\/sid\/([a-z0-9A-Z]*)\/v\.swf/),
+    };
     var tmp;
-    if (tmp = url.match(rule)) {
-      if (tmp.length === 2) {
-        return tmp[1];
-      }
+    if ((tmp = url.match(rule.html)) && tmp.length === 2) {
+      return tmp[1];
+    } else if ((tmp = url.match(rule.swf)) && tmp.length === 2) {
+      return tmp[1];
     }
     return '';
   };
