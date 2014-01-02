@@ -18,7 +18,9 @@ define(function (require, exports, module) {
   }, false);
 
   document.addEventListener('deviceready', function () {
-    cordova.require('org.apache.cordova.splashscreen').hide();
+    if (cordova) {
+      cordova.require('org.apache.cordova.splashscreen.SplashScreen').hide();
+    }
   });
 
 });
