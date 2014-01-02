@@ -85,7 +85,7 @@ define(function (require, exports, module) {
       var pullDownAction, pullUpAction;
       self.$el.find('.iscroll').css('height', window.innerHeight - 50);
       pullDownAction = function () {
-        self.prevPage();
+        self.refresh();
       };
       pullUpAction = function () {
         if (self.flag.favorList) {
