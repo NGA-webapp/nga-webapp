@@ -20,7 +20,7 @@ define(function (require, exports, module) {
     },
     redirect: function (url) {
       _.delay(function () {
-        Backbone.stage.change(url);
+        Backbone.stage.change(url, ['bounce-top', 'bounce-top']);
       }, 600);
     },
     // 登入后的跳转

@@ -72,12 +72,20 @@ define(function (require, exports, module) {
       }
     },
     render: function () {
+      this.$el.html(this.tpl());
+      this.$ul = this.$el.find('ul');
+      this.initializeScroll();
+      return this;
+    },
+    /**
+     * 创建滚动条
+     */
+    initializeScroll: function () {
       var self = this;
       var pullDownAction, pullUpAction;
-      this.$el.html(this.tpl());
-      this.$el.find('.iscroll').css('height', window.innerHeight - 50);
+      self.$el.find('.iscroll').css('height', window.innerHeight - 50);
       pullDownAction = function () {
-        self.refresh();
+        self.prevPage();
       };
       pullUpAction = function () {
         if (self.flag.favorList) {
@@ -88,9 +96,8 @@ define(function (require, exports, module) {
           self.fetch({fid: self.collection.cache.fid, page: self._currentPage + 1}, {remove: false});
         }
       };
-      iScrollPull.call(this, 'forum-article', pullDownAction, pullUpAction);
-      this.$ul = this.$el.find('ul');
-      return this;
+      iScrollPull.call(self, 'forum-article', pullDownAction, pullUpAction);
+      return self;
     },
     /**
      * 渲染单条帖子视图

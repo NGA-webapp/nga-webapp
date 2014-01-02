@@ -3088,12 +3088,14 @@ hr {
 }
 .stage-animate-hide {
   z-index: 50;
+  display: none;
 }
 .stage-animate-in {
   z-index: 300;
 }
 .stage-animate-out {
   z-index: 50;
+  display: none;
 }
 /**
  * 动画 - slide - 入场
@@ -4160,12 +4162,14 @@ hr {
 }
 .aside-animate-hide {
   z-index: 50;
+  display: none;
 }
 .aside-animate-aside-in {
   z-index: 200;
 }
 .aside-animate-aside-out {
   z-index: 50;
+  display: none;
 }
 /**
  * 动画 - slide - in

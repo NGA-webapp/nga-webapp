@@ -63,6 +63,19 @@ define(function (require, exports, module) {
         this.cached = appCache.get();
         window.cached = this.cached;
       },
+      stageInitialize: function () {
+        this.cached.forumsView.$el.addClass('stage-animate-out');
+        this.cached.forumView.$el.addClass('stage-animate-out');
+        this.cached.topicView.$el.addClass('stage-animate-out');
+        this.cached.userView.$el.addClass('stage-animate-out');
+        this.cached.loginView.$el.addClass('stage-animate-out');
+        this.cached.logoutView.$el.addClass('stage-animate-out');
+        this.cached.settingView.$el.addClass('stage-animate-out');
+        this.cached.publishView.$el.addClass('stage-animate-out');
+        this.cached.logoutView.$el.addClass('stage-animate-out');
+        this.cached.bootupView.$el.addClass('stage-animate-in');
+        this.cached.menuView.$el.addClass('aside-animate-aside-out');
+      },
       index: function () {
         console.log('index');
         this.cached.bootupView.bootup();
@@ -178,6 +191,7 @@ define(function (require, exports, module) {
           }
         });
         this.cacheInitialize();
+        this.stageInitialize();
         Backbone.stage.setMap({
           "": appCache.get('bootupView'),
           "!/bootup": appCache.get('bootupView'),

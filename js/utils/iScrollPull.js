@@ -1,11 +1,14 @@
 define(function (require, exports, module) {
-  var IScrollPull = function (id, pullDownAction, pullUpAction) {
+  var iScrollPull = function (id, pullDownAction, pullUpAction) {
     var self = this;
     var $pullDownEl, $pullUpEl, pullDownOffset, pullUpOffset;
     $pullDownEl = this.$el.find('.action-pulldown');
     $pullUpEl = this.$el.find('.action-pullup');
     pullDownOffset = $pullDownEl.offset().height;
     pullUpOffset = $pullUpEl.offset().height;
+    if (this.scroll && typeof this.scroll.destroy === 'function') {
+      this.scroll.destroy();
+    }
     this.scroll = new iScroll(id, {
       topOffset: pullDownOffset,
       onScrollMove: function () {
@@ -34,5 +37,5 @@ define(function (require, exports, module) {
       }
     });
   };
-  return IScrollPull;
+  return iScrollPull;
 });

@@ -18,7 +18,6 @@ define(function (require, exports, module) {
     },
     events: {
       'singleTap .action-back': function () {
-        console.log(1);
         if (this.flag.active) {
           this.flag.active === false;
           Backbone.stage.back(['bounce-left', 'bounce-left']);
@@ -100,21 +99,28 @@ define(function (require, exports, module) {
       // this.fetch({tid: tid, page: page});
     },
     render: function () {
+      this.$el.html(this.tpl());
+      this.$ul = this.$el.find('ul');
+      this.$subject = this.$el.find('header span.subject');
+      this.$footer = this.$el.find('footer');
+      this.initializeScroll();
+      return this;
+    },
+    /**
+     * 创建滚动条
+     */
+    initializeScroll: function () {
       var self = this;
       var pullDownAction, pullUpAction;
-      this.$el.html(this.tpl());
-      this.$el.find('.iscroll').css('height', window.innerHeight - 50);
+      self.$el.find('.iscroll').css('height', window.innerHeight - 50);
       pullDownAction = function () {
         self.prevPage();
       };
       pullUpAction = function () {
         self.nextPage();
       };
-      iScrollPull.call(this, 'topic-article', pullDownAction, pullUpAction);
-      this.$ul = this.$el.find('ul');
-      this.$subject = this.$el.find('header span.subject');
-      this.$footer = this.$el.find('footer');
-      return this;
+      iScrollPull.call(self, 'topic-article', pullDownAction, pullUpAction);
+      return self;
     },
     /**
      * 渲染单层楼视图
