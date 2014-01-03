@@ -48,11 +48,20 @@ define(function (require, exports, module) {
       if (data.username) {
         inCharset.get(data.username, 'gbk', function (username) {
           var obj = _.extend({}, data, {username: username});
-          options = _.extend({}, options, {urlEncoded: true});
-          self.model.fetchXml(obj, options);
+          options = _.extend({}, options, {
+            urlEncoded: true,
+            error: function () {
+              Notification.alert('呜~查看用户失败~');
+              ui.Loading.close();
+              _.delay(function (){
+                Backbone.stage.back(['bounce-right', 'bounce-right']);
+              }, 600);
+            }
+          });
+          self.xhr = self.model.fetchXml(obj, options);
         });
       } else {
-        self.model.fetchXml(data, options);
+        self.xhr = self.model.fetchXml(data, options);
       }
     },
     initialize: function () {

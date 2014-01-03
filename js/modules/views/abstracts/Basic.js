@@ -38,6 +38,10 @@ define(function (require, exports, module) {
       this.on('stage-out-start', function () {
         this.undelegateEvents();
         elems.disable();
+        // 转出的场景停止当前请求
+        if (this.xhr && typeof this.xhr.abort === 'function') {
+          this.xhr.abort();
+        }
       });
       this.on('aside-aside-in-start', function () {
         elems.disable();

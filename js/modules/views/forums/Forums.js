@@ -124,7 +124,7 @@ define(function (require, exports, module) {
         self.model.off('sync', doNext);
       };
       self.model.on('sync', doNext);
-      self.model.fetchXml({}, {
+      self.xhr = self.model.fetchXml({}, {
         error: function () {
           doNext();
         },

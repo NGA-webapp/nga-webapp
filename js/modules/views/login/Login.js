@@ -62,45 +62,62 @@ define(function (require, exports, module) {
       console.log('connect start');
       ui.Loading.open();
       inCharset.get(username, 'gbk', function (username){
-        $.get(gsUrl, function (gs) {
-          // zepto会将object类型的param进行一次编码，所以这里直接使用字符串拼装，避免错误的编码
-          var data = 'login_type=use_name' + 
-            '&username=' + username + 
-            '&password=' + encryptPassword(password, gs) +
-            '&expires=' + 31536000;
-          $.ajax({
-            type: 'post',
-            url: loginUrl,
-            data: data,
-            timeout: 20000,
-            beforeSend: function (req) {
-              req.overrideMimeType("text/html; charset=gbk"); 
-              req.setRequestHeader('accept', 'text/javascript; charset=gbk');
-            },
-            success: function (resp) {
-              var success, msg;
-              console.log('connect finished');
-              ui.Loading.close();
-              if (resp.match(/登录成功/)) {
-                success = true;
-                msg = '登录成功';
-                self.$el.find('.password').val('');
-                self.nextAction.success();
-              } else {
-                success = false;
-                if (resp.match(/密码错误/)) {
-                  msg = '密码错误';
-                } else if (resp.match(/错误尝试过多/)) {
-                  msg = '错误尝试过多，请等待1~30分钟后登录';
+        self.xhr = $.ajax({
+          url: gsUrl,
+          success: function (gs) {
+            // zepto会将object类型的param进行一次编码，所以这里直接使用字符串拼装，避免错误的编码
+            var data = 'login_type=use_name' + 
+              '&username=' + username + 
+              '&password=' + encryptPassword(password, gs) +
+              '&expires=' + 31536000;
+            self.xhr = $.ajax({
+              type: 'post',
+              url: loginUrl,
+              data: data,
+              timeout: 20000,
+              beforeSend: function (req) {
+                req.overrideMimeType("text/html; charset=gbk"); 
+                req.setRequestHeader('accept', 'text/javascript; charset=gbk');
+              },
+              success: function (resp) {
+                var success, msg;
+                console.log('connect finished');
+                ui.Loading.close();
+                if (resp.match(/登录成功/)) {
+                  success = true;
+                  msg = '登录成功';
+                  self.$el.find('.password').val('');
+                  self.nextAction.success();
                 } else {
-                  msg = '登录失败';
+                  success = false;
+                  if (resp.match(/密码错误/)) {
+                    msg = '密码错误';
+                  } else if (resp.match(/错误尝试过多/)) {
+                    msg = '错误尝试过多，请等待1~30分钟后登录';
+                  } else {
+                    msg = '登录失败';
+                  }
                 }
+                Notification.alert(msg, function () {
+                  self.flag.logging = false;
+                });
+              },
+              error: function () {
+                var self = this;
+                ui.Loading.close();
+                Notification.alert('网络异常', function () {
+                  self.flag.logging = false;
+                });
               }
-              Notification.alert(msg, function () {
-                self.flag.logging = false;
-              });
-            }
-          });
+            });
+          },
+          error: function () {
+            var self = this;
+            ui.Loading.close();
+            Notification.alert('网络异常', function () {
+              self.flag.logging = false;
+            });
+          }
         });
       });
       return false;

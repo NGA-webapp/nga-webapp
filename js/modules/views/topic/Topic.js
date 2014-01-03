@@ -188,7 +188,7 @@ define(function (require, exports, module) {
           }, 600);
         }
       });
-      this.collection.fetchXml(data, options);
+      this.xhr = this.collection.fetchXml(data, options);
     },
     initialize: function () {
       this.collection = new PostInTopicCollection();

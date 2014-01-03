@@ -173,6 +173,7 @@ define(function (require, exports, module) {
       }
       _.defaults(options || (options = {}), {
         error: function () {
+          console.log('error', arguments);
           ui.Loading.close();
         }
       });
@@ -181,10 +182,10 @@ define(function (require, exports, module) {
         inCharset.get(data.key, 'gbk', function (key) {
           var obj = _.extend({}, data, {key: key});
           options = _.extend({}, options, {urlEncoded: true});
-          self.collection.fetchXml(obj, options);
+          self.xhr = self.collection.fetchXml(obj, options);
         });
       } else {
-        this.collection.fetchXml(data, options);
+        self.xhr =  self.collection.fetchXml(data, options);
       }
     },
     initialize: function () {

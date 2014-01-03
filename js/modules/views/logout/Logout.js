@@ -34,13 +34,23 @@ define(function (require, exports, module) {
       self.flag.requesting = true;
       console.log('connect start');
       ui.Loading.open();
-      $.post(logoutUrl, {func: 'logout', no_auto_login: 1}, function () {
-        Notification.alert('登出成功', function () {
-          ui.Loading.close();
-          appCache.get('loginView').nextAction.success = function () {appCache.get('bootupView').introFunc();};
-          Backbone.stage.change('#!/login', ['bounce-top', 'bounce-bottom']);
-          self.flag.requesting = false;
-        });
+      self.xhr = $.ajax({
+        url: logoutUrl,
+        data: {func: 'logout', no_auto_login: 1},
+        success: function () {
+          Notification.alert('登出成功', function () {
+            ui.Loading.close();
+            appCache.get('loginView').nextAction.success = function () {appCache.get('bootupView').introFunc();};
+            Backbone.stage.change('#!/login', ['bounce-top', 'bounce-bottom']);
+            self.flag.requesting = false;
+          });
+        },
+        error: function () {
+          Notification.alert('网络异常', function () {
+            ui.Loading.close();
+            self.flag.requesting = false;
+          });
+        }
       });
       return false;
     },
