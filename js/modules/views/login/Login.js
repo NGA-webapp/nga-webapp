@@ -46,6 +46,7 @@ define(function (require, exports, module) {
     },
     doLogin: function () {
       var self, username ,password;
+      var errorHandler;
       if (this.flag.logging) {
         return false;
       }
@@ -61,7 +62,14 @@ define(function (require, exports, module) {
       self.flag.logging = true;
       console.log('connect start');
       ui.Loading.open();
-      inCharset.get(username, 'gbk', function (username){
+      errorHandler = function () {
+        var self = this;
+        ui.Loading.close();
+        Notification.alert('网络异常', function () {
+          self.flag.logging = false;
+        });
+      };
+      self.charsetRequest = inCharset.get(username, 'gbk', function (username){
         self.xhr = $.ajax({
           url: gsUrl,
           success: function (gs) {
@@ -102,23 +110,13 @@ define(function (require, exports, module) {
                   self.flag.logging = false;
                 });
               },
-              error: function () {
-                var self = this;
-                ui.Loading.close();
-                Notification.alert('网络异常', function () {
-                  self.flag.logging = false;
-                });
-              }
+              error: errorHandler
             });
           },
-          error: function () {
-            var self = this;
-            ui.Loading.close();
-            Notification.alert('网络异常', function () {
-              self.flag.logging = false;
-            });
-          }
+          error: errorHandler
         });
+      }, function () {
+        errorHandler();
       });
       return false;
     },

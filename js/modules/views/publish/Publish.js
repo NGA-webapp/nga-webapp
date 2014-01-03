@@ -39,29 +39,31 @@ define(function (require, exports, module) {
       'singleTap .action-ok': function (e) {
         var self = this;
         var $btn = $(e.currentTarget);
-        var title = this.$el.find('.param-title').val();
-        var content = this.$el.find('.param-content').val();
-        if (this.flag.request) {
+        var title = self.$el.find('.param-title').val();
+        var content = self.$el.find('.param-content').val();
+        var complete;
+        if (self.flag.request) {
           return;
         }
-        this.flag.request = true;
-        this.$el.find('input').blur();
+        self.flag.request = true;
+        self.$el.find('input').blur();
         $btn.addClass('loading').find('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-refresh');
         ui.Loading.open();
-        inCharset.get(content, 'gbk', function (content) {
-          inCharset.get(title, 'gbk', function (title) {
+        complete = function () {
+          self.flag.request = false;
+          $btn.removeClass('loading').find('.glyphicon').addClass('glyphicon-ok').removeClass('glyphicon-refresh');
+          ui.Loading.close();
+        };
+        self.charsetRequest = inCharset.get(content, 'gbk', function (content) {
+          self.charsetRequest = inCharset.get(title, 'gbk', function (title) {
             var data = 'tid=' + self.cached.tid + '&fid=' + self.cached.fid + '&pid=' + self.cached.pid + 
               '&action=' + self.cached.action + '&step=2' + '&lite=xml' +
               '&post_subject=' + title + '&post_content=' + content;
-            $.ajax({
+            self.xhr = $.ajax({
               url: postUrl,
               data: data,
               timeout: 20000,
-              complete: function () {
-                self.flag.request = false;
-                $btn.removeClass('loading').find('.glyphicon').addClass('glyphicon-ok').removeClass('glyphicon-refresh');
-                ui.Loading.close();
-              },
+              complete: complete,
               success: function (data) {
                 var target;
                 var jump = $(data).find('__JUMP').text();
@@ -112,7 +114,11 @@ define(function (require, exports, module) {
               type: 'post',
               dataType: 'xml'
             });
+          }, function () {
+            complete();
           });
+        }, function () {
+          complete();
         });
       },
     },

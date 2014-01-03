@@ -18,6 +18,8 @@
       namespace: '_inCharset',
       // the name of iframe
       iframeName: '_urlEncode_iframe_',
+      // timeout
+      timeout: 10000,
     };
     this._tasks = [];
     return this;
@@ -26,26 +28,29 @@
     var ns = this._options.namespace;
     if (!window[ns]) {
       window[ns] = {
-        callback: {}
+        success: {},
       };
     }
     return this;
   };
   InCharset.prototype.options = function (opts) {
     if (typeof opts === 'object') {
-      if (opts.action) {
+      if (typeof opts.action === 'string') {
         this._options.action = opts.action;
       }
-      if (opts.namespace) {
+      if (typeof opts.namespace === 'string') {
         this._options.namespace = opts.namespace;
       }
-      if (opts.iframeName) {
+      if (typeof opts.iframeName === 'string') {
         this._options.iframeName = opts.iframeName;
+      }
+      if (typeof opts.timeout === 'number') {
+        this._options.timeout = opts.timeout;
       }
     }
     return this;
   };
-  InCharset.prototype.get = function(str, charset, callback) {
+  InCharset.prototype.get = function(str, charset, success, error) {
     var self = this;
     // location.search would be '?id=' + id + '&str=' + str
     // just get a random value
@@ -90,19 +95,43 @@
       document.body.appendChild(ifr);
       return ifr;
     })();
+    var clear, abort, timeoutObject, called;
+    called = false;
+    clear = function () {
+      delete window[self._options.namespace]['success'][id];
+      clearTimeout(timeoutObject);
+    };
     self._initNamescape();
-    window[self._options.namespace]['callback'][id] = function (str) {
-      callback(str);
-      delete window[self._options.namespace]['callback'][id];
+    window[self._options.namespace]['success'][id] = function (str) {
+      if (typeof success === 'function') {
+        success(str);
+      }
+      called = true;
+      clear();
+    };
+    abort = function (err) {
+      if (called) {
+        return false;
+      }
+      if (typeof error === 'function') {
+        error((err || 'abort'));
+      }
+      called = true;
+      clear();
     };
     form.submit();
+    timeoutObject = setTimeout(function () {
+      abort('timeout');
+    }, self._options.timeout);
     setTimeout(function() {
       form.parentNode.removeChild(form);
       if (typeof iframe !== 'undefined') {
         iframe.parentNode.removeChild(iframe);
       }
     }, 500);
-    return self;
+    return {
+      abort: abort
+    };
   };
 
   return new InCharset();

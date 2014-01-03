@@ -179,10 +179,12 @@ define(function (require, exports, module) {
       });
       // 搜索列表需要对关键字转编码
       if (data.key) {
-        inCharset.get(data.key, 'gbk', function (key) {
+        self.charsetRequest = inCharset.get(data.key, 'gbk', function (key) {
           var obj = _.extend({}, data, {key: key});
           options = _.extend({}, options, {urlEncoded: true});
           self.xhr = self.collection.fetchXml(obj, options);
+        }, function (err) {
+          ui.Loading.close();
         });
       } else {
         self.xhr =  self.collection.fetchXml(data, options);

@@ -13,7 +13,9 @@
       id = '';
       str = '';
     }
-    parent._inCharset.callback[id] && parent._inCharset.callback[id](str);
+    if (parent._inCharset.success[id]) {
+      parent._inCharset.success[id](str);
+    }
   })();
 </script>
 </html>

@@ -6,6 +6,7 @@ define(function (require, exports, module) {
   var UserModel = require('modules/daos/user/UserModel');
   var ContentUserView = require('modules/views/user/Content');
   var inCharset = require('utils/inCharset');
+  var Notification = require('utils/Notification');
 
   var UserView = BasicView.extend({
     el: '#user',
@@ -44,21 +45,25 @@ define(function (require, exports, module) {
     },
     fetch: function (data, options) {
       var self = this;
+      var errorHandler;
       ui.Loading.open();
+      errorHandler = function () {
+        Notification.alert('呜~查看用户失败~');
+        ui.Loading.close();
+        _.delay(function (){
+          Backbone.stage.back(['bounce-right', 'bounce-right']);
+        }, 600);
+      };
       if (data.username) {
-        inCharset.get(data.username, 'gbk', function (username) {
+        self.charsetRequest = inCharset.get(data.username, 'gbk', function (username) {
           var obj = _.extend({}, data, {username: username});
           options = _.extend({}, options, {
             urlEncoded: true,
-            error: function () {
-              Notification.alert('呜~查看用户失败~');
-              ui.Loading.close();
-              _.delay(function (){
-                Backbone.stage.back(['bounce-right', 'bounce-right']);
-              }, 600);
-            }
+            error: errorHandler
           });
           self.xhr = self.model.fetchXml(obj, options);
+        }, function (err) {
+          errorHandler();
         });
       } else {
         self.xhr = self.model.fetchXml(data, options);

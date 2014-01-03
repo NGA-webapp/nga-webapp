@@ -28,6 +28,7 @@ define(function (require, exports, module) {
           enable: enable
         };
       })();
+      var cache = {};
       this.on('stage-in-start', function () {
         this.delegateEvents();
         elems.disable();
@@ -40,7 +41,16 @@ define(function (require, exports, module) {
         elems.disable();
         // 转出的场景停止当前请求
         if (this.xhr && typeof this.xhr.abort === 'function') {
-          this.xhr.abort();
+          if (!(cache.xhr && cache.xhr === this.xhr)) {
+            cache.xhr = this.xhr;
+            this.xhr.abort();
+          }
+        }
+        if (this.charsetRequest && typeof this.charsetRequest.abort === 'function') {
+          if (!(cache.charsetRequest && cache.charsetRequest === this.charsetRequest)) {
+            cache.charsetRequest = this.charsetRequest;
+            this.charsetRequest.abort();
+          }
         }
       });
       this.on('aside-aside-in-start', function () {
