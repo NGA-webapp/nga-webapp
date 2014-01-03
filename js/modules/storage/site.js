@@ -21,7 +21,7 @@ define(function (require, exports, module) {
      * @method  checkLogged
      * @return {boolean} 
      */
-    checkLogged: function (next) {
+    checkLogged: function (next, options) {
       var siteModel = appCache.get('siteModel');
       var doNext;
       if (arguments.length === 0) {
@@ -32,7 +32,7 @@ define(function (require, exports, module) {
         siteModel.off('change:isLogged', doNext)
       };
       siteModel.on('change:isLogged', doNext);
-      siteModel.fetchXml();
+      siteModel.fetchXml({}, options);
     },
     // 获取初始化标记
     isInit: function () {

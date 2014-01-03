@@ -2,12 +2,13 @@ define(function (require, exports, module) {
   var config = require('config/index');
   var parser = require('modules/daos/forums/parser');
   var siteStorage = require('modules/storage/site');
+  var BasicModel = require('modules/daos/abstracts/BasicModel');
 
   /**
    * 论坛版面数据
    * 数据需要两种结构，这里不考虑用collection实现
    */
-  var ForumsModel = Backbone.Model.extend({
+  var ForumsModel = BasicModel.extend({
     url: config.nakeServer ? '/api/group' : 'http://bbs.ngacn.cc/template/js/nga_index_forums.xml',
     flag: {
       flattenCache: false,
@@ -18,14 +19,6 @@ define(function (require, exports, module) {
     parse: function (resp) {
       var data = parser(resp);
       return data;
-    },
-    fetchXml: function (data) {
-      _.defaults(data || (data = {}), this.xmlOptions || (this.xmlOptions = {}));
-      return this.fetch({
-        'url': this.url,
-        'dataType': 'xml',
-        'data': data
-      });
     },
     initialize: function () {
       this.on('sync', function (model) {

@@ -8,7 +8,6 @@ define(function (require, exports, module) {
     cache: {},
     parse: function (resp) {
       var data = parser(resp);
-      console.log(data);
       return data;
     },
     initialize: function () {

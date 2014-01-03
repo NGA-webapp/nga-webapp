@@ -51,9 +51,15 @@ define(function (require, exports, module) {
       var ForumsModel = require('modules/daos/forums/ForumsModel');
       var forumsModel = new ForumsModel();
       var afterUpdateForums, afterCheckLogged;
-      afterUpdateForums = function (model, options) {
+      afterUpdateForums = function () {
         self.log('检查登录状态...');
-        siteStorage.checkLogged(afterCheckLogged);
+        siteStorage.checkLogged(afterCheckLogged, {
+          timeout: config.test ? 10 : 20000,
+          error: function () {
+            self.log('检查登录状态...网络异常');
+            self.introFunc();
+          }
+        });
         forumsModel.off('change', afterUpdateForums);
       };
       afterCheckLogged = function (isLogged) {
@@ -69,7 +75,13 @@ define(function (require, exports, module) {
       };
       self.log('更新版面信息...');
       forumsModel.on('change', afterUpdateForums);
-      forumsModel.fetchXml();
+      forumsModel.fetchXml({}, {
+        timeout: config.test ? 10 : 20000,
+        error: function () {
+          self.log('更新版面信息...失败');
+          afterUpdateForums();
+        },
+      });
       // if (!siteStorage.isInit()) {
       //   self.redirect('#!/start');
       // } else {

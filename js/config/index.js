@@ -4,6 +4,7 @@ define(function (require, exports, module) {
     nakeServer: false,
     transition: {
       map: require('./transition')
-    }
+    },
+    test: true
   };
 });
