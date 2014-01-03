@@ -56,7 +56,7 @@ define(function (require, exports, module) {
             $.ajax({
               url: postUrl,
               data: data,
-              timeout: 200,
+              timeout: 20000,
               complete: function () {
                 self.flag.request = false;
                 $btn.removeClass('loading').find('.glyphicon').addClass('glyphicon-ok').removeClass('glyphicon-refresh');
@@ -89,7 +89,7 @@ define(function (require, exports, module) {
                   }
                 }
               },
-              error: function (xhr) {
+              error: function (xhr, err) {
                 var msg;
                 if (xhr.responseText) {
                   msg = xhr.responseText.match(/<__MESSAGE><item>\d+<\/item><item>(.*?)<\/item>/);
@@ -101,7 +101,12 @@ define(function (require, exports, module) {
                     return;
                   }
                 }
-                console.log(xhr);
+                if (err) {
+                  if (err === 'timeout') {
+                    Notification.alert('网络连接超时');
+                    return;
+                  }
+                }
                 Notification.alert('网络错误.');
               },
               type: 'post',
