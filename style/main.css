@@ -4461,6 +4461,9 @@ header > div a {
 article {
   min-height: 468px;
 }
+article .scroller {
+  min-height: 100%;
+}
 footer {
   position: absolute;
   left: 0;
@@ -4752,6 +4755,29 @@ main > .overlay {
   font-size: 14px;
   font-weight: normal;
   color: #666;
+}
+#forums article .scroller > .action-pulldown,
+#forums article .scroller > .action-pullup {
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  text-align: center;
+  min-height: 2em;
+  line-height: 2em;
+  color: #999;
+}
+#forums article .scroller > .action-pulldown.flip,
+#forums article .scroller > .action-pullup.flip {
+  color: #db5633;
+}
+#forums article .scroller > .action-pulldown.loading,
+#forums article .scroller > .action-pullup.loading {
+  color: #db5633;
+}
+#forums article .scroller > .action-pulldown.loading > span.glyphicon,
+#forums article .scroller > .action-pullup.loading > span.glyphicon {
+  -webkit-animation: rotation 2s infinite linear;
 }
 #forums footer {
   color: #db5633;

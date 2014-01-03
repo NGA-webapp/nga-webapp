@@ -48,8 +48,7 @@ define(function (require, exports, module) {
     // 启动
     bootup: function () {
       var self = this;
-      var ForumsModel = require('modules/daos/forums/ForumsModel');
-      var forumsModel = new ForumsModel();
+      var forumsModel = appCache.get('forumsView').model;
       var afterUpdateForums, afterCheckLogged;
       afterUpdateForums = function () {
         self.log('检查登录状态...');

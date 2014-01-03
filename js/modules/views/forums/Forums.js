@@ -8,6 +8,8 @@ define(function (require, exports, module) {
   var siteStorage = require('modules/storage/site');
   var sliceSubject = require('utils/common').sliceSubject;
   var Notification = require('utils/Notification');
+  var iScrollPull = require('utils/iScrollPull');
+  var ForumsModel = require('modules/daos/forums/ForumsModel');
   
 
   var ForumsView = BasicView.extend({
@@ -90,38 +92,70 @@ define(function (require, exports, module) {
     },
     render: function () {
       this.$el.html(this.tpl());
-      this.$el.find('.iscroll').css('height', window.innerHeight - 50);
-      this.scroll = new iScroll('forums-article', {
-      });
       this.$ul = this.$el.find('ul');
+      this.initializeScroll();
       return this;
+    },
+    /**
+     * 创建滚动条
+     */
+    initializeScroll: function () {
+      var self = this;
+      var pullDownAction, pullUpAction;
+      self.$el.find('.iscroll').css('height', window.innerHeight - 50);
+      pullDownAction = function () {
+        self.updateForums(function () {
+          self.renderList(true, self._switch);
+          self.$el.find('.action-pulldown, .action-pullup').removeClass('loading');
+          self.scroll.scrollTo(0, 0, 0);
+        });
+      };
+      pullUpAction = function () {};
+      iScrollPull.call(self, 'forums-article', pullDownAction, pullUpAction);
+      return self;
+    },
+    // 从服务器更新版面数据
+    updateForums: function (next) {
+      var self = this;
+      var doNext = function () {
+        if (typeof next === 'function') {
+          next();
+        }
+        self.model.off('sync', doNext);
+      };
+      self.model.on('sync', doNext);
+      self.model.fetchXml({}, {
+        error: function () {
+          doNext();
+        },
+      });
+    },
+    _switch: function () {
+      var self = this;
+      var favorForum;
+      var i, len;
+      if (self.flag.chooseFavor) {
+        self.$el.find('header .subject').text('选择最喜爱的版面');
+        self.$el.find('header>h1>a').removeClass('action-aside').addClass('action-back');
+        self.$el.find('header>h1>a>.glyphicon').removeClass('glyphicon-list').addClass('glyphicon-chevron-left');
+        favorForum = siteStorage.getFavorForum();
+        for (i = 0, len = favorForum.length; i < len; i++) {
+          self.$el.find('li.forum[data-fid="' + favorForum[i] + '"]').addClass('choose');
+        }
+      } else {
+        self.$el.find('header .subject').text('所有版面');
+        self.$el.find('header>h1>a').removeClass('action-back').addClass('action-aside');
+        self.$el.find('header>h1>a>.glyphicon').removeClass('glyphicon-chevron-left').addClass('glyphicon-list');
+        self.$el.find('li.forum').removeClass('choose');
+      }
     },
     // 
     open: function (chooseFavor) {
-      var self = this;
-      var _switch = function () {
-        var favorForum;
-        var i, len;
-        self.flag.chooseFavor = !!chooseFavor;
-        if (chooseFavor) {
-          self.$el.find('header .subject').text('选择最喜爱的版面');
-          self.$el.find('header>h1>a').removeClass('action-aside').addClass('action-back');
-          self.$el.find('header>h1>a>.glyphicon').removeClass('glyphicon-list').addClass('glyphicon-chevron-left');
-          favorForum = siteStorage.getFavorForum();
-          for (i = 0, len = favorForum.length; i < len; i++) {
-            self.$el.find('li.forum[data-fid="' + favorForum[i] + '"]').addClass('choose');
-          }
-        } else {
-          self.$el.find('header .subject').text('所有版面');
-          self.$el.find('header>h1>a').removeClass('action-back').addClass('action-aside');
-          self.$el.find('header>h1>a>.glyphicon').removeClass('glyphicon-chevron-left').addClass('glyphicon-list');
-          self.$el.find('li.forum').removeClass('choose');
-        }
-      };
+      this.flag.chooseFavor = !!chooseFavor;
       if (this.flag.hasRenderList) {
-        _switch();
+        this._switch();
       } else {
-        this.renderList(false, _switch);
+        this.renderList(false, this._switch);
       }
       return this;
     },
@@ -154,24 +188,8 @@ define(function (require, exports, module) {
       }, 600);
       return this;
     },
-    /**
-     * 添加全部帖子
-     */
-    // _addAll: function () {
-    //   var self = this;
-    //   this.$content.html(this.tpl(this.getForums()));
-    //   _.delay(function () {
-    //     ui.Loading.close();
-    //   }, 600);
-    //   _.delay(function () {
-    //     self.scroll.refresh();
-    //   }, 1000);
-    // },
-    // fetch: function (data, options) {
-    //   ui.Loading.open();
-    //   this.collection.fetchXml(data, options);
-    // },
     initialize: function () {
+      this.model = new ForumsModel();
       return this.render();
     }
   });
