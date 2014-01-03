@@ -5,6 +5,6 @@ define(function (require, exports, module) {
     transition: {
       map: require('./transition')
     },
-    test: true
+    test: false
   };
 });
