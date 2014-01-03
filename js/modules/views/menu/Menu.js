@@ -97,6 +97,9 @@ define(function (require, exports, module) {
     render: function () {
       this.$el.html(this.tpl({favorForum: this.cache.favorForum, lastForum: this.cache.lastForum}));
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
+      if (this.scroll && typeof this.scroll.destroy === 'function') {
+        this.scroll.destroy();
+      }
       this.scroll = new iScroll('menu-list', {
       });
       return this;
@@ -127,6 +130,9 @@ define(function (require, exports, module) {
       };
       this.listenTo(siteStorage, 'change:lastForum', refreshQuickForum);
       this.listenTo(siteStorage, 'change:favorForum', refreshQuickForum);
+      this.on('aside-aside-in-end', function () {
+        self.scroll.refresh();
+      });
       refreshQuickForum();
       return this.render();
     }

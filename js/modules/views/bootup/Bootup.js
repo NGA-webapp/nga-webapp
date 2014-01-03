@@ -50,27 +50,30 @@ define(function (require, exports, module) {
       var self = this;
       var ForumsModel = require('modules/daos/forums/ForumsModel');
       var forumsModel = new ForumsModel();
+      var afterUpdateForums, afterCheckLogged;
+      afterUpdateForums = function (model, options) {
+        self.log('检查登录状态...');
+        siteStorage.checkLogged(afterCheckLogged);
+        forumsModel.off('change', afterUpdateForums);
+      };
+      afterCheckLogged = function (isLogged) {
+        if (isLogged) {
+          self.log('检查登录状态...已登录.');
+          self.log('检查快速导航...');
+          self.introFunc();
+        } else {
+          self.log('检查登录状态...未登录.');
+          appCache.get('loginView').nextAction.success = function () {self.introFunc();};
+          self.redirect('#!/login');
+        }
+      };
+      self.log('更新版面信息...');
+      forumsModel.on('change', afterUpdateForums);
       forumsModel.fetchXml();
       // if (!siteStorage.isInit()) {
       //   self.redirect('#!/start');
       // } else {
-        self.log('检查登录状态...');
-        siteStorage.checkLogged(function (isLogged) {
-          if (isLogged) {
-            self.log('检查登录状态...已登录.');
-            self.log('检查快速导航...');
-            self.introFunc();
-          } else {
-            self.log('检查登录状态...未登录.');
-            appCache.get('loginView').nextAction.success = function () {self.introFunc();};
-            self.redirect('#!/login');
-          }
-        });
       // }
-    },
-    setting: function () {
-      var self = this;
-      
     },
     log: function (text) {
       console.log('Bootup: ' + text);

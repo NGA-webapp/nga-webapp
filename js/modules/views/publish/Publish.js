@@ -56,7 +56,7 @@ define(function (require, exports, module) {
             $.ajax({
               url: postUrl,
               data: data,
-              timeout: 20000,
+              timeout: 200,
               complete: function () {
                 self.flag.request = false;
                 $btn.removeClass('loading').find('.glyphicon').addClass('glyphicon-ok').removeClass('glyphicon-refresh');
@@ -65,10 +65,18 @@ define(function (require, exports, module) {
               success: function (data) {
                 var target;
                 var jump = $(data).find('__JUMP').text();
-                var msg = $(data).find('__MESSAGE > item').eq(1).text();
+                var $messages = $(data).find('__MESSAGE > item');
                 var readUrl = $(data).find('item > item').eq(0).text();
-                if (msg) {
-                  Notification.alert(msg);
+                var i, len, tmp, msg;
+                if ($messages.length > 0) {
+                  for (i = 0, len = $messages.length; i < len; i++) {
+                    // 跳过无用的纯数字的提示
+                    if (!((tmp = $messages.eq(i).text()).match(/^\d*$/))) {
+                      msg = tmp;
+                      break;
+                    }
+                  }
+                  Notification.alert(msg ? msg.slice(0, 50) : '网络错误');
                 }
                 jump = jump || readUrl;
                 if (jump) {
@@ -81,11 +89,20 @@ define(function (require, exports, module) {
                   }
                 }
               },
-              error: function (xml) {
-                var msg = xml.response.match(/<__MESSAGE><item>(.*?)<\/item>/);
-                if (msg && msg.length === 2) {
-                  Notification.alert(msg[1]);
+              error: function (xhr) {
+                var msg;
+                if (xhr.responseText) {
+                  msg = xhr.responseText.match(/<__MESSAGE><item>\d+<\/item><item>(.*?)<\/item>/);
+                  if (!(msg && msg.length === 2)) {
+                    msg = xhr.responseText.match(/<__MESSAGE><item>(.*?)<\/item><item>\d+<\/item>/);
+                  }
+                  if (msg && msg.length === 2) {
+                    Notification.alert(msg[1].slice(0, 50));
+                    return;
+                  }
                 }
+                console.log(xhr);
+                Notification.alert('网络错误.');
               },
               type: 'post',
               dataType: 'xml'
