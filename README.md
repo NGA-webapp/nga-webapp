@@ -7,6 +7,7 @@
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ## 目标里程碑
+- [1.2.0](https://github.com/imyelo/nga-webapp/issues?milestone=2&state=open)
 - [1.1.0](https://github.com/imyelo/nga-webapp/issues?milestone=1&state=open)
 - 1.0.0
 
@@ -42,13 +43,10 @@
 
 ## 备忘
 - todo list
-  - 后退功能加flag，避免重复触发
   - 设置喜爱版面时，将显示当前选中的版面集中显示在顶部，或在header显示数量
   - 推进ubb重写进度
-    - 黑枪链接``[@zhihuzeye]``
     - tid和pid链接、站内链接，在app内跳转
   - 开发letter模块的表情键入
-  - 重构路由和转场
 
 
 ## License
