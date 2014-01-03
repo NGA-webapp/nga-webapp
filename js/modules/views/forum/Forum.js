@@ -178,7 +178,7 @@ define(function (require, exports, module) {
       });
       // 搜索列表需要对关键字转编码
       if (data.key) {
-        inCharset(data.key, 'gbk', function (key) {
+        inCharset.get(data.key, 'gbk', function (key) {
           var obj = _.extend({}, data, {key: key});
           options = _.extend({}, options, {urlEncoded: true});
           self.collection.fetchXml(obj, options);

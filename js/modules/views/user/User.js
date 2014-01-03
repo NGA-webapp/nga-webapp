@@ -46,7 +46,7 @@ define(function (require, exports, module) {
       var self = this;
       ui.Loading.open();
       if (data.username) {
-        inCharset(data.username, 'gbk', function (username) {
+        inCharset.get(data.username, 'gbk', function (username) {
           var obj = _.extend({}, data, {username: username});
           options = _.extend({}, options, {urlEncoded: true});
           self.model.fetchXml(obj, options);

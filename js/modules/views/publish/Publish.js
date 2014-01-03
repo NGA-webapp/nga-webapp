@@ -48,8 +48,8 @@ define(function (require, exports, module) {
         this.$el.find('input').blur();
         $btn.addClass('loading').find('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-refresh');
         ui.Loading.open();
-        inCharset(content, 'gbk', function (content) {
-          inCharset(title, 'gbk', function (title) {
+        inCharset.get(content, 'gbk', function (content) {
+          inCharset.get(title, 'gbk', function (title) {
             var data = 'tid=' + self.cached.tid + '&fid=' + self.cached.fid + '&pid=' + self.cached.pid + 
               '&action=' + self.cached.action + '&step=2' + '&lite=xml' +
               '&post_subject=' + title + '&post_content=' + content;

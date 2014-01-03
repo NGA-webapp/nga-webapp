@@ -3,6 +3,17 @@
 <meta http-equiv="pragma" content="no-cache" />
 </head>
 <script>
-  parent._urlEncode_iframe_callback && parent._urlEncode_iframe_callback(location.search.slice(5));
+  (function () {
+    var match, id, str;
+    match = location.search.match(/\?id=(.+)\&str=(.*)/);
+    if (match.length === 3) {
+      id = match[1];
+      str = match[2];
+    } else {
+      id = '';
+      str = '';
+    }
+    parent._inCharset.callback[id] && parent._inCharset.callback[id](str);
+  })();
 </script>
 </html>

@@ -61,7 +61,7 @@ define(function (require, exports, module) {
       self.flag.logging = true;
       console.log('connect start');
       ui.Loading.open();
-      inCharset(username, 'gbk', function (username){
+      inCharset.get(username, 'gbk', function (username){
         $.get(gsUrl, function (gs) {
           // zepto会将object类型的param进行一次编码，所以这里直接使用字符串拼装，避免错误的编码
           var data = 'login_type=use_name' + 
