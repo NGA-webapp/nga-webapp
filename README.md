@@ -50,7 +50,7 @@
 
 
 ## License
-The MIT License
+The GNU GPL v2
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/imyelo/nga-webapp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
