@@ -15,7 +15,7 @@
   }
 })(function (require, exports, module) {
   var at = {
-    regExp: new RegExp(/\[@(\w*)\]/gi),
+    regExp: new RegExp(/\[@([\w\u4E00-\u9FA5]*)\]/gi),
     replacement: '<a class="ubb-at" data-username="$1" src="javascript:;">{@$1}</a>'
   };
 
