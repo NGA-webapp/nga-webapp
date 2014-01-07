@@ -74,6 +74,16 @@ define(function (require, exports, module) {
       this.$el.find('.action-pulldown, .action-pullup').removeClass('loading');
       this.scroll.refresh();
     },
+    refresh: function () {
+      var tid, page;
+      tid = this.collection.cache.tid;
+      page = parseInt(this.collection.cache.page, 0);
+      if (page) {
+        this.fetch({tid: tid, page: page});
+      } else {
+        Backbone.stage.change('#!/topic/' + tid, [], {replace: true});
+      }
+    },
     prevPage: function () {
       var tid, page;
       if (this.collection.cache.page <= 1) {
@@ -84,19 +94,18 @@ define(function (require, exports, module) {
       tid = this.collection.cache.tid;
       page = parseInt(this.collection.cache.page, 0) - 1;
       Backbone.stage.change('#!/topic/' + tid + '/p' + page, [], {replace: true});
-      // this.fetch({tid: tid, page: page});
     },
     nextPage: function () {
       var tid, page;
       if (this.collection.cache.pageCount <= this.collection.cache.page) {
         this._refreshScroll();
         Notification.alert('已经到了最后一页');
+        this.refresh();
         return false;
       }
       tid = this.collection.cache.tid;
       page = parseInt(this.collection.cache.page, 0) + 1;
       Backbone.stage.change('#!/topic/' + tid + '/p' + page, [], {replace: true});
-      // this.fetch({tid: tid, page: page});
     },
     render: function () {
       this.$el.html(this.tpl());
