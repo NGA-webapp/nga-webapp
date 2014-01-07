@@ -83,10 +83,7 @@ define(function (require, exports, module) {
                 jump = jump || readUrl;
                 if (jump) {
                   // /read.php?tid=6726209&_ff=335&page=e#a 
-                  target = jump.match(/tid=(\d+)&_ff=(\d+)/);
-                  console.log(target);
-                  if (target && target.length === 3) {
-                    // appCache.get('topicView').fetch({tid: target[1]});
+                  if ((target = jump.match(/tid=(\d+)/)) && target.length === 2) {
                     Backbone.stage.back(['bounce-bottom', 'bounce-bottom'], {trigger: true});
                   }
                 }
