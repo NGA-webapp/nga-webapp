@@ -18,14 +18,14 @@ define(function (require, exports, module) {
     },
     checkUrl: function(e) {
       var current = this.getFragment();
+      if (this._historyStack.length > 1) {
+        return false;
+      }
       if (current === this.fragment && this.iframe) {
         current = this.getFragment(this.getHash(this.iframe));
       }
       if (current === this.fragment) return false;
       if (this.iframe) this.navigate(current);
-      // --- reject stack 
-      this._historyStack.push(this.fragment);
-      // --- reject end
       this.loadUrl();
     },
     navigate: function(fragment, options) {
@@ -67,6 +67,7 @@ define(function (require, exports, module) {
       if (options.trigger) return this.loadUrl(fragment);
     }
   });
+  delete Backbone.history.checkUrl;
   _.bindAll(Backbone.history, 'checkUrl');
 
   /**
