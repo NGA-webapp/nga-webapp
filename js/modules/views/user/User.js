@@ -13,7 +13,7 @@ define(function (require, exports, module) {
     tpl: art.compile(tpl),
     events: {
       'tap .action-back': function () {
-        Backbone.stage.back(['bounce-bottom', 'bounce-bottom']);
+        Backbone.stage.back(['slide-right', 'slide-right']);
       }
     },
     render: function () {
@@ -29,7 +29,7 @@ define(function (require, exports, module) {
       var view;
       if (this.model.toJSON()['error']) {
         ui.Loading.close();
-        Backbone.stage.back(['bounce-bottom', 'bounce-bottom']);
+        Backbone.stage.back(['slide-right', 'slide-right']);
       } else {
         view = new ContentUserView({model: this.model});
         this.scroll.scrollTo(0, 0, 0);
@@ -51,7 +51,7 @@ define(function (require, exports, module) {
         Notification.alert('呜~查看用户失败~');
         ui.Loading.close();
         _.delay(function (){
-          Backbone.stage.back(['bounce-right', 'bounce-right']);
+          Backbone.stage.back(['slide-right', 'slide-right']);
         }, 600);
       };
       if (data.username) {

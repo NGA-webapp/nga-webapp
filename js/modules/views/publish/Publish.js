@@ -33,7 +33,7 @@ define(function (require, exports, module) {
         if (this.flag.active) {
           this.flag.active === false;
           this.$el.find('input').blur();
-          Backbone.stage.back(['bounce-bottom', 'bounce-bottom']);
+          Backbone.stage.back(['slide-left', 'slide-right']);
         }
       },
       'singleTap .action-ok': function (e) {
@@ -84,7 +84,7 @@ define(function (require, exports, module) {
                 if (jump) {
                   // /read.php?tid=6726209&_ff=335&page=e#a 
                   if ((target = jump.match(/tid=(\d+)/)) && target.length === 2) {
-                    Backbone.stage.back(['bounce-bottom', 'bounce-bottom'], {trigger: true});
+                    Backbone.stage.back(['slide-bottom', 'slide-bottom'], {trigger: true});
                   }
                 }
               },

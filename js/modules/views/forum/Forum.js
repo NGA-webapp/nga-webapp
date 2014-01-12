@@ -38,7 +38,7 @@ define(function (require, exports, module) {
         });
       },
       'singleTap .action-new': function () {
-        Backbone.stage.change('#!/publish/' + this.collection.cache.fid, ['bounce-left', 'bounce-left']);
+        Backbone.stage.change('#!/publish/' + this.collection.cache.fid, ['slide-right', 'slide-left']);
         appCache.get('publishView').$el.find('header .subject').text(sliceSubject('新帖'));
       },
       'singleTap .action-refresh': function (e) {

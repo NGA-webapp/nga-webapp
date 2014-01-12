@@ -9,7 +9,7 @@ define(function (require, exports, module) {
     className: 'hide',
     events: {
       'singleTap .avatar': function () {
-        Backbone.stage.change('#!/user/uid/' + this.model.get('authorId'), ['bounce-top', 'bounce-top']);
+        Backbone.stage.change('#!/user/uid/' + this.model.get('authorId'), ['slide-right', 'slide-right']);
       },
       'singleTap a.url': function (events) {
         var url = $(events.currentTarget).attr('data-url');
@@ -25,7 +25,7 @@ define(function (require, exports, module) {
       },
       'singleTap .ubb-at': function (events) {
         var username = $(events.currentTarget).attr('data-username');
-        Backbone.stage.change('#!/user/username/' + username, ['bounce-top', 'bounce-top']);
+        Backbone.stage.change('#!/user/username/' + username, ['slide-right', 'slide-right']);
       },
     },
     tpl: art.compile(tpl),

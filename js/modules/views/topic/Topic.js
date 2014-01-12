@@ -20,7 +20,7 @@ define(function (require, exports, module) {
       'singleTap .action-back': function () {
         if (this.flag.active) {
           this.flag.active === false;
-          Backbone.stage.back(['bounce-left', 'bounce-left']);
+          Backbone.stage.back(['slide-right', 'slide-left']);
         }
       },
       'singleTap .action-skip': function () {
@@ -40,7 +40,7 @@ define(function (require, exports, module) {
         }, '跳转', ['yamie', 'biu~'], (maxPage + ''));
       },
       'singleTap .action-reply': function () {
-        Backbone.stage.change('#!/publish/' + this.collection.cache.fid + '/' + this.collection.cache.tid, ['bounce-top', 'bounce-top']);
+        Backbone.stage.change('#!/publish/' + this.collection.cache.fid + '/' + this.collection.cache.tid, ['slide-right', 'slide-left']);
         appCache.get('publishView').$el.find('header .subject').text(sliceSubject('回复'));
       },
       'singleTap .action-share': function () {
@@ -193,7 +193,7 @@ define(function (require, exports, module) {
           Notification.alert('呜~进入帖子失败~');
           ui.Loading.close();
           _.delay(function (){
-            Backbone.stage.back(['bounce-right', 'bounce-right']);
+            Backbone.stage.back(['slide-left', 'slide-right']);
           }, 600);
         }
       });

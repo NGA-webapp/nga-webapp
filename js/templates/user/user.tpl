@@ -1,5 +1,5 @@
 <header>
-  <h1><a class="action-back"><span class="glyphicon glyphicon-chevron-down"></span> <span class="subject">返回</span></a></h1>
+  <h1><a class="action-back"><span class="glyphicon glyphicon-chevron-right"></span> <span class="subject">返回</span></a></h1>
 </header>
 <article id="user-article" class="iscroll">
   <div class="scroller">

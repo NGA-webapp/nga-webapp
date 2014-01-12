@@ -11,7 +11,7 @@ define(function (require, exports, module) {
     tpl: art.compile(tpl),
     events: {
       'singleTap .action-settingFavor': function () {
-        Backbone.stage.change('#!/setting/favor', ['bounce-left', 'bounce-left']);
+        Backbone.stage.change('#!/setting/favor', ['slide-right', 'slide-left']);
       },
       'singleTap .select': function (e) {
         $li = $(e.currentTarget);
