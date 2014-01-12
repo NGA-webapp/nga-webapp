@@ -4887,7 +4887,7 @@ main > .overlay {
   width: 83%;
   float: left;
   display: inline-block;
-  padding: 18px 10px;
+  padding: 1em 10px;
   font-size: 10px;
   color: #a3a3a3;
 }
