@@ -65,7 +65,7 @@ define(function (require, exports, module) {
               data: data,
               timeout: 20000,
               complete: complete,
-              header: {
+              headers: {
                 'x-user-agent': 'NGA for iPhone/' + config.version
               },
               success: function (data) {
