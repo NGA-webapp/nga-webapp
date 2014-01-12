@@ -17,12 +17,7 @@ define(function (require, exports, module) {
       active: false
     },
     events: {
-      'singleTap .action-back': function () {
-        if (this.flag.active) {
-          this.flag.active === false;
-          Backbone.stage.back(['slide-right', 'slide-left']);
-        }
-      },
+      'singleTap .action-back': 'action-back',
       'singleTap .action-skip': function () {
         var self = this;
         var maxPage = this.collection.cache.pageCount;
@@ -68,6 +63,13 @@ define(function (require, exports, module) {
       'singleTap': function () {
         var $footer = this.$footer;
         $footer.removeClass('behind').removeClass('hide');
+      },
+      'swipeRight': 'action-back'
+    },
+    'action-back': function () {
+      if (this.flag.active) {
+        this.flag.active === false;
+        Backbone.stage.back(['slide-right', 'slide-left']);
       }
     },
     _refreshScroll: function () {
