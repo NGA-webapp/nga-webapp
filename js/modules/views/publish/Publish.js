@@ -7,6 +7,7 @@ define(function (require, exports, module) {
   var inCharset = require('utils/inCharset');
   var appCache = require('modules/AppCache').appCache;
   var Notification = require('utils/Notification');
+  var config = require('config/index');
   
   var postUrl = 'http://bbs.ngacn.cc/post.php';
   // var postUrl = '';
@@ -64,6 +65,9 @@ define(function (require, exports, module) {
               data: data,
               timeout: 20000,
               complete: complete,
+              header: {
+                'x-user-agent': 'NGA for iPhone/' + config.version
+              },
               success: function (data) {
                 var target;
                 var jump = $(data).find('__JUMP').text();
