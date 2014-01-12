@@ -69,7 +69,7 @@ define(function (require, exports, module) {
     'action-back': function () {
       if (this.flag.active) {
         this.flag.active === false;
-        Backbone.stage.back(['slide-right', 'slide-left']);
+        Backbone.stage.back(['slide-left', 'slide-right']);
       }
     },
     _refreshScroll: function () {
