@@ -47,7 +47,7 @@ define(function (require, exports, module) {
           return;
         }
         self.flag.request = true;
-        his.$el.find('input, textarea').blur();
+        this.$el.find('input, textarea').blur();
         $btn.addClass('loading').find('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-refresh');
         ui.Loading.open();
         complete = function () {
