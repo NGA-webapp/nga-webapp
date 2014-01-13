@@ -67,7 +67,7 @@ define(function (require, exports, module) {
       'edgeRightEnd': function (e) {
         var self = this;
         var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
-        self.$el.animate({left: fullWidth, scale: 1}, 280);
+        self.$el.animate({left: fullWidth, scale: 0.9}, 100);
         setTimeout(function () {
           self.$el.animate({left: 0, scale: 1}, 0);
         }, 280);
