@@ -64,7 +64,18 @@ define(function (require, exports, module) {
         var $footer = this.$footer;
         $footer.removeClass('behind').removeClass('hide');
       },
-      'swipeRight': 'action-back'
+      'edgeRightEnd': function (e) {
+        this.$el.offset({left: 0});
+        this['action-back']();
+      },
+      'edgeRightMove': function (e, touch) {
+        this.$el.offset({left: touch.x2});
+      },
+      'edgeRightCancel': function () {
+        this.$el.offset({left: 0});
+      },
+      'swipeRight': 'prevPage',
+      'swipeLeft': 'nextPage',
     },
     'action-back': function () {
       if (this.flag.active) {
