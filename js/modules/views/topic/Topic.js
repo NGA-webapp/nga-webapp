@@ -65,8 +65,13 @@ define(function (require, exports, module) {
         $footer.removeClass('behind').removeClass('hide');
       },
       'edgeRightEnd': function (e) {
-        this.$el.animate({left: 0, scale: 1}, 280);
-        this['action-back']();
+        var self = this;
+        var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
+        self.$el.animate({left: fullWidth, scale: 1}, 280);
+        setTimeout(function () {
+          self.$el.animate({left: 0, scale: 1}, 0);
+        }, 280);
+        self['action-back']();
       },
       'edgeRightMove': function (e, touch) {
         var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
