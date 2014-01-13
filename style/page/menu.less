@@ -24,6 +24,8 @@
       padding: 5px 10px;
       &:active {
         color: @nga-red;
+        background: #ddd;
+        box-radius: 10px;
       }
     }
   }
@@ -68,6 +70,12 @@
             font-size: 12px;
             line-height: 30px;
             background-color: #ddd;
+            &:active {
+              border-top: none;
+              border-bottom: 1px solid #ddd;
+              background-color: #ddd;
+              color: #666;
+            }
           }
           &.disabled {
             color: #aaa;

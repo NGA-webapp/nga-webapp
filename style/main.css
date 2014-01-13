@@ -5488,6 +5488,8 @@ main > .overlay {
 }
 #menu > .search-box > .action-search:active {
   color: #db5633;
+  background: #ddd;
+  box-radius: 10px;
 }
 #menu > .menu-content {
   position: absolute;
@@ -5533,6 +5535,12 @@ main > .overlay {
   font-size: 12px;
   line-height: 30px;
   background-color: #ddd;
+}
+#menu > .menu-content > #menu-list ul > li.title:active {
+  border-top: none;
+  border-bottom: 1px solid #ddd;
+  background-color: #ddd;
+  color: #666;
 }
 #menu > .menu-content > #menu-list ul > li.disabled {
   color: #aaa;
