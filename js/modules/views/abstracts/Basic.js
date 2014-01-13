@@ -32,9 +32,6 @@ define(function (require, exports, module) {
           blur: blur
         };
       })();
-      var blurElems = function () {
-        self.$el.find(':focus').blur();
-      };
       var cache = {};
       this.on('stage-in-start', function () {
         this.delegateEvents();
