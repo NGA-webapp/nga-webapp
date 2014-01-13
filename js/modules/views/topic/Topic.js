@@ -65,16 +65,16 @@ define(function (require, exports, module) {
         $footer.removeClass('behind').removeClass('hide');
       },
       'edgeRightEnd': function (e) {
-        this.$el.offset({left: 0});
+        this.$el.animate({left: 0, scale: 1}, 200);
         this['action-back']();
       },
       'edgeRightMove': function (e, touch) {
         var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
         var max = fullWidth * 1 / 2;
-        this.$el.offset({left: touch.x2 > max ? max : touch.x2});
+        this.$el.animate({left: touch.x2 > max ? max : touch.x2, scale: 0.8}, 0);
       },
-      'edgeCancel': function () {
-        this.$el.offset({left: 0});
+      'edgeRightCancel': function () {
+        this.$el.animate({left: 0, scale: 1}, 200);
       },
       'swipeRight': 'prevPage',
       'swipeLeft': 'nextPage',
