@@ -73,7 +73,7 @@ define(function (require, exports, module) {
         var max = fullWidth * 1 / 2;
         this.$el.animate({left: touch.x2 > max ? max : touch.x2, scale: 0.8}, 0);
       },
-      'edgeRightCancel': function () {
+      'edgeCancel': function () {
         this.$el.animate({left: 0, scale: 1}, 200);
       },
       'swipeRight': 'prevPage',
