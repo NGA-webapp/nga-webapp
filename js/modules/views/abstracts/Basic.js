@@ -23,14 +23,22 @@ define(function (require, exports, module) {
           enabled.attr('disabled', null);
           hasCached = false;
         };
+        var blur = function () {
+          self.$el.find(':focus').blur();
+        };
         return {
           disable: disable,
-          enable: enable
+          enable: enable,
+          blur: blur
         };
       })();
+      var blurElems = function () {
+        self.$el.find(':focus').blur();
+      };
       var cache = {};
       this.on('stage-in-start', function () {
         this.delegateEvents();
+        elems.blur();
         elems.disable();
       });
       this.on('stage-in-end', function () {
@@ -38,6 +46,7 @@ define(function (require, exports, module) {
       });
       this.on('stage-out-start', function () {
         this.undelegateEvents();
+        elems.blur();
         elems.disable();
         // 转出的场景停止当前请求
         if (this.xhr && typeof this.xhr.abort === 'function') {
@@ -54,18 +63,22 @@ define(function (require, exports, module) {
         }
       });
       this.on('aside-aside-in-start', function () {
+        elems.blur();
         elems.disable();
       });
       this.on('aside-aside-in-end', function () {
         elems.enable();
       });
       this.on('aside-aside-out-start', function () {
+        elems.blur();
         elems.disable();
       });
       this.on('aside-section-in-start', function () {
+        elems.blur();
         elems.disable();
       });
       this.on('aside-section-out-start', function () {
+        elems.blur();
         elems.disable();
       });
       this.on('aside-section-out-end', function () {
