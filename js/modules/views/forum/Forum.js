@@ -46,7 +46,7 @@ define(function (require, exports, module) {
         $btn.addClass('loading');
         this.refresh();
       },
-      'swipeRight header+article': 'openLeftSider',
+      'edgeRight header+article': 'openLeftSider',
       'swipe .asideMask': 'closeSider',
       'tap .asideMask': 'closeSider',
       'tap .action-aside': 'openLeftSider',
