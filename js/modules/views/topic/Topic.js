@@ -73,7 +73,7 @@ define(function (require, exports, module) {
         var max = fullWidth * 1 / 3;
         this.$el.offset({left: touch.x2 > max ? max : touch.x2});
       },
-      'edgeRightCancel': function () {
+      'edgeCancel': function () {
         this.$el.offset({left: 0});
       },
       'swipeRight': 'prevPage',
