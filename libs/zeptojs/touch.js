@@ -88,7 +88,7 @@
         if (gesture && _isPointerType) gesture.addPointer(e.pointerId);
         if (touch.x1 < 30) {
           touch.el.trigger('edgeRightStart');
-        } else if (touch.x1 > (document.documentElement.clientWidth || document.body.offsetWidth) - 30) {
+        } else if (touch.x1 > (document.documentElement.clientWidth || document.body.offsetWidth)) {
           touch.el.trigger('edgeLeftStart');
         }
       })
@@ -104,7 +104,7 @@
         deltaY += Math.abs(touch.y1 - touch.y2)
         if (touch.x1 < 30) {
           touch.el.trigger('edgeRightMove', touch);
-        } else if (touch.x1 > (document.documentElement.clientWidth || document.body.offsetWidth) - 30) {
+        } else if (touch.x1 > (document.documentElement.clientWidth || document.body.offsetWidth)) {
           touch.el.trigger('edgeLeftMove', touch);
         }
       })
@@ -118,8 +118,8 @@
         cancelLongTap()
 
         // edge
-        isEdge = touch.x2 && Math.abs(touch.x1 - touch.x2) > fullWidth * 1 / 3
-        if (isEdge && (touch.x1 < 30) && (direction === 'Right'))
+        isEdge = touch.x2 && Math.abs(touch.x1 - touch.x2) > fullWidth * 1 / 2
+        if (isEdge && (touch.x1 < 0) && (direction === 'Right'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeRightEnd')
             touch.el.trigger('edgeRight')
@@ -127,7 +127,7 @@
             touch.el.trigger('edge')
             touch = {}
           }, 0)
-        else if (isEdge && (touch.x1 > fullWidth - 30) && (direction === 'Left'))
+        else if (isEdge && (touch.x1 > fullWidth) && (direction === 'Left'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeLeftEnd')
             touch.el.trigger('edgeLeft')
@@ -135,21 +135,21 @@
             touch.el.trigger('edge')
             touch = {}
           }, 0)
-        else if ((touch.x1 < 30) && (direction === 'Right'))
+        else if ((touch.x1 < 0) && (direction === 'Right'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeRightCancel')
             touch.el.trigger('edgeCancel')
             touch.el.trigger('edge')
             touch = {}
           }, 0)
-        else if ((touch.x1 > fullWidth - 30) && (direction === 'Left'))
+        else if ((touch.x1 > fullWidth) && (direction === 'Left'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeLeftCancel')
             touch.el.trigger('edgeCancel')
             touch.el.trigger('edge')
             touch = {}
           }, 0)
-        else if ((touch.x1 < 30 || touch.x1 > fullWidth - 30))
+        else if ((touch.x1 < 0 || touch.x1 > fullWidth))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeCancel')
             touch.el.trigger('edge')

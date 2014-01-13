@@ -70,7 +70,7 @@ define(function (require, exports, module) {
       },
       'edgeRightMove': function (e, touch) {
         var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
-        var max = fullWidth * 1 / 3;
+        var max = fullWidth * 1 / 2;
         this.$el.offset({left: touch.x2 > max ? max : touch.x2});
       },
       'edgeCancel': function () {
