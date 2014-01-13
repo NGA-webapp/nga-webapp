@@ -152,32 +152,32 @@ define(function (require, exports, module) {
         // http://stackoverflow.com/questions/11364837/using-backbone-history-to-go-back-without-triggering-route-function
         var self = this;
         this.on('route', Navigate.storeRoute);
-        this.on('route', function (route, param) {
+        // this.on('route', function (route, param) {
           // todo 暂时没有考虑后退的情况，可能需要为Navigate重新封装出一系列事件
           // 延迟处理input，是为了防止在切换页面时手误选中下一个页面的input
-          var enableInput = function () {
-            if (route === 'getMenu') {
-              self.cached.menuView.$el.find('.search-box input').attr('disabled', null);
-            }
-            if (route === 'getLogin') {
-              self.cached.loginView.$el.find('input').attr('disabled', null);
-              self.cached.loginView.$el.find('button').attr('disabled', null);
-            }
-            if (route === 'getPublish') {
-              self.cached.publishView.$el.find('input').attr('disabled', null);
-              self.cached.publishView.$el.find('textarea').attr('disabled', null);
-            }
-          };
-          var disableInput = function () {
-            self.cached.menuView.$el.find('input').attr('disabled', 'disabled').blur();
-            self.cached.loginView.$el.find('input').attr('disabled', 'disabled').blur();
-            self.cached.loginView.$el.find('button').attr('disabled', 'disabled').blur();
-            self.cached.publishView.$el.find('input').attr('disabled', 'disabled').blur();
-            self.cached.publishView.$el.find('textarea').attr('disabled', 'disabled').blur();
-          };
-          disableInput();
-          _.delay(enableInput, 800);
-        });
+        //   var enableInput = function () {
+        //     if (route === 'getMenu') {
+        //       self.cached.menuView.$el.find('.search-box input').attr('disabled', null);
+        //     }
+        //     if (route === 'getLogin') {
+        //       self.cached.loginView.$el.find('input').attr('disabled', null);
+        //       self.cached.loginView.$el.find('button').attr('disabled', null);
+        //     }
+        //     if (route === 'getPublish') {
+        //       self.cached.publishView.$el.find('input').attr('disabled', null);
+        //       self.cached.publishView.$el.find('textarea').attr('disabled', null);
+        //     }
+        //   };
+        //   var disableInput = function () {
+        //     self.cached.menuView.$el.find('input').attr('disabled', 'disabled').blur();
+        //     self.cached.loginView.$el.find('input').attr('disabled', 'disabled').blur();
+        //     self.cached.loginView.$el.find('button').attr('disabled', 'disabled').blur();
+        //     self.cached.publishView.$el.find('input').attr('disabled', 'disabled').blur();
+        //     self.cached.publishView.$el.find('textarea').attr('disabled', 'disabled').blur();
+        //   };
+        //   disableInput();
+        //   _.delay(enableInput, 800);
+        // });
         Backbone.history.on('route', function () {
           if (Backbone.history._historyStack.length === 0) {
             Backbone.history._historyStack = [Backbone.history.getFragment()];
