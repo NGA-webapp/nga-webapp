@@ -38,6 +38,10 @@
           &.show {
             -webkit-animation: bounceInDown 1s ease
           }
+          .hr {
+            box-shadow: 0px 1px 0 0 #ddd;
+            border-bottom: 1px solid #fff;
+          }
           .box-sizing(border-box);
           -webkit-backface-visibility: hidden;
           display: block;
@@ -84,12 +88,13 @@
             }
           }
           & > .content, & > .signature {
-            h3 {
+            h3, h4 {
               padding: 0 0 10px 0;
               margin: 0;
               font-size: 14px;
+              .hr;
             }
-            blockquote {
+            blockquote, code {
               margin: 0;
               padding: 10px;
               border: 1px solid #ccc;
@@ -100,8 +105,7 @@
               max-height: 100%;
             }
             hr {
-              box-shadow: 0px 1px 1px 0 #eee;
-              border-bottom: 1px solid #ccc;
+              .hr;
             }
             del {
               color: #999;
@@ -113,13 +117,33 @@
               text-decoration: underline;
               color: @nga-red;
             }
+            .ubb-collapse {
+              summary {
+                border: 1px solid #ccc;
+                background-color: #fff;
+                .border-radius(10px);
+                min-height: 20px;
+                line-height: 20px;
+                display: inline-block;
+                padding: 5px;
+                margin: 5px 0;
+              }
+              .ubb-collapse-content {
+                border: 1px solid #ccc;
+                background-color: #fff;
+                .border-radius(10px);
+                margin: 0;
+                padding: 10px;
+              }
+            }
             word-wrap:break-word;
             overflow:hidden;
             padding: 20px 20px 30px 20px;
           }
           & > .signature {
-            box-shadow: 0px -1px 1px 0 #eee;
-            border-top: 1px solid #ccc;
+            box-shadow: 0px -1px 0 0 #ddd;
+            border-top: 1px solid #fff;
+            font-size: 0.8em;
           }
         }
       }

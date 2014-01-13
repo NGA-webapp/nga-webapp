@@ -29,7 +29,7 @@
           <%   } %>
           <% } %>
         </div>
-        <% if (setting.showSignature) { %>
+        <% if (setting.showSignature && $trim(signature) !== '') { %>
         <div class="signature">
           <%== $ubb(signature, setting) %> 
         </div>

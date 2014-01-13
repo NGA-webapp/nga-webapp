@@ -9,6 +9,9 @@ define(function (require, exports, module) {
     var timestamp = parseInt(content + '000', 0);
     return common.format_date(new Date(timestamp), true);
   });
+  template.helper('$trim', function (content) {
+    return common.trim(content);
+  });
   template.helper('$decimal', function (num, n) {
     n = typeof n === 'undefined' ? 2 : n;
     return {

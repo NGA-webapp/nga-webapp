@@ -5010,6 +5010,10 @@ main > .overlay {
 #topic article .scroller > ul > li.show {
   -webkit-animation: bounceInDown 1s ease;
 }
+#topic article .scroller > ul > li .hr {
+  box-shadow: 0px 1px 0 0 #ddd;
+  border-bottom: 1px solid #fff;
+}
 #topic article .scroller > ul > li > h2 {
   margin: 0;
   padding: 20px 10px;
@@ -5062,13 +5066,19 @@ main > .overlay {
   padding: 20px 20px 30px 20px;
 }
 #topic article .scroller > ul > li > .content h3,
-#topic article .scroller > ul > li > .signature h3 {
+#topic article .scroller > ul > li > .signature h3,
+#topic article .scroller > ul > li > .content h4,
+#topic article .scroller > ul > li > .signature h4 {
   padding: 0 0 10px 0;
   margin: 0;
   font-size: 14px;
+  box-shadow: 0px 1px 0 0 #ddd;
+  border-bottom: 1px solid #fff;
 }
 #topic article .scroller > ul > li > .content blockquote,
-#topic article .scroller > ul > li > .signature blockquote {
+#topic article .scroller > ul > li > .signature blockquote,
+#topic article .scroller > ul > li > .content code,
+#topic article .scroller > ul > li > .signature code {
   margin: 0;
   padding: 10px;
   border: 1px solid #ccc;
@@ -5081,8 +5091,8 @@ main > .overlay {
 }
 #topic article .scroller > ul > li > .content hr,
 #topic article .scroller > ul > li > .signature hr {
-  box-shadow: 0px 1px 1px 0 #eee;
-  border-bottom: 1px solid #ccc;
+  box-shadow: 0px 1px 0 0 #ddd;
+  border-bottom: 1px solid #fff;
 }
 #topic article .scroller > ul > li > .content del,
 #topic article .scroller > ul > li > .signature del {
@@ -5097,9 +5107,33 @@ main > .overlay {
   text-decoration: underline;
   color: #db5633;
 }
+#topic article .scroller > ul > li > .content .ubb-collapse summary,
+#topic article .scroller > ul > li > .signature .ubb-collapse summary {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  min-height: 20px;
+  line-height: 20px;
+  display: inline-block;
+  padding: 5px;
+  margin: 5px 0;
+}
+#topic article .scroller > ul > li > .content .ubb-collapse .ubb-collapse-content,
+#topic article .scroller > ul > li > .signature .ubb-collapse .ubb-collapse-content {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin: 0;
+  padding: 10px;
+}
 #topic article .scroller > ul > li > .signature {
-  box-shadow: 0px -1px 1px 0 #eeeeee;
-  border-top: 1px solid #ccc;
+  box-shadow: 0px -1px 0 0 #dddddd;
+  border-top: 1px solid #fff;
+  font-size: 0.8em;
 }
 #topic article .scroller > .action-pulldown,
 #topic article .scroller > .action-pullup {

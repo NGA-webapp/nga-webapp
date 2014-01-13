@@ -13,11 +13,17 @@
   } else {
     throw new Error('module required');
   }
-})(function (require, exports, module) {
-  var at = {
-    regExp: new RegExp(/\[@(\w*)\]/gi),
-    replacement: '<a class="ubb-at" data-username="$1" src="javascript:;">{@$1}</a>'
+})(function (require, exports) {
+  var collapse = {
+    tagName: 'collapse',
+    isPair: true,
+    parser: function (content, attrs) {
+      var title = attrs.nop ? '展开' : attrs.value;
+      return '<details class="ubb-collapse"><summary>' + title + '</summary>'
+         + '<div class="ubb-collapse-content">' + content + '</div></details>';
+    },
+    priority: 1,
   };
-
-  exports.at = at;
+  
+  exports.collapse = collapse;
 });
