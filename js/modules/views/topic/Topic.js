@@ -69,7 +69,9 @@ define(function (require, exports, module) {
         this['action-back']();
       },
       'edgeRightMove': function (e, touch) {
-        this.$el.offset({left: touch.x2});
+        var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
+        var max = fullWidth * 1 / 3;
+        this.$el.offset({left: touch.x2 > max ? max : touch.x2});
       },
       'edgeRightCancel': function () {
         this.$el.offset({left: 0});

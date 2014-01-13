@@ -47,6 +47,8 @@ define(function (require, exports, module) {
         this.refresh();
       },
       'edgeRight header+article': 'openLeftSider',
+      'swipeRight header+article': 'openLeftSider',
+      'edge .asideMask': 'closeSider',
       'swipe .asideMask': 'closeSider',
       'tap .asideMask': 'closeSider',
       'tap .action-aside': 'openLeftSider',

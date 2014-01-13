@@ -123,22 +123,26 @@
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeRightEnd')
             touch.el.trigger('edgeRight')
+            touch.el.trigger('edge')
             touch = {}
           }, 0)
         else if (isEdge && (touch.x1 > fullWidth - 30) && (direction === 'Left'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeLeftEnd')
             touch.el.trigger('edgeLeft')
+            touch.el.trigger('edge')
             touch = {}
           }, 0)
         else if ((touch.x1 < 30) && (direction === 'Right'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeRightCancel')
+            touch.el.trigger('edge')
             touch = {}
           }, 0)
         else if ((touch.x1 > fullWidth - 30) && (direction === 'Left'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeLeftCancel')
+            touch.el.trigger('edge')
             touch = {}
           }, 0)
 
