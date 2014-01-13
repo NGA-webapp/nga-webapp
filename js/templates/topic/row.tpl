@@ -29,4 +29,9 @@
           <%   } %>
           <% } %>
         </div>
+        <% if (setting.showSignature) { %>
+        <div class="signature">
+          <%== $ubb(signature, setting) %> 
+        </div>
+        <% } %>
         <div class="clearfix"></div>

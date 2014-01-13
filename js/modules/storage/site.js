@@ -79,7 +79,8 @@ define(function (require, exports, module) {
     getSetting: function (key) {
       var defaults = {
         downloadAvatar: true,
-        downloadImage: true
+        downloadImage: true,
+        showSignature: true
       };
       var setting = _.extend(defaults, this.get('setting'));
       return typeof key === 'undefined' ? setting : setting[key];

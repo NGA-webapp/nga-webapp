@@ -29,6 +29,16 @@
           <% } %>
         </h4>
       </li>
+      <li class="select" data-key="showSignature">
+        <h4>
+          显示签名
+          <% if (setting.showSignature) { %>
+            <span class="checkbox checked"></span>
+          <% } else { %>
+            <span class="checkbox"></span>
+          <% } %>
+        </h4>
+      </li>
     </ul>
     <ul>
       <li class="link disabled">

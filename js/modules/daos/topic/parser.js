@@ -134,7 +134,8 @@ define(function (require, exports, module) {
         avatar: _.has(usersCache, post.authorId) ? usersCache[post.authorId].avatar : '',
         attachs: post.attachs,
         lou: post.lou,
-        postDate: post.postDate
+        postDate: post.postDate,
+        signature: _.has(usersCache, post.authorId) ? usersCache[post.authorId].signature : ''
       };
     };
     obj = {

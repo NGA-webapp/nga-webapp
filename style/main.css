@@ -5055,39 +5055,51 @@ main > .overlay {
   font-size: 10px;
   line-height: 15px;
 }
-#topic article .scroller > ul > li > .content {
+#topic article .scroller > ul > li > .content,
+#topic article .scroller > ul > li > .signature {
   word-wrap: break-word;
   overflow: hidden;
   padding: 20px 20px 30px 20px;
 }
-#topic article .scroller > ul > li > .content h3 {
+#topic article .scroller > ul > li > .content h3,
+#topic article .scroller > ul > li > .signature h3 {
   padding: 0 0 10px 0;
   margin: 0;
   font-size: 14px;
 }
-#topic article .scroller > ul > li > .content blockquote {
+#topic article .scroller > ul > li > .content blockquote,
+#topic article .scroller > ul > li > .signature blockquote {
   margin: 0;
   padding: 10px;
   border: 1px solid #ccc;
   background-color: #fff;
 }
-#topic article .scroller > ul > li > .content img {
+#topic article .scroller > ul > li > .content img,
+#topic article .scroller > ul > li > .signature img {
   max-width: 100%;
   max-height: 100%;
 }
-#topic article .scroller > ul > li > .content hr {
+#topic article .scroller > ul > li > .content hr,
+#topic article .scroller > ul > li > .signature hr {
   box-shadow: 0px 1px 1px 0 #eee;
   border-bottom: 1px solid #ccc;
 }
-#topic article .scroller > ul > li > .content del {
+#topic article .scroller > ul > li > .content del,
+#topic article .scroller > ul > li > .signature del {
   color: #999;
 }
-#topic article .scroller > ul > li > .content video {
+#topic article .scroller > ul > li > .content video,
+#topic article .scroller > ul > li > .signature video {
   max-width: 100%;
 }
-#topic article .scroller > ul > li > .content .ubb-at {
+#topic article .scroller > ul > li > .content .ubb-at,
+#topic article .scroller > ul > li > .signature .ubb-at {
   text-decoration: underline;
   color: #db5633;
+}
+#topic article .scroller > ul > li > .signature {
+  box-shadow: 0px -1px 1px 0 #eeeeee;
+  border-top: 1px solid #ccc;
 }
 #topic article .scroller > .action-pulldown,
 #topic article .scroller > .action-pullup {
