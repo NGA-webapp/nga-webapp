@@ -86,9 +86,9 @@
         longTapTimeout = setTimeout(longTap, longTapDelay)
         // adds the current touch contact for IE gesture recognition
         if (gesture && _isPointerType) gesture.addPointer(e.pointerId);
-        if (touch.x1 < 30) {
+        if (touch.x1 === 0) {
           touch.el.trigger('edgeRightStart');
-        } else if (touch.x1 > (document.documentElement.clientWidth || document.body.offsetWidth)) {
+        } else if (touch.x1 === (document.documentElement.clientWidth || document.body.offsetWidth)) {
           touch.el.trigger('edgeLeftStart');
         }
       })
@@ -102,9 +102,9 @@
 
         deltaX += Math.abs(touch.x1 - touch.x2)
         deltaY += Math.abs(touch.y1 - touch.y2)
-        if (touch.x1 < 30) {
+        if (touch.x1 === 0) {
           touch.el.trigger('edgeRightMove', touch);
-        } else if (touch.x1 > (document.documentElement.clientWidth || document.body.offsetWidth)) {
+        } else if (touch.x1 === (document.documentElement.clientWidth || document.body.offsetWidth)) {
           touch.el.trigger('edgeLeftMove', touch);
         }
       })
