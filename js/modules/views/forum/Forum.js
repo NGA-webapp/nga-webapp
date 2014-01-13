@@ -51,7 +51,13 @@ define(function (require, exports, module) {
       'edge .asideMask': 'closeSider',
       'swipe .asideMask': 'closeSider',
       'tap .asideMask': 'closeSider',
-      'tap .action-aside': 'openLeftSider',
+      'tap .action-aside': function () {
+        if (this.$el.find('.asideMask').hasClass('on')) {
+          this.closeSider();
+        } else {
+          this.openLeftSider();
+        }
+      }
     },
     openLeftSider: function () {
       var self = this;

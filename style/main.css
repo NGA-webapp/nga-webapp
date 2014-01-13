@@ -3077,7 +3077,7 @@ hr {
 }
 .stage-animate {
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-show {
@@ -4011,7 +4011,7 @@ hr {
   -o-animation-name: animate-in-slide-top;
   animation-name: animate-in-slide-top;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-in-slide-right {
@@ -4020,7 +4020,7 @@ hr {
   -o-animation-name: animate-in-slide-right;
   animation-name: animate-in-slide-right;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-in-slide-bottom {
@@ -4029,7 +4029,7 @@ hr {
   -o-animation-name: animate-in-slide-bottom;
   animation-name: animate-in-slide-bottom;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-in-slide-left {
@@ -4038,7 +4038,7 @@ hr {
   -o-animation-name: animate-in-slide-left;
   animation-name: animate-in-slide-left;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-out-slide-top {
@@ -4047,7 +4047,7 @@ hr {
   -o-animation-name: animate-out-slide-top;
   animation-name: animate-out-slide-top;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-out-slide-right {
@@ -4056,7 +4056,7 @@ hr {
   -o-animation-name: animate-out-slide-right;
   animation-name: animate-out-slide-right;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-out-slide-bottom {
@@ -4065,7 +4065,7 @@ hr {
   -o-animation-name: animate-out-slide-bottom;
   animation-name: animate-out-slide-bottom;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-out-slide-left {
@@ -4074,7 +4074,7 @@ hr {
   -o-animation-name: animate-out-slide-left;
   animation-name: animate-out-slide-left;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-in-bounce-top {
@@ -4083,7 +4083,7 @@ hr {
   -o-animation-name: animate-in-bounce-top;
   animation-name: animate-in-bounce-top;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-in-bounce-right {
@@ -4092,7 +4092,7 @@ hr {
   -o-animation-name: animate-in-bounce-right;
   animation-name: animate-in-bounce-right;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-in-bounce-bottom {
@@ -4101,7 +4101,7 @@ hr {
   -o-animation-name: animate-in-bounce-bottom;
   animation-name: animate-in-bounce-bottom;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-in-bounce-left {
@@ -4110,7 +4110,7 @@ hr {
   -o-animation-name: animate-in-bounce-left;
   animation-name: animate-in-bounce-left;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-out-bounce-top {
@@ -4119,7 +4119,7 @@ hr {
   -o-animation-name: animate-out-bounce-top;
   animation-name: animate-out-bounce-top;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-out-bounce-right {
@@ -4128,7 +4128,7 @@ hr {
   -o-animation-name: animate-out-bounce-right;
   animation-name: animate-out-bounce-right;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-out-bounce-bottom {
@@ -4137,7 +4137,7 @@ hr {
   -o-animation-name: animate-out-bounce-bottom;
   animation-name: animate-out-bounce-bottom;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .stage-animate-out-bounce-left {
@@ -4146,12 +4146,12 @@ hr {
   -o-animation-name: animate-out-bounce-left;
   animation-name: animate-out-bounce-left;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
 }
 .aside-animate {
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: ease;
 }
 .aside-animate-show {
@@ -4311,7 +4311,7 @@ section.aside-animate-section-in-slide-right {
   -o-animation-name: as-animate-section-in-slide-right;
   animation-name: as-animate-section-in-slide-right;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: ease;
   -webkit-transform: translate3d(-80%, 0, 0);
   -moz-transform: translate3d(-80%, 0, 0);
@@ -4324,7 +4324,7 @@ section.aside-animate-section-in-slide-left {
   -o-animation-name: as-animate-section-in-slide-left;
   animation-name: as-animate-section-in-slide-left;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: ease;
   -webkit-transform: translate3d(80%, 0, 0);
   -moz-transform: translate3d(80%, 0, 0);
@@ -4338,7 +4338,7 @@ section.aside-animate-section-out-slide-right {
   animation-name: as-animate-section-out-slide-right;
   z-index: 180;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: ease;
   -webkit-transform: translate3d(-80%, 0, 0);
   -moz-transform: translate3d(-80%, 0, 0);
@@ -4352,7 +4352,7 @@ section.aside-animate-section-out-slide-left {
   animation-name: as-animate-section-out-slide-left;
   z-index: 180;
   -webkit-animation-fill-mode: both;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: ease;
   -webkit-transform: translate3d(80%, 0, 0);
   -moz-transform: translate3d(80%, 0, 0);
