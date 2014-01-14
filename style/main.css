@@ -4863,30 +4863,15 @@ main > .overlay {
 #customForums article .scroller > ul > li.show {
   -webkit-animation: bounceInDown 1s ease;
 }
-#customForums article .scroller > ul > li.category,
-#customForums article .scroller > ul > li.group {
-  background-color: #ddd;
-  border-bottom: 1px solid #ccc;
-}
-#customForums article .scroller > ul > li.category {
-  min-height: 30px;
-  line-height: 30px;
-  font-size: 18px;
-  border-left: 4px solid #db5633;
-  padding: 10px 16px;
-}
-#customForums article .scroller > ul > li.group {
-  min-height: 20px;
-  line-height: 20px;
-  font-size: 16px;
-  padding: 10px 18px;
-}
 #customForums article .scroller > ul > li.forum {
   border-bottom: 1px solid #ddd;
   width: 100%;
   padding: 18px 20px;
   font-size: 10px;
   color: #a3a3a3;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 #customForums article .scroller > ul > li.forum:active,
 #customForums article .scroller > ul > li.forum.choose {
@@ -4897,43 +4882,12 @@ main > .overlay {
 #customForums article .scroller > ul > li.forum.choose > h4 {
   color: #fff;
 }
-#customForums article .scroller > ul > li.forum.choose span {
-  display: inline-block;
-  float: right;
-  font-size: 14px;
-}
-#customForums article .scroller > ul > li.forum span {
-  display: none;
-}
 #customForums article .scroller > ul > li.forum > h4 {
   margin: 0;
   padding: 0;
   font-size: 14px;
   font-weight: normal;
   color: #666;
-}
-#customForums article .scroller > .action-pulldown,
-#customForums article .scroller > .action-pullup {
-  -webkit-transition: all 0.3s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-  text-align: center;
-  min-height: 2em;
-  line-height: 2em;
-  color: #999;
-}
-#customForums article .scroller > .action-pulldown.flip,
-#customForums article .scroller > .action-pullup.flip {
-  color: #db5633;
-}
-#customForums article .scroller > .action-pulldown.loading,
-#customForums article .scroller > .action-pullup.loading {
-  color: #db5633;
-}
-#customForums article .scroller > .action-pulldown.loading > span.glyphicon,
-#customForums article .scroller > .action-pullup.loading > span.glyphicon {
-  -webkit-animation: rotation 2s infinite linear;
 }
 #customForums footer {
   color: #db5633;

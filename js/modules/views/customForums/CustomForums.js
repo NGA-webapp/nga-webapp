@@ -27,11 +27,25 @@ define(function (require, exports, module) {
             }
           }
         }, '添加', ['yamie', 'biu~'], ('')); 
+      },
+      'longTap .forum': function (e) {
+        var $forum = $(e.currentTarget);
+        var fid = $forum.attr('data-fid');
+        Notification.confirm('是否不再显示该自定义版面[' + fid + ']', function (result) {
+          if (result) {
+            siteStorage.removeCustomForum(fid);
+          }
+        }, '移除自定义版面', '是的呀');
       }
     },
     refresh: function () {
+      var self = this;
       var forums = siteStorage.getCustomForum();
       this.$ul.html(this.tplContent({forums: forums}));
+      setTimeout(function () {
+        self.scroll.refresh();
+        self.scroll.scrollToElement(self.$ul.find('li:last-child').get(0), 100);
+      }, 0);
     },
     render: function () {
       this.$el.html(this.tpl());
