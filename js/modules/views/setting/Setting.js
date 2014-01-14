@@ -5,6 +5,7 @@ define(function (require, exports, module) {
   var tpl = require('templates/setting/setting.tpl');
   var appCache = require('modules/AppCache').appCache;
   var siteStorage = require('modules/storage/site');
+  var Notification = require('utils/Notification');
 
   var SettingView = BasicView.extend({
     el: '#setting',
@@ -15,6 +16,13 @@ define(function (require, exports, module) {
       },
       'singleTap .action-customForums': function () {
         Backbone.stage.change('#!/customForums', ['slide-right', 'slide-left']);
+      },
+      'singleTap .action-clearLastForums': function () {
+        Notification.confirm('真的要清空版面历史记录吗历史记录吗？', function (result) {
+          if (result === true || result == 2) {
+            siteStorage.clearLastForum();
+          }
+        }, '清空版面历史记录', '手抖,是的呀');
       },
       'singleTap .select': function (e) {
         $li = $(e.currentTarget);

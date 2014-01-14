@@ -65,6 +65,10 @@ define(function (require, exports, module) {
       var last = this.getLastForum();
       this.set('lastForum', _.chain([fid]).union(last).first(4).value());
     },
+    // 清空历史访问的版面
+    clearLastForum: function () {
+      this.set('lastForum', []);
+    },
     // 增加最喜爱的版面
     addFavorForum: function (fid) {
       var favor = this.getFavorForum();

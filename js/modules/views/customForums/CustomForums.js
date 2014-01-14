@@ -32,7 +32,7 @@ define(function (require, exports, module) {
         var $forum = $(e.currentTarget);
         var fid = $forum.attr('data-fid');
         Notification.confirm('是否不再显示该自定义版面[' + fid + ']', function (result) {
-          if (result == 2) {
+          if (result === true || result == 2) {
             siteStorage.removeCustomForum(fid);
           }
         }, '移除自定义版面', 'yamie,是的呀');
