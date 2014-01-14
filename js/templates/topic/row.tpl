@@ -31,7 +31,7 @@
         </div>
         <% if (setting.showSignature && $trim(signature) !== '') { %>
         <div class="signature">
-          <%== $ubb(signature, setting) %> 
+          <%== $trim($ubb(signature, setting)) %> 
         </div>
         <% } %>
         <div class="clearfix"></div>

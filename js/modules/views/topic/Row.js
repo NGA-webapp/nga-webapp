@@ -26,6 +26,10 @@ define(function (require, exports, module) {
         var username = $(events.currentTarget).attr('data-username');
         Backbone.stage.change('#!/user/username/' + username, ['slide-right', 'slide-right']);
       },
+      'singleTap .ubb-collapse-content': function (events) {
+        var $self = $(events.currentTarget);
+        $self.parent().attr('open', null);
+      }
     },
     tpl: art.compile(tpl),
     render: function () {

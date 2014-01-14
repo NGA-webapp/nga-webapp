@@ -49,6 +49,9 @@ define(function (require, exports, module) {
           });
         }, false);
       },
+      'singleTap .ubb-collapse': function () {
+        this.scroll.refresh();
+      },
       'swipeUp': function () {
         var $footer = this.$footer;
         $footer.addClass('hide');

@@ -5074,7 +5074,6 @@ main > .overlay {
 #topic article .scroller > ul > li > .signature {
   word-wrap: break-word;
   overflow: hidden;
-  padding: 20px 20px 30px 20px;
 }
 #topic article .scroller > ul > li > .content h3,
 #topic article .scroller > ul > li > .signature h3,
@@ -5156,10 +5155,15 @@ main > .overlay {
   margin: 0;
   padding: 10px;
 }
+#topic article .scroller > ul > li > .content {
+  padding: 20px 20px 30px 20px;
+}
 #topic article .scroller > ul > li > .signature {
   box-shadow: 0px -1px 0 0 #dddddd;
   border-top: 1px solid #fff;
   font-size: 0.8em;
+  padding: 0.5em 20px 1em;
+  line-height: 1.5em;
 }
 #topic article .scroller > .action-pulldown,
 #topic article .scroller > .action-pullup {
