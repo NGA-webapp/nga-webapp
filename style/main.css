@@ -5944,7 +5944,7 @@ main > .overlay {
   box-shadow: 0 0 10px 1px #000;
   background-color: #db5633;
   background-image: url('images/bootup-bg.png');
-  background-size: 336px;
+  background-size: 280px;
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -5973,7 +5973,7 @@ main > .overlay {
   padding: 1em;
 }
 #bootup article .content .bottom {
-  font-size: 0.8em;
+  font-size: 0.6em;
   text-align: center;
   position: absolute;
   bottom: 1em;
