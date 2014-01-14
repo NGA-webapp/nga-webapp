@@ -118,7 +118,7 @@
         cancelLongTap()
 
         // edge
-        isEdge = touch.x2 && Math.abs(touch.x1 - touch.x2) > fullWidth * 1 / 2
+        isEdge = touch.x2 && Math.abs(touch.x1 - touch.x2) > fullWidth * 1 / 3
         if (isEdge && (touch.x1 < 10) && (direction === 'Right'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeRightEnd')

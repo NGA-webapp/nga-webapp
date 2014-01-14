@@ -6,7 +6,6 @@ define(function (require, exports, module) {
 
   var RowTopicView = BasicView.extend({
     tagName: 'li',
-    className: 'hide',
     events: {
       'singleTap .avatar': function () {
         Backbone.stage.change('#!/user/uid/' + this.model.get('authorId'), ['slide-right', 'slide-right']);

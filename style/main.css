@@ -3090,6 +3090,9 @@ hr {
   z-index: 50;
   display: none;
 }
+.stage-animate-show-behind {
+  z-index: 280;
+}
 .stage-animate-in {
   z-index: 300;
 }
@@ -4046,6 +4049,7 @@ hr {
   -moz-animation-name: animate-out-slide-top;
   -o-animation-name: animate-out-slide-top;
   animation-name: animate-out-slide-top;
+  z-index: 280;
   -webkit-animation-fill-mode: both;
   -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
@@ -4055,6 +4059,7 @@ hr {
   -moz-animation-name: animate-out-slide-right;
   -o-animation-name: animate-out-slide-right;
   animation-name: animate-out-slide-right;
+  z-index: 280;
   -webkit-animation-fill-mode: both;
   -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
@@ -4064,6 +4069,7 @@ hr {
   -moz-animation-name: animate-out-slide-bottom;
   -o-animation-name: animate-out-slide-bottom;
   animation-name: animate-out-slide-bottom;
+  z-index: 280;
   -webkit-animation-fill-mode: both;
   -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
@@ -4073,6 +4079,7 @@ hr {
   -moz-animation-name: animate-out-slide-left;
   -o-animation-name: animate-out-slide-left;
   animation-name: animate-out-slide-left;
+  z-index: 280;
   -webkit-animation-fill-mode: both;
   -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
@@ -4118,6 +4125,7 @@ hr {
   -moz-animation-name: animate-out-bounce-top;
   -o-animation-name: animate-out-bounce-top;
   animation-name: animate-out-bounce-top;
+  z-index: 280;
   -webkit-animation-fill-mode: both;
   -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
@@ -4127,6 +4135,7 @@ hr {
   -moz-animation-name: animate-out-bounce-right;
   -o-animation-name: animate-out-bounce-right;
   animation-name: animate-out-bounce-right;
+  z-index: 280;
   -webkit-animation-fill-mode: both;
   -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
@@ -4136,6 +4145,7 @@ hr {
   -moz-animation-name: animate-out-bounce-bottom;
   -o-animation-name: animate-out-bounce-bottom;
   animation-name: animate-out-bounce-bottom;
+  z-index: 280;
   -webkit-animation-fill-mode: both;
   -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
@@ -4145,6 +4155,7 @@ hr {
   -moz-animation-name: animate-out-bounce-left;
   -o-animation-name: animate-out-bounce-left;
   animation-name: animate-out-bounce-left;
+  z-index: 280;
   -webkit-animation-fill-mode: both;
   -webkit-animation-duration: 280ms;
   -webkit-animation-timing-function: linear;
@@ -4862,8 +4873,8 @@ main > .overlay {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-#forum article .scroller > ul > li.show {
-  -webkit-animation: bounceInDown 1s ease;
+#forum article .scroller > ul > li.animate {
+  -webkit-animation: bounceInDown 800ms ease;
 }
 #forum article .scroller > ul > li:active {
   background-color: #ddd;
@@ -5007,8 +5018,8 @@ main > .overlay {
   border-bottom: 1px solid #ccc;
   color: #666;
 }
-#topic article .scroller > ul > li.show {
-  -webkit-animation: bounceInDown 1s ease;
+#topic article .scroller > ul > li.animate {
+  -webkit-animation: bounceInDown 800ms ease;
 }
 #topic article .scroller > ul > li .hr {
   box-shadow: 0px 1px 0 0 #ddd;

@@ -118,7 +118,10 @@ define(function (require, exports, module) {
       }
       var view = new RowForumView({model: topic});
       this.$ul.append(view.el);
-      $(view.el).removeClass('hide').addClass('show');
+      $(view.el).addClass('animate');
+      setTimeout(function () {
+        $(view.el).removeClass('animate');
+      }, 800);
     },
     /**
      * 添加全部帖子

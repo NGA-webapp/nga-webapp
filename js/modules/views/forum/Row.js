@@ -7,7 +7,6 @@ define(function (require, exports, module) {
 
   var RowForumView = BasicView.extend({
     tagName: 'li',
-    className: 'hide',
     events: {
       'singleTap': function (e) {
         Backbone.stage.change('#!/topic/' + this.model.get('id'), ['slide-right', 'slide-left']);

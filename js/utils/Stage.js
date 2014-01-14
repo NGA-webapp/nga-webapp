@@ -186,6 +186,13 @@ define(function (require, exports, module) {
   };
 
   /**
+   * 取上一个视图
+   */
+  Stage.prototype.getLastView = function () {
+    return this.getView(this.getLastFragment());
+  };
+
+  /**
    * 取动画样式
    * @param  {string} type 类型，入场或出场，对应in和out
    * @param  {string} name  动画名，如果留空或者找不到该动画则会返回默认的转场样式

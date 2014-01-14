@@ -67,27 +67,47 @@ define(function (require, exports, module) {
       'edgeRightEnd': function (e) {
         var self = this;
         var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
-        self.$el.animate({left: fullWidth}, 140);
+        var $cur, $last;
+        $cur = self.$el;
+        $last = Backbone.stage.getLastView().$el;
+        $cur.animate({left: fullWidth}, 140);
+        $last.removeClass('stage-animate-show-behind').addClass('stage-animate-out').animate({scale: 1}, 140);
         setTimeout(function () {
-          self.$el.animate({left: 0, scale: 1}, 0);
+          $cur.attr('style', null);
+          $last.attr('style', null);
         }, 280);
-        self['action-back']();
+        self['action-back']([]);
       },
       'edgeRightMove': function (e, touch) {
         var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
-        var max = fullWidth * 1 / 2;
-        this.$el.animate({left: touch.x2 > max ? max : touch.x2, scale: 0.9}, 0);
+        var max = fullWidth;
+        var scale = touch.x2 / fullWidth * 0.1 + 0.9;
+        this.$el.animate({left: touch.x2 > max ? max : touch.x2}, 0);
+        Backbone.stage.getLastView().$el.animate({scale: scale}, 0);
+      },
+      'edgeRightStart': function (e, touch) {
+        Backbone.stage.getLastView().$el.removeClass('stage-animate-out').addClass('stage-animate-show-behind');
       },
       'edgeCancel': function () {
-        this.$el.animate({left: 0, scale: 1}, 100);
+        var self = this;
+        var $cur, $last;
+        $cur = self.$el;
+        $last = Backbone.stage.getLastView().$el;
+        $cur.animate({left: 0}, 100);
+        $last.removeClass('stage-animate-show-behind').addClass('stage-animate-out').animate({scale: 1}, 100);
+        setTimeout(function () {
+          $cur.attr('style', null);
+          $last.attr('style', null);
+        }, 100);
       },
       'swipeRight': 'prevPage',
       'swipeLeft': 'nextPage',
     },
-    'action-back': function () {
+    'action-back': function (transitions) {
+      transitions = transitions instanceof Array ? transitions : ['slide-left', 'slide-right'];
       if (this.flag.active) {
         this.flag.active === false;
-        Backbone.stage.back(['slide-left', 'slide-right']);
+        Backbone.stage.back(transitions);
       }
     },
     _refreshScroll: function () {
@@ -159,7 +179,10 @@ define(function (require, exports, module) {
     _addOne: function (post) {
       var view = new RowTopicView({model: post});
       this.$ul.append(view.el);
-      $(view.el).removeClass('hide').addClass('show');
+      $(view.el).addClass('animate');
+      setTimeout(function () {
+        $(view.el).removeClass('animate');
+      }, 800);
     },
     /**
      * 添加全部楼层
