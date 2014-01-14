@@ -4,7 +4,7 @@ define(function (require, exports, module) {
 
   var getNotif = function () {
     if (typeof cordova !== 'undefined') {
-      return cordova.require('org.apache.cordova.core.dialogs.notification');
+      return cordova.require('org.apache.cordova.dialogs.notification');
     }
   };
 
