@@ -71,12 +71,12 @@ define(function (require, exports, module) {
         $cur = self.$el;
         $last = Backbone.stage.getLastView().$el;
         $cur.animate({left: fullWidth}, 140);
-        $last.removeClass('stage-animate-show-behind').addClass('stage-animate-out').animate({scale: 1}, 140);
+        $last.animate({scale: 1}, 140);
         setTimeout(function () {
           $cur.attr('style', null);
-          $last.attr('style', null);
-        }, 280);
-        self['action-back']([]);
+          $last.removeClass('stage-animate-show-behind').addClass('stage-animate-out').attr('style', null);
+          self['action-back']([]);
+        }, 140);
       },
       'edgeRightMove': function (e, touch) {
         var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
