@@ -2,6 +2,7 @@ define(function (require, exports, module) {
   var SiteModel = require('modules/daos/site/SiteModel');
   var MenuView = require('modules/views/menu/Menu');
   var ForumsView = require('modules/views/forums/Forums');
+  var CustomForumsView = require('modules/views/customForums/CustomForums');
   var ForumView = require('modules/views/forum/Forum');
   var TopicView = require('modules/views/topic/Topic');
   var UserView = require('modules/views/user/User');
@@ -22,6 +23,7 @@ define(function (require, exports, module) {
       "": "index",
       "!/bootup": "index",
       "!/forums": "getForums",
+      "!/customForums": "getCustomForums",
       "!/forum/:fid": "getForum",
       "!/forum/:fid/p:page": "getForum",
       "!/favor": "getFavor",
@@ -50,6 +52,7 @@ define(function (require, exports, module) {
           data.siteModel = new SiteModel();
           data.menuView = new MenuView();
           data.forumsView = new ForumsView();
+          data.customForumsView = new CustomForumsView();
           data.forumView = new ForumView();
           data.topicView = new TopicView();
           data.userView = new UserView();
@@ -65,6 +68,7 @@ define(function (require, exports, module) {
       },
       stageInitialize: function () {
         this.cached.forumsView.$el.addClass('stage-animate-out');
+        this.cached.customForumsView.$el.addClass('stage-animate-out');
         this.cached.forumView.$el.addClass('stage-animate-out');
         this.cached.topicView.$el.addClass('stage-animate-out');
         this.cached.userView.$el.addClass('stage-animate-out');
@@ -85,6 +89,10 @@ define(function (require, exports, module) {
         console.log('forums: ');
         // transition.toSection(this.cached.forumsView);
         this.cached.forumsView.open();
+      },
+      getCustomForums: function () {
+        console.log('customForums: ');
+        this.cached.customForumsView.refresh();
       },
       getForum: function (fid, page) {
         console.log('forum: ' + fid, this.cached.forumView);
@@ -196,6 +204,7 @@ define(function (require, exports, module) {
           "": appCache.get('bootupView'),
           "!/bootup": appCache.get('bootupView'),
           "!/forums": appCache.get('forumsView'),
+          "!/customForums": appCache.get('customForumsView'),
           "!/forum/:fid": appCache.get('forumView'),
           "!/forum/:fid/p:page": appCache.get('forumView'),
           "!/favor": appCache.get('forumView'),

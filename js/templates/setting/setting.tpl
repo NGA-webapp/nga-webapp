@@ -7,6 +7,9 @@
       <li class="action-settingFavor link">
         <h4>设置最喜爱的版面<span class="glyphicon glyphicon-chevron-right"></span></h4>
       </li>
+      <li class="action-customForums link">
+        <h4>管理自定义版面<span class="glyphicon glyphicon-chevron-right"></span></h4>
+      </li>
     </ul>
     <ul>
       <li class="select" data-key="downloadAvatar">

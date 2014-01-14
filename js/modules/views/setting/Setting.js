@@ -13,6 +13,9 @@ define(function (require, exports, module) {
       'singleTap .action-settingFavor': function () {
         Backbone.stage.change('#!/setting/favor', ['slide-right', 'slide-left']);
       },
+      'singleTap .action-customForums': function () {
+        Backbone.stage.change('#!/customForums', ['slide-right', 'slide-left']);
+      },
       'singleTap .select': function (e) {
         $li = $(e.currentTarget);
         $li.find('.checkbox').toggleClass('checked');

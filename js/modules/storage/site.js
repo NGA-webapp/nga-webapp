@@ -75,6 +75,20 @@ define(function (require, exports, module) {
       var favor = this.getFavorForum();
       this.set('favorForum', _.chain(favor).difference([fid]).first(4).value());
     },
+    // 获取自定义版面列表
+    getCustomForum: function () {
+      return this.get('customForum') || [];
+    },
+    // 增加自定义版面
+    addCustomForum: function (fid) {
+      var custom = this.getCustomForum();
+      this.set('customForum', _.chain(custom).union([fid]).value());
+    },
+    // 移除自定义版面
+    removeCustomForum: function (fid) {
+      var custom = this.getCustomForum();
+      this.set('customForum', _.chain(custom).difference([fid]).value());
+    },
     // 更新设置
     getSetting: function (key) {
       var defaults = {

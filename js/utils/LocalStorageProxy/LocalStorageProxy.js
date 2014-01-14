@@ -21,8 +21,9 @@ define(function (require, exports, module) {
       var previous;
       checkReserved(key);
       _.defaults((options || (options = {})), {silent: false});
+      previous = this._storage.get(key, {silent: true});
+      this._storage.set(key, val);
       if (!options.silent) {
-        previous = this._storage.get(key, {silent: true});
         if (!_.isEqual(previous, val)) {
           this.trigger('change', key, val, previous);
           this.trigger('change:' + key, val, previous);
@@ -30,7 +31,6 @@ define(function (require, exports, module) {
         this.trigger('set', key, val);
         this.trigger('set:' + key, val);
       }
-      this._storage.set(key, val);
       return this;
     },
     get: function (key, options) {
