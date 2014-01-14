@@ -7,6 +7,7 @@
   <li data-fid="<%= custom[i] %>" class="forum">
     <h4>
       版面[<%= custom[i] %>]
+      <span class="glyphicon glyphicon-ok"></span>
     </h4>
   </li>
 <% } %>

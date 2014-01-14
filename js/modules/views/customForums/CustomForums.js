@@ -26,16 +26,16 @@ define(function (require, exports, module) {
               siteStorage.addCustomForum(parseInt(tid, 0) + '');
             }
           }
-        }, '添加', ['yamie', 'biu~'], ('')); 
+        }, '添加', ['yamie', '就决定是你了!'], ('')); 
       },
       'longTap .forum': function (e) {
         var $forum = $(e.currentTarget);
         var fid = $forum.attr('data-fid');
         Notification.confirm('是否不再显示该自定义版面[' + fid + ']', function (result) {
-          if (result) {
+          if (result == 2) {
             siteStorage.removeCustomForum(fid);
           }
-        }, '移除自定义版面', '是的呀');
+        }, '移除自定义版面', 'yamie,是的呀');
       }
     },
     refresh: function () {

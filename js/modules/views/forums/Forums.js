@@ -194,7 +194,11 @@ define(function (require, exports, module) {
       return this;
     },
     initialize: function () {
+      var self = this;
       this.model = new ForumsModel();
+      this.listenTo(siteStorage, 'change:customForum', function () {
+        self.renderList(true, self._switch);
+      });
       return this.render();
     }
   });
