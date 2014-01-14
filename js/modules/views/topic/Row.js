@@ -29,6 +29,11 @@ define(function (require, exports, module) {
       'singleTap .ubb-collapse-content': function (events) {
         var $self = $(events.currentTarget);
         $self.parent().attr('open', null);
+      },
+      'singleTap .ubb-flash .ubb-flash-control': function (events) {
+        var $self = $(events.currentTarget);
+        var $video = $self.siblings('video');
+        $video.get(0).play();
       }
     },
     tpl: art.compile(tpl),

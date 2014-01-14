@@ -22,7 +22,7 @@
       if (typeof settings === 'object' && settings.getFlash === false) {
         flash = '<div></div>';
       } else {
-        flash = '<div class="ubb-flash" data-url="' + content + '"></div>';
+        flash = '<div class="ubb-flash" data-url="' + content + '"><div class="ubb-flash-control"><i class="glyphicon glyphicon-play"></i></div></div>';
       }
       return flash;
     },

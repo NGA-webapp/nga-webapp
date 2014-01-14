@@ -113,6 +113,34 @@
             video {
               max-width: 100%;
             }
+            .ubb-flash {
+              display: none;
+              height: 160px;
+              position: relative;
+              background: #333;
+              &.show {
+                display: block;
+              }
+              & > .ubb-flash-control {
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 2;
+                height: 100%;
+                width: 100%;
+                line-height: 158px;
+                text-align: center;
+                font-size: 40px;
+                color: #fff;
+              }
+              & > video {
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 1;
+                display: none;
+              }
+            }
             .ubb-at {
               text-decoration: underline;
               color: @nga-red;

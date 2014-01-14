@@ -5112,6 +5112,38 @@ main > .overlay {
 #topic article .scroller > ul > li > .signature video {
   max-width: 100%;
 }
+#topic article .scroller > ul > li > .content .ubb-flash,
+#topic article .scroller > ul > li > .signature .ubb-flash {
+  display: none;
+  height: 160px;
+  position: relative;
+  background: #333;
+}
+#topic article .scroller > ul > li > .content .ubb-flash.show,
+#topic article .scroller > ul > li > .signature .ubb-flash.show {
+  display: block;
+}
+#topic article .scroller > ul > li > .content .ubb-flash > .ubb-flash-control,
+#topic article .scroller > ul > li > .signature .ubb-flash > .ubb-flash-control {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  line-height: 158px;
+  text-align: center;
+  font-size: 40px;
+  color: #fff;
+}
+#topic article .scroller > ul > li > .content .ubb-flash > video,
+#topic article .scroller > ul > li > .signature .ubb-flash > video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: none;
+}
 #topic article .scroller > ul > li > .content .ubb-at,
 #topic article .scroller > ul > li > .signature .ubb-at {
   text-decoration: underline;

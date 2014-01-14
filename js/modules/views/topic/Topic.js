@@ -204,8 +204,10 @@ define(function (require, exports, module) {
       });
       // 加载视频
       this.$ul.find('.ubb-flash').youku(function () {
+        $(this).addClass('show');
         self.scroll.refresh();
       }).tudou(function () {
+        $(this).addClass('show');
         self.scroll.refresh();
       });
       _.delay(function () {
