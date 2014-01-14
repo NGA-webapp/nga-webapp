@@ -192,6 +192,7 @@ define(function (require, exports, module) {
      */
     _addAll: function () {
       var self = this;
+      var flashDelegate;
       this._refreshScroll();
       this.$ul.html('');
       this.scroll.scrollTo(0, 0, 0);
@@ -203,13 +204,29 @@ define(function (require, exports, module) {
         self.scroll.refresh();
       });
       // 加载视频
-      this.$ul.find('.ubb-flash').youku(function () {
-        $(this).addClass('show');
+      flashDelegate = function () {
+        var $container = $(this);
+        var $control = $container.find('.ubb-flash-control');
+        var $video = $container.find('video');
+        var video = $video.get(0);
+        $container.addClass('show');
+        $video.on('play', function () {
+          $control.hide();
+        });
+        $video.on('pause', function () {
+          $control.show();
+          $video.css('display', 'none');
+        });
+        $video.on('singleTap', function () {
+          video.pause();
+        });
+        $control.on('singleTap', function () {
+          $video.css('display', 'block');
+          video.play();
+        });
         self.scroll.refresh();
-      }).tudou(function () {
-        $(this).addClass('show');
-        self.scroll.refresh();
-      });
+      };
+      this.$ul.find('.ubb-flash').youku(flashDelegate).tudou(flashDelegate);
       _.delay(function () {
         ui.Loading.close();
       }, 600);

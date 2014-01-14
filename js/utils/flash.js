@@ -45,7 +45,7 @@ define(function (require, exports, module) {
       if (url) {
         video = document.createElement('video');
         video.setAttribute('src', url);
-        video.setAttribute('controls', 'controls');
+        // video.setAttribute('controls', 'controls');
         elem.appendChild(video);
         callback.call(elem);
       }
@@ -105,7 +105,7 @@ define(function (require, exports, module) {
       if (url) {
         video = document.createElement('video');
         video.setAttribute('src', url);
-        video.setAttribute('controls', 'controls');
+        // video.setAttribute('controls', 'controls');
         elem.appendChild(video);
         callback.call(elem);
       }
