@@ -48,7 +48,7 @@
     </ul>
     <ul>
       <li class="link disabled">
-        <h4>更多设置<span class="glyphicon glyphicon-chevron-right"></span></h4>
+        <h4>搞基设置<span class="glyphicon glyphicon-chevron-right"></span></h4>
       </li>
     </ul>
   </div>

@@ -43,8 +43,13 @@ define(function (require, exports, module) {
       var forums = siteStorage.getCustomForum();
       this.$ul.html(this.tplContent({forums: forums}));
       setTimeout(function () {
+        var last = self.$ul.find('li:last-child').get(0);
         self.scroll.refresh();
-        self.scroll.scrollToElement(self.$ul.find('li:last-child').get(0), 100);
+        if (last) {
+          self.scroll.scrollToElement(last, 100);
+        } else {
+          self.scroll.scrollTo(0, 0, 0);
+        }
       }, 0);
     },
     render: function () {
