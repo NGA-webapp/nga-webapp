@@ -94,10 +94,10 @@ define(function (require, exports, module) {
         $cur = self.$el;
         $last = Backbone.stage.getLastView().$el;
         $cur.animate({left: 0}, 100);
-        $last.removeClass('stage-animate-show-behind').addClass('stage-animate-out').animate({scale: 1}, 100);
+        $last.animate({scale: 1}, 100);
         setTimeout(function () {
           $cur.attr('style', null);
-          $last.attr('style', null);
+          $last.removeClass('stage-animate-show-behind').addClass('stage-animate-out').attr('style', null);
         }, 100);
       },
       'swipeRight': 'prevPage',
