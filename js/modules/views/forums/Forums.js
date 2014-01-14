@@ -34,6 +34,9 @@ define(function (require, exports, module) {
           this.toogleFavor($li);
         }
       },
+      'singleTap .action-customForums': function () {
+        Backbone.stage.change('#!/customForums', ['slide-right', 'slide-left']);
+      },
       'singleTap .action-back': function () {
         Backbone.stage.back(['slide-left', 'slide-right']);
       },
@@ -161,7 +164,7 @@ define(function (require, exports, module) {
     },
     renderList: function (refresh, next) {
       var self;
-      var data, cats;
+      var data, cats, custom;
       self = this;
       if (typeof next !== 'function') {
         next = function () {};
@@ -177,10 +180,12 @@ define(function (require, exports, module) {
       cats = _.chain(data).groupBy('cid').map(function (cat) {
         return _.groupBy(cat, 'gid');
       }).value();
+      // 获取自定义版面
+      custom = siteStorage.getCustomForum();
       // 重写html会导致卡顿，可能是因为事件委托的原因，暂时以延时ui处理
       ui.Loading.open();
       _.delay(function () {
-        self.$ul.html(self.tplContent({cats: cats}));
+        self.$ul.html(self.tplContent({cats: cats, custom: custom}));
         self.scroll.refresh();
         self.flag.hasRenderList = true;
         ui.Loading.close();

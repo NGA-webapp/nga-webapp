@@ -8,10 +8,22 @@
         <li class="title">快速导航</li>
         <% var i, len; %>
         <% for (i = 0, len = favorForum.length; i < len; i++) { %>
-          <li class="quickNav" data-fid="<%= favorForum[i].fid %>"><span class="glyphicon glyphicon-pushpin"></span> <%= favorForum[i].forum.name %></li>
+          <li class="quickNav" data-fid="<%= favorForum[i].fid %>">
+            <% if (favorForum[i].forum) { %>
+              <span class="glyphicon glyphicon-pushpin"></span> <%= favorForum[i].forum.name %>
+            <% } else { %>
+              <span class="glyphicon glyphicon-pushpin"></span> 版面[<%= favorForum[i].fid %>]
+            <% } %>
+          </li>
         <% } %>
         <% for (i = 0, len = lastForum.length; i < len; i++) { %>
-        <li class="quickNav" data-fid="<%= lastForum[i].fid %>"><span class="glyphicon glyphicon-time"></span> <%= lastForum[i].forum.name %></li>
+          <li class="quickNav" data-fid="<%= lastForum[i].fid %>">
+            <% if (lastForum[i].forum) { %>
+              <span class="glyphicon glyphicon-time"></span> <%= lastForum[i].forum.name %>
+            <% } else { %>
+              <span class="glyphicon glyphicon-time"></span> 版面[<%= lastForum[i].fid %>]
+            <% } %>
+          </li>
         <% } %>
         <li class="forums"><span class="glyphicon glyphicon-th-list"></span> 其他版面</li>
         <li class="title">工具</li>

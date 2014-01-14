@@ -1,3 +1,15 @@
+<% if (custom.length > 0) { %>
+<li class="category">
+  自定义版面
+</li> 
+<% } %>
+<% for (var i = 0, len = custom.length; i < len; i++) { %>
+  <li data-fid="<%= custom[i] %>" class="forum">
+    <h4>
+      版面[<%= custom[i] %>]
+    </h4>
+  </li>
+<% } %>
 <% for (cIndex = 0, cLen = cats.length; cIndex < cLen; cIndex++) { %>
   <% for (gIndex in cats[cIndex]) { %>
     <% for (fIndex = 0, fLen = cats[cIndex][gIndex].length; fIndex < fLen; fIndex++) { %>
