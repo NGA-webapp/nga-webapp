@@ -23,10 +23,10 @@ define(function (require, exports, module) {
           if (result) {
             tid = result['input1'];
             if (result['buttonIndex'] === 2 && tid) {
-              siteStorage.addCustomForum(parseInt(tid, 0) + '');
+              siteStorage.addCustomForum((parseInt(tid, 0) || 0) + '');
             }
           }
-        }, '添加', ['yamie', '就决定是你了!'], ('')); 
+        }, '添加', ['yamie', '就决定是你了!'], '-202020'); 
       },
       'longTap .forum': function (e) {
         var $forum = $(e.currentTarget);
