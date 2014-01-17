@@ -14,7 +14,9 @@ define(function (require, exports, module) {
 
   // 禁用移动设备对body的滚动
   document.addEventListener('touchmove', function (e) {
+    if (!_.contains(['TEXTAREA', 'INPUT', 'SELECT'], e.target.nodeName)) {
       e.preventDefault();
+    }
   }, false);
 
   document.addEventListener('deviceready', function () {
