@@ -14,7 +14,7 @@ define(function (require, exports, module) {
 
   // 禁用移动设备对body的滚动
   document.addEventListener('touchmove', function (e) {
-      e.preventDefault();
+    e.preventDefault();
   }, false);
 
   document.addEventListener('deviceready', function () {

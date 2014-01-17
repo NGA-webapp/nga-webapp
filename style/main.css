@@ -5934,6 +5934,9 @@ main > .overlay {
   color: #666;
   width: 100%;
 }
+#publish article .scroller > .content > div.form > textarea {
+  overflow-y: scroll;
+}
 #bootup {
   position: absolute;
   top: 0;
