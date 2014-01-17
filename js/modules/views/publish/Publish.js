@@ -122,6 +122,9 @@ define(function (require, exports, module) {
           complete();
         });
       },
+      'singleTap .param-content': function (e) {
+        $(e.currentTarget).focus();
+      }
     },
     open: function (fid, tid) {
       var action;
@@ -144,6 +147,14 @@ define(function (require, exports, module) {
       }
       this.$content.html(this.tplContent({}));
       this.$content.removeClass('hide').addClass('show');
+      this.$el.find('.iscroll').css('height', window.innerHeight - 50);
+      this.scroll = new iScroll('publish-article', {
+        onBeforeScrollStart: function (e) {
+          if (!_.contains(['TEXTAREA', 'INPUT', 'SELECT'], e.target.nodeName)) {
+            e.preventDefault();
+          }
+        }
+      });
       if (!self.flag.init) {
         _.delay(function () {
           ui.Loading.close();
