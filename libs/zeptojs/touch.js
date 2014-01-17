@@ -6,7 +6,13 @@
   var touch = {},
     touchTimeout, tapTimeout, swipeTimeout, edgeTimeout, longTapTimeout,
     longTapDelay = 750,
-    gesture
+    gesture,
+    flag = {
+      edgeStarted: {
+        left: false,
+        right: false
+      }
+    }
 
   function swipeDirection(x1, x2, y1, y2) {
     return Math.abs(x1 - x2) >=
@@ -88,8 +94,10 @@
         if (gesture && _isPointerType) gesture.addPointer(e.pointerId);
         if (touch.x1 < 10) {
           touch.el.trigger('edgeRightStart');
+          flag.edgeStarted.right= true;
         } else if (touch.x1 > (document.documentElement.clientWidth || document.body.offsetWidth) - 10) {
           touch.el.trigger('edgeLeftStart');
+          flag.edgeStarted.left = true;
         }
       })
       .on('touchmove MSPointerMove pointermove', function(e){
@@ -102,16 +110,23 @@
 
         deltaX += Math.abs(touch.x1 - touch.x2)
         deltaY += Math.abs(touch.y1 - touch.y2)
-        if (touch.x1 < 10) {
+        if (flag.edgeStarted.right) {
           touch.el.trigger('edgeRightMove', touch);
-        } else if (touch.x1 > (document.documentElement.clientWidth || document.body.offsetWidth) - 10) {
+        } else if (flag.edgeStarted.left) {
           touch.el.trigger('edgeLeftMove', touch);
         }
       })
       .on('touchend MSPointerUp pointerup', function(e){
-        var direction, fullWidth, isEdge;
+        var direction, fullWidth, resetEdgeFlag, isEdge;
         direction = swipeDirection(touch.x1, touch.x2, touch.y1, touch.y2)
         fullWidth = document.documentElement.clientWidth || document.body.offsetWidth
+
+        resetEdgeFlag = function () {
+          flag.edgeStarted = {
+            left: false,
+            right: false
+          }
+        }
 
         if((_isPointerType = isPointerEventType(e, 'up')) &&
           !isPrimaryTouch(e)) return
@@ -119,41 +134,46 @@
 
         // edge
         isEdge = touch.x2 && Math.abs(touch.x1 - touch.x2) > fullWidth * 1 / 3
-        if (isEdge && (touch.x1 < 10) && (direction === 'Right'))
+        if (isEdge && flag.edgeStarted.right && (direction === 'Right'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeRightEnd')
             touch.el.trigger('edgeRight')
             touch.el.trigger('edgeEnd')
             touch.el.trigger('edge')
             touch = {}
+            resetEdgeFlag();
           }, 0)
-        else if (isEdge && (touch.x1 > fullWidth - 10) && (direction === 'Left'))
+        else if (isEdge && flag.edgeStarted.left && (direction === 'Left'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeLeftEnd')
             touch.el.trigger('edgeLeft')
             touch.el.trigger('edgeEnd')
             touch.el.trigger('edge')
             touch = {}
+            resetEdgeFlag();
           }, 0)
-        else if ((touch.x1 < 10) && (direction === 'Right'))
+        else if (flag.edgeStarted.right && (direction === 'Right'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeRightCancel')
             touch.el.trigger('edgeCancel')
             touch.el.trigger('edge')
             touch = {}
+            resetEdgeFlag();
           }, 0)
-        else if ((touch.x1 > fullWidth - 10) && (direction === 'Left'))
+        else if (flag.edgeStarted.left && (direction === 'Left'))
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeLeftCancel')
             touch.el.trigger('edgeCancel')
             touch.el.trigger('edge')
             touch = {}
+            resetEdgeFlag();
           }, 0)
-        else if ((touch.x1 < 10 || touch.x1 > fullWidth - 10))
+        else if (flag.edgeStarted.right || flag.edgeStarted.left)
           edgeTimeout = setTimeout(function() {
             touch.el.trigger('edgeCancel')
             touch.el.trigger('edge')
             touch = {}
+            resetEdgeFlag();
           }, 0)
 
         // swipe
