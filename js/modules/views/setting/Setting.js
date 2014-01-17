@@ -24,7 +24,7 @@ define(function (require, exports, module) {
           }
         }, '清空版面历史记录', '手抖,是的呀');
       },
-      'singleTap .select': function (e) {
+      'tap .select': function (e) {
         $li = $(e.currentTarget);
         $li.find('.checkbox').toggleClass('checked');
         siteStorage.toggleSetting($li.attr('data-key'));
