@@ -37,6 +37,7 @@ define(function (require, exports, module) {
       self.xhr = $.ajax({
         url: logoutUrl,
         data: {func: 'logout', no_auto_login: 1},
+        timeout: 20000,
         success: function () {
           Notification.alert('登出成功', function () {
             ui.Loading.close();
