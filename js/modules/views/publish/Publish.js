@@ -8,6 +8,7 @@ define(function (require, exports, module) {
   var appCache = require('modules/AppCache').appCache;
   var Notification = require('utils/Notification');
   var config = require('config/index');
+  var cursorPosition = require('utils/cursorPosition');
   
   var postUrl = 'http://bbs.ngacn.cc/post.php';
   // var postUrl = '';
@@ -122,9 +123,41 @@ define(function (require, exports, module) {
           complete();
         });
       },
-      'singleTap .param-content': function (e) {
-        $(e.currentTarget).focus();
+      'singleTap .action-bold': function () {
+        var self = this;
+        Notification.prompt('插入加粗文本', function (result) {
+          var text;
+          if (result) {
+            text = result['input1'];
+            if (result['buttonIndex'] === 2 && text) {
+              self.insertContent('[b]' + text + '[/b]');
+            }
+          }
+        }, '加粗', ['yamie', '我加~'], '我怎能不变态');
+      },
+      'singleTap .action-delete': function () {
+        var self = this;
+        Notification.prompt('插入删除线文本', function (result) {
+          var text;
+          if (result) {
+            text = result['input1'];
+            if (result['buttonIndex'] === 2 && text) {
+              self.insertContent('[del]' + text + '[/del]');
+            }
+          }
+        }, '删除线', ['yamie', '我删~'], '我怎能不变态');
       }
+    },
+    getCursor: function () {
+      var cursor = cursorPosition.get(this.$el.find('.param-content').get(0));
+      return cursor === -1 ? 0 : cursor;
+    },
+    insertContent: function (text, cursor) {
+      var $content = this.$el.find('.param-content');
+      var origin = $content.val();
+      cursor = cursor || this.getCursor();
+      $content.val(origin.slice(0, cursor) + text + origin.slice(cursor));
+      cursorPosition.set($content.get(0), cursor + text.length);
     },
     open: function (fid, tid) {
       var action;

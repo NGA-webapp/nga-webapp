@@ -12,11 +12,5 @@
   </div>
 </article>
 <footer>
-  <div class="left">
-    <a class="icon action-back"><span class="glyphicon glyphicon-chevron-left"></span></a>
-  </div>
-  <div class="right">
-    <a class="icon action-reply"><span class="glyphicon glyphicon-comment"></span></a>
-    <a class="icon action-share"><span class="glyphicon glyphicon-share-alt"></span></a>
-  </div>
+
 </footer>

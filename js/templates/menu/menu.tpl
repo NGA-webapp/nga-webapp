@@ -1,5 +1,5 @@
 <div class="search-box">
-  <input class="param-key" type="text" value="" placeholder="搜索" /> <span class="action-search glyphicon glyphicon-search"></span>
+  <input class="param-key" type="text" value="" placeholder="搜索" x-webkit-speech lang="zh-CN"/> <span class="action-search glyphicon glyphicon-search"></span>
 </div>
 <div class="menu-content">
   <div id="menu-list" class="iscroll">
