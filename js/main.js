@@ -25,7 +25,7 @@ define(function (require, exports, module) {
 
   $(document).ready(function () {
     var scrollTop = function () {
-      $(window).scrollTo(0);
+      $(window).scrollTop(0);
     };
     $(window).on('resize', scrollTop);
     document.addEventListener('throttledresize', scrollTop, false);
