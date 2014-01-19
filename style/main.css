@@ -5962,6 +5962,44 @@ main > .overlay {
 #publish article .scroller > .content > .toolbar .tool.action-delete {
   text-decoration: line-through;
 }
+#publish article .scroller > .content > .emotion-panel {
+  box-shadow: 0 -1px 3px 1px #aaaaaa;
+  background: #fff;
+  padding: 5px 0;
+}
+#publish article .scroller > .content > .emotion-panel ul,
+#publish article .scroller > .content > .emotion-panel li {
+  list-style: none;
+}
+#publish article .scroller > .content > .emotion-panel ul {
+  margin: 0;
+  padding: 0;
+  height: 160px;
+  overflow: hidden;
+}
+#publish article .scroller > .content > .emotion-panel ul li {
+  float: left;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  margin: 5px;
+  text-align: center;
+}
+#publish article .scroller > .content > .emotion-panel ul li:active {
+  background: #efefef;
+  box-shadow: 0 0 1px 0 #666;
+}
+#publish article .scroller > .content > .emotion-panel ul li img {
+  max-height: 70px;
+  max-width: 70px;
+}
+#publish article .scroller > .content > .emotion-panel > .emotion-pagination {
+  text-align: center;
+  color: #999;
+}
+#publish article .scroller > .content > .emotion-panel > .emotion-pagination > .current {
+  color: #000;
+}
 #publish footer {
   height: 40px;
   color: #db5633;

@@ -7,3 +7,34 @@
       <a class="tool action-delete">D</a>
       <a class="tool action-bold"><span class="glyphicon glyphicon-bold"></span></a>
     </div>
+    <div class="emotion-panel">
+      <ul>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
+        <div class="clearfix"></div>
+      </ul>
+      <div class="emotion-pagination"><span class="current">·</span> · ·</div>
+    </div>

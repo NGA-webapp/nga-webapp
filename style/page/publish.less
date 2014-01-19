@@ -86,6 +86,44 @@
             }        
           }
         }
+        & > .emotion-panel {
+          box-shadow: 0 -1px 3px 1px #aaa;
+          background: #fff;
+          padding: 5px 0;
+          ul, li {
+            list-style: none;
+          }
+          ul {
+            margin: 0;
+            padding: 0;
+            height: 160px;
+            overflow: hidden;
+            li {
+              float: left;
+              width: 70px;
+              height: 70px;
+              line-height: 70px;
+              margin: 5px;
+              text-align: center;
+              &:active {
+                background: #efefef;
+                box-shadow: 0 0 1px 0 #666;
+              }
+              img {
+                max-height: 70px;
+                max-width: 70px;
+              }
+            }
+          }
+          & > .emotion-pagination {
+            text-align: center;
+            color: #999;
+            & > .current {
+              // font-weight: bold;
+              color: #000;
+            }
+          }
+        }
       }
     }
   }
