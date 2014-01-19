@@ -4972,7 +4972,7 @@ main > .overlay {
   box-sizing: border-box;
 }
 #forum article .scroller > ul > li.animate {
-  -webkit-animation: bounceInDown 800ms ease;
+  -webkit-animation: bounceInDown 400ms ease;
 }
 #forum article .scroller > ul > li:active {
   background-color: #ddd;
@@ -5117,7 +5117,7 @@ main > .overlay {
   color: #666;
 }
 #topic article .scroller > ul > li.animate {
-  -webkit-animation: bounceInDown 800ms ease;
+  -webkit-animation: fadeInUp 400ms ease;
 }
 #topic article .scroller > ul > li .hr {
   box-shadow: 0px 1px 0 0 #ddd;
