@@ -47,6 +47,11 @@
         width: 100%;
         color: #666;
         padding: 0;
+        .relief {
+          box-shadow: 0px -1px 0 0 #ddd;
+          border-top: 1px solid #fff;
+          border-bottom: 1px solid #ccc;
+        }
         & > div.form {
           & > textarea, & > input {
             .box-sizing(border-box);
@@ -63,6 +68,9 @@
           }
         }
         & > .toolbar {
+          .relief;
+          color: #666;
+          margin: 5px 0;
           font-size: 1em;
           height: 40px;
           text-align: right;
@@ -80,6 +88,7 @@
             &:active {
               background-color: @nga-red;
               color: #fff;
+              text-shadow: 0 1px 1px #333;
             }
             &.action-delete {
               text-decoration: line-through;
@@ -87,13 +96,13 @@
           }
         }
         & > .emotion-panel {
-          box-shadow: 0 -1px 3px 1px #aaa;
-          background: #fff;
-          padding: 5px 0;
+          .relief;
+          color: #666;
+          padding: 5px 0 0;
           ul, li {
             list-style: none;
           }
-          ul {
+          & > ul {
             margin: 0;
             padding: 0;
             height: 160px;
@@ -106,8 +115,8 @@
               margin: 5px;
               text-align: center;
               &:active {
-                background: #efefef;
-                box-shadow: 0 0 1px 0 #666;
+                background: #fff;
+                box-shadow: 0 1px 1px 1px #aaa inset;
               }
               img {
                 max-height: 70px;
@@ -118,9 +127,28 @@
           & > .emotion-pagination {
             text-align: center;
             color: #999;
+            padding: 0 0 5px;
             & > .current {
-              // font-weight: bold;
               color: #000;
+            }
+          }
+          & > .emotion-category {
+            text-align: center;
+            color: #555;
+            ul {
+              box-shadow: 0px 1px 0 2px #fff inset;
+              border-top: 1px solid #ddd;
+              margin: 0;
+              padding: 0;
+              width: 100%;
+              // overflow: scroll;
+              li {
+                padding: 5px 10px;
+                float: left;
+                &:active, .active {
+                  box-shadow: 0 1px 1px 1px #ccc inset;
+                }
+              }
             }
           }
         }

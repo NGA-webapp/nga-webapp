@@ -36,5 +36,12 @@
         <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
         <div class="clearfix"></div>
       </ul>
-      <div class="emotion-pagination"><span class="current">·</span> · ·</div>
+      <div class="emotion-pagination"><span class="current">·</span> <span>·</span> <span>·</span></div>
+      <div class="emotion-category">
+        <ul>
+          <li>默认</li>
+          <li>小AC</li>
+          <div class="clearfix"></div>
+        </ul>
+      </div>
     </div>

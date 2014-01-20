@@ -130,7 +130,7 @@ define(function (require, exports, module) {
           if (result) {
             text = result['input1'];
             if (result['buttonIndex'] === 2 && text) {
-              self.insertContent('[b]' + text + '[/b]');
+              self._insertContent('[b]' + text + '[/b]');
             }
           }
         }, '加粗', ['yamie', '我加~'], '我怎能不变态');
@@ -142,20 +142,20 @@ define(function (require, exports, module) {
           if (result) {
             text = result['input1'];
             if (result['buttonIndex'] === 2 && text) {
-              self.insertContent('[del]' + text + '[/del]');
+              self._insertContent('[del]' + text + '[/del]');
             }
           }
         }, '删除线', ['yamie', '我删~'], '我怎能不变态');
       }
     },
-    getCursor: function () {
+    _getCursor: function () {
       var cursor = cursorPosition.get(this.$el.find('.param-content').get(0));
       return cursor === -1 ? 0 : cursor;
     },
-    insertContent: function (text, cursor) {
+    _insertContent: function (text, cursor) {
       var $content = this.$el.find('.param-content');
       var origin = $content.val();
-      cursor = cursor || this.getCursor();
+      cursor = cursor || this._getCursor();
       $content.val(origin.slice(0, cursor) + text + origin.slice(cursor));
       cursorPosition.set($content.get(0), cursor + text.length);
     },
