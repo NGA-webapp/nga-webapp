@@ -4,6 +4,7 @@ define(function (require, exports, module) {
   var BasicView = require('modules/views/abstracts/Basic');
   var tpl = require('templates/publish/publish.tpl');
   var tplContent = require('templates/publish/content.tpl');
+  var tplEmotionItems = require('templates/publish/emotionItems.tpl');
   var inCharset = require('utils/inCharset');
   var appCache = require('modules/AppCache').appCache;
   var Notification = require('utils/Notification');
@@ -17,6 +18,7 @@ define(function (require, exports, module) {
     el: '#publish',
     tpl: art.compile(tpl),
     tplContent: art.compile(tplContent),
+    tplEmotionItems: art.compile(tplEmotionItems),
     flag: {
       init: true, // 初始化
       // active 主要用于back的操作，避免重复触发后退动作
@@ -146,6 +148,56 @@ define(function (require, exports, module) {
             }
           }
         }, '删除线', ['yamie', '我删~'], '我怎能不变态');
+      },
+      'singleTap .action-emotion': function () {
+        this.toggleEmotion();
+      },
+      'singleTap .emotion-category li': function (e) {
+        var $self = $(e.currentTarget);
+        this.switchEmotionCategory($self.attr('data-category'));
+      },
+      'swipeLeft .emotion-list': function () {
+        var $ul = this.$el.find('.emotion-list ul');
+        var $span = this.$el.find('.emotion-list .emotion-pagination').find('span');
+        var ul = $ul.get(0);
+        var height = ul.scrollHeight;
+        var totalPage = Math.ceil(height / 160);
+        var currentPage = Math.ceil(ul.scrollTop / 160) + 1;
+        var cursorPage;
+        if (currentPage < totalPage) {
+          cursorPage = currentPage + 1;
+        }
+        $span.removeClass('current');
+        $span.eq(cursorPage - 1).addClass('current');
+        ul.scrollTop = (cursorPage - 1) * 160;
+      },
+      'swipeRight .emotion-list': function () {
+        var $ul = this.$el.find('.emotion-list ul');
+        var $span = this.$el.find('.emotion-list .emotion-pagination').find('span');
+        var ul = $ul.get(0);
+        var height = ul.scrollHeight;
+        var totalPage = Math.ceil(height / 160);
+        var currentPage = Math.ceil(ul.scrollTop / 160) + 1;
+        var cursorPage;
+        if (currentPage > 1) {
+          cursorPage = currentPage - 1;
+        }
+        $span.removeClass('current');
+        $span.eq(cursorPage - 1).addClass('current');
+        ul.scrollTop = (cursorPage - 1) * 160;
+      },
+      'singleTap .emotion-list ul li': function (e) {
+        var $self = $(e.currentTarget);
+        var code;
+        if ($self.attr('data-code')) {
+          code = $self.attr('data-code');
+        } else if ($self.attr('data-url')) {
+          code = '[img]' + $self.attr('data-url') + '[/img]';
+        } else {
+          code = '';
+        }
+        this._insertContent(code);
+        this.closeEmotion();
       }
     },
     _getCursor: function () {
@@ -167,6 +219,26 @@ define(function (require, exports, module) {
       this.cached.fid = fid;
       this._refresh();
     },
+    toggleEmotion: function () {
+      var $panel = this.$el.find('.emotion-panel');
+      if ($panel.hasClass('open')) {
+        this.closeEmotion();
+      } else {
+        this.openEmotion();
+      }
+    },
+    openEmotion: function () {
+      this.$el.find('.emotion-panel').addClass('open');
+      this.switchEmotionCategory('defaults');
+    },
+    closeEmotion: function () {
+      var $panel = this.$el.find('.emotion-panel');
+      $panel.removeClass('open');
+      $panel.find('.emotion-list').empty();
+    },
+    switchEmotionCategory: function (key) {
+      this.$el.find('.emotion-panel').find('.emotion-list').html(this.tplEmotionItems({category: config.emotion[key]}));
+    },
     render: function () {
       this.$el.html(this.tpl());
       this.$content = this.$el.find('.content');
@@ -178,7 +250,7 @@ define(function (require, exports, module) {
       if (!self.flag.init) {
         ui.Loading.open();
       }
-      this.$content.html(this.tplContent({}));
+      this.$content.html(this.tplContent({emotions: config.emotion}));
       this.$content.removeClass('hide').addClass('show');
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
       // this.scroll = new iScroll('publish-article', {

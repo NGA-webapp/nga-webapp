@@ -99,38 +99,44 @@
           .relief;
           color: #666;
           padding: 5px 0 0;
+          display: none;
+          &.open {
+            display: block;
+          }
           ul, li {
             list-style: none;
           }
-          & > ul {
-            margin: 0 auto;
-            padding: 0;
-            // width: 320px;
-            height: 160px;
-            overflow: hidden;
-            li {
-              float: left;
-              width: ~"calc(25% - 10px)";
-              height: 80px;
-              line-height: 70px;
-              margin: 5px;
-              text-align: center;
-              &:active {
-                background: #fff;
-                box-shadow: 0 1px 1px 1px #aaa inset;
-              }
-              img {
-                max-height: 70px;
-                max-width: 70px;
+          & > .emotion-list {
+            & > ul {
+              margin: 0 auto;
+              padding: 0;
+              // width: 320px;
+              height: 160px;
+              overflow: hidden;
+              li {
+                float: left;
+                width: ~"calc(25% - 10px)";
+                height: 70px;
+                line-height: 70px;
+                margin: 5px;
+                text-align: center;
+                &:active {
+                  background: #fff;
+                  box-shadow: 0 1px 1px 1px #aaa inset;
+                }
+                img {
+                  max-height: 70px;
+                  max-width: 70px;
+                }
               }
             }
-          }
-          & > .emotion-pagination {
-            text-align: center;
-            color: #999;
-            padding: 0 0 5px;
-            & > .current {
-              color: #000;
+            & > .emotion-pagination {
+              text-align: center;
+              color: #999;
+              padding: 0 0 5px;
+              & > .current {
+                color: #000;
+              }
             }
           }
           & > .emotion-category {
@@ -139,7 +145,7 @@
             width: 100%;
             overflow: hidden;
             ul {
-              box-shadow: 0px 1px 0 2px #fff inset;
+              box-shadow: 0px 1px 0 1px #fff inset;
               border-top: 1px solid #ddd;
               margin: 0;
               padding: 0;
@@ -147,12 +153,13 @@
               height: 100%;
               overflow-x: scroll;
               white-space: nowrap;
+              text-align: left;
               li {
                 display: inline-block;
                 padding: 5px 10px;
                 // width: 20%;
                 overflow: hidden;
-                font-size: 0.6em;
+                font-size: 0.8em;
                 &:active, .active {
                   box-shadow: 0 1px 1px 1px #ccc inset;
                 }

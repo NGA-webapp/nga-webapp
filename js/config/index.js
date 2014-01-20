@@ -5,6 +5,7 @@ define(function (require, exports, module) {
     transition: {
       map: require('./transition')
     },
+    emotion: require('./emotion'),
     test: false,
     version: '1.1.1'
   };

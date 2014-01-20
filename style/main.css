@@ -5979,39 +5979,43 @@ main > .overlay {
   border-bottom: 1px solid #ccc;
   color: #666;
   padding: 5px 0 0;
+  display: none;
+}
+#publish article .scroller > .content > .emotion-panel.open {
+  display: block;
 }
 #publish article .scroller > .content > .emotion-panel ul,
 #publish article .scroller > .content > .emotion-panel li {
   list-style: none;
 }
-#publish article .scroller > .content > .emotion-panel > ul {
+#publish article .scroller > .content > .emotion-panel > .emotion-list > ul {
   margin: 0 auto;
   padding: 0;
   height: 160px;
   overflow: hidden;
 }
-#publish article .scroller > .content > .emotion-panel > ul li {
+#publish article .scroller > .content > .emotion-panel > .emotion-list > ul li {
   float: left;
   width: calc(25% - 10px);
-  height: 80px;
+  height: 70px;
   line-height: 70px;
   margin: 5px;
   text-align: center;
 }
-#publish article .scroller > .content > .emotion-panel > ul li:active {
+#publish article .scroller > .content > .emotion-panel > .emotion-list > ul li:active {
   background: #fff;
   box-shadow: 0 1px 1px 1px #aaa inset;
 }
-#publish article .scroller > .content > .emotion-panel > ul li img {
+#publish article .scroller > .content > .emotion-panel > .emotion-list > ul li img {
   max-height: 70px;
   max-width: 70px;
 }
-#publish article .scroller > .content > .emotion-panel > .emotion-pagination {
+#publish article .scroller > .content > .emotion-panel > .emotion-list > .emotion-pagination {
   text-align: center;
   color: #999;
   padding: 0 0 5px;
 }
-#publish article .scroller > .content > .emotion-panel > .emotion-pagination > .current {
+#publish article .scroller > .content > .emotion-panel > .emotion-list > .emotion-pagination > .current {
   color: #000;
 }
 #publish article .scroller > .content > .emotion-panel > .emotion-category {
@@ -6021,7 +6025,7 @@ main > .overlay {
   overflow: hidden;
 }
 #publish article .scroller > .content > .emotion-panel > .emotion-category ul {
-  box-shadow: 0px 1px 0 2px #fff inset;
+  box-shadow: 0px 1px 0 1px #fff inset;
   border-top: 1px solid #ddd;
   margin: 0;
   padding: 0;
@@ -6029,12 +6033,13 @@ main > .overlay {
   height: 100%;
   overflow-x: scroll;
   white-space: nowrap;
+  text-align: left;
 }
 #publish article .scroller > .content > .emotion-panel > .emotion-category ul li {
   display: inline-block;
   padding: 5px 10px;
   overflow: hidden;
-  font-size: 0.6em;
+  font-size: 0.8em;
 }
 #publish article .scroller > .content > .emotion-panel > .emotion-category ul li:active,
 #publish article .scroller > .content > .emotion-panel > .emotion-category ul li .active {
