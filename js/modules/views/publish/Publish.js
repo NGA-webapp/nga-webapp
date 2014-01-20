@@ -181,13 +181,19 @@ define(function (require, exports, module) {
       this.$content.html(this.tplContent({}));
       this.$content.removeClass('hide').addClass('show');
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
-      this.scroll = new iScroll('publish-article', {
-        onBeforeScrollStart: function (e) {
-          if (!_.contains(['TEXTAREA', 'INPUT', 'SELECT'], e.target.nodeName)) {
-            e.preventDefault();
-          }
-        }
-      });
+      // this.scroll = new iScroll('publish-article', {
+      //   onBeforeScrollStart: function (e) {
+      //     if (!_.contains(['TEXTAREA', 'INPUT', 'SELECT'], e.target.nodeName)) {
+      //       e.preventDefault();
+      //     }
+      //   }
+      // });
+      // new iScroll('emotion-category', {
+      //   hScroll: true,
+      //   vScroll: false,
+      //   scrollX: true,
+      //   scrollY: false
+      // });
       if (!self.flag.init) {
         _.delay(function () {
           ui.Loading.close();

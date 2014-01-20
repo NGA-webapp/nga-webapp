@@ -8,7 +8,7 @@
       <a class="tool action-bold"><span class="glyphicon glyphicon-bold"></span></a>
     </div>
     <div class="emotion-panel">
-      <ul>
+      <ul style="display:none;">
         <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
         <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
         <li><img src="http://img4.ngacn.cc/ngabbs/post/smile/ac0.png"/></li>
@@ -37,11 +37,43 @@
         <div class="clearfix"></div>
       </ul>
       <div class="emotion-pagination"><span class="current">·</span> <span>·</span> <span>·</span></div>
-      <div class="emotion-category">
-        <ul>
-          <li>默认</li>
-          <li>小AC</li>
-          <div class="clearfix"></div>
-        </ul>
+      <div id="emotion-category" class="emotion-category">
+        <div class="scroller">
+          <ul>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <li>默认</li>
+            <li>小AC</li>
+            <div class="clearfix"></div>
+          </ul>
+        </div>
       </div>
     </div>
