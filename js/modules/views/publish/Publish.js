@@ -188,12 +188,6 @@ define(function (require, exports, module) {
       //     }
       //   }
       // });
-      // new iScroll('emotion-category', {
-      //   hScroll: true,
-      //   vScroll: false,
-      //   scrollX: true,
-      //   scrollY: false
-      // });
       if (!self.flag.init) {
         _.delay(function () {
           ui.Loading.close();
