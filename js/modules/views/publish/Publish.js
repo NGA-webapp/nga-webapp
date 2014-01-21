@@ -157,34 +157,16 @@ define(function (require, exports, module) {
         this.switchEmotionCategory($self.attr('data-category'));
       },
       'swipeLeft .emotion-list': function () {
-        var $ul = this.$el.find('.emotion-list ul');
-        var $span = this.$el.find('.emotion-list .emotion-pagination').find('span');
-        var ul = $ul.get(0);
-        var height = ul.scrollHeight;
-        var totalPage = Math.ceil(height / 160);
-        var currentPage = Math.ceil(ul.scrollTop / 160) + 1;
-        var cursorPage;
-        if (currentPage < totalPage) {
-          cursorPage = currentPage + 1;
-        }
-        $span.removeClass('current');
-        $span.eq(cursorPage - 1).addClass('current');
-        ul.scrollTop = (cursorPage - 1) * 160;
+        var getTarget = function (current, total) {
+          return current < total ? current + 1 : total;
+        };
+        this.switchEmotionPage(getTarget);
       },
       'swipeRight .emotion-list': function () {
-        var $ul = this.$el.find('.emotion-list ul');
-        var $span = this.$el.find('.emotion-list .emotion-pagination').find('span');
-        var ul = $ul.get(0);
-        var height = ul.scrollHeight;
-        var totalPage = Math.ceil(height / 160);
-        var currentPage = Math.ceil(ul.scrollTop / 160) + 1;
-        var cursorPage;
-        if (currentPage > 1) {
-          cursorPage = currentPage - 1;
-        }
-        $span.removeClass('current');
-        $span.eq(cursorPage - 1).addClass('current');
-        ul.scrollTop = (cursorPage - 1) * 160;
+        var getTarget = function (current) {
+          return current > 1 ? current - 1 : 1;
+        };
+        this.switchEmotionPage(getTarget);
       },
       'singleTap .emotion-list ul li': function (e) {
         var $self = $(e.currentTarget);
@@ -219,6 +201,7 @@ define(function (require, exports, module) {
       this.cached.fid = fid;
       this._refresh();
     },
+    // 开关表情面板
     toggleEmotion: function () {
       var $panel = this.$el.find('.emotion-panel');
       if ($panel.hasClass('open')) {
@@ -227,17 +210,35 @@ define(function (require, exports, module) {
         this.openEmotion();
       }
     },
+    // 打开表情面板
     openEmotion: function () {
       this.$el.find('.emotion-panel').addClass('open');
       this.switchEmotionCategory('defaults');
     },
+    // 关闭表情面板
     closeEmotion: function () {
       var $panel = this.$el.find('.emotion-panel');
       $panel.removeClass('open');
       $panel.find('.emotion-list').empty();
     },
+    // 切换表情组
     switchEmotionCategory: function (key) {
+      this.$el.find('.emotion-category').find('li').removeClass('active');
+      this.$el.find('.emotion-category').find('li[data-category=' + key + ']').addClass('active');
       this.$el.find('.emotion-panel').find('.emotion-list').html(this.tplEmotionItems({category: config.emotion[key]}));
+    },
+    // 切换表情页
+    switchEmotionPage: function (getTarget) {
+      var $ul = this.$el.find('.emotion-list ul');
+      var $span = this.$el.find('.emotion-list .emotion-pagination').find('span');
+      var ul = $ul.get(0);
+      var height = ul.scrollHeight;
+      var totalPage = Math.ceil(height / 160);
+      var currentPage = Math.ceil(ul.scrollTop / 160) + 1;
+      var targetPage = getTarget(currentPage, totalPage);
+      $span.removeClass('current');
+      $span.eq(targetPage - 1).addClass('current');
+      ul.scrollTop = (targetPage - 1) * 160;
     },
     render: function () {
       this.$el.html(this.tpl());
