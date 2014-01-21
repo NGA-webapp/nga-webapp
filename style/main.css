@@ -5993,7 +5993,6 @@ main > .overlay {
   padding: 0;
   height: 160px;
   overflow: hidden;
-  white-space: nowrap;
 }
 #publish article .scroller > .content > .emotion-panel > .emotion-list > ul li {
   float: left;
@@ -6003,8 +6002,7 @@ main > .overlay {
   width: -o-calc(25% - 10px);
   height: 70px;
   line-height: 70px;
-  margin: 0;
-  padding: 5px 15px;
+  margin: 5px;
   text-align: center;
 }
 #publish article .scroller > .content > .emotion-panel > .emotion-list > ul li:active {
@@ -6042,7 +6040,7 @@ main > .overlay {
 }
 #publish article .scroller > .content > .emotion-panel > .emotion-category ul li {
   display: inline-block;
-  padding: 5px 10px;
+  padding: 5px 15px;
   overflow: hidden;
   font-size: 0.8em;
   height: 30px;
