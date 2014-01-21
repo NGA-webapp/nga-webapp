@@ -74,7 +74,7 @@
           font-size: 1em;
           height: 40px;
           text-align: right;
-          padding: 0 7px;
+          padding: 0;
           .tool {
             float: right;
             color: #aaa;
@@ -83,7 +83,7 @@
             width: 30px;
             line-height: 30px;
             text-align: center;
-            margin: 5px 10px 5px 0;
+            margin: 5px 12px 5px 0;
             .text-shadow(0 -1px 1px #fff);
             &:active {
               background-color: @nga-red;
@@ -113,6 +113,7 @@
               // width: 320px;
               height: 160px;
               overflow: hidden;
+              white-space: nowrap;
               li {
                 float: left;
                 width: ~"calc(25% - 10px)";
@@ -121,7 +122,8 @@
                 width: ~"-o-calc(25% - 10px)";
                 height: 70px;
                 line-height: 70px;
-                margin: 5px;
+                margin: 0;
+                padding: 5px 15px;
                 text-align: center;
                 &:active {
                   background: #fff;

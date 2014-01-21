@@ -127,6 +127,7 @@ define(function (require, exports, module) {
       },
       'singleTap .action-bold': function () {
         var self = this;
+        this.$el.find('input, textarea').blur();
         Notification.prompt('插入加粗文本', function (result) {
           var text;
           if (result) {
@@ -139,6 +140,7 @@ define(function (require, exports, module) {
       },
       'singleTap .action-delete': function () {
         var self = this;
+        this.$el.find('input, textarea').blur();
         Notification.prompt('插入删除线文本', function (result) {
           var text;
           if (result) {
@@ -150,6 +152,7 @@ define(function (require, exports, module) {
         }, '删除线', ['yamie', '我删~'], '我怎能不变态');
       },
       'singleTap .action-emotion': function () {
+        this.$el.find('input, textarea').blur();
         this.toggleEmotion();
       },
       'singleTap .emotion-category li': function (e) {
