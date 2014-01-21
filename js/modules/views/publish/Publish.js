@@ -136,7 +136,7 @@ define(function (require, exports, module) {
               self._insertContent('[b]' + text + '[/b]');
             }
           }
-        }, '加粗', ['yamie', '我加~'], '');
+        }, '加粗', ['yamie', '我加~'], ' ');
       },
       'singleTap .action-delete': function () {
         var self = this;
@@ -149,7 +149,7 @@ define(function (require, exports, module) {
               self._insertContent('[del]' + text + '[/del]');
             }
           }
-        }, '删除线', ['yamie', '我删~'], '');
+        }, '删除线', ['yamie', '我删~'], ' ');
       },
       'singleTap .action-emotion': function () {
         this.$el.find('input, textarea').blur();
