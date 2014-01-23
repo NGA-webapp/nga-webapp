@@ -265,12 +265,19 @@ define(function (require, exports, module) {
       this.xhr = this.collection.fetchXml(data, options);
     },
     initialize: function () {
+      var self = this;
+      var initializeScroll = function () {
+        self.initializeScroll();
+      };
       this.collection = new PostInTopicCollection();
       this.$ul = this.$el.find('ul');
       this.$subject = this.$el.find('header span.subject');
       this.$footer = this.$el.find('footer');
       this.listenTo(this.collection, 'sync', this._addAll);
       this.listenTo(this.collection, 'error', this._clearAll);
+      this.listenTo($(window), 'resize', initializeScroll);
+      this.listenTo($(document), 'throttledresize', initializeScroll);
+      this.listenTo($(document), 'orientationchange', initializeScroll);
       return this.render();
     }
   });

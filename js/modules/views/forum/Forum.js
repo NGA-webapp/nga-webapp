@@ -202,9 +202,16 @@ define(function (require, exports, module) {
       }
     },
     initialize: function () {
+      var self = this;
+      var initializeScroll = function () {
+        self.initializeScroll();
+      };
       this.collection = new TopicInForumCollection();
       this.listenTo(this.collection, 'sync', this._addAll);
       this.listenTo(this.collection, 'error', this._clearAll);
+      this.listenTo($(window), 'resize', initializeScroll);
+      this.listenTo($(document), 'throttledresize', initializeScroll);
+      this.listenTo($(document), 'orientationchange', initializeScroll);
       return this.render();
     }
   });
