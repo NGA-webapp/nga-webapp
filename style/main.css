@@ -5789,10 +5789,10 @@ main > .overlay {
   -moz-box-shadow: 0, -5px 5px #000000;
   box-shadow: 0, -5px 5px #000000;
 }
-#setting article .scroller > ul {
-  margin: 0 0 20px 0;
+#setting article .scroller > .setting-list > ul {
+  margin: 0 0 20px;
 }
-#setting article .scroller > ul > li {
+#setting article .scroller > .setting-list > ul > li {
   -webkit-backface-visibility: hidden;
   display: block;
   min-height: 56px;
@@ -5801,11 +5801,11 @@ main > .overlay {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-#setting article .scroller > ul > li.show {
+#setting article .scroller > .setting-list > ul > li.show {
   -webkit-animation: bounceInDown 1s ease;
 }
-#setting article .scroller > ul > li.link,
-#setting article .scroller > ul > li.select {
+#setting article .scroller > .setting-list > ul > li.link,
+#setting article .scroller > .setting-list > ul > li.select {
   width: 100%;
   padding: 18px 20px;
   font-size: 16px;
@@ -5813,39 +5813,39 @@ main > .overlay {
   background-color: #ddd;
   border-bottom: 1px solid #ccc;
 }
-#setting article .scroller > ul > li.link:nth-child(1),
-#setting article .scroller > ul > li.select:nth-child(1) {
+#setting article .scroller > .setting-list > ul > li.link:nth-child(1),
+#setting article .scroller > .setting-list > ul > li.select:nth-child(1) {
   border-top: 1px solid #ccc;
 }
-#setting article .scroller > ul > li.link > h4,
-#setting article .scroller > ul > li.select > h4 {
+#setting article .scroller > .setting-list > ul > li.link > h4,
+#setting article .scroller > .setting-list > ul > li.select > h4 {
   margin: 0;
   padding: 0;
   font-weight: normal;
   color: #666;
 }
-#setting article .scroller > ul > li.link > h4 > span,
-#setting article .scroller > ul > li.select > h4 > span {
+#setting article .scroller > .setting-list > ul > li.link > h4 > span,
+#setting article .scroller > .setting-list > ul > li.select > h4 > span {
   float: right;
 }
-#setting article .scroller > ul > li.link:active {
+#setting article .scroller > .setting-list > ul > li.link:active {
   border-bottom: 1px solid #ddd;
   background-color: #efefef;
 }
-#setting article .scroller > ul > li.link:active > h4 {
+#setting article .scroller > .setting-list > ul > li.link:active > h4 {
   color: #666;
 }
-#setting article .scroller > ul > li.select span.checkbox {
+#setting article .scroller > .setting-list > ul > li.select span.checkbox {
   float: right;
 }
-#setting article .scroller > ul > li.disabled h4 {
+#setting article .scroller > .setting-list > ul > li.disabled h4 {
   color: #aaa;
 }
-#setting article .scroller > ul > li.disabled:active {
+#setting article .scroller > .setting-list > ul > li.disabled:active {
   border-bottom: 1px solid #ccc;
   background-color: #ddd;
 }
-#setting article .scroller > ul > li.disabled:active > h4 {
+#setting article .scroller > .setting-list > ul > li.disabled:active > h4 {
   color: #aaa;
 }
 #setting footer {
