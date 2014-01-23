@@ -125,7 +125,7 @@ define(function (require, exports, module) {
           complete();
         });
       },
-      'singleTap .action-bold': function () {
+      'tap .action-bold': function () {
         var self = this;
         this.$el.find('input, textarea').blur();
         Notification.prompt('插入加粗文本', function (result) {
@@ -136,9 +136,9 @@ define(function (require, exports, module) {
               self._insertContent('[b]' + text + '[/b]');
             }
           }
-        }, '加粗', ['yamie', '我加~'], ' ');
+        }, '加粗', ['yamie', '我加~'], '我怎能不变态');
       },
-      'singleTap .action-delete': function () {
+      'tap .action-delete': function () {
         var self = this;
         this.$el.find('input, textarea').blur();
         Notification.prompt('插入删除线文本', function (result) {
@@ -149,13 +149,13 @@ define(function (require, exports, module) {
               self._insertContent('[del]' + text + '[/del]');
             }
           }
-        }, '删除线', ['yamie', '我删~'], ' ');
+        }, '删除线', ['yamie', '我删~'], '我怎能不变态');
       },
-      'singleTap .action-emotion': function () {
+      'tap .action-emotion': function () {
         this.$el.find('input, textarea').blur();
         this.toggleEmotion();
       },
-      'singleTap .emotion-category li': function (e) {
+      'tap .emotion-category li': function (e) {
         var $self = $(e.currentTarget);
         this.switchEmotionCategory($self.attr('data-category'));
       },
@@ -171,7 +171,7 @@ define(function (require, exports, module) {
         };
         this.switchEmotionPage(getTarget);
       },
-      'singleTap .emotion-list ul li': function (e) {
+      'tap .emotion-list ul li': function (e) {
         var $self = $(e.currentTarget);
         var code;
         if ($self.attr('data-code')) {
