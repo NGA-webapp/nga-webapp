@@ -129,6 +129,13 @@ define(function (require, exports, module) {
     getLastUser: function () {
       return this.getUsers()[0];
     },
+    // 保存或查看缓存中是否为邮箱登陆的选项
+    loginByEmail: function (byEmail) {
+      if (typeof byEmail === 'undefined') {
+        return !!this.get('byEmail');
+      }
+      return this.set('byEmail', byEmail);
+    },
   });
   var site = new SiteStorage('nga');
   module.exports = site;

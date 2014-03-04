@@ -45,7 +45,7 @@ define(function (require, exports, module) {
       }, false);
     },
     doLogin: function () {
-      var self, username ,password;
+      var self, username ,password, byEmail;
       var errorHandler;
       if (this.flag.logging) {
         return false;
@@ -53,12 +53,14 @@ define(function (require, exports, module) {
       self = this;
       username = self.$el.find('.username').val();
       password = self.$el.find('.password').val();
+      byEmail = self.$el.find('.email > input').get(0).checked;
       if (trim(username) === '' || trim(password) === '') {
         Notification.alert('用户和密码不能为空');
         return false;
       }
       // 存入本地缓存的登录名记录
       siteStorage.addUser(username);
+      siteStorage.loginByEmail(byEmail);
       self.flag.logging = true;
       console.log('connect start');
       ui.Loading.open();
@@ -74,7 +76,7 @@ define(function (require, exports, module) {
           url: gsUrl,
           success: function (gs) {
             // zepto会将object类型的param进行一次编码，所以这里直接使用字符串拼装，避免错误的编码
-            var data = 'login_type=use_name' + 
+            var data = 'login_type=' + (byEmail ? 'use_mail' : 'use_name') + 
               '&username=' + username + 
               '&password=' + encryptPassword(password, gs) +
               '&expires=' + 31536000;
@@ -129,10 +131,11 @@ define(function (require, exports, module) {
     _refresh: function () {
       var self = this;
       var lastUser = siteStorage.getLastUser();
+      var byEmail = siteStorage.loginByEmail();
       if (!self.flag.init) {
         ui.Loading.open();
       }
-      this.$content.html(this.tplContent({lastUser: lastUser}));
+      this.$content.html(this.tplContent({lastUser: lastUser, byEmail: byEmail}));
       this.$content.removeClass('hide').addClass('show');
       if (!self.flag.init) {
         _.delay(function () {

@@ -5542,9 +5542,10 @@ main > .overlay {
   text-align: center;
   width: 3em;
   height: 3em;
-  margin: 2em auto;
+  margin: 1.2em auto;
   color: #db5633;
   display: block;
+  background: none;
 }
 #login article .scroller > .content > form > button:active {
   background: #db5633;
@@ -5556,6 +5557,13 @@ main > .overlay {
   font-size: 0.8em;
   color: #999;
   text-decoration: underline;
+}
+#login article .scroller > .content > form > .email {
+  text-align: right;
+  padding: 0.8em 1.2em;
+  line-height: 1em;
+  font-size: 1em;
+  color: #666;
 }
 #login footer {
   color: #db5633;
