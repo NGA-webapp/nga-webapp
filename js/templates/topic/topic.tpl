@@ -1,6 +1,9 @@
 <header>
   <h1>
-    <span class="subject"></span>
+    <a class="action-back">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="subject"></span>
+    </a>
   </h1>
   <div>
     <a class="icon action-skip"><span class="glyphicon glyphicon-plane"></span></a>

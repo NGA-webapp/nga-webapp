@@ -60,7 +60,7 @@ define(function (require, exports) {
    * @return {string}         过滤后的标题
    */
   var sliceSubject = exports.sliceSubject = function (subject) {
-    var limit = 13; // 标题最长长度
+    var limit = 12; // 标题最长长度
     subject = trim(subject);
     if (subject) {
       if (subject.length > limit ) {
