@@ -199,6 +199,8 @@ define(function (require, exports, module) {
       console.log(this.collection);
       this.collection.each(this._addOne, this);
       this.$subject.text(sliceSubject(this.collection.cache.subject));
+      this.$el.find('header > div > a > sup').text(this.collection.cache.page);
+      this.$el.find('header > div > a > sub').text(this.collection.cache.pageCount);
       // 图片加载后修正滚动条高度
       this.$ul.find('img').preloadSrc(function () {
         self.scroll.refresh();
