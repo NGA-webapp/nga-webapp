@@ -6,7 +6,7 @@
     </a>
   </h1>
   <div>
-    <a class="icon action-skip"><span class="glyphicon glyphicon-plane"></span></a>
+    <a class="action-skip"><sup>1</sup>/<sub>1</sub></a>
   </div>
 </header>
 <article id="topic-article" class="iscroll">
