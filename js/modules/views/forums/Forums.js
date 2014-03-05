@@ -22,7 +22,7 @@ define(function (require, exports, module) {
     },
     events: {
       // 跳转用singleTap触发 防止手误
-      'singleTap li.forum': function (e) {
+      'iscrollTap li.forum': function (e) {
         var $li = $(e.currentTarget);
         if (!this.flag.chooseFavor) {
           this.introForum($li);

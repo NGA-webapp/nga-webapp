@@ -8,7 +8,8 @@ define(function (require, exports, module) {
   var RowForumView = BasicView.extend({
     tagName: 'li',
     events: {
-      'singleTap': function (e) {
+      'iscrollTap': function (e) {
+        console.log(e);
         Backbone.stage.change('#!/topic/' + this.model.get('id'), ['slide-right', 'slide-left']);
         appCache.get('topicView').$el.find('header .subject').text(sliceSubject(this.$el.find('h4').text()));
       }

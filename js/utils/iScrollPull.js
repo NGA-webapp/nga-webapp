@@ -59,6 +59,7 @@ define(function (require, exports, module) {
     this.scroll = createPullabledScroll(IScroll, '#' + id, {
       scrollbars: true,
       fadeScrollbars: true,
+      tap: 'iscrollSourceTap',
       probeType: 2,
       pullDownOffset: pullDownOffset,
       pullUpOffset: pullUpOffset
@@ -82,6 +83,9 @@ define(function (require, exports, module) {
     this.scroll.on('pullUp', function () {
       $pullUpEl.removeClass('flip').addClass('loading');
       pullUpAction(); // Execute custom function (ajax call?)
+    });
+    this.$el.on('iscrollSourceTap', function (e) {
+      self.$el.find(e.target).trigger('iscrollTap');
     });
   };
   return iScrollPull;
