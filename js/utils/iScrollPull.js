@@ -52,7 +52,7 @@ define(function (require, exports, module) {
     $pullDownEl = this.$el.find('.action-pulldown');
     $pullUpEl = this.$el.find('.action-pullup');
     pullDownOffset = $pullDownEl.offset().height;
-    pullUpOffset = $pullUpEl.offset().height;
+    pullUpOffset = $pullUpEl.offset().height / 2;
     if (this.scroll && typeof this.scroll.destroy === 'function') {
       this.scroll.destroy();
     }
