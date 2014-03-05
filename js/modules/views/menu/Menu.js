@@ -100,7 +100,8 @@ define(function (require, exports, module) {
       if (this.scroll && typeof this.scroll.destroy === 'function') {
         this.scroll.destroy();
       }
-      this.scroll = new iScroll('menu-list', {
+      this.scroll = new IScroll('#menu-list', {
+        scrollbars: true
       });
       return this;
     },

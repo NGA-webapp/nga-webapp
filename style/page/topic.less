@@ -26,9 +26,10 @@
     width: 100%;
     display: block;
     position: absolute;
-    top: 50px;
     overflow: scroll;
     background-color: #efefef;
+    .box-sizing(border-box);
+    top: 50px;
     & .scroller {
       .box-shadow(0, -5px, 5px, #000);
       & > ul {
@@ -186,8 +187,9 @@
         .transition();
         text-align: center;
         min-height: 50px;
-        line-height: 2em;
+        line-height: 50px;
         color: #999;
+        height: 50px;
         &.flip {
           color: @nga-red;
         }
@@ -197,6 +199,17 @@
             .rotation;
           }
         }
+      }
+      & > .action-pulldown {
+        position: absolute;
+        top: -50px;
+        width: 100%;
+        &.loading {
+          position: static;
+        }
+      }
+      & > .action-pullup {
+        padding-bottom: 50px;
       }
     }
   }

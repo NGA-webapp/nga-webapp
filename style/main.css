@@ -4469,7 +4469,7 @@ header > div a {
   margin: 10px 0;
 }
 article {
-  min-height: 468px;
+  min-height: 100%;
 }
 article .scroller {
   min-height: 100%;
@@ -4775,9 +4775,10 @@ main > .overlay {
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
   text-align: center;
-  min-height: 2em;
-  line-height: 2em;
+  min-height: 20px;
+  line-height: 20px;
   color: #999;
+  height: 20px;
 }
 #forums article .scroller > .action-pulldown.flip,
 #forums article .scroller > .action-pullup.flip {
@@ -4790,6 +4791,17 @@ main > .overlay {
 #forums article .scroller > .action-pulldown.loading > span.glyphicon,
 #forums article .scroller > .action-pullup.loading > span.glyphicon {
   -webkit-animation: rotation 2s infinite linear;
+}
+#forums article .scroller > .action-pulldown {
+  position: absolute;
+  top: -50px;
+  width: 100%;
+}
+#forums article .scroller > .action-pulldown.loading {
+  position: static;
+}
+#forums article .scroller > .action-pullup {
+  padding-bottom: 50px;
 }
 #forums footer {
   color: #db5633;
@@ -4940,9 +4952,9 @@ main > .overlay {
   width: 100%;
   display: block;
   position: absolute;
-  top: 50px;
   overflow: scroll;
   background-color: #efefef;
+  top: 50px;
 }
 #forum article .scroller {
   -webkit-box-shadow: 0, -5px 5px #000000;
@@ -5023,9 +5035,10 @@ main > .overlay {
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
   text-align: center;
-  min-height: 2em;
-  line-height: 2em;
+  min-height: 50px;
+  line-height: 50px;
   color: #999;
+  height: 50px;
 }
 #forum article .scroller > .action-pulldown.flip,
 #forum article .scroller > .action-pullup.flip {
@@ -5038,6 +5051,17 @@ main > .overlay {
 #forum article .scroller > .action-pulldown.loading > span.glyphicon,
 #forum article .scroller > .action-pullup.loading > span.glyphicon {
   -webkit-animation: rotation 2s infinite linear;
+}
+#forum article .scroller > .action-pulldown {
+  position: absolute;
+  top: -50px;
+  width: 100%;
+}
+#forum article .scroller > .action-pulldown.loading {
+  position: static;
+}
+#forum article .scroller > .action-pullup {
+  padding-bottom: 50px;
 }
 #forum footer {
   color: #db5633;
@@ -5092,9 +5116,12 @@ main > .overlay {
   width: 100%;
   display: block;
   position: absolute;
-  top: 50px;
   overflow: scroll;
   background-color: #efefef;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  top: 50px;
 }
 #topic article .scroller {
   -webkit-box-shadow: 0, -5px 5px #000000;
@@ -5306,8 +5333,9 @@ main > .overlay {
   transition: all 0.3s ease-in;
   text-align: center;
   min-height: 50px;
-  line-height: 2em;
+  line-height: 50px;
   color: #999;
+  height: 50px;
 }
 #topic article .scroller > .action-pulldown.flip,
 #topic article .scroller > .action-pullup.flip {
@@ -5320,6 +5348,17 @@ main > .overlay {
 #topic article .scroller > .action-pulldown.loading > span.glyphicon,
 #topic article .scroller > .action-pullup.loading > span.glyphicon {
   -webkit-animation: rotation 2s infinite linear;
+}
+#topic article .scroller > .action-pulldown {
+  position: absolute;
+  top: -50px;
+  width: 100%;
+}
+#topic article .scroller > .action-pulldown.loading {
+  position: static;
+}
+#topic article .scroller > .action-pullup {
+  padding-bottom: 50px;
 }
 #topic footer {
   color: #db5633;

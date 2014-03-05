@@ -19,7 +19,8 @@ define(function (require, exports, module) {
     render: function () {
       this.$el.html(this.tpl());
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
-      this.scroll = new iScroll('user-article', {
+      this.scroll = new IScroll('#user-article', {
+        scrollbars: true
       });
       this.$content = this.$el.find('.content'); 
       return this;

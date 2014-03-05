@@ -55,7 +55,8 @@ define(function (require, exports, module) {
     render: function () {
       this.$el.html(this.tpl());
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
-      this.scroll = new iScroll('customForums-article', {
+      this.scroll = new IScroll('#customForums-article', {
+        scrollbars: true
       });
       this.$ul = this.$el.find('ul');
       return this;

@@ -257,7 +257,8 @@ define(function (require, exports, module) {
       this.$content.html(this.tplContent({emotions: config.emotion}));
       this.$content.removeClass('hide').addClass('show');
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
-      // this.scroll = new iScroll('publish-article', {
+      // this.scroll = new IScroll('publish-article', {
+         // scrollbars: true,
       //   onBeforeScrollStart: function (e) {
       //     if (!_.contains(['TEXTAREA', 'INPUT', 'SELECT'], e.target.nodeName)) {
       //       e.preventDefault();

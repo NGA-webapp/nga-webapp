@@ -49,7 +49,8 @@ define(function (require, exports, module) {
       var setting = siteStorage.getSetting();
       this.$el.html(this.tpl({setting: setting}));
       this.$el.find('.iscroll').css('height', window.innerHeight - 50);
-      this.scroll = new iScroll('setting-article', {
+      this.scroll = new IScroll('#setting-article', {
+        scrollbars: true
       });
       return this;
     },

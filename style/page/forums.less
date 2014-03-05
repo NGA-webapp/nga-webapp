@@ -91,9 +91,10 @@
       & > .action-pulldown, & > .action-pullup {
         .transition();
         text-align: center;
-        min-height: 2em;
-        line-height: 2em;
+        min-height: 20px;
+        line-height: 20px;
         color: #999;
+        height: 20px;
         &.flip {
           color: @nga-red;
         }
@@ -103,6 +104,17 @@
             .rotation;
           }
         }
+      }
+      & > .action-pulldown {
+        position: absolute;
+        top: -50px;
+        width: 100%;
+        &.loading {
+          position: static;
+        }
+      }
+      & > .action-pullup {
+        padding-bottom: 50px;
       }
     }
   }
