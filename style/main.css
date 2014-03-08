@@ -5112,6 +5112,13 @@ main > .overlay {
   text-shadow: 0 0 0 #421104;
   text-shadow: 0 0 0 #421104, ;
 }
+#topic header > div {
+  max-width: 2em;
+  overflow: hidden;
+}
+#topic header > div > a {
+  float: left;
+}
 #topic article {
   width: 100%;
   display: block;
