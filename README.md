@@ -6,6 +6,15 @@
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
+## 现状
+**项目目前已经停止更新。**
+
+2014年03月14日，收到Apple Inc.来信，表明178官方要求其下架在AppStore上的所有第三方NGA客户端。
+
+后续通过邮件希望进行交涉，但178相关负责人似乎只用高大上的QQ，因此我也无精力再争论，同时本项目停止更新。
+
+178, [as you wish(作者seread - 另一个iOS NGA客户端作者)](http://daxuanwo.info/thread/6934938.html?&p=).
+
 ## 目标里程碑
 - [1.2.0](https://github.com/imyelo/nga-webapp/issues?milestone=2&state=open)
 - [1.1.0](https://github.com/imyelo/nga-webapp/issues?milestone=1&state=open)
