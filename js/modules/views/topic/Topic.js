@@ -82,11 +82,14 @@ define(function (require, exports, module) {
         }, 140);
       },
       'edgeRightMove': function (e, touch) {
-        var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
-        var max = fullWidth;
-        var scale = touch.x2 / fullWidth * 0.1 + 0.9;
-        this.$el.animate({left: touch.x2 > max ? max : touch.x2}, 0);
-        Backbone.stage.getLastView().$el.animate({scale: scale}, 0);
+        var self = this;
+        setTimeout(function () {
+          var fullWidth = document.documentElement.clientWidth || document.body.offsetWidth;
+          var max = fullWidth;
+          var scale = touch.x2 / fullWidth * 0.1 + 0.9;
+          self.$el.animate({left: touch.x2 > max ? max : touch.x2}, 0);
+          Backbone.stage.getLastView().$el.animate({scale: scale}, 0);
+        }, 0);
       },
       'edgeRightStart': function (e, touch) {
         Backbone.stage.getLastView().$el.removeClass('stage-animate-out').addClass('stage-animate-show-behind');
