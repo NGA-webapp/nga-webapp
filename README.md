@@ -20,6 +20,11 @@
 - [1.1.0](https://github.com/imyelo/nga-webapp/issues?milestone=1&state=open)
 - 1.0.0
 
+## 开发者版本扫码安装
+![phonegap build](https://chart.googleapis.com/chart?chs=116x116&cht=qr&chl=http://build.phonegap.com/apps/689130/install/?qr_key=SAwQ2dozredM5buzJhZo&chld=L|1&choe=UTF-8)
+
+（需越狱）
+
 
 ## 如何贡献
 ### 提交建议
