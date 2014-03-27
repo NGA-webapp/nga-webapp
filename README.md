@@ -11,7 +11,7 @@
 
 2014年03月14日，收到Apple Inc.来信，表明178官方要求其下架在AppStore上的所有第三方NGA客户端。
 
-后续通过邮件希望进行交涉，但178相关负责人似乎只用高大上的QQ，因此我也无精力再争论，同时本项目停止更新。
+后续通过邮件希望进行交涉，但178相关负责人似乎只用高大上的QQ，我也无精力再争论，因此本项目停止更新。
 
 178, [as you wish(by seread, 另一个NGA客户端的作者)](http://daxuanwo.info/thread/6934938.html?&p=).
 
@@ -52,10 +52,7 @@
 
 ## 备忘
 - todo list
-  - 设置喜爱版面时，将显示当前选中的版面集中显示在顶部，或在header显示数量
-  - 推进ubb重写进度
-    - tid和pid链接、站内链接，在app内跳转
-  - 开发letter模块的表情键入
+  - https://github.com/NGA-webapp/nga-webapp/issues?labels=enhancement&page=1&state=open
 
 
 ## License
